@@ -89,7 +89,8 @@ public class MovePageController {
    }
    @PostMapping("/PSClassPage")
    public ModelAndView psClassPage(ModelAndView mav, @ModelAttribute UserInfo uf) {
-      tt.backController(0, mav);
+	   mav.addObject("uf", uf);
+      tt.backController(1, mav);
       return mav;
    }
    @PostMapping("/TClassPage")

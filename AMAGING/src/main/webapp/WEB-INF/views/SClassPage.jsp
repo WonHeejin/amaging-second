@@ -1,11 +1,42 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>학생 시간표 페이지</title>
- <script src="resources/js/common.js"></script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
+<!-- <script src='http://fullcalendar.io/js/fullcalendar-2.1.1/lib/moment.min.js'></script> -->
+<script
+	src='http://fullcalendar.io/js/fullcalendar-2.1.1/lib/jquery.min.js'></script>
+<script
+	src="http://fullcalendar.io/js/fullcalendar-2.1.1/lib/jquery-ui.custom.min.js"></script>
+<script
+	src='http://fullcalendar.io/js/fullcalendar-2.1.1/fullcalendar.min.js'></script>
+<!-- <script src="http://code.jquery.com/jquery-latest.js"></script> 
+  -->
+
+<link href='resources/fullcalendar/main.css' rel='stylesheet' />
+<script src='resources/fullcalendar/main.js'></script>
+<script src='resources/fullcalendar/ko.js'></script>
+<script src="resources/js/common.js"></script>
+<script src="resources/js/class.js"></script>
+<script>
+      document.addEventListener('DOMContentLoaded', function() {
+        var calendarEl = document.getElementById('calendar');
+        var calendar = new FullCalendar.Calendar(calendarEl, {
+        	  plugins: [ 'interaction', 'dayGrid', 'timeGrid' ],
+        	  headerToolbar: {
+        	    left: 'prev,next today',
+        	    center: 'title',
+        	    right: 'dayGridMonth,timeGridWeek,timeGridDay'
+        	  },
+        	  locale: 'ko'
+        });
+        calendar.render();
+      });
+    </script>
 <style>
 #frame {
 	width: 100%;
@@ -16,24 +47,23 @@
 
 #logo {
 	width: 30%;
-   height: 10%;
-   position: absolute;
-   left: 5%;
-   top:2.5%;
-   float: left;
-   background-image: url(resources/images/학생로고.png);
-   background-size: 100% 80%;
-   background-repeat: no-repeat;
-   background-position: left center;
+	height: 10%;
+	position: absolute;
+	left: 5%;
+	top: 2.5%;
+	float: left;
+	background-image: url(resources/images/학생로고.png);
+	background-size: 100% 80%;
+	background-repeat: no-repeat;
+	background-position: left center;
 }
 
 #logOut {
-   width: 15%;
-   height: 10%;
-   position: absolute;
-   top: 1%;
-   right: 1%;
-   
+	width: 15%;
+	height: 10%;
+	position: absolute;
+	top: 1%;
+	right: 1%;
 }
 
 #colorline {
@@ -66,19 +96,18 @@
 }
 
 .servicebutton {
-    width: 15%;
-   height: 100%;
-   float: left;
-   margin-left: 4.2%;
-   margin-top:-2%;
-
+	width: 15%;
+	height: 100%;
+	float: left;
+	margin-left: 4.2%;
+	margin-top: -2%;
 }
+
 #mainpage {
 	width: 73%;
 	height: 80%;
 	float: right;
 	margin-right: 5.5%;
-	
 	background-size: 45% 65%;
 	background-repeat: no-repeat;
 	background-position: center center;
@@ -105,21 +134,19 @@
 }
 
 #oneB {
-	  margin-top:5%;
-   margin-bottom:3%;
-   float: left;
-   background-image: url(resources/images/학사일정4.png);
-   background-size: 100% 80%;
-   background-repeat: no-repeat;
-   background-position: center center;
-   cursor: pointer;
-   height:9%;
-   
-   
+	margin-top: 5%;
+	margin-bottom: 3%;
+	float: left;
+	background-image: url(resources/images/학사일정4.png);
+	background-size: 100% 80%;
+	background-repeat: no-repeat;
+	background-position: center center;
+	cursor: pointer;
+	height: 9%;
 }
 
 #twoB {
-height:9%;
+	height: 9%;
 	margin-bottom: 3%;
 	float: left;
 	background-image: url(resources/images/성적.png);
@@ -127,11 +154,10 @@ height:9%;
 	background-repeat: no-repeat;
 	background-position: right center;
 	cursor: pointer;
-	
 }
 
 #threeB {
-height:9%;
+	height: 9%;
 	margin-bottom: 3%;
 	float: left;
 	background-image: url(resources/images/출석.png);
@@ -139,11 +165,10 @@ height:9%;
 	background-repeat: no-repeat;
 	background-position: right center;
 	cursor: pointer;
-	
 }
 
 #fourB {
-height:9%;
+	height: 9%;
 	margin-bottom: 3%;
 	float: left;
 	background-image: url(resources/images/시간표.png);
@@ -155,8 +180,8 @@ height:9%;
 }
 
 #fiveB {
-margin-bottom: 3%;
-height:9%;
+	margin-bottom: 3%;
+	height: 9%;
 	float: left;
 	background-image: url(resources/images/상담.png);
 	background-size: 100% 80%;
@@ -164,17 +189,20 @@ height:9%;
 	background-position: right center;
 	cursor: pointer;
 }
-#sixB{height:9%;
+
+#sixB {
+	height: 9%;
 	float: left;
 	background-image: url(resources/images/정보수정.png);
 	background-size: 100% 80%;
 	background-repeat: no-repeat;
 	background-position: right center;
-	cursor: pointer;}
+	cursor: pointer;
+}
 
 #btn {
 	width: 50%;
-   height: 50%;
+	height: 50%;
 	border-radius: 10px;
 	margin-left: 15%;
 	margin-top: 10%;
@@ -195,7 +223,7 @@ height:9%;
 	border-bottom: 5px solid #FFBB00;
 	background-color: #ffffff;
 	width: 50%;
-   height: 50%;
+	height: 50%;
 	text-align: center;
 }
 
@@ -206,17 +234,28 @@ height:9%;
 	left: 13%;
 	box-shadow: none;
 }
-#session{ width:100%;  height:50%; 
 
-position:absolute; top:44%; left:60%;
-text-align:center;
- font-size:130%;
- 
-	
-	}
+#session {
+	width: 100%;
+	height: 50%;
+	position: absolute;
+	top: 44%;
+	left: 60%;
+	text-align: center;
+	font-size: 130%;
+}
 
-#sessionBox{ width:30%; height:10%; 
-position:absolute; left:45%; top:1%;
+#sessionBox {
+	width: 30%;
+	height: 10%;
+	position: absolute;
+	left: 45%;
+	top: 1%;
+}
+
+#calendar {
+	width: 90%;
+	height: 80%;
 }
 </style>
 
@@ -226,28 +265,36 @@ position:absolute; left:45%; top:1%;
 		<div id="basic">
 			<div id="frame">
 				<div id="logo"></div>
-				 <div id="sessionBox"><span id="session">${sessionInfo.userName}님 환영합니다.
-				 	<input	type="hidden" value='${sessionInfo.userName}' name ="userName" />
-				 	<input	type="hidden" value='${sessionInfo.userId}' name="userId" />
-					<input	type="hidden" value='${sessionInfo.userCode}' name="userCode" />
-				<div id="logOut">
-					<input type="button" id="btn" value="로그아웃" onclick="accessOut()"
-						onmouseover="mouseOver(this)" onmouseout="mouseLeave(this)">
+				<div id="sessionBox">
+					<span id="session">${sessionInfo.userName}님 환영합니다.</span> <input
+						type="hidden" value='${sessionInfo.userName}' name="userName" />
+					<input type="hidden" value='${sessionInfo.userId}' name="userId" />
+					<input type="hidden" value='${sessionInfo.userCode}'
+						name="userCode" />
+					<div id="logOut">
+						<input type="button" id="btn" value="로그아웃" onclick="accessOut()"
+							onmouseover="mouseOver(this)" onmouseout="mouseLeave(this)">
+					</div>
 				</div>
-			</div>
 
-			<div id="body">
-				<div id="colorline"></div>
-				<div class="servicebutton">
-					<input type="button" class="bothB" id="oneB" onclick="getAcPlanPage('Smainservices','/AcPlanPage')"> <input
-						type="button" class="bothB" id="twoB" onclick="getPage('Smainservices','/GradePage')"> <input
-						type="button" class="bothB" id="threeB" onclick=""> <input
-						type="button" class="bothB" id="fourB" onclick=""> <input
-						type="button" class="bothB" id="fiveB" onclick="">
-						<input
-						type="button" class="bothB" id="sixB" onclick="getPage('Smainservices','/InfoPage')">
+				<div id="body">
+					<div id="colorline"></div>
+					<div class="servicebutton">
+						<input type="button" class="bothB" id="oneB"
+							onclick="getAcPlanPage('Smainservices','/AcPlanPage')"> <input
+							type="button" class="bothB" id="twoB"
+							onclick="getPage('Smainservices','/GradePage')"> <input
+							type="button" class="bothB" id="threeB" onclick=""> <input
+							type="button" class="bothB" id="fourB"
+							onclick="getPage('Smainservices','/PSClassPage')"> <input
+							type="button" class="bothB" id="fiveB" onclick=""> <input
+							type="button" class="bothB" id="sixB"
+							onclick="getPage('Smainservices','/InfoPage')">
+					</div>
+					<div id="mainpage">
+						<div id='calendar'></div>
+					</div>
 				</div>
-				<div id="mainpage"></div>
 			</div>
 		</div>
 	</form>

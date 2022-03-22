@@ -71,23 +71,14 @@ public class TimeTable extends amaging.schedu.common.CommonMethod{
 		}
 	}
 	private ModelAndView psClassPage(ModelAndView mav) {
-		//	UserInfo uf =(UserInfo)mav.getModelMap().getAttribute("tesuto");
-		//	uf.setAcCode("9999");
-		//	uf.setStudentId("ktskts333");
-		//	uf.setTier("bronze");
-		//	uf.setUserCode("0868");
-		//	uf.setUserId("ktskts222");
-		//	uf.setUserName("김현우치하사스케");
-		//	System.out.println(uf+"오늘 점심은 엉기골");
-		//	mav.getModelMap().addAttribute("hirake", uf);
-
-		//		System.out.println(((UserInfo)mav.getModelMap().getAttribute("hirake")).getAcCode());
-		//		System.out.println(((UserInfo)mav.getModelMap().getAttribute("hirake")).getStudentId());
-		//		System.out.println(((UserInfo)mav.getModelMap().getAttribute("hirake")).getTier());
-		//		System.out.println(((UserInfo)mav.getModelMap().getAttribute("hirake")).getUserCode());
-		//		System.out.println(((UserInfo)mav.getModelMap().getAttribute("hirake")).getUserId());
-		//		System.out.println(((UserInfo)mav.getModelMap().getAttribute("hirake")).getUserName());
-
+		UserInfo uf=(UserInfo)mav.getModelMap().getAttribute("uf");
+		String page="";
+		if(uf.getUserCode()==1) {
+			page="PClassPage";
+		}else {
+			page="SClassPage";
+		}
+		mav.setViewName(page);
 		return mav;
 	}
 
