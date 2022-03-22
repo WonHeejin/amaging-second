@@ -11,7 +11,7 @@ function getCourseList(acCode){
 
    		/* -----------과정-------------- */
   let namae = JSON.parse(aca);
-     
+     	
          let div = document.createElement("div");
    		 
 		let accode=document.createElement("input");
@@ -211,8 +211,11 @@ function getAClassList(acCode){
 function updClassForm(abc){
 	alert("updClassForm");
 	 let risuto = JSON.parse(abc);
-		
+	
 	  let div = document.createElement("div");
+		 div.setAttribute("id","koreka")
+		 div.style.clear="both"
+		
 		 let accode=document.createElement("input");
 			 	accode.setAttribute("type","hidden")
 		 		accode.setAttribute("value",risuto[0].acCode);
@@ -229,17 +232,24 @@ function updClassForm(abc){
 			clcode.setAttribute("id","clcode")
 
 			div.appendChild(clcode);
-			
+	 let abcd=document.createElement("div")
+		 abcd.style.width="100%"
+		 abcd.style.height="100%"
+		 abcd.style.clear="both"
+		 
+	     abcd.setAttribute("id","kkore")
+		
 	 let table = document.createElement("table");
  		 table.style.position="absolute";
-		 table.style.top="50%";
+		 table.style.top="25%";
 		 table.style.left="30%";
 		 table.style.width="50%";
 		 table.style.borderRadius="5px";
 		 table.style.borderCollapse="collapse";	
 		 table.style.borderTop= "2px solid #92acbb";
-			         let mtr =createTr("mtr");
-						
+		 table.style.overflow="scroll"
+	
+			         let mtr =createTr("mtr");		
 					 let mtd1 =createTd("mtd1");
 					 let mtd2 =createTd("mtd2");
 					 let mtd3 =createTd("mtd3");
@@ -256,10 +266,7 @@ function updClassForm(abc){
 						mtr.appendChild(mtd3);
 						mtr.appendChild(mtd4);
 						mtr.appendChild(mtd5);
-					
-						
-		
-			table.appendChild(mtr);
+		table.appendChild(mtr);
 		
 		for(let i=0; i<risuto.length; i++){
 		
@@ -301,7 +308,7 @@ function updClassForm(abc){
          name.style.border="2px solid #92acbb";
          name.style.borderRadius="5px";
          name.style.position="absolute";
-         name.style.top="25%";
+         name.style.top="52%";
          name.style.left="38%";
          name.style.width = "10%";
          name.style.height = "7.5%";
@@ -316,7 +323,7 @@ function updClassForm(abc){
 			fee.style.border="2px solid #92acbb";
 			fee.style.borderRadius="5px";
 			fee.style.position="absolute";
-			fee.style.top="25%";
+			fee.style.top="52%";
 			fee.style.left="54%";
 			fee.style.width = "10%";
       		fee.style.height = "7.5%";
@@ -327,7 +334,7 @@ function updClassForm(abc){
 			let sdiv = document.createElement("div");
 			sdiv.innerHTML="개강일";
 			sdiv.style.position="absolute";
-			sdiv.style.top="37.5%";
+			sdiv.style.top="64.5%";
 			sdiv.style.left="34%";
 			sdiv.style.border="2px solid #92acbb";
 			sdiv.style.borderRadius="5px";
@@ -341,7 +348,7 @@ function updClassForm(abc){
        		dateFrom.style.border = "2px solid #92acbb";
         	dateFrom.style.position = "absolute"
         	dateFrom.style.left = "38%";
-			dateFrom.style.top="35%";
+			dateFrom.style.top="62%";
 			dateFrom.style.borderRadius="5px";
 			dateFrom.style.textAlign = "center";
 			dateFrom.style.fontSize="100%";
@@ -354,7 +361,7 @@ function updClassForm(abc){
 			let sdiv2 = document.createElement("div");
 			sdiv2.innerHTML="종강일";
 			sdiv2.style.position="absolute";
-			sdiv2.style.top="37.5%";
+			sdiv2.style.top="64.5%";
 			sdiv2.style.left="50%";
 			sdiv2.style.border="2px solid #92acbb";
 			sdiv2.style.borderRadius="5px";
@@ -369,7 +376,7 @@ function updClassForm(abc){
         	dateFrom2.style.border = "2px solid #92acbb";
          	dateFrom2.style.position = "absolute"
          	dateFrom2.style.left = "54%";
-			dateFrom2.style.top="35%";
+			dateFrom2.style.top="62%";
 			dateFrom2.style.borderRadius="5px";
 			dateFrom2.style.textAlign = "center";
 			dateFrom2.style.fontSize="100%";
@@ -390,7 +397,7 @@ function updClassForm(abc){
          	btn.style.position = "absolute"
          	btn.style.left = "68%";
 			btn.style.cursor="pointer";
-			btn.style.top="30%";
+			btn.style.top="57%";
 			btn.style.borderRadius="5px";
 			btn.style.textAlign = "center";
 			btn.style.fontSize="100%";
@@ -398,7 +405,8 @@ function updClassForm(abc){
 			btn.style.color="#000";	
             
 	const mainpage =document.getElementById("mainpage");
-	mainpage.appendChild(table);
+	abcd.appendChild(table);
+	div.appendChild(abcd);
 	div.appendChild(name);
 	div.appendChild(fee);
 	div.appendChild(dateFrom);
@@ -456,7 +464,7 @@ function getSelectClass(target) {
     var trs = tbody.getElementsByTagName('tr');
     var backColor = "#ffffff";
     var textColor = "black";
-    var orgBColor = "#FF2E2E";
+    var orgBColor = "#EF90FF";
     var orgTColor = "#ffffff";
  
  
@@ -518,8 +526,9 @@ function subjectFormList(acCode){
 	getAjaxData("GetAClassList",abc,"subjectRegForm","post");
 }
 
-function subjectRegForm(abcd){
- let ClassNa = JSON.parse(abcd);
+function subjectRegForm(abc){
+ let ClassNa = JSON.parse(abc);
+
   let div = document.createElement("div");
   let accode=document.createElement("input");
 	  accode.setAttribute("type","hidden");
@@ -585,192 +594,331 @@ function subjectRegForm(abcd){
 		sb105.setAttribute("value","SB105")
 		sb105.innerHTML="과학"	
 		subj.appendChild(sb105)
-	let sb106=document.createElement("option");
-		sb106.setAttribute("value","SB106")
-		sb106.innerHTML="자바"	
-		subj.appendChild(sb106)	
-	let sb107=document.createElement("option");
-		sb107.setAttribute("value","SB107")
-		sb107.innerHTML="오라클"	
-		subj.appendChild(sb107)	
-	let sb108=document.createElement("option");
-		sb108.setAttribute("value","SB108")
-		sb108.innerHTML="자바스크립트"	
-		subj.appendChild(sb108)	
-	let sb109=document.createElement("option");
-		sb109.setAttribute("value","SB109")
-		sb109.innerHTML="스프링부트"	
-		subj.appendChild(sb109)	
-	let sb110=document.createElement("option");
-		sb110.setAttribute("value","SB110")
-		sb110.innerHTML="코틀린"	
-		subj.appendChild(sb110)																		
+//	let sb106=document.createElement("option");
+//		sb106.setAttribute("value","SB106")
+//		sb106.innerHTML="자바"	
+//		subj.appendChild(sb106)	
+//	let sb107=document.createElement("option");
+//		sb107.setAttribute("value","SB107")
+//		sb107.innerHTML="오라클"	
+//		subj.appendChild(sb107)	
+//	let sb108=document.createElement("option");
+//		sb108.setAttribute("value","SB108")
+//		sb108.innerHTML="자바스크립트"	
+//		subj.appendChild(sb108)	
+//	let sb109=document.createElement("option");
+//		sb109.setAttribute("value","SB109")
+//		sb109.innerHTML="스프링부트"	
+//		subj.appendChild(sb109)	
+//	let sb110=document.createElement("option");
+//		sb110.setAttribute("value","SB110")
+//		sb110.innerHTML="코틀린"	
+//		subj.appendChild(sb110)																		
 			/*선생님 이름 */
   let tdiv=document.createElement("div");
-	  tdiv.setAttribute("onClick","openModal(this)")						
+	  tdiv.setAttribute("id","tdiv")
+	  tdiv.setAttribute("type","button")
+	  tdiv.innerText="선생님 검색"
+	  tdiv.style.width="9.7%"
+	  tdiv.style.height="5.1%"
+	  tdiv.style.border = "2px solid #92acbb";
+      tdiv.style.position = "absolute"
+      tdiv.style.left = "54%";
+	  tdiv.style.top="30%";
+	  tdiv.style.borderRadius="5px";
+	  tdiv.style.textAlign = "center"
+	  tdiv.style.fontSize="16px";
+	  tdiv.style.paddingTop="20px"
+	  tdiv.setAttribute("onClick","searchTeaForm(this)")
+	  div.appendChild(tdiv)						
 		    /*과목시작시간 */
-  let sTime =document.createElement("select");
+  let slabel=document.createElement("div")
+	  slabel.innerText="수업시작 시간"
+	  slabel.style.position="absolute"
+	  slabel.style.top="44%"
+	  slabel.style.left="32.5%"
+	  slabel.style.border="2px solid #92acbb"
+  let sTime =document.createElement("input");
 	  sTime.setAttribute("id","stime");
-	  sTime.style.width = "10%";
-      sTime.style.height = "8%";
+	  sTime.setAttribute("type","time")
+	  sTime.style.width = "9.8%";
+      sTime.style.height = "7.8%";
       sTime.style.border = "2px solid #92acbb";
       sTime.style.position = "absolute"
       sTime.style.left = "30%";
-	  sTime.style.top="40%";
+	  sTime.style.top="48%";
 	  sTime.style.borderRadius="5px";
 	  sTime.style.textAlign = "center";
-	  sTime.style.fontSize="100%";
- 
- let stna=document.createElement("option");
-	 stna.innerHTML="시작시간";
-	 sTime.appendChild(stna);
-	 
-let hachi=document.createElement("option");	 
-	hachi.innerHTML="08:00";
-	sTime.appendChild(hachi);
-let ku=document.createElement("option");
-	ku.innerHTML="09:00";
-	sTime.appendChild(ku);
-let ten=document.createElement("option");
-	ten.innerHTML="10:00";
-	sTime.appendChild(ten);
-let ele=document.createElement("option");
-	ele.innerHTML="11:00";
-	sTime.appendChild(ele);
-let twe=document.createElement("option");
-	twe.innerHTML="12:00";
-	sTime.appendChild(twe);
-let one=document.createElement("option");
-	one.innerHTML="13:00";
-	sTime.appendChild(one);
-let two=document.createElement("option");
-	two.innerHTML="14:00";
-	sTime.appendChild(two);
-let thr=document.createElement("option");
-	thr.innerHTML="15:00";
-	sTime.appendChild(thr);
-let four=document.createElement("option");
-	four.innerHTML="16:00";
-	sTime.appendChild(four);
-let fiv=document.createElement("option");
-	fiv.innerHTML="17:00";
-	sTime.appendChild(fiv);
-let six=document.createElement("option");
-	six.innerHTML="18:00";
-	sTime.appendChild(six);										 
+	  sTime.style.fontSize="100%"; 
+ 				 
 		    /*과목종료시간 */
-let eTime =document.createElement("select");
-	  eTime.setAttribute("id","stime");
-	  eTime.style.width = "10%";
-      eTime.style.height = "8%";
+let elabel=document.createElement("div")
+	elabel.innerText="수업종료 시간"
+	elabel.style.position="absolute"
+	elabel.style.top="44%"
+	elabel.style.left="44.5%"
+	elabel.style.border="2px solid #92acbb"
+let eTime =document.createElement("input");
+	  eTime.setAttribute("id","etime");
+	  eTime.setAttribute("type","time")
+	  eTime.style.width = "9.8%";
+      eTime.style.height = "7.8%";
       eTime.style.border = "2px solid #92acbb";
       eTime.style.position = "absolute"
       eTime.style.left = "42%";
-	  eTime.style.top="40%";
+	  eTime.style.top="48%";
 	  eTime.style.borderRadius="5px";
 	  eTime.style.textAlign = "center";
 	  eTime.style.fontSize="100%";
  
- let enna=document.createElement("option");
-	 enna.innerHTML="종료시간";
-	 eTime.appendChild(enna);
-	 
-let ten1=document.createElement("option");
-	ten1.innerHTML="10:00";
-	eTime.appendChild(ten1);
-let ele1=document.createElement("option");
-	ele1.innerHTML="11:00";
-	eTime.appendChild(ele1);
-let twe1=document.createElement("option");
-	twe1.innerHTML="12:00";
-	eTime.appendChild(twe1);
-let one1=document.createElement("option");
-	one1.innerHTML="13:00";
-	eTime.appendChild(one1);
-let two1=document.createElement("option");
-	two1.innerHTML="14:00";
-	eTime.appendChild(two1);
-let thr1=document.createElement("option");
-	thr1.innerHTML="15:00";
-	eTime.appendChild(thr1);
-let four1=document.createElement("option");
-	four1.innerHTML="16:00";
-	eTime.appendChild(four1);
-let fiv1=document.createElement("option");
-	fiv1.innerHTML="17:00";
-	eTime.appendChild(fiv1);
-let six1=document.createElement("option");
-	six1.innerHTML="18:00";
-	eTime.appendChild(six1);
-let sev1=document.createElement("option");
-	sev1.innerHTML="19:00";
-	eTime.appendChild(sev1);
-let eig1=document.createElement("option");
-	eig1.innerHTML="20:00";
-	eTime.appendChild(eig1);			
 			/*요일선택 */
 let week=document.createElement("div");
-	 week.setAttribute("id","week");
-	  week.style.width = "10%";
-      week.style.height = "7.5%";
+	  week.setAttribute("id","week");
+	  week.setAttribute("type","button");
+	  week.innerText="요일선택"	
+	  week.style.width = "9.7%";
+      week.style.height = "5.1%";
       week.style.border = "2px solid #92acbb";
       week.style.position = "absolute"
-      week.style.left = "53%";
-	  week.style.top="40%";
+      week.style.left = "54%";
+	  week.style.top="48%";
 	  week.style.borderRadius="5px";
 	  week.style.textAlign = "center"
-	  week.style.fontSize="100%";
-	  week.setAttribute("type","button");
+	  week.style.fontSize="16px";
+	  week.style.paddingTop="20px"
 	  week.setAttribute("onClick","javascript:openModal(this)");
-let weekbox=document.createElement("form");
+	
+let weekbox=document.createElement("div");
 let mon=document.createElement("input")
     mon.setAttribute("type","checkbox");
 	mon.setAttribute("name","week");
 	mon.setAttribute("value","월요일");
-	weekbox.appendChild(mon);
+	mon.style.position="absolute"
+	mon.style.bottom="-35%"		
+	mon.style.zoom="3.0";	
+let label1=document.createElement("label")
+	label1.innerText="월요일";
+	label1.style.fontSize="25px"
+	label1.style.position="absolute"
+	label1.style.left="10%"
+	label1.style.top="15%"
+	label1.appendChild(mon);
+	weekbox.appendChild(label1);	
 let tues=document.createElement("input")
     tues.setAttribute("type","checkbox");
 	tues.setAttribute("name","week");
 	tues.setAttribute("value","화요일");
-	weekbox.appendChild(tues);
+	tues.style.position="absolute"
+	tues.style.bottom="-35%"		
+	tues.style.zoom="3.0";
+let label2=document.createElement("label")
+	label2.innerText="화요일";
+	label2.style.fontSize="25px";
+	label2.style.position="absolute"
+	label2.style.left="40%"
+	label2.style.top="15%"
+	label2.appendChild(tues);
+	weekbox.appendChild(label2);	
 let wedn=document.createElement("input")
     wedn.setAttribute("type","checkbox");
 	wedn.setAttribute("name","week");
 	wedn.setAttribute("value","수요일");
-	weekbox.appendChild(wedn);
+	wedn.style.position="absolute"
+	wedn.style.bottom="-35%"		
+	wedn.style.zoom="3.0";
+let label3=document.createElement("label")
+	label3.innerText="수요일";
+	label3.style.fontSize="25px";
+	label3.style.position="absolute"
+	label3.style.left="70%"
+	label3.style.top="15%"
+	label3.appendChild(wedn);
+	weekbox.appendChild(label3);	
 let thurs=document.createElement("input")
     thurs.setAttribute("type","checkbox");
 	thurs.setAttribute("name","week");
 	thurs.setAttribute("value","목요일");
-	weekbox.appendChild(thurs);
+	thurs.style.position="absolute"
+	thurs.style.bottom="-35%"	
+	thurs.style.zoom="3.0";
+let label4=document.createElement("label")
+	label4.innerText="목요일";
+	label4.style.fontSize="25px";
+	label4.style.position="absolute"
+	label4.style.left="10%"
+	label4.style.top="45%"
+	label4.appendChild(thurs);
+	weekbox.appendChild(label4);		
 let fri=document.createElement("input")
     fri.setAttribute("type","checkbox");
 	fri.setAttribute("name","week");
 	fri.setAttribute("value","금요일");
-	weekbox.appendChild(fri);
+	fri.style.position="absolute"
+	fri.style.bottom="-35%"	
+	fri.style.zoom="3.0";
+let label5=document.createElement("label")
+	label5.innerText="금요일";
+	label5.style.fontSize="25px";
+	label5.style.position="absolute"
+	label5.style.left="40%"
+	label5.style.top="45%"
+	label5.appendChild(fri);
+	weekbox.appendChild(label5);	
 let satur=document.createElement("input")
     satur.setAttribute("type","checkbox");
 	satur.setAttribute("name","week");
 	satur.setAttribute("value","토요일");
-	weekbox.appendChild(satur);
+	satur.style.position="absolute"
+	satur.style.bottom="-35%"	
+	satur.style.zoom="3.0";
+let label6=document.createElement("label")
+	label6.innerText="토요일";
+	label6.style.fontSize="25px";
+	label6.style.position="absolute"
+	label6.style.left="70%"
+	label6.style.top="45%"
+	label6.appendChild(satur);
+	weekbox.appendChild(label6);	
 let sun=document.createElement("input")
     sun.setAttribute("type","checkbox");
 	sun.setAttribute("name","week");
 	sun.setAttribute("value","일요일");
-	weekbox.appendChild(sun);																				
-	week.appendChild(weekbox);			
+	sun.style.position="absolute"
+	sun.style.bottom="-35%"	
+	sun.style.zoom="3.0";
+let label7=document.createElement("label")
+	label7.innerText="일요일";
+	label7.style.fontSize="25px";
+	label7.style.position="absolute"
+	label7.style.left="10%"
+	label7.style.top="75%"
+	label7.appendChild(sun);
+	weekbox.appendChild(label7);
+let modalbtn=document.createElement("input")
+	modalbtn.setAttribute("type","button")
+	modalbtn.setAttribute("value","확인")
+	modalbtn.setAttribute("onClick","insertDay(this)")
+	modalbtn.style.width="12%"
+	modalbtn.style.height="12%"
+	modalbtn.style.position="absolute"
+	modalbtn.style.left="77%"
+	modalbtn.style.top="73%"
+	modalbtn.style.backgroundColor="#D5D5D5"
+	modalbtn.style.borderRadius="5px";																						
+	mbody.appendChild(weekbox)
+	mbody.appendChild(modalbtn)		
 			/*등록버튼 */
-
-			
+let toroku=document.createElement("input")
+	toroku.setAttribute("type","button")
+	toroku.setAttribute("value","등록")
+	toroku.setAttribute("onClick","regClass(this)")
+	toroku.style.width="7%"
+	toroku.style.height="7.5%"
+	toroku.style.position="absolute"
+	toroku.style.left="66%"
+	toroku.style.top="48%"
+	toroku.style.backgroundColor="#ffffff"
+	toroku.style.border = "2px solid #92acbb";
+	toroku.style.borderRadius="5px";	
 	    const mainpage =document.getElementById("mainpage");
 	    div.appendChild(select);
 		div.appendChild(sTime);
+		div.appendChild(slabel);
+		div.appendChild(elabel);
 		div.appendChild(eTime);
 		div.appendChild(subj);
-		mainpage.appendChild(week);
+		div.appendChild(week);
+		div.appendChild(toroku);
 		mainpage.appendChild(div);
 }
-function openModal(obj){
+function insertDay(target){
+	
+ const query = 'input[name="week"]:checked';
+  const selectedEls = 
+      document.querySelectorAll(query)
+  // 선택된 목록에서 value 찾기
+  let result = '';
+  selectedEls.forEach((el) => {
+    result += el.value + ' ';
+  }); 
+  // 출력
+  document.getElementById('week').innerText
+    = result;
+	alert("요일이 선택되었습니다");
+	closeModal()
+}	
+function searchTeaForm(){
+	  const mainpage=document.getElementById("mainpage");
+   mainpage.innerHTML+="<div class='scontainer' id='scontainer'>"
+         +"<div class='smdialog'>"
+         +"<div class='smcontent'>"
+         +"<div class='smheader' style='font-size:200%'>"
+         +"<h4 id='smheader' class='mtitle' >학원 검색</h4></div>"
+         +"<input type='text' name='tName' placeholder='선생님이름 입력' style=' height:35px; width:30%; position:absolute; top:19%; left:30%; border-radius: 5px; border-color:#EF90FF'/>"
+         +"<input type='button' value='검색' onClick='teacherSerchForm()' class='searchBtn' style='position:absolute; top:21%; left:62%; border-radius:5px background-color:#EF90FF;'/>"
+         +"<div class='smbody' id='smbody' value=''><div class='teacherId'>선생코드</div><div class='tName'>이름</div><div class='tEmail'>이메일</div></div>"                 
+         +"<div class='smfooter'>"
+         +"<input type='button' class='mbtn1' value='선택'"
+         +"onclick='selectList(this)' style='border-radius:5px; background-color:#EF90FF;  width:30%; height:50%;'/>"            
+         +"<input type='button' class='mbtn2' value='닫기'"
+         +"onclick='closeModal2()' style='border-radius:5px;background-color: #EF90FF ;width:30%; height:50%; '/></div></div></div></div>";
+}
+function teacherSerchForm(){
+	let acCode=document.getElementById("accode").value
+	let tName=document.getElementsByName("tName")[0].value;
+	if(tName==""){
+		alert("선생님 이름을 입력해주세요!");
+	}else{	
+	let data="tName="+tName+"&acCode="+acCode;
+	alert(data);
+	getAjaxData("GetTeacherList",data,"displayTeacher","post")
+	}
+}
+function displayTeacher(data){	
+	let tlist = JSON.parse(data);
+	alert(JSON.stringify(tlist));
+	const smbody=document.getElementById("smbody");
+	for(i=0; i<tlist.length;i++ ){
+		let record=createDiv("record","record");		
+		record.setAttribute("onClick","selectline(this)");	
+		record.style.border="2px solid #EF90FF "
+		for(colindex=0; colindex<3; colindex++){
+		let item=createDiv((colindex==0)?"teacherId":(colindex==1)?"tName":"tEmail","td");		
+		item.innerHTML=(colindex==0)?tlist[i].teacherId:(colindex==1)?tlist[i].tname:tlist[i].temail;
+		item.style.textAlign="center"
+		record.appendChild(item);
+		}	
+		smbody.appendChild(record);		
+  	}
+  }
+
+function createDiv(className,id,name){
+	let div= document.createElement("div");
+	div.setAttribute("class",className);
+	div.setAttribute("id",id);
+	div.setAttribute("name",name);
+	return div;
+}
+
+function selectline(obj){
+	var test0=document.getElementById("td");
+		test0.setAttribute("value",obj.childNodes[0].value);
+		alert(JSON.stringify(test0));
+	if(currentRecord!=null){
+		currentRecord.style.backgroundColor="#ffffff";
+		currentRecord.style.color="black";
+		currentRecord=null;
+	}
+	currentRecord=obj;
+	obj.style.backgroundColor="#E14FCA";
+	
+	obj.style.color="#ffffff";
+}
+function selectList(taget){
+	
+}
+
+function openModal(){
    let container = document.getElementById("container");
    container.style.filter = "alpha(Opacity=50)";
    container.style.display = "block";	
@@ -778,4 +926,19 @@ function openModal(obj){
 function closeModal(){
    let container = document.getElementById("container");
    container.style.display = "none";
+}
+function closeModal2(){
+   let scontainer = document.getElementById("scontainer");
+   scontainer.style.display = "none";
+}
+function regClass(){
+	const clCode=document.getElementById("select").value;
+	const clName=document.getElementById("select").innerHTML;
+	const subjectName=document.getElementById("subject");
+	const subjectCode=document.getElementById("subject").value;
+	const sTime=document.getElementById("stime").value;
+	const eTime=document.getElementById("etime").value;
+	const weekDay=document.getElementById("week").value;
+	const data="clCode="+clCode+"&clName="+clName+"&subjectName="+subjectName+"&subjectCode="+subjectCode+"&sTime="+sTime+"&eTime="+eTime+"&weekDay="+weekDay
+	alert(data);
 }

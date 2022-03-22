@@ -8,6 +8,7 @@ import org.springframework.transaction.TransactionDefinition;
 import org.springframework.web.servlet.ModelAndView;
 
 import amaging.schedu.bean.ClassBean;
+import amaging.schedu.bean.TList;
 import amaging.schedu.bean.UserInfo;
 import amaging.schedu.db.TMOracleMapper;
 
@@ -67,18 +68,30 @@ public class TimeTable extends amaging.schedu.common.CommonMethod{
 			break;
 		case 16:
 			this.getAssignSub(mav);
-			break;	
+			break;
+		case 17:
+			this.getTeacherList(mav);
+			break;
 		}
 	}
 	private ModelAndView psClassPage(ModelAndView mav) {
-		UserInfo uf=(UserInfo)mav.getModelMap().getAttribute("uf");
-		String page="";
-		if(uf.getUserCode()==1) {
-			page="PClassPage";
-		}else {
-			page="SClassPage";
-		}
-		mav.setViewName(page);
+		//	UserInfo uf =(UserInfo)mav.getModelMap().getAttribute("tesuto");
+		//	uf.setAcCode("9999");
+		//	uf.setStudentId("ktskts333");
+		//	uf.setTier("bronze");
+		//	uf.setUserCode("0868");
+		//	uf.setUserId("ktskts222");
+		//	uf.setUserName("김현우치하사스케");
+		//	System.out.println(uf+"오늘 점심은 엉기골");
+		//	mav.getModelMap().addAttribute("hirake", uf);
+
+		//		System.out.println(((UserInfo)mav.getModelMap().getAttribute("hirake")).getAcCode());
+		//		System.out.println(((UserInfo)mav.getModelMap().getAttribute("hirake")).getStudentId());
+		//		System.out.println(((UserInfo)mav.getModelMap().getAttribute("hirake")).getTier());
+		//		System.out.println(((UserInfo)mav.getModelMap().getAttribute("hirake")).getUserCode());
+		//		System.out.println(((UserInfo)mav.getModelMap().getAttribute("hirake")).getUserId());
+		//		System.out.println(((UserInfo)mav.getModelMap().getAttribute("hirake")).getUserName());
+
 		return mav;
 	}
 
@@ -111,7 +124,7 @@ public class TimeTable extends amaging.schedu.common.CommonMethod{
 		mav.addObject("cr",tmo.getCourseList((UserInfo)mav.getModelMap().getAttribute("uf")));
 		list= (List<ClassBean>)mav.getModelMap().getAttribute("cr");
 		mav.addObject("course", list);
-		//System.out.println(mav.getModelMap().getAttribute("course"));
+		
 		return mav;
 	}
 
@@ -155,4 +168,15 @@ public class TimeTable extends amaging.schedu.common.CommonMethod{
 	private void getBelongList(ModelAndView mav) {}
 	private void delBelong(ModelAndView mav) {}
 	private void getAssignSub(ModelAndView mav) {}
+	
+	@SuppressWarnings("unchecked")
+	private ModelAndView getTeacherList(ModelAndView mav) {
+	
+		List<TList>list =null;
+		mav.addObject("tea",tmo.getTeacherList((TList)mav.getModelMap().getAttribute("tl")));
+		list=(List<TList>)mav.getModelMap().getAttribute("tea");
+		mav.addObject("tlist", list);
+		//System.out.println(mav.getModelMap().getAttribute("tlist"));
+		return mav;
+	}
 }

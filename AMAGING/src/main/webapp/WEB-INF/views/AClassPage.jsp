@@ -23,7 +23,7 @@
    left: 5%;
    top:2.5%;
    float: left;
-   background-image: url(resources/images/resources/images/관리자로고1.png);
+   background-image: url(resources/images/관리자로고1.png);
    background-size: 100% 80%;
    background-repeat: no-repeat;
    background-position: left center;
@@ -81,9 +81,11 @@
    height: 80%;
    float: right;
    margin-right: 5.5%;
+ 
    background-size: 30% 55%;
    background-repeat: no-repeat;
    background-position: center center;
+
 }
 
 .bothB {
@@ -214,7 +216,7 @@ position:absolute; left:45%; top:1%;
 }
 
 .div1{ font-size:120%; width:100%; height:30%;
-
+cursor: pointer;
 }
 
 .div2 {
@@ -235,30 +237,167 @@ position:absolute; left:45%; top:1%;
        font-weight:800;
        font-size:130%;
       }
- 
+.container {
+ background-color: gray;
+background: rgba(0, 0, 0, 0.4);
+position: absolute;
+width: 100%;
+height: 100%;
+left: 0;
+top: 0;
+text-align:center;
+display:flex;
+}
+
+.mdialog {
+border: 2px solid white;
+border-radius: 25px;
+background-color: #ffffff;
+position:absolute;
+top: 50%;
+left: 50%;
+width: 35%;
+height: 40%;
+transform:translate( -50%, -50%)
+
+} 
+.mbtn{
+border:2px solid gray;
+border-radius:5px;
+position:absolute; left:93%;
+top:3%;
+width:4%;
+height:5%;
+background-color:#D5D5D5;
+cursor: pointer;
+}
+.scontainer {
+ background-color: gray;
+background: rgba(0, 0, 0, 0.4);
+position: absolute;
+width: 100%;
+height: 100%;
+left: 0;
+top: 0;
+text-align:center;
+display:flex;
+}
+.smdialog {
+border: 2px solid white;
+border-radius: 25px;
+background-color: #ffffff;
+position:absolute;
+top: 50%;
+left: 50%;
+width: 60%;
+height: 60%;
+transform:translate( -50%, -50%)
+
+} 
+.smbtn{
+border:2px solid gray;
+border-radius:5px;
+position:absolute; left:93%;
+top:3%;
+width:4%;
+height:5%;
+background-color:#D5D5D5;
+cursor: pointer;
+}
+
+
+.scontainer {
+   background-color: gray;
+   background: rgba(0, 0, 0, 0.4);
+   position: absolute;
+   width: 100%;
+   min-height: 100%;
+   left: 0;
+   top: 0;
+   text-align: center;
+}
+
+.smdialog {
+   border: 2px solid white;
+   border-radius: 25px;
+   background-color: #ffffff;
+   position: absolute;
+   top: 50%;
+   left: 50%;
+   width: 50%;
+   height: 450px;
+   transform: translate(-50%, -50%);
+}
+.smbody {
+   border: 3px solid #EF90FF  ;
+   margin-left:10%;
+   width:80%;
+   pont-size: 100pt;
+}
+.tcCode{   
+   border: 2px solid #EF90FF ;
+   float: left;
+   width:20%;
+   height:100%;
+}
+ .tName{
+   border: 2px solid #EF90FF ;
+   float: left;
+   width:20%;
+   height:100%;
+}
+ .tEmail {
+   border: 2px solid #EF90FF;
+   width:100%;
+   height:100%;
+}
+.smfooter{
+   top:85%;
+   left:30%;
+     position: fixed;
+   clear:both;
+   margin-bottom:10%;
+   width:40%;
+   height:50px;
+}
+
+.teacherId{
+ float:left;
+ width:20%;
+
+}
+.tname{
+float:left;
+width:20%;
+height:10%;
+
+}
 </style>
 
 </head>
-<body onload="">
-   <form name="" action="" method="get">
+<body onload="closeModal()">
+   <form name="aaaa"  action="" method="post">
       <div id="basic">
          <div id="frame">
 
 
             <span id="logo"></span>
-            <div id="sessionBox"><span id="session">${sessionInfo.userName}님 환영합니다.</span>
-				<input	type="hidden" value='${sessionInfo.userId}' name="userId" />
+             <div id="sessionBox"><span id="session">${sessionInfo.userName}님 환영합니다.
+            	<input	type="hidden" value='${sessionInfo.userId}' name="userId" />
 				<input	type="hidden" value='${sessionInfo.userCode}' name="userCode" />
 				<input	type="hidden" value='${sessionInfo.acCode}' name="acCode" />
-				<input	type="hidden" value='${sessionInfo.tier}' name="tier" />            
-			</div>
+				<input	type="hidden" value='${sessionInfo.tier}' name="tier" />                         
+            </span></div>
             <div id="logOut">
-               <span><input type="button" id="btn" value="로그아웃" onclick="accessOut()"
+               <span><input type="button" id="btn" value="로그아웃" onclick=""
                   onmouseover="mouseOver(this)" onmouseout="mouseLeave(this)"></span>
             </div>
          </div>
 
          <div id="body">
+         	<div>
+  			
+			</div>
             <div id="colorline"></div>
             <div class="servicebutton">
 
@@ -266,7 +405,7 @@ position:absolute; left:45%; top:1%;
                
                <input type="button" class="bothB" id="twoB" onclick=""> 
                <div class="div1">
-                    <div class="div2" onclick="getCourseList('${sessionInfo.acCode}')" >
+                    <div class="div2" id="regClassForm" onclick="getCourseList('${sessionInfo.acCode}')" >
                    ●&nbsp;&nbsp;수업등록
                      </div>
                     <div class="div2" onclick="getAClassList('${sessionInfo.acCode}')">
@@ -287,8 +426,10 @@ position:absolute; left:45%; top:1%;
                <input type="button" class="bothB" id="fiveB" onclick="">
 
             </div>
-            <div id="mainpage"></div>
-         <div class="container" id="container">
+            <div id="mainpage" ></div>
+            
+      </div>
+       <div class="container" id="container">
 			<div class="mdialog">
 				<div class="mcontent">
 					<!-- Modal Header -->
@@ -303,7 +444,7 @@ position:absolute; left:45%; top:1%;
 					</div>
 				</div>
 			</div>
-		</div>  
+		</div>       
    </form>
 
    <script type="text/javascript">
@@ -350,5 +491,6 @@ position:absolute; left:45%; top:1%;
 
    init();
    </script>
+
 </body>
 </html>

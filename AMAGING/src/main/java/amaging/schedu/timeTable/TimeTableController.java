@@ -12,6 +12,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import amaging.schedu.bean.UserInfo;
 import amaging.schedu.bean.ClassBean;
+import amaging.schedu.bean.TList;
 @RestController
 public class TimeTableController {
 	@Autowired
@@ -59,7 +60,15 @@ public class TimeTableController {
 
 
 		return (String)mav.getModelMap().getAttribute("msg");
+	}	
+	@SuppressWarnings("unchecked")
+	@PostMapping("/GetTeacherList")
+	public List<TList> getTeacherList(ModelAndView mav, @ModelAttribute TList tl) {			
+		
+		mav.getModelMap().addAttribute("tl", tl);
+		this.tt.backController(17, mav);
+
+		return (List<TList>)mav.getModelMap().getAttribute("tlist");
+
 	}
-
-
 }
