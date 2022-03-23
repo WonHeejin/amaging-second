@@ -614,6 +614,7 @@ function subjectRegForm(abc){
 //		sb110.setAttribute("value","SB110")
 //		sb110.innerHTML="코틀린"	
 //		subj.appendChild(sb110)																		
+		
 			/*선생님 이름 */
   let tdiv=document.createElement("div");
 	  tdiv.setAttribute("id","tdiv")
@@ -629,7 +630,7 @@ function subjectRegForm(abc){
 	  tdiv.style.textAlign = "center"
 	  tdiv.style.fontSize="16px";
 	  tdiv.style.paddingTop="20px"
-	  tdiv.setAttribute("onClick","searchTeaForm(this)")
+	  tdiv.setAttribute("onClick","openModal2()")
 	  div.appendChild(tdiv)						
 		    /*과목시작시간 */
   let slabel=document.createElement("div")
@@ -847,22 +848,7 @@ function insertDay(target){
 	alert("요일이 선택되었습니다");
 	closeModal()
 }	
-function searchTeaForm(){
-	  const mainpage=document.getElementById("mainpage");
-   mainpage.innerHTML+="<div class='scontainer' id='scontainer'>"
-         +"<div class='smdialog'>"
-         +"<div class='smcontent'>"
-         +"<div class='smheader' style='font-size:200%'>"
-         +"<h4 id='smheader' class='mtitle' >학원 검색</h4></div>"
-         +"<input type='text' name='tName' placeholder='선생님이름 입력' style=' height:35px; width:30%; position:absolute; top:19%; left:30%; border-radius: 5px; border-color:#EF90FF'/>"
-         +"<input type='button' value='검색' onClick='teacherSerchForm()' class='searchBtn' style='position:absolute; top:21%; left:62%; border-radius:5px background-color:#EF90FF;'/>"
-         +"<div class='smbody' id='smbody' value=''><div class='teacherId'>선생코드</div><div class='tName'>이름</div><div class='tEmail'>이메일</div></div>"                 
-         +"<div class='smfooter'>"
-         +"<input type='button' class='mbtn1' value='선택'"
-         +"onclick='selectList(this)' style='border-radius:5px; background-color:#EF90FF;  width:30%; height:50%;'/>"            
-         +"<input type='button' class='mbtn2' value='닫기'"
-         +"onclick='closeModal2()' style='border-radius:5px;background-color: #EF90FF ;width:30%; height:50%; '/></div></div></div></div>";
-}
+
 function teacherSerchForm(){
 	let acCode=document.getElementById("accode").value
 	let tName=document.getElementsByName("tName")[0].value;
@@ -923,9 +909,16 @@ function openModal(){
    container.style.filter = "alpha(Opacity=50)";
    container.style.display = "block";	
 }
+
+function openModal2(){
+   let scontainer = document.getElementById("scontainer");
+   scontainer.style.filter = "alpha(Opacity=50)";
+   scontainer.style.display = "block";	
+}
 function closeModal(){
    let container = document.getElementById("container");
    container.style.display = "none";
+	closeModal2();
 }
 function closeModal2(){
    let scontainer = document.getElementById("scontainer");
@@ -933,12 +926,16 @@ function closeModal2(){
 }
 function regClass(){
 	const clCode=document.getElementById("select").value;
-	const clName=document.getElementById("select").innerHTML;
-	const subjectName=document.getElementById("subject");
+	let clName=document.getElementById("select");
+		clName=clName.options[clName.selectedIndex].text;
+		alert(clName);
+	const subjectNa=document.getElementById("subject");
+	let subjectNa=subjectNa.options[subjectNa.selectedIndex].text;
+	alert(subjectNa);
 	const subjectCode=document.getElementById("subject").value;
 	const sTime=document.getElementById("stime").value;
 	const eTime=document.getElementById("etime").value;
-	const weekDay=document.getElementById("week").value;
-	const data="clCode="+clCode+"&clName="+clName+"&subjectName="+subjectName+"&subjectCode="+subjectCode+"&sTime="+sTime+"&eTime="+eTime+"&weekDay="+weekDay
+	const weekDay=document.getElementById("week").innerHTML;
+	const data="clCode="+clCode+"&clName="+clName+"&subjectName="+subjectNa+"&subjectCode="+subjectCode+"&sTime="+sTime+"&eTime="+eTime+"&weekDay="+weekDay
 	alert(data);
 }

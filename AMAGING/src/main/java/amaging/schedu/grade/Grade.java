@@ -212,11 +212,14 @@ public class Grade extends amaging.schedu.common.CommonMethod{
 	@SuppressWarnings("unchecked")
 	private ModelAndView getStudent(ModelAndView mav) {
 		List<Grade> list = null;
-		
-		mav.addObject("def",gfo.getStudentList((Subject)mav.getModelMap().getAttribute("sj")));
-		list = (List<Grade>)mav.getModelMap().getAttribute("def");
-		System.out.println(((List<Grade>)mav.getModelMap().getAttribute("def")).get(0));
-		mav.addObject("regGradeList",list);
+		if(this.convertToBoolean(gfo.isGrade((Subject)mav.getModelMap().getAttribute("sj")))) {
+			mav.addObject("regGradeList",list);
+		}else {
+			mav.addObject("def",gfo.getStudentList((Subject)mav.getModelMap().getAttribute("sj")));
+			list = (List<Grade>)mav.getModelMap().getAttribute("def");
+			System.out.println(((List<Grade>)mav.getModelMap().getAttribute("def")).get(0));
+			mav.addObject("regGradeList",list);
+		}
 		//System.out.println(((List<ClassBean>)mav.getModelMap().getAttribute("abc")).get(0).getAcCode() + " 휴...");
 		return mav;
 	}

@@ -105,25 +105,26 @@ public class MovePageController {
    }
    @PostMapping("/AFeePage")
    public ModelAndView aFeePage(ModelAndView mav, @ModelAttribute UserInfo uf) {
-      fee.backController(0, mav);
-      return mav;
+   	System.out.println("AFeePage - MovePageController");
+   	fee.backController(1, mav);
+   	return mav;
    }
-   @PostMapping("/TFeePage")
+   @PostMapping("/PFeePage")
    public ModelAndView tFeePage(ModelAndView mav, @ModelAttribute UserInfo uf) {
-      fee.backController(0, mav);
-      return mav;
+   	fee.backController(5, mav);
+   	return mav;
    }
    @PostMapping("/TGradePage")
-	 public ModelAndView tGradePage(ModelAndView mav, @ModelAttribute UserInfo uf) {
-		 grade.backController(1, mav);
-		 return mav;
-	 }
-	 @PostMapping("/GradePage")
-	 public ModelAndView gradePage(ModelAndView mav, @ModelAttribute UserInfo uf) {
-		 mav.addObject("uf",uf);
-		 grade.backController(9, mav);
-		 return mav;
-	 }
+   public ModelAndView tGradePage(ModelAndView mav, @ModelAttribute UserInfo uf) {
+   	grade.backController(1, mav);
+   	return mav;
+   }
+   @PostMapping("/GradePage")
+   public ModelAndView gradePage(ModelAndView mav, @ModelAttribute UserInfo uf) {
+   	mav.addObject("uf",uf);
+   	grade.backController(9, mav);
+   	return mav;
+   }
    @PostMapping("/GetArticleForm")
    public ModelAndView getArticleForm(ModelAndView mav, @ModelAttribute UserInfo uf) {
       ad.backController(0, mav);
