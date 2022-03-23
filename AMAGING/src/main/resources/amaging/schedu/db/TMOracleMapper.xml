@@ -35,6 +35,14 @@
 		 WHERE CL_CRACCODE=#{acCode} AND CL_CRCODE=#{crCode} AND CL_CODE=#{clCode}
 	</update>	
 		
+	<select id="getTeacherList" parameterType="amaging.schedu.bean.TList" resultType="amaging.schedu.bean.TList">
+	 SELECT TA_ACCODE AS ACCODE,
+        TC_CODE AS TEACHERID,
+        TC_NAME AS TNAME,
+        TC_EMAIL AS TEMAIL
+ 	FROM TC INNER JOIN TA ON TC.TC_CODE=TA.TA_TCCODE 
+ 	WHERE TC_NAME LIKE  '%'||#{tName}||'%' AND TA_ACCODE=#{acCode}
+	</select>		
 		
 		<!-- PrivateInfo -->
 		
