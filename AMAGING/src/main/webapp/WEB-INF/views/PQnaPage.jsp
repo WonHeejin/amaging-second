@@ -236,7 +236,13 @@ position:absolute; left:45%; top:1%;
       <div id="basic">
          <div id="frame">
             <div id="logo"></div>
-             <div id="sessionBox"><span id="session">정재영 부모 김현우님 환영합니다.</span></div>
+             	<div id="sessionBox"><span id="session"><span id='childName'></span>${sessionInfo.userName}님 환영합니다.
+             	<input	type="hidden" value="${sessionInfo.userId}" name="userId" />
+				<input	type="hidden" value="${sessionInfo.userCode}" name="userCode" />
+				<input	type="hidden" value="${sessionInfo.userName}" id ="userName" />
+				<input	type="hidden" value="" name="sEmail" id ="sEmail" />
+				<input	type="hidden" value="" name="sCode" id ="sCode" />
+				</span></div>
             <div id="logOut">
                <input type="button" id="btn" value="로그아웃" onclick="accessOut()" onmouseover="mouseOver(this)" onmouseout="mouseLeave(this)">
             </div>
