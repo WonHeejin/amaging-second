@@ -240,7 +240,7 @@ position:absolute; left:45%; top:1%;
 </style>
 
 </head>
-<body onload="">
+<body onload="adminFee('${sessionInfo.acCode}','get')">
    <form name="" action="" method="get">
       <div id="basic">
          <div id="frame">
@@ -262,11 +262,11 @@ position:absolute; left:45%; top:1%;
                <input type="button" class="bothB" id="twoB" onclick=""> 
                <input type="button" class="bothB" id="threeB" onclick="">
                  <div class="div1">
-                    <div class="div2" onclick="" >
-                   ●&nbsp;&nbsp;등록
+                    <div class="div2" onclick="adminFee('${sessionInfo.acCode}','get')" >
+                   ●&nbsp;&nbsp;조회
                      </div>
-                    <div class="div2" onclick="">
-                 ●&nbsp;&nbsp;조회
+                    <div class="div2" onclick="adminFee('${sessionInfo.acCode}','reg')">
+                 ●&nbsp;&nbsp;등록
                       </div>
                </div>
                <input type="button" class="bothB" id="fourB" onclick="">

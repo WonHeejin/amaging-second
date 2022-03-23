@@ -4,13 +4,15 @@ import lombok.Data;
 
 @Data
 public class FeeBean {
-	String userId;
-	String sName;
-	String pName;
-	String status;
-	String money;
 	String acCode;
-	String acName;
-	String pCode;
-	
+	String clCrCode;
+	String clCode;
+	String clName;
+	String studentId;
+	String studentName;
+	String upMonth;
+	String paName;
+	String paEmail;
+	String money;
+	String status;
 }

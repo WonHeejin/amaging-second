@@ -33,7 +33,10 @@ public class Fee extends amaging.schedu.common.CommonMethod{
 			break;	
 		}
 	}
-	private void aFeePage(ModelAndView mav) {}
+	private void aFeePage(ModelAndView mav) {
+		System.out.println("AFeePage - Fee");
+		mav.setViewName("AFeePage");
+	}
 	private void getMonthFee(ModelAndView mav) {}
 	private void updFee(ModelAndView mav) {}
 	private void getStudentList(ModelAndView mav) {}
