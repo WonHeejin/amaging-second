@@ -3,7 +3,7 @@
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="amaging.schedu.db.GFOracleMapper">
-	
+	<!-- *!*!*!*!*!*!*!*!*!Grade!*!*!*!*!*!*!*!*!* -->
 	<select id="getTeacherAcademy" parameterType ="amaging.schedu.bean.AcList" resultType="amaging.schedu.bean.ACPlan">
 		SELECT AC.AC_CODE AS ACCODE, AC.AC_NAME AS ACNAME FROM TA INNER JOIN TC ON TC.TC_CODE = TA.TA_TCCODE 
 			 								INNER JOIN AC ON TA.TA_ACCODE = AC.AC_CODE 
@@ -43,18 +43,26 @@
 		WHERE BS_CLCRACCODE = #{acCode} AND BS_CLCODE = #{clCode} AND SB.SB_TCCODE = #{teacherId}
 	</select>
 	
+	<select id="isGrade" parameterType = "amaging.schedu.bean.GradeBean" resultType ="int">
+		SELECT COUNT(*) FROM GR WHERE SUBSTR(GR_SBACODE,26,5) = #{teacherId} 
+                          AND SUBSTR(GR.GR_SBACODE,6,10) = #{acCode} 
+                          AND SUBSTR(GR.GR_SBACODE,21,5) = #{clCode}
+	</select>
+	
 	<insert id="regGrade" parameterType = "amaging.schedu.bean.GradeBean">
 		INSERT INTO GR(GR_SBACODE,GR_STCODE,GR_SCORE,GR_RANK) 
 		VALUES(#{sBACode},#{studentId},#{score},#{rank})
 	</insert>
 	
 	<select id="getGrade" parameterType ="amaging.schedu.bean.UserInfo" resultType="amaging.schedu.bean.GradeBean">
-		SELECT AC.AC_NAME AS ACNAME, CL.CL_NAME AS CLNAME, SB.SB_ASNAME AS SUBJECTNAME, GR.GR_SCORE AS SCORE, GR.GR_RANK AS RANK ,(SELECT COUNT(*) FROM BS WHERE BS.BS_CLCRACCODE =(SELECT BS.BS_CLCRACCODE FROM BS WHERE BS.BS_STCODE =  #{userId}) 
-                         			AND BS.BS_CLCRCODE = (SELECT BS.BS_CLCRCODE FROM BS WHERE BS.BS_STCODE =  #{userId}) 
-                         			AND BS.BS_CLCODE = (SELECT BS.BS_CLCODE FROM BS WHERE BS.BS_STCODE =  #{userId})) AS HEADCOUNT 
-		FROM GR INNER JOIN AC ON SUBSTR(GR.GR_SBACODE,6,10) = AC.AC_CODE 
-        		INNER JOIN CL ON SUBSTR(GR.GR_SBACODE,21,5) = CL.CL_CODE 
-       			INNER JOIN SB ON SUBSTR(GR.GR_SBACODE,0,5) = SB.SB_ASCODE 
+		SELECT AC.AC_NAME AS ACNAME, CL.CL_NAME AS CLNAME, SB.SB_ASNAME AS SUBJECTNAME, GR.GR_SCORE AS SCORE, GR.GR_RANK AS RANK , 
+		(SELECT COUNT(*) FROM BS WHERE BS.BS_CLCRACCODE =(SELECT BS.BS_CLCRACCODE FROM BS WHERE BS.BS_STCODE = #{userId}) 
+                                    AND BS.BS_CLCRCODE = (SELECT BS.BS_CLCRCODE FROM BS WHERE BS.BS_STCODE = #{userId}) 
+                                      AND BS.BS_CLCODE = (SELECT BS.BS_CLCODE FROM BS WHERE BS.BS_STCODE = #{userId})) AS HEADCOUNT 
+		FROM GR INNER JOIN SB ON (SELECT GR.GR_SBACODE FROM GR WHERE GR.GR_STCODE = #{userId}) = SB.SB_ACODE 
+       			INNER JOIN AC ON (SELECT SUBSTR(GR.GR_SBACODE,6,10) FROM GR WHERE GR.GR_STCODE = #{userId}) = AC.AC_CODE 
+        		INNER JOIN CL ON (SELECT SUBSTR(GR.GR_SBACODE,21,5) FROM GR WHERE GR.GR_STCODE = #{userId}) = CL.CL_CODE 
+                     		 AND (SELECT SUBSTR(GR.GR_SBACODE,6,10) FROM GR WHERE GR.GR_STCODE = #{userId}) = CL.CL_CRACCODE
 		WHERE GR.GR_STCODE = #{userId} 
 		GROUP BY CL.CL_NAME, AC.AC_NAME, SB.SB_ASNAME, GR.GR_SCORE, GR.GR_RANK
 	</select>
@@ -62,5 +70,14 @@
 	<select id="getMyChilds" parameterType ="amaging.schedu.bean.UserInfo" resultType="amaging.schedu.bean.GradeBean">
 		SELECT SP.SP_STCODE AS STUDENTID ,ST.ST_NAME AS SNAME FROM SP INNER JOIN ST ON SP.SP_STCODE = ST.ST_CODE 
 		WHERE SP.SP_PRCODE = #{userId}
+	</select>
+	<!-- *!*!*!*!*!*!*!*!*!Fee!*!*!*!*!*!*!*!*!* -->
+	<select id="getMonthFee" parameterType ="amaging.schedu.bean.FeeBean" resultType="amaging.schedu.bean.FeeBean">
+		SELECT FE.FE_STCODE AS STUDENTID, ST.ST_NAME AS STUDENTNAME, FE.FE_CLCRCODE AS CLCRCODE, FE.FE_CLCODE AS CLCODE, CL.CL_NAME AS CLNAME, FE.FE_UPMONTH AS UPMONTH,PR.PR_NAME AS PANAME, PR.PR_EMAIL AS PAEMAIL, FE.FE_PRICE AS MONEY, FE.FE_COCODE AS STATUS 
+		FROM FE INNER JOIN ST ON FE.FE_STCODE = ST.ST_CODE 
+       		 	INNER JOIN CL ON FE.FE_CLCODE = CL.CL_CODE AND FE.FE_CLCRCODE = CL.CL_CRCODE 
+        		INNER JOIN SP ON FE.FE_STCODE = SP.SP_STCODE 
+        		INNER JOIN PR ON SP.SP_PRCODE = PR.PR_CODE 
+		WHERE FE.FE_CLCRACCODE = #{acCode} AND SUBSTR(FE.FE_UPMONTH,0,6) = #{upMonth}
 	</select>
 </mapper>

@@ -63,59 +63,37 @@ public class Grade extends amaging.schedu.common.CommonMethod{
 	}
 	
 	@SuppressWarnings("unchecked")
-	private ModelAndView getChildList(ModelAndView mav) {
-		System.out.println("service");
-		List<GradeBean> list = null;
+	private void getChildList(ModelAndView mav) {
+		List<GradeBean> list;
 		mav.addObject("efg",gfo.getMyChilds((UserInfo)mav.getModelMap().getAttribute("ui")));
 		list = (List<GradeBean>)mav.getModelMap().getAttribute("efg");
 		mav.addObject("childList",list);
-		return mav;
 	}
 	
-	private ModelAndView getGradePage(ModelAndView mav) {
+	private void getGradePage(ModelAndView mav) {
 		UserInfo uf = (UserInfo)mav.getModelMap().getAttribute("uf");
 		if(uf.getUserCode()==1) {
 			mav.setViewName("PGradePage");
 		} else if(uf.getUserCode()==2) {
 			mav.setViewName("SGradePage");
 		}
-		return mav;
 	}
 	
-	private ModelAndView teacherGradepage(ModelAndView mav) {
+	private void teacherGradepage(ModelAndView mav) {
 		mav.setViewName("TGradePage");
-		return mav;
 	}
 	
 	@SuppressWarnings("unchecked")
-	private ModelAndView teacherAcademy(ModelAndView mav) {
-		List<ACPlan> list = null;
+	private void teacherAcademy(ModelAndView mav) {
+		List<ACPlan> list;
 		mav.addObject("abc",gfo.getTeacherAcademy((AcList)mav.getModelMap().getAttribute("ac")));
 		list = (List<ACPlan>)mav.getModelMap().getAttribute("abc");
 		mav.addObject("acList",list);
-		
-//		uf=om.getTeacherInfo(lg);
-//		mav.addObject("accessInfo", uf);
-//		try {
-//			pu.setAttribute("sessionInfo", mav.getModel().get("accessInfo"));
-//		} catch (Exception e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
-//		if (lg.getUserCode() == this.convertToBoolean(om.isTeacherEmail(lg))) {
-//            /*세션bean에 정보담기*/
-//            uf=om.getTeacherInfo(lg);
-//            this.om.setAccessHistory(uf);
-//            mav.addObject("accessInfo", uf);		
-//        }
-//		pu.setAttribute("sessionInfo", mav.getModel().get("accessInfo"));
-		
-		return mav;
 	}
 	
 	@SuppressWarnings("unchecked")
-	private ModelAndView checkPwd(ModelAndView mav) {
-		List<Subject> list = null;
+	private void checkPwd(ModelAndView mav) {
+		List<Subject> list;
 		
 		
 		if(this.convertToBoolean(gfo.checkPwd((AcList)mav.getModelMap().getAttribute("ac")))) {
@@ -125,47 +103,37 @@ public class Grade extends amaging.schedu.common.CommonMethod{
 		}else {
 		mav.addObject("msg","비밀번호가 일치하지 않습니다.");
 		}
-		//System.out.println(((List<ClassBean>)mav.getModelMap().getAttribute("abc")).get(0).getAcCode() + " 휴...");
-		return mav;
 	}
 	
 	@SuppressWarnings("unchecked")
-	private ModelAndView teacherClass(ModelAndView mav) {
-		List<Subject> list = null;
+	private void teacherClass(ModelAndView mav) {
+		List<Subject> list;
 		mav.addObject("bcd",gfo.getTeacherClass((AcList)mav.getModelMap().getAttribute("ac")));
 		list = (List<Subject>)mav.getModelMap().getAttribute("bcd");
 		mav.addObject("clList",list);
-		//System.out.println(((List<ClassBean>)mav.getModelMap().getAttribute("abc")).get(0).getAcCode() + " 휴...");
-		return mav;
 	}
 	
 	@SuppressWarnings("unchecked")
-	private ModelAndView teacherGrade(ModelAndView mav) {
+	private void teacherGrade(ModelAndView mav) {
 
-		List<GradeBean> list = null;
+		List<GradeBean> list;
 		
 		mav.addObject("cde",gfo.getTGrade((Subject)mav.getModelMap().getAttribute("sj")));
 		list = (List<GradeBean>)mav.getModelMap().getAttribute("cde");
-		System.out.println(((List<GradeBean>)mav.getModelMap().getAttribute("cde")).get(0));
 		mav.addObject("gradeList",list);
-		//System.out.println(((List<ClassBean>)mav.getModelMap().getAttribute("abc")).get(0).getAcCode() + " 휴...");
-		return mav;
 	}
 
 	@SuppressWarnings("unchecked")
-	private ModelAndView getGrade(ModelAndView mav) {
-
-		List<GradeBean> list = null;
+	private void getGrade(ModelAndView mav) {
+		List<GradeBean> list;
 		
 		mav.addObject("def",gfo.getGrade((UserInfo)mav.getModelMap().getAttribute("ui")));
-		System.out.println(gfo.getGrade((UserInfo)mav.getModelMap().getAttribute("ui")));
 		list = (List<GradeBean>)mav.getModelMap().getAttribute("def");
 		mav.addObject("gradeList",list);
-		return mav;
 	}
 	
 	@SuppressWarnings("unchecked")
-	private ModelAndView updGrade(ModelAndView mav) {
+	private void updGrade(ModelAndView mav) {
 		boolean tran = false;
 		String message = null;
 		this.setTransactionConf(TransactionDefinition.PROPAGATION_REQUIRED, TransactionDefinition.ISOLATION_READ_COMMITTED, false);
@@ -183,11 +151,10 @@ public class Grade extends amaging.schedu.common.CommonMethod{
 		
 		this.setTransactionEnd(tran);
 		mav.addObject("msg",message);
-		return mav;
 	}
 	
 	@SuppressWarnings("unchecked")
-	private ModelAndView regClassGrade(ModelAndView mav) {
+	private void regClassGrade(ModelAndView mav) {
 		boolean tran = false;
 		String message = null;
 		
@@ -206,22 +173,19 @@ public class Grade extends amaging.schedu.common.CommonMethod{
 		
 		this.setTransactionEnd(tran);
 		mav.addObject("msg",message);
-		return mav;
 	}
 	
 	@SuppressWarnings("unchecked")
-	private ModelAndView getStudent(ModelAndView mav) {
-		List<Grade> list = null;
+	private void getStudent(ModelAndView mav) {
+		List<Grade> list;
 		if(this.convertToBoolean(gfo.isGrade((Subject)mav.getModelMap().getAttribute("sj")))) {
-			mav.addObject("regGradeList",list);
+			mav.addObject("regGradeList",null);
 		}else {
 			mav.addObject("def",gfo.getStudentList((Subject)mav.getModelMap().getAttribute("sj")));
 			list = (List<Grade>)mav.getModelMap().getAttribute("def");
 			System.out.println(((List<Grade>)mav.getModelMap().getAttribute("def")).get(0));
 			mav.addObject("regGradeList",list);
 		}
-		//System.out.println(((List<ClassBean>)mav.getModelMap().getAttribute("abc")).get(0).getAcCode() + " 휴...");
-		return mav;
 	}
 	
 }

@@ -284,7 +284,7 @@ position:absolute; left:45%; top:1%;
              <div id="sessionBox"><span id="session">${sessionInfo.userName}님 환영합니다.</span>
              					  <input type="hidden" value='${sessionInfo.userId}' name="userId" />
 								  <input type="hidden" value='${sessionInfo.userCode}' name="userCode" />
-             					  <input id = "acCode" type = "hidden" value = ''/>
+             					  <input type = "hidden" value = '' name = "acCode" />
              					  <span id="acCode" hidden="hidden">""</span>
              </div>
             <div id="logOut">

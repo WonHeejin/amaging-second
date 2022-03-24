@@ -899,14 +899,14 @@ function createTd(id) {
 	td.setAttribute("rowspan",3);
 	td.style.border = "2px solid #92acbb";
 	td.style.borderRadius = "5px 5px 5px 5px";
-	td.style.width  = "500px";
+	td.style.width  = "200px";
 	td.style.textAlign = "center";
 	}
 	const td = document.createElement("td");
 	td.setAttribute("id",id);
 	td.style.border = "2px solid #92acbb";
 	td.style.borderRadius = "5px 5px 5px 5px";
-	td.style.width  = "500px";
+	td.style.width  = "200px";
 	td.style.textAlign = "center";
 return td;
 }

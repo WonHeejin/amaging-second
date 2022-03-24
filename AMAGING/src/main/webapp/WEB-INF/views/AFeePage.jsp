@@ -6,6 +6,8 @@
 <meta charset="UTF-8">
   <title>관리자 납부내역 페이지</title>
    <script src="resources/js/common.js"></script>
+   <script src="resources/js/gradePage.js"></script>
+   <script src="resources/js/fee.js"></script>
 <style>
 #frame {
    width: 100%;
@@ -80,7 +82,6 @@
    height: 80%;
    float: right;
    margin-right: 5.5%;
-   background-image: url(resources/images/.png);
    background-size: 30% 55%;
    background-repeat: no-repeat;
    background-position: center center;
@@ -240,7 +241,7 @@ position:absolute; left:45%; top:1%;
 </style>
 
 </head>
-<body onload="adminFee('${sessionInfo.acCode}','get')">
+<body onload="adminFee('get')">
    <form name="" action="" method="get">
       <div id="basic">
          <div id="frame">
@@ -262,10 +263,10 @@ position:absolute; left:45%; top:1%;
                <input type="button" class="bothB" id="twoB" onclick=""> 
                <input type="button" class="bothB" id="threeB" onclick="">
                  <div class="div1">
-                    <div class="div2" onclick="adminFee('${sessionInfo.acCode}','get')" >
+                    <div class="div2" onclick="adminFee('get')" >
                    ●&nbsp;&nbsp;조회
                      </div>
-                    <div class="div2" onclick="adminFee('${sessionInfo.acCode}','reg')">
+                    <div class="div2" onclick="adminFee('reg')">
                  ●&nbsp;&nbsp;등록
                       </div>
                </div>
@@ -273,7 +274,7 @@ position:absolute; left:45%; top:1%;
                <input type="button" class="bothB" id="fiveB" onclick="">
 
             </div>
-            <div id="mainpage"></div>
+            <div id="mainpage" style = "overflow : auto"></div>
          </div>
       </div>
    </form>

@@ -11,6 +11,7 @@ public class FeeBean {
 	String studentId;
 	String studentName;
 	String upMonth;
+	String fepMonth;
 	String paName;
 	String paEmail;
 	String money;
