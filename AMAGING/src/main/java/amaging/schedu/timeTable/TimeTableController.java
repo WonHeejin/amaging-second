@@ -72,7 +72,11 @@ public class TimeTableController {
 		mav.getModelMap().addAttribute("uf", uf);
 		this.tt.backController(7, mav);
 		return (List<Subject>)mav.getModelMap().getAttribute("subjectlist");
-
-	
 	 }
+	@PostMapping("/UpdSubject")
+	public String UpdSubject(ModelAndView mav, @ModelAttribute Subject sb) {
+		mav.getModelMap().addAttribute("sb", sb);
+		this.tt.backController(8, mav);
+		return (String)mav.getModelMap().getAttribute("msg");
+	}	
 }

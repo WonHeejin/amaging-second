@@ -58,6 +58,10 @@
 	WHERE SB_CLCRACCODE=#{acCode}
 	</select>
 	
+	<update id="updSubject" parameterType="amaging.schedu.bean.Subject">
+		 UPDATE SB SET SB_WEEKDAY=#{weekDay},SB_STIME=#{sTime},SB_ETIME=#{eTime}
+WHERE SB_ACODE=#{smCode} AND SB_CLCRACCODE=#{acCode} AND SB_CLCRCODE=#{crCode} AND SB_CLCODE=#{clCode} AND SB_TCCODE=#{teacherId} AND SB_ASCODE=#{subjectCode}
+	</update>	
 	
 		<!-- PrivateInfo -->
 		

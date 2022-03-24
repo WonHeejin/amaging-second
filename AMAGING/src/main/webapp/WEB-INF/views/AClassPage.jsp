@@ -418,7 +418,8 @@
 							●&nbsp;&nbsp;과목등록</div>
 						<div class="div2" onclick="getASubjectList('${sessionInfo.acCode}')">
 							●&nbsp;&nbsp;과목수정</div>
-						<div class="div2" onclick="">●&nbsp;&nbsp;반배정</div>
+						<div class="div2" onclick="modStudentList('${sessionInfo.acCode}')">
+							●&nbsp;&nbsp;반배정</div>
 					</div>
 					<input type="button" class="bothB" id="threeB" onclick="">
 					<input type="button" class="bothB" id="fourB" onclick=""> <input

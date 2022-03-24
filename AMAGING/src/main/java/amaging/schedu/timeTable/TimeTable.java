@@ -137,7 +137,23 @@ public class TimeTable extends amaging.schedu.common.CommonMethod{
 		return mav;
 	}
 
-	private void updSubject(ModelAndView mav) {}
+	private void updSubject(ModelAndView mav) {
+		
+		boolean tran =false;
+		String msg =null;
+		this.setTransactionConf(TransactionDefinition.PROPAGATION_REQUIRED, TransactionDefinition.ISOLATION_READ_COMMITTED, false);
+		int result=-1;
+		result=this.tmo.updSubject((Subject)mav.getModelMap().getAttribute("sb"));
+		if(this.convertToBoolean(result)) {
+			System.out.println(result);
+			msg="수정이 완료되었습니다";
+			tran=true;
+		}else {
+			msg="다시시도해 주세요";
+		}
+		mav.addObject("msg",msg);
+		this.setTransactionEnd(tran);		
+	}
 
 	@SuppressWarnings("unchecked")
 	private ModelAndView getCourseList(ModelAndView mav) {
