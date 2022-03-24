@@ -12,6 +12,7 @@ import amaging.schedu.bean.TList;
 import amaging.schedu.bean.UserInfo;
 import amaging.schedu.db.TMOracleMapper;
 
+
 @Service
 public class TimeTable extends amaging.schedu.common.CommonMethod{
 	@Autowired
@@ -104,6 +105,7 @@ public class TimeTable extends amaging.schedu.common.CommonMethod{
 		return mav;
 	}
 	private void searchTeacher(ModelAndView mav) {}
+
 	private void regSubject(ModelAndView mav) {
 		boolean tran=false;
 		String msg=null;
@@ -134,6 +136,7 @@ public class TimeTable extends amaging.schedu.common.CommonMethod{
 		mav.addObject("subjectlist", list);
 		return mav;
 	}
+
 	private void updSubject(ModelAndView mav) {}
 
 	@SuppressWarnings("unchecked")

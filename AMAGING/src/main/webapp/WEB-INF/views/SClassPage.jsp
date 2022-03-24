@@ -22,24 +22,7 @@
 <script src='resources/fullcalendar/ko.js'></script>
 <script src="resources/js/common.js"></script>
 <script src="resources/js/class.js"></script>
-<script>
-      document.addEventListener('DOMContentLoaded', function() {
-        var calendarEl = document.getElementById('calendar');
-        var calendar = new FullCalendar.Calendar(calendarEl, {
-        	  plugins: [ 'interaction', 'dayGrid', 'timeGrid' ],
-        	  headerToolbar: {
-        	    left: 'prev,next today',
-        	    center: 'title',
-        	    right: 'dayGridMonth,timeGridWeek,timeGridDay'
-        	  },
-        	  locale: 'ko'
-        });
-        calendar.render();
-      });
-      
-      
-      
-    </script>
+
 <style>
 #frame {
 	width: 100%;
@@ -274,12 +257,12 @@
 					<input type="hidden" value='${sessionInfo.userId}' name="userId" />
 					<input type="hidden" value='${sessionInfo.userCode}'
 						name="userCode" />
-					<div id="logOut">
-						<input type="button" id="btn" value="로그아웃" onclick="accessOut()"
-							onmouseover="mouseOver(this)" onmouseout="mouseLeave(this)">
-					</div>
 				</div>
-
+				<div id="logOut">
+					<span><input type="button" id="btn" value="로그아웃"
+						onclick="accessOut()" onmouseover="mouseOver(this)"
+						onmouseout="mouseLeave(this)"></span>
+				</div>
 				<div id="body">
 					<div id="colorline"></div>
 					<div class="servicebutton">
@@ -303,21 +286,21 @@
 	</form>
 
 	<script>
-   function mouseOver(obj) {
-      let fColor = (obj.id == "btn") ? "#000000" : "#FFFFFF";
-      obj.style.color = fColor;
-      obj.style.background = "#FFBB00";
+		function mouseOver(obj) {
+			let fColor = (obj.id == "btn") ? "#000000" : "#FFFFFF";
+			obj.style.color = fColor;
+			obj.style.background = "#FFBB00";
 
-   }
+		}
 
-   function mouseLeave(obj) {
+		function mouseLeave(obj) {
 
-      let fColor = (obj.id == "btn") ? "#ffffff" : "#FF0000";
-      obj.style.color = fColor;
-      obj.style.background = "#EA7B03";
-      obj.style.border = ""
+			let fColor = (obj.id == "btn") ? "#ffffff" : "#FF0000";
+			obj.style.color = fColor;
+			obj.style.background = "#EA7B03";
+			obj.style.border = ""
 
-   }
-</script>
+		}
+	</script>
 </body>
 </html>
