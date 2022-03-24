@@ -151,22 +151,26 @@ public class MovePageController {
 
    @PostMapping("/SQnAPage")
    public ModelAndView sQnAPage(ModelAndView mav, @ModelAttribute UserInfo uf) {
+	   mav.addObject("uf",uf);
       qna.backController(0, mav);
       return mav;
    }
    @PostMapping("/PQnAPage")
    public ModelAndView pQnAPage(ModelAndView mav, @ModelAttribute UserInfo uf) {
-      qna.backController(0, mav);
+	   mav.addObject("uf",uf);
+      qna.backController(1, mav);
       return mav;
    }
    @PostMapping("/TQnAPage")
    public ModelAndView tQnAPage(ModelAndView mav, @ModelAttribute UserInfo uf) {
-      qna.backController(0, mav);
+	   mav.addObject("uf",uf);
+      qna.backController(2, mav);
       return mav;
    }
    @PostMapping("/AQnAPage")
    public ModelAndView aQnAPage(ModelAndView mav, @ModelAttribute UserInfo uf) {
-      qna.backController(0, mav);
+	   mav.addObject("uf",uf);
+      qna.backController(3, mav);
       return mav;
    }
 

@@ -106,4 +106,9 @@
 	<delete id="delPlanList" parameterType="amaging.schedu.bean.ACPlan">
 		DELETE FROM AP WHERE AP_ACCODE = #{acCode} AND AP_SDATE = #{sDate} AND AP_EDATE = #{eDate}
 	</delete>
+	
+	<!-- 상담 qna -->
+	<select id="getTContents" parameterType="amaging.schedu.bean.UserInfo" resultType="amaging.schedu.bean.Counsel">
+		SELECT * FROM SCHEDUDBA.TEACHERQNA WHERE RPCODE = #{userId} AND ACCODE = #{acCode}
+	</select> 
 </mapper>

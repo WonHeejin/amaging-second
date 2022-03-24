@@ -182,13 +182,85 @@ function displayMyGrade(dat) {
 }
 
 function myAcademyList(userId,menuCode) {
+	
 	const data = "teacherId=" + userId;
 	divide(menuCode);
-	getAjaxData("myAcademyList",data,"academySelect","post")
+	getAjaxData("myAcademyList",data,"academySelect","post");
+}
+let aData;
+/* 선생님 상담 글 불러오기 */
+function teacherCounsel(uId,ac){
+	/*const mainpage = document.getElementById("mainpage");
+	if (mainpage.hasChildNodes()) {
+
+		while (mainpage.hasChildNodes()) {
+			mainpage.removeChild(mainpage.firstChild);
+		}
+	}*/
+	
+	//let ac1=aData[0].acCode;
+	
+	if(ac==""){ac=aData[0].acCode}
+	const data = "userId=" + uId +"&acCode=" + ac
+	
+	getAjaxData("/GetContents",data,"dpTCounselList","post");
+}
+let tCn;
+
+function dpTCounselList(dat) {
+	tCn = JSON.parse(dat);
+	
+			const tableMom = document.createElement("div");
+			let table = document.createElement("table");
+			let mTr = createTr("mTr1");
+			let mTd1 = createTd("mTd1");
+			let mTd2 = createTd("mTd2");
+			    mTd2.setAttribute("colspan",2);
+			let mTd3 = createTd("mTd3");
+			
+			mTd1.innerHTML = "상담요청제목";
+			mTd2.innerHTML = "From";
+			mTd3.innerHTML = "답변";
+						
+			mTr.appendChild(mTd1);
+			mTr.appendChild(mTd2);
+			mTr.appendChild(mTd3);
+					
+			table.appendChild(mTr);
+			
+			for(let i=0; i<tCn.length; i++) {
+			
+							let tr = createTr("tr1");
+				
+							let td1 = createTd("td1");
+							let td2 = createTd("td2");
+							let td3 = createTd("td3");
+							let td4 = createTd("td4");
+				
+							td1.innerHTML = tCn[i].title;
+							td2.innerHTML = tCn[i].userName;
+							td3.innerHTML = ((tCn[i].userId).substr(0,1) == "P")? "학부모":"학생";
+							td4.innerHTML = ((tCn[i].answer)=="답변대기중")? "답변대기중":"답변완료";
+							tr.appendChild(td1);
+							tr.appendChild(td2);
+							tr.appendChild(td3);
+							tr.appendChild(td4);
+							table.appendChild(tr);
+							
+				
+			}
+	
+	
+	tableMom.appendChild(table);
+	const mainpage = document.getElementById("mainpage");
+	mainpage.appendChild(tableMom);
+
 }
 
+/* 제목 클릭시 모달로 내용띄우기 */
+ 
 function academySelect(dat) {
-	let data = JSON.parse(dat);
+	aData = JSON.parse(dat);
 	let aCode = document.getElementById("acCode").value;
 	const mainpage = document.getElementById("mainpage");
 	const checkCode = "1133";
@@ -197,7 +269,9 @@ function academySelect(dat) {
 		
 			let aSelect = document.createElement("select");
 			aSelect.setAttribute("id", "aSelect");
-			aSelect.setAttribute("onchange","makeSelected(" + checkCode + "," + aCode +")");
+			
+			//aSelect.setAttribute("onchange","makeSelected(" + checkCode + "," + aCode +")");
+			aSelect.setAttribute("onchange","teacherCounsel('"+document.getElementsByName("userId")[0].value+"',this.value)");
 			aSelect.style.width = "200px";
 			aSelect.style.height = "40px";
 			aSelect.style.borderRadius = "5px";
@@ -213,15 +287,15 @@ function academySelect(dat) {
 				//}
 				firstOption.setAttribute("disabled","disabled");
 				aSelect.appendChild(firstOption);
-				for(let i=0; i<data.length; i++) {
+				for(let i=0; i<aData.length; i++) {
 					let option = document.createElement("option");
-					option.setAttribute("id",data[i].acCode);
-					option.setAttribute("value",data[i].acCode);
-					option.innerHTML = data[i].acName;
+					option.setAttribute("id","ac"+i);
+					option.setAttribute("value",aData[i].acCode);
+					option.innerHTML = aData[i].acName;
 					if(aCode != "") {
-						if (aCode == data[i].acCode) {
+						if (aCode == aData[i].acCode) {
 							option.setAttribute("selected", "selected")
-							makeSelected(data[i].acCode,aCode);
+							makeSelected1(aData[i].acCode,aCode);
 						}
 					}
 					aSelect.appendChild(option);
@@ -246,9 +320,9 @@ function academySelect(dat) {
 	//조회 - 세션에현재 저장된 acCode Selected -> Selected 된 값으로 현재 선생코드가 갖고있는 class 조회
 	// -> Class select -> 해당 Class의 성적 display
 	const btnclose = document.getElementById("btn-close");
-		btnclose.addEventListener("click", e => {
-    		exampleModal.style.display = "none"
-		})
+		//btnclose.addEventListener("click", e => {
+    		//exampleModal.style.display = "none"
+		//})
 	
 	}else {
 		while(mainpage.hasChildNodes()) {
@@ -313,6 +387,11 @@ function academySelect(dat) {
 	
 	}
 }
+
+function makeSelected1(uId,ac) {
+	
+	
+	}
 
 function makeSelected(selectedCode,sessionCode) {
 	//let acCode = selectedCode;
@@ -783,20 +862,32 @@ return tr;
 }
 
 function createTd(id) {
+	
 	if(id == "td1") {
 	const td = document.createElement("td");
 	td.setAttribute("id",id);
-	td.setAttribute("rowspan",3);
+	//td.setAttribute("rowspan",3);
 	td.style.border = "2px solid #92acbb";
 	td.style.borderRadius = "5px 5px 5px 5px";
 	td.style.width  = "500px";
 	td.style.textAlign = "center";
-	}
+	return td;
+	}else if(id == "td2"|| id == "td3"){
 	const td = document.createElement("td");
 	td.setAttribute("id",id);
 	td.style.border = "2px solid #92acbb";
 	td.style.borderRadius = "5px 5px 5px 5px";
-	td.style.width  = "500px";
+	td.style.width  = "250px";
 	td.style.textAlign = "center";
-return td;
+	return td;
+	}else{const td = document.createElement("td");
+	td.setAttribute("id",id);
+	td.style.border = "2px solid #92acbb";
+	td.style.borderRadius = "5px 5px 5px 5px";
+	td.style.width  = "250px";
+	td.style.textAlign = "center";
+	return td;}
+	
+	
+
 }

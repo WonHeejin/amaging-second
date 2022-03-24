@@ -5,6 +5,7 @@ import java.util.List;
 
 import amaging.schedu.bean.ACPlan;
 import amaging.schedu.bean.ChildCode;
+import amaging.schedu.bean.Counsel;
 import amaging.schedu.bean.Login;
 import amaging.schedu.bean.RegMember;
 import amaging.schedu.bean.UserInfo;
@@ -50,4 +51,7 @@ public interface QMLOracleMapper {
 	public int setPlanList(ACPlan plan);
 	public int updPlanList(ACPlan plan);
 	public int delPlanList(ACPlan plan);
+	
+	/*상담 QnA*/
+	public List<Counsel> getTContents(UserInfo uf);
 }
