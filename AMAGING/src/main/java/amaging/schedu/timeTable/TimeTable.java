@@ -8,6 +8,7 @@ import org.springframework.transaction.TransactionDefinition;
 import org.springframework.web.servlet.ModelAndView;
 
 import amaging.schedu.bean.ClassBean;
+import amaging.schedu.bean.Subject;
 import amaging.schedu.bean.TList;
 import amaging.schedu.bean.UserInfo;
 import amaging.schedu.db.TMOracleMapper;
@@ -41,8 +42,8 @@ public class TimeTable extends amaging.schedu.common.CommonMethod{
 			this.regSubject(mav);
 			break;
 		case 7:
-			this.getSubjectList(mav);
-			break;
+	         this.getASubjectList(mav);
+	         break;
 		case 8:
 			this.updSubject(mav);
 			break;
@@ -106,7 +107,33 @@ public class TimeTable extends amaging.schedu.common.CommonMethod{
 		return mav;
 	}
 	private void searchTeacher(ModelAndView mav) {}
-	private void regSubject(ModelAndView mav) {}
+	   private void regSubject(ModelAndView mav) {
+		      boolean tran=false;
+		      String msg=null;
+		      try { 
+		         this.setTransactionConf(TransactionDefinition.PROPAGATION_REQUIRED, TransactionDefinition.ISOLATION_READ_COMMITTED, false);
+		         int result = -1;
+		         result = this.tmo.regSubject((Subject)mav.getModelMap().getAttribute("sb"));
+		         if(this.convertToBoolean(result)) {
+		            msg="등록이 성공되었습니다";   
+		            tran =true;
+		            System.out.println(result);
+		         }else {
+		            msg="등록에실패했습니다";
+		         }
+		         mav.addObject("msg",msg);
+
+		         this.setTransactionEnd(tran);       
+		      }catch(Exception e) {e.printStackTrace();}
+		   }
+		   @SuppressWarnings("unchecked")
+		   private ModelAndView getASubjectList(ModelAndView mav) {
+		      List<Subject>list=null;
+		      mav.addObject("sb",tmo.getASubjectList((UserInfo)mav.getModelMap().getAttribute("uf")));
+		      list=(List<Subject>)mav.getModelMap().getAttribute("sb");
+		      mav.addObject("subjectlist", list);
+		      return mav;
+		   }
 	private void getSubjectList(ModelAndView mav) {}
 	private void updSubject(ModelAndView mav) {}
 
