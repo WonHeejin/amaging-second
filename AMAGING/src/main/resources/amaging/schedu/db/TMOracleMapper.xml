@@ -43,7 +43,22 @@
  	FROM TC INNER JOIN TA ON TC.TC_CODE=TA.TA_TCCODE 
  	WHERE TC_NAME LIKE  '%'||#{tName}||'%' AND TA_ACCODE=#{acCode}
 	</select>		
-		
+	
+	<insert id="regSubject" parameterType="amaging.schedu.bean.Subject" >
+		INSERT INTO SB(SB_ACODE,SB_ASCODE,SB_ASNAME,SB_CLCRACCODE,SB_CLCRCODE,SB_CLCODE,SB_TCCODE,SB_WEEKDAY,SB_STIME,SB_ETIME)
+		VALUES(#{smCode},#{subjectCode},#{subjectName},#{acCode},#{crCode},#{clCode},#{teacherId},#{weekDay},#{sTime},#{eTime})
+	</insert>
+	
+	<select id="getASubjectList" parameterType="amaging.schedu.bean.Subject" resultType="amaging.schedu.bean.Subject">
+	SELECT CR_NAME AS CRNAME ,SB_ACODE AS SMCODE,SB_ASCODE AS SUBJECTCODE ,SB_ASNAME AS SUBJECTNAME,SB_CLCRACCODE AS ACCODE,SB_CLCRCODE AS CRCODE,
+	SB_CLCODE AS CLCODE,CL_NAME AS CLNAME ,SB_TCCODE AS TEACHERID,TC_NAME AS TNAME,SB_WEEKDAY AS WEEKDAY,SB_STIME AS STIME,SB_ETIME AS ETIME
+	FROM SB INNER JOIN CR ON  CR.CR_ACCODE=SB.SB_CLCRACCODE AND CR.CR_CODE=SB.SB_CLCRCODE
+        INNER JOIN TC ON SB.SB_TCCODE=TC.TC_CODE
+        INNER JOIN "CL" ON SB.SB_CLCODE="CL".CL_CODE
+	WHERE SB_CLCRACCODE=#{acCode}
+	</select>
+	
+	
 		<!-- PrivateInfo -->
 		
 	<select id="getAcList" parameterType="amaging.schedu.bean.AcList" resultType="amaging.schedu.bean.AcList">

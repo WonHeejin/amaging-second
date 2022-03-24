@@ -12,6 +12,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import amaging.schedu.bean.UserInfo;
 import amaging.schedu.bean.ClassBean;
+import amaging.schedu.bean.Subject;
 import amaging.schedu.bean.TList;
 @RestController
 public class TimeTableController {
@@ -23,9 +24,7 @@ public class TimeTableController {
 	@PostMapping("/GetCourseList")
 	public List<ClassBean> getCourseList(ModelAndView mav, @ModelAttribute UserInfo uf) {			
 		mav.getModelMap().addAttribute("uf", uf);
-
 		this.tt.backController(9, mav);
-
 		return (List<ClassBean>)mav.getModelMap().getAttribute("course");
 
 	}
@@ -41,34 +40,39 @@ public class TimeTableController {
 	@SuppressWarnings("unchecked")
 	@PostMapping("/GetAClassList")
 	public List<ClassBean> getAClassList(ModelAndView mav, @ModelAttribute UserInfo uf) {
-		System.out.println("수업수정");
-		System.out.println("과목등록");	
 		mav.getModelMap().addAttribute("uf",uf);
-
 		this.tt.backController(4, mav);
-
 		return (List<ClassBean>)mav.getModelMap().getAttribute("curs");
 	}
 
 	@PostMapping("/UpdClass")
 	public String UpdClass(ModelAndView mav, @ModelAttribute ClassBean cb) {
-		System.out.println("수업수정완료 버튼");
-
 		mav.getModelMap().addAttribute("cb", cb);
-
 		this.tt.backController(11, mav);
-
-
 		return (String)mav.getModelMap().getAttribute("msg");
 	}	
 	@SuppressWarnings("unchecked")
 	@PostMapping("/GetTeacherList")
-	public List<TList> getTeacherList(ModelAndView mav, @ModelAttribute TList tl) {			
-		
+	public List<TList> getTeacherList(ModelAndView mav, @ModelAttribute TList tl) {					
 		mav.getModelMap().addAttribute("tl", tl);
 		this.tt.backController(17, mav);
 
 		return (List<TList>)mav.getModelMap().getAttribute("tlist");
-
 	}
+	@PostMapping("/RegSubject")
+	public String regSubject(ModelAndView mav, @ModelAttribute Subject sb) {
+		mav.getModelMap().addAttribute("sb", sb);
+		this.tt.backController(6, mav);
+		return (String)mav.getModelMap().getAttribute("msg");
+	}
+	
+	@SuppressWarnings("unchecked")
+	@PostMapping("/GetASubjectList")
+	public List<Subject> getASubjectList(ModelAndView mav, @ModelAttribute UserInfo uf) {			
+		mav.getModelMap().addAttribute("uf", uf);
+		this.tt.backController(7, mav);
+		return (List<Subject>)mav.getModelMap().getAttribute("subjectlist");
+
+	
+	 }
 }

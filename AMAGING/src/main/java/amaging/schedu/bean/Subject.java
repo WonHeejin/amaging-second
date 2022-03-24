@@ -13,7 +13,9 @@ public class Subject {
 	String clName;
 	String sTime;
 	String eTime;
-	String weedDay;
+	String weekDay;
 	String teacherId;
-	
+	String tName;
+	String crCode;
+	String crName;
 }

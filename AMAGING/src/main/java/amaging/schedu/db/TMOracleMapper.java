@@ -18,7 +18,7 @@ public interface TMOracleMapper {
 	public List<ClassBean> getAClassList(UserInfo uf);
 	public List<TList> getTeacherList(TList tl);
 	public int regSubject(Subject sb);
-	public List<Subject> getSubjectList(UserInfo uf);
+	public List<Subject> getASubjectList(UserInfo uf);
 	public int updSubject(Subject sb);
 	public List<ClassBean> getCourseList(UserInfo uf);
 	public int insertClass(ClassBean cb);

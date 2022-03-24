@@ -334,7 +334,7 @@
 }
 
 .smbody {
-	border: 3px solid #EF90FF;
+	border: 2px solid #EF90FF;
 	margin-left: 10%;
 	width: 80%;
 	pont-size: 100pt;
@@ -348,7 +348,7 @@
 }
 
 .tName {
-	border: 2px solid #EF90FF;
+	
 	float: left;
 	width: 20%;
 	height: 100%;
@@ -375,11 +375,7 @@
 	width: 20%;
 }
 
-.tname {
-	float: left;
-	width: 20%;
-	height: 10%;
-}
+
 </style>
 
 </head>
@@ -420,7 +416,8 @@
 						<div class="div2"
 							onclick="subjectFormList('${sessionInfo.acCode}')">
 							●&nbsp;&nbsp;과목등록</div>
-						<div class="div2" onclick="">●&nbsp;&nbsp;과목수정</div>
+						<div class="div2" onclick="getASubjectList('${sessionInfo.acCode}')">
+							●&nbsp;&nbsp;과목수정</div>
 						<div class="div2" onclick="">●&nbsp;&nbsp;반배정</div>
 					</div>
 					<input type="button" class="bothB" id="threeB" onclick="">

@@ -1,13 +1,13 @@
 package amaging.schedu.timeTable;
 
 import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.TransactionDefinition;
 import org.springframework.web.servlet.ModelAndView;
 
 import amaging.schedu.bean.ClassBean;
+import amaging.schedu.bean.Subject;
 import amaging.schedu.bean.TList;
 import amaging.schedu.bean.UserInfo;
 import amaging.schedu.db.TMOracleMapper;
@@ -40,7 +40,7 @@ public class TimeTable extends amaging.schedu.common.CommonMethod{
 			this.regSubject(mav);
 			break;
 		case 7:
-			this.getSubjectList(mav);
+			this.getASubjectList(mav);
 			break;
 		case 8:
 			this.updSubject(mav);
@@ -75,26 +75,16 @@ public class TimeTable extends amaging.schedu.common.CommonMethod{
 		}
 	}
 	private ModelAndView psClassPage(ModelAndView mav) {
-		//	UserInfo uf =(UserInfo)mav.getModelMap().getAttribute("tesuto");
-		//	uf.setAcCode("9999");
-		//	uf.setStudentId("ktskts333");
-		//	uf.setTier("bronze");
-		//	uf.setUserCode("0868");
-		//	uf.setUserId("ktskts222");
-		//	uf.setUserName("김현우치하사스케");
-		//	System.out.println(uf+"오늘 점심은 엉기골");
-		//	mav.getModelMap().addAttribute("hirake", uf);
-
-		//		System.out.println(((UserInfo)mav.getModelMap().getAttribute("hirake")).getAcCode());
-		//		System.out.println(((UserInfo)mav.getModelMap().getAttribute("hirake")).getStudentId());
-		//		System.out.println(((UserInfo)mav.getModelMap().getAttribute("hirake")).getTier());
-		//		System.out.println(((UserInfo)mav.getModelMap().getAttribute("hirake")).getUserCode());
-		//		System.out.println(((UserInfo)mav.getModelMap().getAttribute("hirake")).getUserId());
-		//		System.out.println(((UserInfo)mav.getModelMap().getAttribute("hirake")).getUserName());
-
+		int userCode=((UserInfo)mav.getModelMap().getAttribute("uf")).getUserCode();
+		String page="";
+		if(userCode==1) {
+			page="PClassPage";
+		}else {
+			page="SClassPage";
+		}
+		mav.setViewName(page);
 		return mav;
 	}
-
 
 
 	private void tClassPage(ModelAndView mav) {}
@@ -114,8 +104,36 @@ public class TimeTable extends amaging.schedu.common.CommonMethod{
 		return mav;
 	}
 	private void searchTeacher(ModelAndView mav) {}
-	private void regSubject(ModelAndView mav) {}
-	private void getSubjectList(ModelAndView mav) {}
+	private void regSubject(ModelAndView mav) {
+		boolean tran=false;
+		String msg=null;
+		try { 
+			this.setTransactionConf(TransactionDefinition.PROPAGATION_REQUIRED, TransactionDefinition.ISOLATION_READ_COMMITTED, false);
+			int result = -1;
+			result = this.tmo.regSubject((Subject)mav.getModelMap().getAttribute("sb"));
+			if(this.convertToBoolean(result)) {
+				msg="등록이 성공되었습니다";	
+				tran =true;
+				System.out.println(result);
+			}else {
+				msg="등록에실패했습니다";
+			}
+			mav.addObject("msg",msg);
+
+			this.setTransactionEnd(tran);	 	
+		}catch(Exception e) {e.printStackTrace();}
+	}
+
+
+
+	@SuppressWarnings("unchecked")
+	private ModelAndView getASubjectList(ModelAndView mav) {
+		List<Subject>list=null;
+		mav.addObject("sb",tmo.getASubjectList((UserInfo)mav.getModelMap().getAttribute("uf")));
+		list=(List<Subject>)mav.getModelMap().getAttribute("sb");
+		mav.addObject("subjectlist", list);
+		return mav;
+	}
 	private void updSubject(ModelAndView mav) {}
 
 	@SuppressWarnings("unchecked")
