@@ -5,6 +5,7 @@ import java.util.List;
 import amaging.schedu.bean.AcList;
 import amaging.schedu.bean.ChildCode;
 import amaging.schedu.bean.ClassBean;
+import amaging.schedu.bean.FullCalendar;
 import amaging.schedu.bean.RegParent;
 import amaging.schedu.bean.Subject;
 import amaging.schedu.bean.TList;
@@ -12,7 +13,7 @@ import amaging.schedu.bean.UserInfo;
 
 public interface TMOracleMapper {
 	/*TimeTable*/
-	public List<Subject> getSClassList(UserInfo uf);
+	public List<FullCalendar> getSClassList(UserInfo uf);
 	public List<Subject> getTClassList(UserInfo uf);
 	public String checkTier(UserInfo uf);
 	public List<ClassBean> getAClassList(UserInfo uf);

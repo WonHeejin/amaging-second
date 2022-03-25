@@ -188,20 +188,16 @@ function myAcademyList(userId,menuCode) {
 	getAjaxData("myAcademyList",data,"academySelect","post");
 }
 let aData;
-/* 선생님 상담 글 불러오기 */
-function teacherCounsel(uId,ac){
-	/*const mainpage = document.getElementById("mainpage");
-	if (mainpage.hasChildNodes()) {
+/* 선생님 상담 글 데이터 불러와서 표형식으로 표현 불러오기 */
 
-		while (mainpage.hasChildNodes()) {
-			mainpage.removeChild(mainpage.firstChild);
-		}
-	}*/
+function teacherCounsel(uId,ac){
 	
-	//let ac1=aData[0].acCode;
-	
-	if(ac==""){ac=aData[0].acCode}
-	const data = "userId=" + uId +"&acCode=" + ac
+	if(document.getElementById("mainpage").innerHTML!=null){
+		document.getElementById("mainpage").innerHTML="";
+	}
+	if(ac=="1"){ac=aData[0].acCode}
+	//if(ac=="1"){ac=document.getElementById("ac1").value}
+	const data = "userId=" + uId +"&acCode=" + ac;
 	
 	getAjaxData("/GetContents",data,"dpTCounselList","post");
 }
@@ -212,7 +208,7 @@ function dpTCounselList(dat) {
 	
 			const tableMom = document.createElement("div");
 			let table = document.createElement("table");
-			let mTr = createTr("mTr1");
+			let	mTr = createTr("mTr1");
 			let mTd1 = createTd("mTd1");
 			let mTd2 = createTd("mTd2");
 			    mTd2.setAttribute("colspan",2);
@@ -231,7 +227,9 @@ function dpTCounselList(dat) {
 			for(let i=0; i<tCn.length; i++) {
 			
 							let tr = createTr("tr1");
-				
+								tr.setAttribute("onClick","selectBotton(this)");
+								tr.setAttribute("value",i);
+								tr.setAttribute("name","tr"+i);
 							let td1 = createTd("td1");
 							let td2 = createTd("td2");
 							let td3 = createTd("td3");
@@ -257,15 +255,34 @@ function dpTCounselList(dat) {
 
 }
 
-/* 제목 클릭시 모달로 내용띄우기 */
+let currentRecord=null;	
+	function selectBotton(obj){
+		if(currentRecord!=null){
+			currentRecord.style.backgroundColor="#ffffff";
+			currentRecord.style.color="black";
+			currentRecord=null;
+		}
+		currentRecord=obj;
+		obj.style.backgroundColor="#FF2E2E";
+		obj.style.color="#ffffff";
+		
+		openModal();
+	
+	}
+
+
+
+
  
 function academySelect(dat) {
 	aData = JSON.parse(dat);
+	
 	let aCode = document.getElementById("acCode").value;
-	const mainpage = document.getElementById("mainpage");
+	//const mainpage = document.getElementById("mainpage");
+	const selectBox = document.getElementById("selectBox");
 	const checkCode = "1133";
 	
-		if(!mainpage.hasChildNodes()) {
+		if(!selectBox.hasChildNodes()) {
 		
 			let aSelect = document.createElement("select");
 			aSelect.setAttribute("id", "aSelect");
@@ -302,7 +319,7 @@ function academySelect(dat) {
 				}
 
 	
-	mainpage.appendChild(aSelect);
+	selectBox.appendChild(aSelect);
 	
 	
 	const selectMom = document.createElement("div");
@@ -386,12 +403,10 @@ function academySelect(dat) {
 		})
 	
 	}
+	let uId=document.getElementsByName("userId")[0].value;
+	teacherCounsel(uId,'1');
 }
 
-function makeSelected1(uId,ac) {
-	
-	
-	}
 
 function makeSelected(selectedCode,sessionCode) {
 	//let acCode = selectedCode;
@@ -420,13 +435,23 @@ function makeSelected(selectedCode,sessionCode) {
 			//								   불일치 --> message = 비밀번호가 일치하지 않습니다. or 접근권한이 없습니다.
 	}
 }
+/* 제목 클릭시 모달로 내용띄우기 */
+function openModal() {
+	const exampleModal = document.getElementById("exampleModal");
+    	  exampleModal.style.display = "flex";
+		 // exampleModal.style.filter="alpha(Opacity=50)";//반투명
+	      //exampleModal.style.display = "block";//화면띄우기
+	const confirmBtn = document.getElementById("confirmBtn");
+		  //confirmBtn.setAttribute("onclick","checkPassword(" + acCode + ")");
+}
 
-function openModal(acCode) {
+
+/*function openModal(acCode) {
 	const exampleModal = document.getElementById("exampleModal");
     	  exampleModal.style.display = "flex"
 	const confirmBtn = document.getElementById("confirmBtn");
 		  confirmBtn.setAttribute("onclick","checkPassword(" + acCode + ")");
-}
+}*/
 
 function closeModal() {
 	const exampleModal = document.getElementById("exampleModal");

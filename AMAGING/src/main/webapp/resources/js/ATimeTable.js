@@ -631,7 +631,6 @@ let eTime =document.createElement("input");
 let week=document.createElement("div");
 	  week.setAttribute("id","week");
 	  week.setAttribute("type","button");
-	  //week.setAttribute()
 	  week.innerText="요일선택"	
 	  week.style.width = "9.7%";
       week.style.height = "5.1%";
@@ -923,8 +922,25 @@ function getASubjectList(acCode){
 
 function updSubjectForm(aca){
 	let sblist=JSON.parse(aca);
-	alert(JSON.stringify(sblist));
 	let maindiv=document.createElement("div");
+	let accode=document.createElement("input");
+	    accode.setAttribute("type","hidden");
+		accode.setAttribute("id","accode");
+		accode.setAttribute("value",sblist[0].acCode)
+	let subjectcode=document.createElement("input");
+	    subjectcode.setAttribute("type","hidden");
+		subjectcode.setAttribute("id","subjectcode");	
+	let crcode=document.createElement("input");
+	    crcode.setAttribute("type","hidden");
+		crcode.setAttribute("id","crcode");
+	let clcode=document.createElement("input");
+	    clcode.setAttribute("type","hidden");
+		clcode.setAttribute("id","clcode");
+	let tcode=document.createElement("input");
+	    tcode.setAttribute("type","hidden");
+		tcode.setAttribute("id","tcode");
+		
+			
 	let div=document.createElement("div");
 		div.style.width="60%"
 		div.style.height="30%"
@@ -990,7 +1006,9 @@ function updSubjectForm(aca){
 			/*선생님 이름 */
 	let sensei=document.createElement("input");
 		sensei.setAttribute("id","sensei");
-		sensei.setAttribute("type","readonly");
+		sensei.setAttribute("type","text");
+		sensei.setAttribute("readonly","")
+		sensei.setAttribute("placeholder","선생님 이름")
 		sensei.style.border="2px solid #92acbb";
         sensei.style.borderRadius="5px";
         sensei.style.position="absolute";
@@ -1027,7 +1045,7 @@ function updSubjectForm(aca){
 	  elabel.style.left="63%"
 	  elabel.style.border="2px solid #92acbb"
   let eTime =document.createElement("input");
-	  eTime.setAttribute("id","stime");
+	  eTime.setAttribute("id","etime");
 	  eTime.setAttribute("type","time")
 	  eTime.style.width = "9.8%";
       eTime.style.height = "7.8%";
@@ -1041,8 +1059,7 @@ function updSubjectForm(aca){
 
   let week=document.createElement("div");
 	  week.setAttribute("id","week");
-	  week.setAttribute("type","button");
-	  //week.setAttribute()
+	  week.setAttribute("type","text");
 	  week.innerText="요일선택"	
 	  week.style.width = "9.7%";
       week.style.height = "5.1%";
@@ -1179,7 +1196,7 @@ let modalbtn=document.createElement("input")
 let toroku=document.createElement("input")
 	toroku.setAttribute("type","button")
 	toroku.setAttribute("value","등록")
-	toroku.setAttribute("onClick","")
+	toroku.setAttribute("onClick","updSubject()")
 	toroku.style.width="7%"
 	toroku.style.height="7.5%"
 	toroku.style.position="absolute"
@@ -1199,6 +1216,11 @@ let toroku=document.createElement("input")
 		maindiv.appendChild(elabel)
 		maindiv.appendChild(week)
 		maindiv.appendChild(toroku)
+		maindiv.appendChild(accode)
+		maindiv.appendChild(crcode)
+		maindiv.appendChild(clcode)
+		maindiv.appendChild(tcode)
+		maindiv.appendChild(subjectcode)
 		mainpage.appendChild(maindiv)											
 
  }
@@ -1220,30 +1242,29 @@ function createTd1(id) {
 
 	return td;
 }
-function getSelectClass1(target) {	
- var test0=document.getElementById("sensei")
-		test0.setAttribute("value",target.childNodes[0].getAttribute("value"));
- var test11=document.getElementById("stime")
-		test11.setAttribute("value",target.childNodes[1].getAttribute("value"));						 
- var test=document.getElementById("etime");                          
-		test.setAttribute("value",target.childNodes[1].innerHTML);
- var test2=document.getElementById("classmoney");
- 		test2.setAttribute("value",target.childNodes[2].innerHTML);		
- var test3=document.getElementById("startd");	
-	var cut=target.childNodes[3].innerHTML.substring(0,4);
-		var cut2=target.childNodes[3].innerHTML.substring(4,6);
-		var cut3=target.childNodes[3].innerHTML.substring(6);
-		var join=cut+"-"+cut2+"-"+cut3;
-		test3.setAttribute("value",join);
-		
- var test4=document.getElementById("endd");
-	var cutt=target.childNodes[4].innerHTML.substring(0,4);
-		var cutt2=target.childNodes[4].innerHTML.substring(4,6);
-		var cutt3=target.childNodes[4].innerHTML.substring(6);
-		var joinn=cutt+"-"+cutt2+"-"+cutt3;
-		test4.setAttribute("value",joinn);		
-		 
-  var tbody = target.parentNode;
+function getSelectClass1(target) {
+  var crcode=document.getElementById("crcode")
+	  crcode.setAttribute("value",target.childNodes[0].getAttribute("value"))
+
+  var clcode=document.getElementById("clcode")
+	  clcode.setAttribute("value",target.childNodes[1].getAttribute("value"))
+
+  var subjectcode=document.getElementById("subjectcode")
+	  subjectcode.setAttribute("value",target.childNodes[2].getAttribute("value"))
+
+  var tcode=document.getElementById("tcode")
+	  tcode.setAttribute("value",target.childNodes[3].getAttribute("value"))
+
+  var teacher=document.getElementById("sensei")
+	  teacher.setAttribute("value",target.childNodes[3].innerHTML);	
+  var start=document.getElementById("stime")
+	  start.setAttribute("value",target.childNodes[4].innerHTML);
+  var end=document.getElementById("etime")
+	  end.setAttribute("value",target.childNodes[5].innerHTML);
+  var week1=document.getElementById("week");
+	week1.innerText = target.childNodes[6].innerHTML		 	 
+	 
+ var tbody = target.parentNode;
 		
     var trs = tbody.getElementsByTagName('tr');
     var backColor = "#ffffff";
@@ -1266,4 +1287,80 @@ function getSelectClass1(target) {
     }
 
 }	
+function updSubject(){
+	const acCode=document.getElementById("accode").value;
+	const subjectCode=document.getElementById("subjectcode").value;
+	const clCode=document.getElementById("clcode").value;
+	const crCode=document.getElementById("crcode").value;
+	const teacherId=document.getElementById("tcode").value;
+	const sTime=document.getElementById("stime").value;
+	const eTime=document.getElementById("etime").value;
+	const weekDay=document.getElementById("week").innerText;
+	const data="smCode="+subjectCode+acCode+crCode+clCode+teacherId+"&crCode="+crCode+"&clCode="+clCode+"&subjectCode="+subjectCode+"&acCode="+acCode+"&teacherId="+teacherId+"&sTime="+sTime+"&eTime="+eTime+"&weekDay="+splitDay(weekDay)
+	alert(data);
+	getAjaxData("UpdSubject",data,"clickCategory","post");
+}
+function clickCategory(){
+	alert("수정이 완료됨");
+}
+function modStudentList(acCode){
+	let aca="acCode="+ encodeURIComponent(acCode);	
+	getAjaxData("GetAClassList",aca,"modStudentForm","post");
+}
+function modStudentForm(aca){
+	let classlist=JSON.parse(aca);
+	
+	let maindiv=document.createElement("div")
+		maindiv.style.width="30%"
+		maindiv.style.height="50%"
+		maindiv.style.overflowX="hidden"
+		maindiv.style.border="3px solid #416132"
+		maindiv.style.top="20%";
+		maindiv.style.left="38%";
+		maindiv.style.clear="both"
+		maindiv.style.position="absolute"
+	let table=document.createElement("tbale");
+		 table.style.position="absolute";
+		 table.style.width="100%";
+		 table.style.borderRadius="5px";
+		 table.style.borderCollapse="collapse";	
+		 table.style.borderTop= "2px solid #92acbb";
+		
+	let mtr=document.createElement("tr")
+		mtr.innerHTML="반이름"
+		mtr.style.width="2000px"
+		mtr.style.border="3px solid #441908"
+		table.appendChild(mtr)	
+	for(i=0; i<classlist.length; i++){
+		let thead=document.createElement("tr")
+			//thead.style.border="2px solid #ff0000"	
+		let tdclass=document.createElement("td");
+		tdclass.setAttribute("value",classlist[i].clCode);
+		tdclass.innerHTML=classlist[i].clName;
+		tdclass.style.width  = "1000px";
+		tdclass.style.border="1px solid #99E000"
+		/*학생 등록 버튼 */
+		let tdbtn1=document.createElement("td")
+		tdbtn1.style.border="1px solid #FFBB00"
+		tdbtn1.style.width  = "500px";
+		tdbtn1.setAttribute("type","button");
+		tdbtn1.innerHTML="학생등록";
+		/*학생 삭제 버튼 */
+		let tdbtn2=document.createElement("td")
+		tdbtn2.style.border="1px solid #00A6EF"
+		tdbtn2.style.width  = "500px";
+		tdbtn2.setAttribute("type","button");
+		tdbtn2.setAttribute("onClick","");
+		tdbtn2.innerHTML="학생삭제";
+		thead.appendChild(tdclass);
+		thead.appendChild(tdbtn1);
+		thead.appendChild(tdbtn2);
+		table.appendChild(thead);
+	
+	}
+	const mainpage=document.getElementById("mainpage")
+	maindiv.appendChild(table)
+	mainpage.appendChild(maindiv);
+	}
+	
 	

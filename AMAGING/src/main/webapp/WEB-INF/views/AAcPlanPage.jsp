@@ -570,11 +570,11 @@
             <div id="colorline"></div>
             <div class="servicebutton">
 
-               <input type="button" class="bothB" id="oneB" onclick="getAPlanList('1')">              
-               <input type="button" class="bothB" id="twoB" onclick=""> 
-               <input type="button" class="bothB" id="threeB" onclick="">
+               <input type="button" class="bothB" id="oneB" onclick="getAcPlanPage('amainservice','/AcPlanPage')">              
+               <input type="button" class="bothB" id="twoB" onclick="getPage('amainservice', '/AClassPage')"> 
+               <input type="button" class="bothB" id="threeB" onclick="getPage('amainservice','AFeePage')">
                <input type="button" class="bothB" id="fourB" onclick="">
-               <input type="button" class="bothB" id="fiveB" onclick="">
+               <input type="button" class="bothB" id="fiveB" onclick="getPage('amainservice','/AQnAPage')">
 
             </div>
             <div id="mainpage">

@@ -12,6 +12,7 @@ import amaging.schedu.bean.UserInfo;
 public interface GFOracleMapper {
 	/*Fee*/
 	public List<FeeBean> getMonthFee(FeeBean fb);
+	public List<FeeBean> searchName(FeeBean fb);
 	public int updFeeList(FeeBean fb);
 	public int getMonthCheck(FeeBean fb);
 	public List<FeeBean> getStudentList(FeeBean fb);

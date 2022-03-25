@@ -252,6 +252,7 @@ position:absolute; left:45%; top:1%;
             <div id="logOut">
                <span><input type="button" id="btn" value="로그아웃" onclick="accessOut()"
                   onmouseover="mouseOver(this)" onmouseout="mouseLeave(this)"></span>
+               <input type = "hidden" value = '${sessionInfo.acCode}' name="acCode"/>
             </div>
          </div>
 
@@ -263,7 +264,7 @@ position:absolute; left:45%; top:1%;
                <input type="button" class="bothB" id="twoB" onclick=""> 
                <input type="button" class="bothB" id="threeB" onclick="">
                  <div class="div1">
-                    <div class="div2" onclick="adminFee('get')" >
+                    <div class="div2" onclick="adminFee('get')" name= "getFee">
                    ●&nbsp;&nbsp;조회
                      </div>
                     <div class="div2" onclick="adminFee('reg')">
@@ -274,7 +275,7 @@ position:absolute; left:45%; top:1%;
                <input type="button" class="bothB" id="fiveB" onclick="">
 
             </div>
-            <div id="mainpage" style = "overflow : auto"></div>
+            <div id="mainpage" style = "overflow : auto; overflow-x : hidden"></div>
          </div>
       </div>
    </form>
