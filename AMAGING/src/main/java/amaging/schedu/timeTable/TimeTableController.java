@@ -12,6 +12,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import amaging.schedu.bean.UserInfo;
 import amaging.schedu.bean.ClassBean;
+import amaging.schedu.bean.FullCalendar;
 import amaging.schedu.bean.Subject;
 import amaging.schedu.bean.TList;
 @RestController
@@ -72,7 +73,18 @@ public class TimeTableController {
 		mav.getModelMap().addAttribute("uf", uf);
 		this.tt.backController(7, mav);
 		return (List<Subject>)mav.getModelMap().getAttribute("subjectlist");
-
-	
 	 }
+	@PostMapping("/UpdSubject")
+	public String UpdSubject(ModelAndView mav, @ModelAttribute Subject sb) {
+		mav.getModelMap().addAttribute("sb", sb);
+		this.tt.backController(8, mav);
+		return (String)mav.getModelMap().getAttribute("msg");
+	}
+	@SuppressWarnings("unchecked")
+	@PostMapping("/GetSClassList")
+	public List<FullCalendar> getSClassList(ModelAndView mav, @ModelAttribute UserInfo uf){
+		mav.getModelMap().addAttribute("uf", uf);
+		this.tt.backController(18, mav);
+		return(List<FullCalendar>)mav.getModelMap().getAttribute("event");
+	}
 }

@@ -255,6 +255,7 @@
 					<span id="session">${sessionInfo.userName}님 환영합니다.</span> <input
 						type="hidden" value='${sessionInfo.userName}' name="userName" />
 					<input type="hidden" value='${sessionInfo.userId}' name="userId" />
+					<input type="hidden" value=1 name="userCode" />
 					<input type="hidden" value='${sessionInfo.userCode}'
 						name="userCode" />
 				</div>

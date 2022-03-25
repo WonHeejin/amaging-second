@@ -7,6 +7,7 @@ import org.springframework.transaction.TransactionDefinition;
 import org.springframework.web.servlet.ModelAndView;
 
 import amaging.schedu.bean.ClassBean;
+import amaging.schedu.bean.FullCalendar;
 import amaging.schedu.bean.Subject;
 import amaging.schedu.bean.TList;
 import amaging.schedu.bean.UserInfo;
@@ -73,7 +74,10 @@ public class TimeTable extends amaging.schedu.common.CommonMethod{
 		case 17:
 			this.getTeacherList(mav);
 			break;
-		}
+		case 18:
+			this.makeData(mav);
+			break;		
+			}
 	}
 	private ModelAndView psClassPage(ModelAndView mav) {
 		int userCode=((UserInfo)mav.getModelMap().getAttribute("uf")).getUserCode();
@@ -86,8 +90,35 @@ public class TimeTable extends amaging.schedu.common.CommonMethod{
 		mav.setViewName(page);
 		return mav;
 	}
-
-
+	private void makeData(ModelAndView mav) {
+		List<FullCalendar> fc=tmo.getSClassList((UserInfo)mav.getModelMap().getAttribute("uf"));
+		StringBuffer sb = new StringBuffer();
+		//요일 [1,4] 형태로 바꿔주기
+		for(int i=0;i<fc.size();i++) {			
+			String[] weekday=fc.get(i).getDaysOfWeek().split("");
+			sb.append("[");
+			for(int j=0;j<weekday.length;j++) {
+				if(weekday[j].equals("월")) {
+					sb.append("1");
+				}else if(weekday[j].equals("화")){
+					sb.append("2");
+				}else if(weekday[j].equals("수")){
+					sb.append("3");
+				}else if(weekday[j].equals("목")){
+					sb.append("4");
+				}else if(weekday[j].equals("금")){
+					sb.append("5");
+				}else if(weekday[j].equals("토")){
+					sb.append("6");
+				}else{
+					sb.append("0");
+				}
+				sb.append((j==weekday.length-1)?"]":",");
+			}
+			fc.get(i).setDaysOfWeek(sb.toString());
+		}
+		mav.addObject("event", fc);
+	}
 	private void tClassPage(ModelAndView mav) {}
 
 	private ModelAndView aClassPage(ModelAndView mav) {
@@ -137,7 +168,23 @@ public class TimeTable extends amaging.schedu.common.CommonMethod{
 		return mav;
 	}
 
-	private void updSubject(ModelAndView mav) {}
+	private void updSubject(ModelAndView mav) {
+		
+		boolean tran =false;
+		String msg =null;
+		this.setTransactionConf(TransactionDefinition.PROPAGATION_REQUIRED, TransactionDefinition.ISOLATION_READ_COMMITTED, false);
+		int result=-1;
+		result=this.tmo.updSubject((Subject)mav.getModelMap().getAttribute("sb"));
+		if(this.convertToBoolean(result)) {
+			System.out.println(result);
+			msg="수정이 완료되었습니다";
+			tran=true;
+		}else {
+			msg="다시시도해 주세요";
+		}
+		mav.addObject("msg",msg);
+		this.setTransactionEnd(tran);		
+	}
 
 	@SuppressWarnings("unchecked")
 	private ModelAndView getCourseList(ModelAndView mav) {
