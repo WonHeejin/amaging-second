@@ -18,4 +18,8 @@ public class Subject {
 	String tName;
 	String crCode;
 	String crName;
+	String acName;
+	String startDay;
+	String endDay;
+	int attend;
 }

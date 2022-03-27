@@ -1,6 +1,9 @@
 package amaging.schedu.timeTable;
 
+import java.awt.Color;
 import java.util.List;
+import java.util.Random;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.TransactionDefinition;
@@ -81,22 +84,34 @@ public class TimeTable extends amaging.schedu.common.CommonMethod{
 	}
 	private ModelAndView psClassPage(ModelAndView mav) {
 		int userCode=((UserInfo)mav.getModelMap().getAttribute("uf")).getUserCode();
-		String page="";
-		if(userCode==1) {
-			page="PClassPage";
-		}else {
-			page="SClassPage";
+		String page="SPMain";
+		String message="사용자 정보가 존재하지 않습니다. 다시 로그인해주세요.";
+		if(this.sessionCheck(mav)) {
+			if(userCode==1) {
+				page="PClassPage";
+				message="";
+			}else if(userCode==2) {
+				page="SClassPage";
+				message="";
+			}
 		}
 		mav.setViewName(page);
+		mav.addObject("message", message);
 		return mav;
 	}
 	private void makeData(ModelAndView mav) {
-		List<FullCalendar> fc=tmo.getSClassList((UserInfo)mav.getModelMap().getAttribute("uf"));
-		StringBuffer sb = new StringBuffer();
+		UserInfo userInfo=(UserInfo)mav.getModelMap().getAttribute("uf");
+		List<Subject> subject;
+		if(userInfo.getUserCode()==3) {
+			subject=tmo.getTClassList(userInfo);
+		}else {
+
+			subject=tmo.getSClassList(userInfo);
+		}
 		//요일 [1,4] 형태로 바꿔주기
-		for(int i=0;i<fc.size();i++) {			
-			String[] weekday=fc.get(i).getDaysOfWeek().split("");
-			sb.append("[");
+		for(int i=0;i<subject.size();i++) {			
+			StringBuffer sb = new StringBuffer();
+			String[] weekday=subject.get(i).getWeekDay().split("");
 			for(int j=0;j<weekday.length;j++) {
 				if(weekday[j].equals("월")) {
 					sb.append("1");
@@ -113,13 +128,15 @@ public class TimeTable extends amaging.schedu.common.CommonMethod{
 				}else{
 					sb.append("0");
 				}
-				sb.append((j==weekday.length-1)?"]":",");
+				sb.append((j==weekday.length-1)?"":",");
 			}
-			fc.get(i).setDaysOfWeek(sb.toString());
+			subject.get(i).setWeekDay(sb.toString());
 		}
-		mav.addObject("event", fc);
+		mav.addObject("event", subject);
 	}
-	private void tClassPage(ModelAndView mav) {}
+	private void tClassPage(ModelAndView mav) {
+		mav.setViewName("TClassPage");
+	}
 
 	private ModelAndView aClassPage(ModelAndView mav) {
 

@@ -3,8 +3,6 @@ package amaging.schedu.timeTable;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -12,7 +10,6 @@ import org.springframework.web.servlet.ModelAndView;
 
 import amaging.schedu.bean.UserInfo;
 import amaging.schedu.bean.ClassBean;
-import amaging.schedu.bean.FullCalendar;
 import amaging.schedu.bean.Subject;
 import amaging.schedu.bean.TList;
 @RestController
@@ -81,11 +78,11 @@ public class TimeTableController {
 		return (String)mav.getModelMap().getAttribute("msg");
 	}
 	@SuppressWarnings("unchecked")
-	@PostMapping("/GetSClassList")
-	public List<FullCalendar> getSClassList(ModelAndView mav, @ModelAttribute UserInfo uf){
+	@PostMapping(value="/GetSTClassList", produces = "application/json; charset=UTF-8")
+	public List<Subject> getSClassList(ModelAndView mav, @ModelAttribute UserInfo uf){
 		mav.getModelMap().addAttribute("uf", uf);
 		this.tt.backController(18, mav);
-		return(List<FullCalendar>)mav.getModelMap().getAttribute("event");
+		return(List<Subject>)mav.getModelMap().getAttribute("event");
 	}
 
 }

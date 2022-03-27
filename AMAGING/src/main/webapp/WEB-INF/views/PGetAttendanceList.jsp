@@ -5,7 +5,15 @@
 <head>
 <meta charset="UTF-8">
 <title>학부모 출석 페이지</title>
- <script src="resources/js/common.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
+<script src='http://fullcalendar.io/js/fullcalendar-2.1.1/lib/jquery.min.js'></script>
+<script src="http://fullcalendar.io/js/fullcalendar-2.1.1/lib/jquery-ui.custom.min.js"></script>
+<script src='http://fullcalendar.io/js/fullcalendar-2.1.1/fullcalendar.min.js'></script>
+<link href='resources/fullcalendar/main.css' rel='stylesheet' />
+<script src='resources/fullcalendar/main.js'></script>
+<script src='resources/fullcalendar/ko.js'></script>
+<script src="resources/js/common.js"></script>
+<script src="resources/js/class.js"></script>
 <style>
 #frame {width:100%; height:100%;
    position:absolute; top:5%;}
@@ -73,7 +81,6 @@
    height: 80%;
    float: right;
    margin-right: 5.5%;
-   background-image: url(resources/images/.png);
    background-size: 25% 50%;
    background-repeat: no-repeat;
    background-position: center center;
@@ -225,15 +232,33 @@ text-align:center;
 #sessionBox{ width:30%; height:10%; 
 position:absolute; left:45%; top:1%;
 }
+#childBox{
+	width: 15%;
+	height: 5%;
+	float:right;
+}
+
+#calendar {
+	margin-left: 5%;
+	width: 80%;
+	height: 73%;
+}
 </style>
 
 </head>
-<body onload="">
+<body onload="getChildList('${sessionInfo.userId}')">
    <form name="" action="" method="get">
       <div id="basic">
          <div id="frame">
             <div id="logo"></div>
-             <div id="sessionBox"><span id="session">정재영 부모 김현우님 환영합니다.</span></div>
+             <div id="sessionBox"><span id="session"><span id='childName'></span>${sessionInfo.userName}님 환영합니다.
+             	<input	type="hidden" value="${sessionInfo.userId}" name="userId" />
+				<input	type="hidden" value="${sessionInfo.userCode}" name="userCode" />
+				<input	type="hidden" value="${sessionInfo.userName}" id ="userName" />
+				<input	type="hidden" value="" name="sEmail" id ="sEmail" />
+				<input	type="hidden" value="" name="sCode" id ="sCode" />
+				<input type="hidden" value="at" id="pageId"/>	
+			</span></div>
             <div id="logOut">
                <input type="button" id="btn" value="로그아웃" onclick="accessOut()" onmouseover="mouseOver(this)" onmouseout="mouseLeave(this)">
             </div>
@@ -250,7 +275,10 @@ position:absolute; left:45%; top:1%;
                    <input type="button" class="bothB" id="sixB" onclick="">
                     <input type="button" class="bothB" id="sevenB" onclick="">  
                </div>
-            <div id="mainpage"></div>
+            <span><div id="childBox" name="childBox"></div></span>  
+            <div id="mainpage">
+            	<div id='calendar'></div>
+            </div>
          </div>
       </div>
    </form>
@@ -272,4 +300,6 @@ position:absolute; left:45%; top:1%;
 
    }
 </script>
+<script src="https://unpkg.com/@popperjs/core@2/dist/umd/popper.js"></script>
+<script src="https://unpkg.com/tippy.js@6"></script>
 </body></html>

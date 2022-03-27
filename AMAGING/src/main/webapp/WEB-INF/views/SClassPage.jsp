@@ -5,18 +5,10 @@
 <head>
 <meta charset="UTF-8">
 <title>학생 시간표 페이지</title>
-<script
-	src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
-<!-- <script src='http://fullcalendar.io/js/fullcalendar-2.1.1/lib/moment.min.js'></script> -->
-<script
-	src='http://fullcalendar.io/js/fullcalendar-2.1.1/lib/jquery.min.js'></script>
-<script
-	src="http://fullcalendar.io/js/fullcalendar-2.1.1/lib/jquery-ui.custom.min.js"></script>
-<script
-	src='http://fullcalendar.io/js/fullcalendar-2.1.1/fullcalendar.min.js'></script>
-<!-- <script src="http://code.jquery.com/jquery-latest.js"></script> 
-  -->
-
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
+<script src='http://fullcalendar.io/js/fullcalendar-2.1.1/lib/jquery.min.js'></script>
+<script src="http://fullcalendar.io/js/fullcalendar-2.1.1/lib/jquery-ui.custom.min.js"></script>
+<script src='http://fullcalendar.io/js/fullcalendar-2.1.1/fullcalendar.min.js'></script>
 <link href='resources/fullcalendar/main.css' rel='stylesheet' />
 <script src='resources/fullcalendar/main.js'></script>
 <script src='resources/fullcalendar/ko.js'></script>
@@ -240,14 +232,15 @@
 }
 
 #calendar {
-	width: 90%;
-	height: 80%;
+	margin-left: 5%;
+	width: 80%;
+	height: 73%;
 }
 </style>
 
 </head>
-<body onload="">
-	<form name="" action="" method="get">
+<body onload="calendar('/GetSClassList')">
+	<form name="Smainservices" action="" method="post">
 		<div id="basic">
 			<div id="frame">
 				<div id="logo"></div>
@@ -255,9 +248,10 @@
 					<span id="session">${sessionInfo.userName}님 환영합니다.</span> <input
 						type="hidden" value='${sessionInfo.userName}' name="userName" />
 					<input type="hidden" value='${sessionInfo.userId}' name="userId" />
-					<input type="hidden" value=1 name="userCode" />
+					<input type="hidden" value=2 name="userCode" />
 					<input type="hidden" value='${sessionInfo.userCode}'
 						name="userCode" />
+					<input type="hidden" value="tt" id="pageId"/>	
 				</div>
 				<div id="logOut">
 					<span><input type="button" id="btn" value="로그아웃"
@@ -271,7 +265,7 @@
 							onclick="getAcPlanPage('Smainservices','/AcPlanPage')"> <input
 							type="button" class="bothB" id="twoB"
 							onclick="getPage('Smainservices','/GradePage')"> <input
-							type="button" class="bothB" id="threeB" onclick=""> <input
+							type="button" class="bothB" id="threeB" onclick="getPage('Smainservices','/AttendancePage')"> <input
 							type="button" class="bothB" id="fourB"
 							onclick="getPage('Smainservices','/PSClassPage')"> <input
 							type="button" class="bothB" id="fiveB" onclick=""> <input
@@ -303,5 +297,7 @@
 
 		}
 	</script>
+<script src="https://unpkg.com/@popperjs/core@2/dist/umd/popper.js"></script>
+<script src="https://unpkg.com/tippy.js@6"></script>
 </body>
 </html>

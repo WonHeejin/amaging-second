@@ -179,5 +179,11 @@ public class MovePageController {
 		ad.backController(1, mav.addObject("uf",uf));
 		return mav;
 	}
+	@PostMapping("/AttendancePage")
+	public ModelAndView atPage(ModelAndView mav, @ModelAttribute UserInfo uf) {
+		ad.backController(2, mav.addObject("uf",uf));
+		return mav;
+		
+	}
 }
 

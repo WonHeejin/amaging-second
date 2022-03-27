@@ -13,7 +13,7 @@ import amaging.schedu.bean.UserInfo;
 
 public interface TMOracleMapper {
 	/*TimeTable*/
-	public List<FullCalendar> getSClassList(UserInfo uf);
+	public List<Subject> getSClassList(UserInfo uf);
 	public List<Subject> getTClassList(UserInfo uf);
 	public String checkTier(UserInfo uf);
 	public List<ClassBean> getAClassList(UserInfo uf);

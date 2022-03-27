@@ -6,6 +6,8 @@ import org.springframework.transaction.TransactionStatus;
 import org.springframework.transaction.support.DefaultTransactionDefinition;
 import org.springframework.web.servlet.ModelAndView;
 
+import amaging.schedu.bean.UserInfo;
+
 
 public class CommonMethod {
 	
@@ -32,5 +34,19 @@ public class CommonMethod {
 	protected void setTransactionEnd(boolean tran){
 		if(tran)this.tx.commit(txStatus);
 		else this.tx.rollback(txStatus);
+	}
+	protected boolean sessionCheck(ModelAndView mav) {
+		boolean result= false;
+		UserInfo uf=(UserInfo)mav.getModelMap().getAttribute("uf");
+		try {
+			if(this.pu.getAttribute("sessionInfo")!=null) {
+				if(uf.getUserId().equals(((UserInfo)this.pu.getAttribute("sessionInfo")).getUserId())) {
+					result=true;
+				}
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return result;
 	}
 }

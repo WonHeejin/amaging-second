@@ -63,6 +63,33 @@
 WHERE SB_ACODE=#{smCode} AND SB_CLCRACCODE=#{acCode} AND SB_CLCRCODE=#{crCode} AND SB_CLCODE=#{clCode} AND SB_TCCODE=#{teacherId} AND SB_ASCODE=#{subjectCode}
 	</update>	
 	
+	<select id="getSClassList" parameterType="amaging.schedu.bean.UserInfo" resultType="amaging.schedu.bean.Subject">
+		SELECT SB_ACODE AS SMCODE, TC_NAME AS TNAME,
+			   AC_NAME AS ACNAME, CL_NAME AS CLNAME,
+			   SB_ASNAME AS SUBJECTNAME, SB_STIME AS STIME,
+			   SB_ETIME AS ETIME, SB_WEEKDAY AS WEEKDAY,
+			   CL_SDATE AS STARTDAY, CL_EDATE AS ENDDAY,
+			   AT_COCODE AS ATTEND
+		FROM BS INNER JOIN SB ON BS.BS_CLCRACCODE=BS.BS_CLCRACCODE
+							 AND BS.BS_CLCRCODE=SB.SB_CLCRCODE
+							 AND BS.BS_CLCODE=SB.SB_CLCODE
+				INNER JOIN AC ON BS.BS_CLCRACCODE=AC.AC_CODE
+				INNER JOIN CL ON BS.BS_CLCRACCODE=CL.CL_CRACCODE
+							 AND BS.BS_CLCRCODE=CL.CL_CRCODE
+							 AND BS.BS_CLCODE=CL.CL_CODE
+				INNER JOIN TC ON SB.SB_TCCODE=TC.TC_CODE
+				LEFT OUTER JOIN AT ON AT.AT_SBACODE=SB.SB_ACODE
+                             AND AT.AT_STCODE=BS.BS_STCODE
+		WHERE BS.BS_STCODE=#{userId}
+	</select>
+	<select id="getTClassList" parameterType="amaging.schedu.bean.UserInfo" resultType="amaging.schedu.bean.Subject">
+		SELECT AC_NAME AS ACNAME, CL_NAME AS CLNAME, SB_ASNAME AS SUBJECTNAME,
+      		   SB_WEEKDAY AS WEEKDAY, SB_STIME AS STIME, SB_ETIME AS ETIME,
+       		   CL_SDATE AS STARTDAY, CL_EDATE AS ENDDAY, ' ' AS TNAME
+		FROM SB INNER JOIN AC ON SB.SB_CLCRACCODE=AC.AC_CODE
+        		INNER JOIN CL ON SB.SB_CLCODE=CL.CL_CODE
+		WHERE SB_TCCODE=#{userId}
+	</select>
 		<!-- PrivateInfo -->
 		
 	<select id="getAcList" parameterType="amaging.schedu.bean.AcList" resultType="amaging.schedu.bean.AcList">

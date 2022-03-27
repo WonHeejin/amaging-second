@@ -28,6 +28,9 @@ public class Attendance extends amaging.schedu.common.CommonMethod{
 	  case 1:
 		  this.getArticleForm(mav);
 		  break;	  
+	  case 2:
+		  this.psAttendancePage(mav);
+		  break;
 	  }
   }
 
@@ -137,5 +140,21 @@ public class Attendance extends amaging.schedu.common.CommonMethod{
 		}
 
 		mav.setViewName(page);
+	}
+	private void psAttendancePage(ModelAndView mav) {
+		String page="SPMain";
+		String message="사용자 정보가 존재하지 않습니다. 다시 로그인해주세요.";
+		if(this.sessionCheck(mav)) {
+			if(((UserInfo)mav.getModelMap().getAttribute("uf")).getUserCode()==1) {
+				page="PGetAttendanceList";
+				message="";
+			}else {
+				page="SGetAttendanceList";
+				message="";
+			}
+		}
+				
+		mav.setViewName(page);
+		mav.addObject("message", message);
 	}
 }
