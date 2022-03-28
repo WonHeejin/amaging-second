@@ -94,6 +94,9 @@ function getAdminFeeList(dat) {
 	const modBtnDiv = document.getElementById("modBtnDiv");
 	const selectMom = document.getElementById("selectMom");
 	if(data.length <= 0) {
+		if(tableMom.hasChildNodes()) {
+			tableMom.removeChild(tableMom.firstChild);
+		}s
 		alert("등록된 납부내역이 존재하지 않습니다.");
 	}else {
 		
@@ -181,8 +184,12 @@ function searchFee() {
 	const acCode = document.getElementsByName("acCode")[0].value;
 	const date = document.getElementById("dateSelect").value;
 	const name = document.getElementById("nameSearch").value
-	const data = "acCode=" + acCode + "&upMonth=" + date.substring(0,4) + date.substring(5,7) + "&studentName=" + name;
-	getAjaxData("SearchName",data,"getAdminFeeList","post");
+	if (name == '') {
+		alert("이름을 입력해 주세요.");
+	}else {
+		const data = "acCode=" + acCode + "&upMonth=" + date.substring(0,4) + date.substring(5,7) + "&studentName=" + name;
+		getAjaxData("SearchName",data,"getAdminFeeList","post");
+	}
 }
 /* modFee */
 function modFeeList(dat) {
