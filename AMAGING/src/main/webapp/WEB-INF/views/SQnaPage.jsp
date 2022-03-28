@@ -387,7 +387,7 @@ position:absolute; left:45%; top:1%;
 				<div class="servicebutton">
 					<input type="button" class="bothB" id="oneB" onclick="getPage('Smainservices','/AcPlanPage')"> <input
 						type="button" class="bothB" id="twoB" onclick="getPage('Smainservices','/GradePage')"> <input
-						type="button" class="bothB" id="threeB" onclick=""> <input
+						type="button" class="bothB" id="threeB" onclick="getPage('Smainservices','/AttendancePage')"> <input
 						type="button" class="bothB" id="fourB" onclick="getPage('Smainservices','/PSClassPage')"> <input
 						type="button" class="bothB" id="fiveB" onclick="getPage('Smainservices','/SQnAPage')">
 						<input
@@ -418,7 +418,7 @@ position:absolute; left:45%; top:1%;
                </div>
             
             <!-- The Modal footer -->
-               <br><div type="text" class="mfooter" id="answer"></div>
+               <br><div ><input type="text" class="mfooter" id="answer" readonly/></div>
                  <br> 
                
             </div>

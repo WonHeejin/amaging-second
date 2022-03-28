@@ -493,7 +493,7 @@ function openModal(idx) {
 	let question = document.getElementById("question");
 		question.innerHTML="&nbsp;&nbsp;내용 : " + tCn[idx].question;
 	let answer = document.getElementById("answer");
-		alert(tCn[idx].answer);
+		
 		answer.setAttribute("placeholder",tCn[idx].answer);
 
 	
@@ -538,7 +538,7 @@ function closeModal1() {
 	const s1 = document.getElementById("selects1");
 	const s2 = document.getElementById("selects2");
 	
-	while(s.hasChildNodes()){
+	if(s.hasChildNodes()){
 			s.removeChild(s.firstChild);
 			s1.removeChild(s1.firstChild);
 			s2.removeChild(s2.firstChild);
@@ -752,7 +752,7 @@ function tSelect(dat){
 			aSelect.style.borderRadius = "5px";
 			aSelect.style.border = "2px solid #92acbb";
 			aSelect.style.position = "relative";
-			aSelect.style.right = "10%";
+			aSelect.style.left = "10%";
 			aSelect.style.top = "1%";
 			aSelect.style.float = "left";
 			
@@ -843,12 +843,14 @@ function insertQnA(){
 		const data = "acCode=" + ac + "&rpCode=" + ta + "&userId=" + uId + "&userCode=" + uc + "&title=" + tt +"&question=" + qs;
 		
 		getAjaxData("/InsertQnA",data,"sendMessage2","post");
+		
+		
 }
 
 function sendMessage2(message){
 	let m =JSON.stringify(message);
 		alert(m);
-		closeModal();
+		closeModal1();
 		//document.getElementById("answer").value="";
 	let uId = document.getElementsByName("userId")[0].value;
 	let ac = document.getElementById("aSelect1").value;

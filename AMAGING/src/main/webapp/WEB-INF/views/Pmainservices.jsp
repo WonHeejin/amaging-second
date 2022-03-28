@@ -257,7 +257,7 @@ position:absolute; left:45%; top:1%;
                   <input type="button" class="bothB" id="fourB" onclick="getPage('pmainservice','/PSClassPage')">
                    <input type="button" class="bothB" id="fiveB" onclick="getPage('pmainservice','/PFeePage')"> 
                    <input type="button" class="bothB" id="sixB" onclick="getPage('pmainservice','/PQnAPage')">
-                    <input type="button" class="bothB" id="sevenB" onclick="getAcPlanPage('pmainservice','/InfoPage')"> 
+                    <input type="button" class="bothB" id="sevenB" onclick="getPage('pmainservice','/InfoPage')"> 
                </div>
             <div id="mainpage">
             	
