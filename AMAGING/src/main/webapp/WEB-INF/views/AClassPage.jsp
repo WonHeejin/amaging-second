@@ -8,6 +8,15 @@
 <script src="resources/js/common.js"></script>
 <script src="resources/js/ATimeTable.js"></script>
 <style>
+#btn2{width:10%; height:10%; line-height: 1%;font-size:150%;text-align:center;
+           box-shadow : 5px 5px 5px black; transition-duration:0.3s;
+           position:absolute; top:75%; left:49%;cursor: pointer;
+           background-color: #EF90FF ; color:#FFFFFF;
+           border-radius:8px;}
+#btn2:active{background-color: #E14FCA  ; color:#FFFFFF; height: 10%;
+              line-height: 10%;width:10%;
+                font-size:150%;text-align:center;
+                 box-shadow : none; margin-left:1%; margin-top:1%;}          
 #frame {
 	width: 100%;
 	height: 100%;
@@ -469,6 +478,7 @@
  .section::-webkit-scrollbar-thumb { background-color: #d4aa70; border-radius: 100px; } 
  .section { scrollbar-color: #D4AA70 #e4e4e4; } 
  .section::-webkit-scrollbar-thumb { background-image: linear-gradient(180deg, #D0368A 0%, #708AD4 99%); box-shadow: inset 2px 2px 5px 0 rgba(#fff, 0.5); border-radius: 100px; }
+
 
 
 </style>

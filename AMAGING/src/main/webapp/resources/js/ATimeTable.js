@@ -151,7 +151,7 @@ function getCourseList(acCode){
 			btn.style.textAlign = "center";
 			btn.style.fontSize="100%";
 			btn.style.backgroundColor="#fff";
-            
+          
    const mainpage = document.getElementById("mainpage");
    div.appendChild(select);
    div.appendChild(input);
@@ -312,7 +312,7 @@ function updClassForm(abc){
 			fee.setAttribute("id","classmoney")
 			fee.setAttribute("placeholder","수정금액 입력");
 			fee.setAttribute("selected","selected");
-			fee.style.border="2px solid #92acbb";
+			fee.style.border="2px solid #EF90FF";
 			fee.style.borderRadius="5px";
 			fee.style.position="absolute";
 			fee.style.top="62%";
@@ -328,16 +328,17 @@ function updClassForm(abc){
 			sdiv.style.position="absolute";
 			sdiv.style.top="58%";
 			sdiv.style.left="61%";
-			sdiv.style.border="2px ridge #E14FCA ";
+			sdiv.style.border="5px solid #E14FCA";
 			sdiv.style.borderRadius="5px";
 			sdiv.style.textAlign = "center";
+			
 			let dateFrom = document.createElement("input");
         	dateFrom.setAttribute("id", "startd");
 			dateFrom.setAttribute("type","date");
 			dateFrom.setAttribute("name","dt");
          	dateFrom.style.width = "10%";
       		dateFrom.style.height = "7.5%";
-       		dateFrom.style.border = "2px solid #92acbb";
+       		dateFrom.style.border = "2px solid #EF90FF";
         	dateFrom.style.position = "absolute"
         	dateFrom.style.left = "57%";
 			dateFrom.style.top="62%";
@@ -365,7 +366,7 @@ function updClassForm(abc){
 			dateFrom2.setAttribute("name","dt");
          	dateFrom2.style.width = "10%";
          	dateFrom2.style.height = "7.5%";
-        	dateFrom2.style.border = "2px solid #92acbb";
+        	dateFrom2.style.border = "2px solid #EF90FF";
          	dateFrom2.style.position = "absolute"
          	dateFrom2.style.left = "72%";
 			dateFrom2.style.top="62%";
@@ -383,19 +384,7 @@ function updClassForm(abc){
 			btn.setAttribute("id", "btn2");
 			btn.setAttribute("value","수정완료");
 			btn.setAttribute("onClick","updClass()");
-			btn.style.width = "10%";
-         	btn.style.height = "10%";
-         	btn.style.border = "2px solid #92acbb";	
-         	btn.style.position = "absolute"
-         	btn.style.left = "50%";
-			btn.style.cursor="pointer";
-			btn.style.top="75%";
-			btn.style.borderRadius="5px";
-			btn.style.textAlign = "center";
-			btn.style.fontSize="100%";
-			btn.style.backgroundColor="#fff";
-			btn.style.color="#000";	
-            
+           
 	const mainpage =document.getElementById("mainpage");
 	tablebox.appendChild(table);
 	div.appendChild(tablebox);
