@@ -310,7 +310,7 @@ position:absolute; left:45%; top:1%;
                       </div>
                      </div> 
                   <input type="button" class="bothB" id="threeB" onclick="getPage('tmainservices','/TAttendancePage')">
-                  <input type="button" class="bothB" id="fourB" onclick="">
+                  <input type="button" class="bothB" id="fourB" onclick="getPage('tmainservices','/TClassPage')">
                    <input type="button" class="bothB" id="fiveB" onclick="getPage('tmainservices','/TQnAPage')">
                    <input type="button" class="bothB" id="sixB" onclick="getPage('tmainservices','/InfoPage')">
                     
