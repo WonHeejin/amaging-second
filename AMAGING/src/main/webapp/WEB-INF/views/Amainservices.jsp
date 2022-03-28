@@ -237,7 +237,7 @@ position:absolute; left:45%; top:1%;
                <input type="button" class="bothB" id="oneB" onclick="getAcPlanPage('amainservice','/AcPlanPage')">              
                <input type="button" class="bothB" id="twoB" onclick="getPage('amainservice', '/AClassPage')"> 
                <input type="button" class="bothB" id="threeB" onclick="getPage('amainservice','AFeePage')">
-               <input type="button" class="bothB" id="fourB" onclick="">
+               <input type="button" class="bothB" id="fourB" onclick="getPage('amainservice','/AGetAttendanceL')">
                <input type="button" class="bothB" id="fiveB" onclick="getPage('amainservice','/AQnAPage')">
 
             </div>
@@ -253,7 +253,25 @@ position:absolute; left:45%; top:1%;
       obj.style.background = "#EF90FF ";
 
    }
-
+   /*function getCheckPage(formName,action){
+		const checkLevel = document.getElementsByName("tier")[0].value;
+		
+		if(checkLevel == 1){
+	   		const form = document.getElementsByName(formName)[0];
+	      		form.setAttribute("action",action);
+	      		return form.submit();
+		}else if(checkLevel == 2){
+			if(action == "/AQnAPage"){
+				const form = document.getElementsByName(formName)[0];
+  					form.setAttribute("action",action);
+  					return form.submit();
+			}
+		}else if(checkLevel == 3){
+			
+		}
+		alert("볼수없는 기능입니다.");
+		
+	}*/
    function mouseLeave(obj) {
 
       let fColor = (obj.id == "btn") ? "#ffffff" : "#FF0000";

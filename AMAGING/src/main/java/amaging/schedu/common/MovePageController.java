@@ -173,16 +173,22 @@ public class MovePageController {
       return mav;
    }
 
-	@PostMapping("/TAttendancePage")
-	public ModelAndView TAPage(ModelAndView mav, @ModelAttribute UserInfo uf) {
-		ad.backController(1, mav.addObject("uf",uf));
-		return mav;
-	}
+   @PostMapping("/TAttendancePage")
+   public ModelAndView TAPage(ModelAndView mav, @ModelAttribute UserInfo uf) {
+      ad.backController(1, mav.addObject("uf",uf));
+      return mav;
+   }
+   @PostMapping("/AGetAttendanceL")
+   public ModelAndView TServicePage(ModelAndView mav, @ModelAttribute UserInfo uf) {
+      ad.backController(2, mav.addObject("uf",uf));
+      return mav;
+   }
 	@PostMapping("/AttendancePage")
 	public ModelAndView atPage(ModelAndView mav, @ModelAttribute UserInfo uf) {
-		ad.backController(2, mav.addObject("uf",uf));
+		ad.backController(3, mav.addObject("uf",uf));
 		return mav;
 		
 	}
+	
 }
 

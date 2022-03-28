@@ -1,5 +1,6 @@
 package amaging.schedu.attendance;
 
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -10,7 +11,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.servlet.ModelAndView;
 
 import amaging.schedu.bean.AcList;
+import amaging.schedu.bean.Admin;
 import amaging.schedu.bean.AttendanceBean;
+import amaging.schedu.bean.ChildCode;
 import amaging.schedu.bean.Subject;
 import amaging.schedu.bean.UserInfo;
 import amaging.schedu.db.ASOracleMapper;
@@ -26,9 +29,12 @@ public class Attendance extends amaging.schedu.common.CommonMethod{
   public void backController(int jobCode, ModelAndView mav) {
 	  switch(jobCode) {
 	  case 1:
-		  this.getArticleForm(mav);
-		  break;	  
+		  this.getTArticleForm(mav);
+		  break;
 	  case 2:
+		  this.TServicePage(mav);
+		  break;
+	  case 3:
 		  this.psAttendancePage(mav);
 		  break;
 	  }
@@ -60,8 +66,138 @@ public class Attendance extends amaging.schedu.common.CommonMethod{
 		case 9:
 			this.recheckSA(model);
 			break;
+		case 10:
+			this.attendanceCheck(model);
+			break;
+		case 11:
+			this.modStudentA(model);
+			break;
+		case 12:
+			this.searchList(model);
+			break;
+		case 13:
+			this.upSI(model);
+			break;
+		case 14:
+			this.checkMessage(model);
+			break;
+		case 15:
+			this.approveWS(model);
+			break;
+		case 16:
+			this.permissionWS(model);
+			break;
+		case 17:
+			this.rejectWS(model);
+			break;
+		case 18:
+			this.stListInfo(model);
+			break;
+		case 19:
+			this.delSResult(model);
+			break;
 		}
 	}
+	private void delSResult(Model model) {
+		String message = null;
+		Admin an = new Admin();
+		an = (Admin)model.getAttribute("an");
+		if(this.convertToBoolean(am.delS(an))){
+			message = "success";
+		}
+		model.addAttribute("meg",message);
+	}
+	private void stListInfo(Model model) {
+		if(this.convertToBoolean(am.checkS((Admin)model.getAttribute("an")))) {
+			model.addAttribute("deletSL",am.getDSList((Admin)model.getAttribute("an")));
+		}else {
+			model.addAttribute("deletSL",am.getFailSList((Admin)model.getAttribute("an")));
+		}
+	}
+	private void permissionWS(Model model) {
+		am.upPermission((Admin)model.getAttribute("an"));
+		model.addAttribute("resultWS",am.getWSList((Admin)model.getAttribute("an")));
+	}
+	private void rejectWS(Model model) {
+		am.upReject((Admin)model.getAttribute("an"));
+		model.addAttribute("resultWS",am.getWSList((Admin)model.getAttribute("an")));
+	}
+	private void approveWS(Model model) {
+		model.addAttribute("resultWS",am.getWSList((Admin)model.getAttribute("an")));
+	}
+	private void checkMessage(Model model) {
+		String message = null;
+		Subject sj = new Subject();
+		sj = (Subject)model.getAttribute("sj");
+		if(this.convertToBoolean(am.checkSI(sj))){
+			message = "success";
+		}else {
+			message = "fail";
+		}
+		model.addAttribute("meg",message);
+	}
+	private void upSI(Model model) {
+		String message = null;
+		Subject sj = new Subject();
+		sj = (Subject)model.getAttribute("sj");
+		if(this.convertToBoolean(am.checkSI(sj))){
+			am.upSI(sj);
+			message = "success";
+		}else {
+			message = "fail";
+		}
+		model.addAttribute("meg",message);
+	}
+	private void searchList(Model model) {
+		System.out.println(am.searchSI((Subject)model.getAttribute("sj")));
+		model.addAttribute("searchSI",am.searchSI((Subject)model.getAttribute("sj")));
+	}
+	private void modStudentA(Model model) {
+		LocalTime cTime = LocalTime.now();
+		int tHour = cTime.getHour();
+		int tMin = cTime.getMinute();
+		int timeDataE =0;
+		
+		if(tMin < 10) {
+			timeDataE = Integer.parseInt(Integer.toString(tHour) + "0" + Integer.toString(tMin));
+		}else {
+			timeDataE = Integer.parseInt(Integer.toString(tHour) + Integer.toString(tMin));
+		}
+		int timeDataS = Integer.parseInt(am.getJustTime((AcList)model.getAttribute("al")).getDayDate());
+		if(timeDataE < ((timeDataS*100)+10)) {
+			am.upSudentS((AcList)model.getAttribute("al"));
+			System.out.println("출석");
+		}else {
+			System.out.println((AcList)model.getAttribute("al"));
+			am.upSudentL((AcList)model.getAttribute("al"));
+			System.out.println("지각");
+		}
+		model.addAttribute("studentCList",am.stAllList((AcList)model.getAttribute("al")));
+	}
+	private void attendanceCheck(Model model) {
+		LocalTime cTime = LocalTime.now();
+		int tHour = cTime.getHour();
+		int timeDataS = Integer.parseInt(am.getJustTime((AcList)model.getAttribute("al")).getDayDate());
+		
+		if (am.checkOverlap((AcList) model.getAttribute("al")) > 0) {
+			System.out.println("pass");
+			model.addAttribute("studentCList",am.stAllList((AcList)model.getAttribute("al")));
+		} else {
+			if (tHour == timeDataS) {
+				for (int idx = 0; idx < am.sList((AcList) model.getAttribute("al")).size(); idx++) {
+					if (this.convertToBoolean(
+							am.insSAttendance(am.sList((AcList) model.getAttribute("al")).get(idx)))) {
+						// tran = true;
+						model.addAttribute("studentCList",am.stAllList((AcList)model.getAttribute("al")));
+					}
+				}
+			}else {
+				model.addAttribute("studentCList",am.forInsert((AcList)model.getAttribute("al")));
+			}
+		}
+		
+	}
+	/*---------------------------------------------------------------------------------------------------*/
 	private void recheckSA(Model model) {
 		model.addAttribute("rcStudent",am.getRcAForm((Subject)model.getAttribute("sj")));
 	}
@@ -127,13 +263,25 @@ public class Attendance extends amaging.schedu.common.CommonMethod{
 		model.addAttribute("schoolList",am.getSchoolList((UserInfo)model.getAttribute("uf")));
 		
 	}
-
-	private void getArticleForm(ModelAndView mav) {
+	private void getTArticleForm(ModelAndView mav) {
 		UserInfo uf = new UserInfo();
 		uf = (UserInfo) mav.getModel().get("uf");
 		String page = "";
 		try {
 			page = "TGetAttendanceList";
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		mav.setViewName(page);
+	}
+	private void TServicePage(ModelAndView mav) {
+		UserInfo uf = new UserInfo();
+		uf = (UserInfo) mav.getModel().get("uf");
+		String page = "";
+		try {
+			page = "AGetAttendanceList";
 
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -156,5 +304,5 @@ public class Attendance extends amaging.schedu.common.CommonMethod{
 				
 		mav.setViewName(page);
 		mav.addObject("message", message);
-	}
+	}	
 }

@@ -57,4 +57,97 @@
         		INNER JOIN ST ON AT.AT_STCODE = ST.ST_CODE 
 		WHERE SUBSTR(AT_DATE,1,8) =TO_DATE(#{weedDay}) AND sb.sb_tccode=#{teacherId}
    </select>
+   <select id="checkOverlap" parameterType ="amaging.schedu.bean.AcList" resultType="int">
+     	SELECT count(at.at_date) as CT 
+		from at inner join SB on at.at_sbacode = sb.sb_acode 
+		WHERE sb.sb_tccode =#{userId} and SUBSTR(at.at_date,1,8) = TO_DATE(to_char(SYSDATE,'YYYYMMDD'))
+   </select>
+   <select id="sList" parameterType="amaging.schedu.bean.AcList" resultType="amaging.schedu.bean.AttendanceBean">
+   		SELECT st.st_code as studentId ,sb.sb_tccode as subjectCode 
+		FROM BS INNER JOIN ST ON bs.bs_stcode = st.st_code 
+       			INNER JOIN SB ON  bs.bs_clcraccode = sb.sb_clcraccode 
+		WHERE sb.sb_tccode=#{userId} and bs.bs_clcrcode IN(SELECT sb.sb_clcrcode FROM SB WHERE sb.sb_tccode=#{userId}) and 
+			bs.bs_clcode IN(SELECT sb.sb_clcode FROM SB WHERE sb.sb_tccode=#{userId})
+	</select>
+	<insert id="insSAttendance" parameterType="amaging.schedu.bean.AttendanceBean">
+		insert into at(at_sbacode,at_stcode,at_date,at_cocode) values((SELECT sb_acode FROM sb WHERE sb_tccode =#{subjectCode}), #{studentId},default,23)
+	</insert>
+	 <select id="stAllList" parameterType="amaging.schedu.bean.AcList" resultType="amaging.schedu.bean.AttendanceBean">
+   		SELECT st.st_name AS studentName, at.at_cocode AS atStatus , TO_CHAR(at.at_date,'HH24MI') AS dayDate 
+		FROM BS INNER JOIN ST ON bs.bs_stcode = st.st_code 
+       			INNER JOIN SB ON bs.bs_clcraccode = sb.sb_clcraccode 
+       			INNER JOIN AT ON bs.bs_stcode = at.at_stcode 
+		WHERE TO_CHAR(at.at_date,'YYYYMMDDHH24') IN(TO_CHAR(SYSDATE,'YYYYMMDD')||(select SUBSTR(sb_stime,1,2) from SB where sb_tccode = #{userId})) and 
+		sb.sb_tccode= #{userId} and bs.bs_clcrcode IN(SELECT sb.sb_clcrcode FROM SB WHERE sb.sb_tccode=#{userId}) and 
+		bs.bs_clcode IN(SELECT sb.sb_clcode FROM SB WHERE sb.sb_tccode=#{userId})
+   </select>
+   <update id="upSudentS" parameterType="amaging.schedu.bean.AcList">
+		UPDATE AT 
+		SET AT_COCODE = 21 
+		WHERE AT_STCODE IN(SELECT ST_CODE FROM ST WHERE ST_NAME = #{acName}) AND TO_CHAR(AT_DATE,'HH24MI') = #{acCode}
+	</update>
+	<update id="upSudentL" parameterType="amaging.schedu.bean.AcList">
+		UPDATE AT 
+		SET AT_COCODE = 22 
+		WHERE AT_STCODE IN(SELECT ST_CODE FROM ST WHERE ST_NAME = #{acName}) AND TO_CHAR(AT_DATE,'HH24MI') = #{acCode}
+	</update>
+	<select id="searchSI" parameterType="amaging.schedu.bean.Subject" resultType="amaging.schedu.bean.AttendanceBean">
+		SELECT AT.AT_COCODE AS atStatus, ST.ST_NAME AS studentName, AC.AC_NAME AS dayDate, sb.sb_asname AS subjectCode 
+		FROM AT INNER JOIN ST ON at.at_stcode = st.st_code 
+        	INNER JOIN AC ON SUBSTR(at.at_sbacode,6,10) = ac.ac_code 
+        	INNER JOIN CO ON at.at_cocode = co.co_code 
+        	INNER JOIN SB ON at.at_sbacode = sb.sb_acode 
+		WHERE AT_STCODE IN(SELECT ST_CODE FROM ST WHERE ST_NAME = #{userId}) AND 
+		TO_CHAR(at.at_date,'YYYYMMDDHH24') IN(#{weedDay})||(select SUBSTR(sb_stime,1,2) from SB where sb_tccode = #{teacherId})
+	</select>
+	 <select id="checkSI" parameterType ="amaging.schedu.bean.Subject" resultType="int">
+      	SELECT COUNT(*) 
+		FROM AT 
+		WHERE AT_STCODE IN(SELECT ST_CODE FROM ST WHERE ST_NAME = #{userId})
+   </select>
+   <update id="upSI" parameterType="amaging.schedu.bean.Subject">
+		UPDATE AT 
+		SET AT_COCODE = #{smCode} 
+		WHERE AT_STCODE IN(SELECT ST_CODE FROM ST WHERE ST_NAME = #{userId}) AND 
+		TO_CHAR(at.at_date,'YYYYMMDD') IN(#{weedDay}) AND SUBSTR(AT_SBACODE,26,5) = #{teacherId}
+	</update>
+	 <select id="getJustTime" parameterType="amaging.schedu.bean.AcList" resultType="amaging.schedu.bean.AttendanceBean">
+   		SELECT SUBSTR(SB_STIME,1,2) AS dayDate FROM SB WHERE SB_TCCODE = #{userId}
+   </select>
+   <select id="forInsert" parameterType="amaging.schedu.bean.AcList" resultType="amaging.schedu.bean.AttendanceBean">
+   		SELECT TC_COCODE AS atStatus FROM TC WHERE TC_CODE = #{userId}
+   </select>
+   <select id="getWSList" parameterType="amaging.schedu.bean.Admin" resultType="amaging.schedu.bean.ChildCode">
+   		SELECT ST.ST_CODE AS userId, ST.ST_NAME AS sName, ST.ST_EMAIL AS sEmail 
+		FROM SA INNER JOIN ST ON SA.SA_STCODE = ST.ST_CODE 
+		WHERE SA_ACCODE IN(SELECT AD_ACCODE FROM AD WHERE AD_CODE = #{adCode}) AND SA_COCODE = 12
+   </select>
+   <update id="upPermission" parameterType="amaging.schedu.bean.Admin">
+		UPDATE SA 
+		SET SA_COCODE = 11 
+		WHERE SA_STCODE =#{acCode} AND SA_ACCODE IN(SELECT AD_ACCODE FROM AD WHERE AD_CODE = #{adCode})
+	</update>
+	<update id="upReject" parameterType="amaging.schedu.bean.Admin">
+		UPDATE SA 
+		SET SA_COCODE = 13 
+		WHERE SA_STCODE =#{acCode} AND SA_ACCODE IN(SELECT AD_ACCODE FROM AD WHERE AD_CODE = #{adCode})
+	</update>
+	 <select id="checkS" parameterType ="amaging.schedu.bean.Admin" resultType="int">
+      	SELECT COUNT(*) FROM ST WHERE ST_NAME = #{acCode} AND 
+      	ST_CODE IN(SELECT SA_STCODE FROM SA WHERE SA_ACCODE IN(SELECT AD_ACCODE FROM AD WHERE AD_CODE=#{adCode}) AND SA_COCODE =11)
+   </select>
+    <select id="getDSList" parameterType="amaging.schedu.bean.Admin" resultType="amaging.schedu.bean.ChildCode">
+   		SELECT ST_EMAIL AS sEmail, ST_NAME AS sName FROM ST WHERE ST_NAME = #{acCode} AND 
+   		ST_CODE IN(SELECT SA_STCODE FROM SA WHERE SA_ACCODE IN(SELECT AD_ACCODE FROM AD WHERE AD_CODE=#{adCode}) AND SA_COCODE =11)
+   </select>
+   <select id="getFailSList" parameterType="amaging.schedu.bean.Admin" resultType="amaging.schedu.bean.ChildCode">
+   		SELECT COUNT(*) AS sEmail FROM ST WHERE ST_NAME = #{acCode} AND 
+   		ST_CODE IN(SELECT SA_STCODE FROM SA WHERE SA_ACCODE IN(SELECT AD_ACCODE FROM AD WHERE AD_CODE=#{adCode}) AND SA_COCODE =11)
+   </select>
+    <update id="delS" parameterType="amaging.schedu.bean.Admin">
+		UPDATE SA 
+		SET SA_COCODE = 13 
+		WHERE SA_STCODE IN(SELECT ST_CODE FROM ST WHERE ST_NAME = #{adCode} AND ST_EMAIL = #{tier}) AND 
+		SA_ACCODE IN(SELECT AD_ACCODE FROM AD WHERE AD_CODE = #{acCode})
+	</update>
 </mapper>
