@@ -164,7 +164,7 @@ public class TimeTable extends amaging.schedu.common.CommonMethod{
 			if(this.convertToBoolean(result)) {
 				msg="등록이 성공되었습니다";	
 				tran =true;
-				System.out.println(result);
+				
 			}else {
 				msg="등록에실패했습니다";
 			}
@@ -224,7 +224,7 @@ public class TimeTable extends amaging.schedu.common.CommonMethod{
 				msg="등록이 성공되었습니다";	
 				tran =true;
 			}else {
-				msg="등록에실패했습니다";
+				msg=null;
 			}
 			mav.addObject("msg",msg);
 

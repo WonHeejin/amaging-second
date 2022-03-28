@@ -89,6 +89,7 @@
 	background-size: 30% 55%;
 	background-repeat: no-repeat;
 	background-position: center center;
+/*	border:3px dashed #EF90FF; */
 }
 
 .bothB {
@@ -478,14 +479,14 @@
  .section::-webkit-scrollbar-thumb { background-color: #d4aa70; border-radius: 100px; } 
  .section { scrollbar-color: #D4AA70 #e4e4e4; } 
  .section::-webkit-scrollbar-thumb { background-image: linear-gradient(180deg, #D0368A 0%, #708AD4 99%); box-shadow: inset 2px 2px 5px 0 rgba(#fff, 0.5); border-radius: 100px; }
-
+.section{border-radius:5px;}
 
 
 </style>
 
 </head>
 <body onload="closeModal()">
-	<form name="aaaa" action="" method="post">
+	<form name="amainservice" action="" method="post">
 		<div id="basic">
 			<div id="frame">
 
@@ -510,7 +511,7 @@
 				<div id="colorline"></div>
 				<div class="servicebutton">
 
-					<input type="button" class="bothB" id="oneB" onclick="getAcPlanPage('amainservice','/AcPlanPage')"> <input
+					<input type="button" class="bothB" id="oneB" onclick="getPage('amainservice','/AcPlanPage')"> <input
 						type="button" class="bothB" id="twoB" onclick="getPage('amainservice', '/AClassPage')">
 					<div class="div1">
 						<div class="div2" id="regClassForm"
@@ -527,8 +528,8 @@
 							●&nbsp;&nbsp;반배정</div>
 					</div>
 					<input type="button" class="bothB" id="threeB" onclick="getPage('amainservice','AFeePage')">
-					<input type="button" class="bothB" id="fourB" onclick=""> <input
-						type="button" class="bothB" id="fiveB" onclick="getPage('amainservice','/AQnAPage')">
+					<input type="button" class="bothB" id="fourB" onclick="getPage('amainservice','/AGetAttendanceL')">
+				    <input type="button" class="bothB" id="fiveB" onclick="getPage('amainservice','/AQnAPage')">
 
 				</div>
 				<div id="mainpage"></div>

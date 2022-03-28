@@ -13,7 +13,7 @@ function getCourseList(acCode){
    		/* -----------과정-------------- */
   let namae = JSON.parse(aca);
      	
-         let div = document.createElement("div");
+        let div = document.createElement("div");
    		 
 		let accode=document.createElement("input");
 			accode.setAttribute("type","hidden")
@@ -38,11 +38,9 @@ function getCourseList(acCode){
 			select.appendChild(katei);
 			
             for(let i=0; i<namae.length; i++) {
-               let option = document.createElement("option");
-              	
+               let option = document.createElement("option");             	
                option.setAttribute("value",namae[i].crCode);
-        		option.innerHTML=namae[i].crName;        
-                         
+        		option.innerHTML=namae[i].crName;                                 
                select.appendChild(option);  
 			
             }			
@@ -51,6 +49,7 @@ function getCourseList(acCode){
 			input.setAttribute("type","text");
 			input.setAttribute("placeholder","수업명입력");
 			input.setAttribute("id","classname");
+			input.setAttribute("maxlength","10")
 			input.style.width="10%";
 			input.style.height="7.5%";
 			input.style.border="2px solid #92acbb";
@@ -66,6 +65,7 @@ function getCourseList(acCode){
 			input2.setAttribute("type","text");
 			input2.setAttribute("placeholder","수업금액 입력");
 			input2.setAttribute("id","classmoney");
+			input2.setAttribute("maxlength","7")
 			input2.style.width="10%";
 			input2.style.height="7.5%";
 			input2.style.border="2px solid #92acbb";
@@ -128,8 +128,7 @@ function getCourseList(acCode){
 			dateFrom2.style.fontSize="100%";
          	
          
-         let enday = document.createElement("option");
-			
+         let enday = document.createElement("option");			
 			enday.setAttribute("selected",enday);
 			dateFrom2.appendChild(enday);
 			
@@ -180,13 +179,18 @@ function getCourseList(acCode){
 		var words2=clEdate.split('-');
 		var res2=words2[0].concat(words2[1]+words2[2]);		
 		
-		const data = "acCode="+acCode+"&crCode="+crCode+"&clName="+clName+"&clFee="+clFee+"&clSdate="+res+"&clEdate="+res2;
-			alert(data);	
+		const data = "acCode="+acCode+"&crCode="+crCode+"&clName="+clName+"&clFee="+clFee+"&clSdate="+res+"&clEdate="+res2;				
 		getAjaxData("InsertClass",data,"dotClick","post");
 	}
 	
 	function dotClick(message){
-	alert(message);	 
+	if(message!=null){
+	alert("등록에 성공하였습니다");
+	 }else{
+		alert("등록에 실패하였습니다");
+		const npage=document.getElementById("twoB");
+		npage.click();
+	}
 //	let category=sessionStorage.getItem("category");
 //	if(category=null){category="regClassForm";}
 //	document.getElementById(category).click();
@@ -263,7 +267,7 @@ function updClassForm(abc){
 		for(let i=0; i<risuto.length; i++){
 		
 			let tr=createTr("tr");
-			
+				tr.style.border="2px dashed #E14FCA"
 			let td1=createTd("td1");
 			td1.setAttribute("value",risuto[i].crCode);
 			td1.innerHTML=risuto[i].crName;
@@ -295,9 +299,10 @@ function updClassForm(abc){
          name.setAttribute("type","text");
          name.setAttribute("id","classname");
          name.setAttribute("selected","selected");   
-         name.setAttribute("placeholder","수업명 선택");	
+         name.setAttribute("placeholder","수업명 선택");
+		 name.setAttribute("maxlength","10")	
          name.appendChild(table);
-         name.style.border="2px solid #EF90FF ";
+         name.style.border="5px solid #EF90FF ";
          name.style.borderRadius="5px";
          name.style.position="absolute";
          name.style.top="62%";
@@ -311,8 +316,9 @@ function updClassForm(abc){
 			fee.setAttribute("type","text");
 			fee.setAttribute("id","classmoney")
 			fee.setAttribute("placeholder","수정금액 입력");
+			fee.setAttribute("maxlength","7")
 			fee.setAttribute("selected","selected");
-			fee.style.border="2px solid #EF90FF";
+			fee.style.border="5px solid #EF90FF";
 			fee.style.borderRadius="5px";
 			fee.style.position="absolute";
 			fee.style.top="62%";
@@ -331,14 +337,15 @@ function updClassForm(abc){
 			sdiv.style.border="5px solid #E14FCA";
 			sdiv.style.borderRadius="5px";
 			sdiv.style.textAlign = "center";
-			
+			sdiv.style.backgroundColor="#000"
+			sdiv.style.color="#FFB2D9"
 			let dateFrom = document.createElement("input");
         	dateFrom.setAttribute("id", "startd");
 			dateFrom.setAttribute("type","date");
 			dateFrom.setAttribute("name","dt");
          	dateFrom.style.width = "10%";
       		dateFrom.style.height = "7.5%";
-       		dateFrom.style.border = "2px solid #EF90FF";
+       		dateFrom.style.border = "5px solid #EF90FF";
         	dateFrom.style.position = "absolute"
         	dateFrom.style.left = "57%";
 			dateFrom.style.top="62%";
@@ -359,14 +366,15 @@ function updClassForm(abc){
 			sdiv2.style.border="5px solid #E14FCA";
 			sdiv2.style.borderRadius="5px";
 			sdiv2.style.textAlign = "center";
-			
+			sdiv2.style.backgroundColor="#000"
+			sdiv2.style.color="#ff0000"
 			let dateFrom2 = document.createElement("input");			
         	dateFrom2.setAttribute("id", "endd");
 			dateFrom2.setAttribute("type","date");
 			dateFrom2.setAttribute("name","dt");
          	dateFrom2.style.width = "10%";
          	dateFrom2.style.height = "7.5%";
-        	dateFrom2.style.border = "2px solid #EF90FF";
+        	dateFrom2.style.border = "5px solid #EF90FF";
          	dateFrom2.style.position = "absolute"
          	dateFrom2.style.left = "72%";
 			dateFrom2.style.top="62%";
