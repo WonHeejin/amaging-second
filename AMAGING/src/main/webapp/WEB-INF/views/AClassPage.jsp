@@ -273,7 +273,7 @@
 	background-color: #D5D5D5;
 	cursor: pointer;
 }
-
+/*선생 검색 모달*/
 .scontainer {
 	background-color: gray;
 	background: rgba(0, 0, 0, 0.4);
@@ -293,41 +293,6 @@
 	position: absolute;
 	top: 50%;
 	left: 50%;
-	width: 60%;
-	height: 60%;
-	transform: translate(-50%, -50%)
-}
-
-.smbtn {
-	border: 2px solid gray;
-	border-radius: 5px;
-	position: absolute;
-	left: 93%;
-	top: 3%;
-	width: 4%;
-	height: 5%;
-	background-color: #D5D5D5;
-	cursor: pointer;
-}
-
-.scontainer {
-	background-color: gray;
-	background: rgba(0, 0, 0, 0.4);
-	position: absolute;
-	width: 100%;
-	min-height: 100%;
-	left: 0;
-	top: 0;
-	text-align: center;
-}
-
-.smdialog {
-	border: 2px solid white;
-	border-radius: 25px;
-	background-color: #ffffff;
-	position: absolute;
-	top: 50%;
-	left: 50%;
 	width: 50%;
 	height: 450px;
 	transform: translate(-50%, -50%);
@@ -338,13 +303,6 @@
 	margin-left: 10%;
 	width: 80%;
 	pont-size: 100pt;
-}
-
-.tcCode {
-	border: 2px solid #EF90FF;
-	float: left;
-	width: 20%;
-	height: 100%;
 }
 
 .tName {
@@ -374,6 +332,143 @@
 	float: left;
 	width: 20%;
 }
+/*학생등록 모달*/
+.gcontainer {
+	background-color: gray;
+	background: rgba(0, 0, 0, 0.4);
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	left: 0;
+	top: 0;
+	text-align: center;
+	display: flex;
+}
+
+.gmdialog {
+	border: 2px solid white;
+	border-radius: 25px;
+	background-color: #ffffff;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	width: 60%;
+	height: 60%;
+	transform: translate(-50%, -50%)
+}
+
+.gmbtn {
+	border: 2px solid gray;
+	border-radius: 5px;
+	position: absolute;
+	left: 93%;
+	top: 3%;
+	width: 4%;
+	height: 5%;
+	background-color: #D5D5D5;
+	cursor: pointer;
+}
+
+.gmbody {
+	border: 2px solid #EF90FF;
+	margin-left: 10%;
+	width: 70%;
+	height:3.3%;
+	pont-size: 100pt;
+	position:absolute; top:27%;	
+	float:left;
+	margin-bottom:30%;
+
+}
+
+
+.sNAME {
+	float: left;
+	width: 30%;
+	height: 100%;
+}
+ .sEmail {
+	width: 60%;
+	height: 100%;
+	position:left:20%;
+	float: left;
+}
+
+
+.gmfooter {
+	top: 85%;
+	left: 30%;
+	position: fixed;
+	clear: both;
+	margin-bottom: 10%;
+	width: 40%;
+	height: 50px;
+}
+/**/
+.gcontainer2 {
+	background-color: gray;
+	background: rgba(0, 0, 0, 0.4);
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	left: 0;
+	top: 0;
+	text-align: center;
+	display: flex;
+}
+
+.gmdialog2 {
+	border: 2px solid white;
+	border-radius: 25px;
+	background-color: #ffffff;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	width: 60%;
+	height: 60%;
+	transform: translate(-50%, -50%)
+}
+
+.gmbody2 {
+	border: 2px solid #EF90FF;
+	margin-left: 10%;
+	width: 70%;
+	height:3.3%;
+	pont-size: 100pt;
+	position:absolute; top:27%;	
+	float:left;
+	margin-bottom:30%;
+
+}
+
+
+.sNAME2 {
+	float: left;
+	width: 30%;
+	height: 100%;
+}
+ .sEmail2 {
+	width: 60%;
+	height: 100%;
+	position:left:20%;
+	float: left;
+}
+
+
+.gmfooter2 {
+	top: 85%;
+	left: 30%;
+	position: fixed;
+	clear: both;
+	margin-bottom: 10%;
+	width: 40%;
+	height: 50px;
+}
+.section::-webkit-scrollbar { width: 16px; } 
+.section::-webkit-scrollbar-track { background-color: #e4e4e4; border-radius: 100px; }
+ .section::-webkit-scrollbar-thumb { background-color: #d4aa70; border-radius: 100px; } 
+ .section { scrollbar-color: #D4AA70 #e4e4e4; } 
+ .section::-webkit-scrollbar-thumb { background-image: linear-gradient(180deg, #D0368A 0%, #708AD4 99%); box-shadow: inset 2px 2px 5px 0 rgba(#fff, 0.5); border-radius: 100px; }
 
 
 </style>
@@ -405,8 +500,8 @@
 				<div id="colorline"></div>
 				<div class="servicebutton">
 
-					<input type="button" class="bothB" id="oneB" onclick=""> <input
-						type="button" class="bothB" id="twoB" onclick="">
+					<input type="button" class="bothB" id="oneB" onclick="getAcPlanPage('amainservice','/AcPlanPage')"> <input
+						type="button" class="bothB" id="twoB" onclick="getPage('amainservice', '/AClassPage')">
 					<div class="div1">
 						<div class="div2" id="regClassForm"
 							onclick="getCourseList('${sessionInfo.acCode}')">
@@ -421,9 +516,9 @@
 						<div class="div2" onclick="modStudentList('${sessionInfo.acCode}')">
 							●&nbsp;&nbsp;반배정</div>
 					</div>
-					<input type="button" class="bothB" id="threeB" onclick="">
+					<input type="button" class="bothB" id="threeB" onclick="getPage('amainservice','AFeePage')">
 					<input type="button" class="bothB" id="fourB" onclick=""> <input
-						type="button" class="bothB" id="fiveB" onclick="">
+						type="button" class="bothB" id="fiveB" onclick="getPage('amainservice','/AQnAPage')">
 
 				</div>
 				<div id="mainpage"></div>
@@ -466,12 +561,57 @@
 						<div class='smfooter'>
 							<input type='button' class='mbtn1' value='선택' onclick='selectList(this)'
 								style='border-radius: 5px; background-color: #EF90FF; width: 30%; height: 50%;' />
-							<input type='button' class='mbtn2' value='닫기' onclick='closeModal2()'
+							<input type='button' class='mbtn2' value='닫기' onclick='closeModal()'
 								style='borderradius: 5px; background-color: #EF90FF; width: 30%; height: 50%;' />
 						</div>
 					</div>
 				</div>
 			</div>
+			
+			<div class='gcontainer' id='gcontainer'>
+				<div class='gmdialog'>
+					<div class='gmcontent'>
+						<div class='gmheader' style='font-size: 200%'>	
+						</div>
+						<input type='text' name='sName' id='splace' placeholder='학생이름 입력'
+							style='height: 35px; width: 30%; position: absolute; top: 19%; left: 30%; border-radius: 5px; border-color: #EF90FF' />
+						<input type='button' value='조회' onClick='searchStudent()'
+							class='searchBtn'
+							style='position: absolute; top: 21%; left: 62%; border-radius: 5px background-color:#EF90FF;' />
+						<div class='gmbody' id='gmbody' value=''>
+							<div class='sNAME'>학생이름</div>
+							<div class='sEmail'>이메일</div>
+							<div class="checkbox">box</div>							
+						</div>
+						<div class='gmfooter'>
+							<input type='button' class='mbtn3' value='등록' onclick='regStudent(this)'
+								style='border-radius: 5px; background-color: #EF90FF; width: 30%; height: 50%;' />
+							<input type='button' class='mbtn3' value='닫기' onclick='closeModal()'
+								style='borderradius: 5px; background-color: #EF90FF; width: 30%; height: 50%;' />
+						</div>
+					</div>
+				</div>
+			</div>
+		
+		<div class='gcontainer2' id='gcontainer2' >
+				<div class='gmdialog2'>
+					<div class='gmcontent2'>
+						<div class='gmheader2' style='font-size: 200%'>	
+						</div>
+						<div class='gmbody2' id='gmbody2' value=''>
+							<div class='sNAME2'>학생이름</div>
+							<div class='sEmail2'>이메일</div>
+							<div class="checkbox2">box</div>							
+						</div>
+						<div class='gmfooter2'>
+							<input type='button' class='mbtn3' value='삭제' onclick='delBelong()'
+								style='border-radius: 5px; background-color: #EF90FF; width: 30%; height: 50%;' />
+							<input type='button' class='mbtn3' value='닫기' onclick='closeModal()'
+								style='borderradius: 5px; background-color: #EF90FF; width: 30%; height: 50%;' />
+						</div>
+					</div>
+				</div>
+			</div>	
 	</form>
 
 	<script type="text/javascript">

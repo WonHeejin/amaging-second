@@ -1,8 +1,13 @@
 let currentRecord=null;
 
 function getCourseList(acCode){
+	let mainpage = document.getElementById("mainpage");
+   while(mainpage.hasChildNodes()){
+      mainpage.removeChild(mainpage.lastChild);
+   }
 	let aca="acCode=" + encodeURIComponent(acCode);	
 	getAjaxData("GetCourseList",aca,"regClassForm","post");
+	
 }
 	function regClassForm(aca){
    		/* -----------과정-------------- */
@@ -161,7 +166,7 @@ function getCourseList(acCode){
 	
 	//수업등록 버튼//
 	function insertClass(){
-		alert("아롱");
+		
 		const acCode=document.getElementById("accode").value;	
 		const crCode=document.getElementById("sentaku").value;		
 		const clName=document.getElementById("classname").value;
@@ -188,13 +193,17 @@ function getCourseList(acCode){
 	}
 		//수업수정
 function getAClassList(acCode){
+	let mainpage = document.getElementById("mainpage");
+   while(mainpage.hasChildNodes()){
+      mainpage.removeChild(mainpage.lastChild);
+   }
 		let abc="acCode=" + encodeURIComponent(acCode);
 	getAjaxData("GetAClassList",abc,"updClassForm","post");
+	
 
 }		
 
 function updClassForm(abc){
-	alert("updClassForm");
 	 let risuto = JSON.parse(abc);
 	
 	let div = document.createElement("div");
@@ -217,20 +226,23 @@ function updClassForm(abc){
 
 	 let tablebox=document.createElement("div")	
 		 tablebox.style.width="60%"
-		 tablebox.style.height="30%"
+		 tablebox.style.height="40%"
 		 tablebox.style.overflowX="hidden"
 		 tablebox.style.position="absolute"
-		 tablebox.style.top="17%"
+		 tablebox.setAttribute("class","section")
+		 tablebox.style.top="15%"
 		 tablebox.style.left="25%"
-		 tablebox.style.border="2px solid #EF90FF"		 
+		 tablebox.style.border="3px solid #EF90FF"		 
 	 let table = document.createElement("table");
  		 table.style.position="absolute";
 		 table.style.width="100%";
 		 table.style.borderRadius="5px";
 		 table.style.borderCollapse="collapse";	
-		 table.style.borderTop= "2px solid #92acbb";
+		
 	
-	let mtr =createTr("mtr");		
+	let mtr =createTr("mtr");
+	mtr.style.border="5px ridge #EF90FF"
+			
 	let mtd1 =createTd("mtd1");
 	let mtd2 =createTd("mtd2");
 	let mtd3 =createTd("mtd3");
@@ -285,11 +297,11 @@ function updClassForm(abc){
          name.setAttribute("selected","selected");   
          name.setAttribute("placeholder","수업명 선택");	
          name.appendChild(table);
-         name.style.border="2px solid #92acbb";
+         name.style.border="2px solid #EF90FF ";
          name.style.borderRadius="5px";
          name.style.position="absolute";
-         name.style.top="52%";
-         name.style.left="38%";
+         name.style.top="62%";
+         name.style.left="27%";
          name.style.width = "10%";
          name.style.height = "7.5%";
          name.style.fontSize="100%";
@@ -303,8 +315,8 @@ function updClassForm(abc){
 			fee.style.border="2px solid #92acbb";
 			fee.style.borderRadius="5px";
 			fee.style.position="absolute";
-			fee.style.top="52%";
-			fee.style.left="54%";
+			fee.style.top="62%";
+			fee.style.left="42%";
 			fee.style.width = "10%";
       		fee.style.height = "7.5%";
 			fee.style.fontSize="100%";
@@ -314,9 +326,9 @@ function updClassForm(abc){
 			let sdiv = document.createElement("div");
 			sdiv.innerHTML="개강일";
 			sdiv.style.position="absolute";
-			sdiv.style.top="64.5%";
-			sdiv.style.left="34%";
-			sdiv.style.border="2px solid #92acbb";
+			sdiv.style.top="58%";
+			sdiv.style.left="61%";
+			sdiv.style.border="2px ridge #E14FCA ";
 			sdiv.style.borderRadius="5px";
 			sdiv.style.textAlign = "center";
 			let dateFrom = document.createElement("input");
@@ -327,7 +339,7 @@ function updClassForm(abc){
       		dateFrom.style.height = "7.5%";
        		dateFrom.style.border = "2px solid #92acbb";
         	dateFrom.style.position = "absolute"
-        	dateFrom.style.left = "38%";
+        	dateFrom.style.left = "57%";
 			dateFrom.style.top="62%";
 			dateFrom.style.borderRadius="5px";
 			dateFrom.style.textAlign = "center";
@@ -341,9 +353,9 @@ function updClassForm(abc){
 			let sdiv2 = document.createElement("div");
 			sdiv2.innerHTML="종강일";
 			sdiv2.style.position="absolute";
-			sdiv2.style.top="64.5%";
-			sdiv2.style.left="50%";
-			sdiv2.style.border="2px solid #92acbb";
+			sdiv2.style.top="58%";
+			sdiv2.style.left="75.8%";
+			sdiv2.style.border="5px solid #E14FCA";
 			sdiv2.style.borderRadius="5px";
 			sdiv2.style.textAlign = "center";
 			
@@ -355,7 +367,7 @@ function updClassForm(abc){
          	dateFrom2.style.height = "7.5%";
         	dateFrom2.style.border = "2px solid #92acbb";
          	dateFrom2.style.position = "absolute"
-         	dateFrom2.style.left = "54%";
+         	dateFrom2.style.left = "72%";
 			dateFrom2.style.top="62%";
 			dateFrom2.style.borderRadius="5px";
 			dateFrom2.style.textAlign = "center";
@@ -371,13 +383,13 @@ function updClassForm(abc){
 			btn.setAttribute("id", "btn2");
 			btn.setAttribute("value","수정완료");
 			btn.setAttribute("onClick","updClass()");
-			btn.style.width = "7%";
-         	btn.style.height = "7%";
+			btn.style.width = "10%";
+         	btn.style.height = "10%";
          	btn.style.border = "2px solid #92acbb";	
          	btn.style.position = "absolute"
-         	btn.style.left = "68%";
+         	btn.style.left = "50%";
 			btn.style.cursor="pointer";
-			btn.style.top="57%";
+			btn.style.top="75%";
 			btn.style.borderRadius="5px";
 			btn.style.textAlign = "center";
 			btn.style.fontSize="100%";
@@ -401,7 +413,7 @@ function updClassForm(abc){
 function createTr(id) {
    const tr = document.createElement("tr");
    tr.setAttribute("name",id); 
-   tr.style.border="2px solid #92acbb";
+   
    tr.setAttribute("onClick","javascript:getSelectClass(this)")
 	return tr;
 }
@@ -494,6 +506,10 @@ function sendMessage(message){
 	
 
 function subjectFormList(acCode){
+	let mainpage = document.getElementById("mainpage");
+   while(mainpage.hasChildNodes()){
+      mainpage.removeChild(mainpage.lastChild);
+   }
 	let abc="acCode="+encodeURIComponent(acCode);
 	getAjaxData("GetAClassList",abc,"subjectRegForm","post");
 }
@@ -919,6 +935,10 @@ function splitDay(weekDay){
 	return realDay;
 }
 function getASubjectList(acCode){
+	let mainpage = document.getElementById("mainpage");
+   while(mainpage.hasChildNodes()){
+      mainpage.removeChild(mainpage.lastChild);
+   }
 	let aca="acCode=" + encodeURIComponent(acCode);
 	
 	getAjaxData("GetASubjectList",aca,"updSubjectForm","post");
@@ -1308,6 +1328,10 @@ function clickCategory(){
 	alert("수정이 완료됨");
 }
 function modStudentList(acCode){
+	let mainpage = document.getElementById("mainpage");
+   while(mainpage.hasChildNodes()){
+      mainpage.removeChild(mainpage.lastChild);
+   }
 	let aca="acCode="+ encodeURIComponent(acCode);	
 	getAjaxData("GetAClassList",aca,"modStudentForm","post");
 }
