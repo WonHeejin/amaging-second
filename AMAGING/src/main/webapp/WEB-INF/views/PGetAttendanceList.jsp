@@ -247,7 +247,7 @@ position:absolute; left:45%; top:1%;
 
 </head>
 <body onload="getChildList('${sessionInfo.userId}')">
-   <form name="" action="" method="get">
+   <form name="pmainservice" action="" method="get">
       <div id="basic">
          <div id="frame">
             <div id="logo"></div>

@@ -43,7 +43,7 @@
 		FROM AT INNER JOIN CO ON AT.AT_COCODE = CO.CO_CODE 
         		INNER JOIN SB ON AT.AT_SBACODE = SB.SB_ACODE 
         		INNER JOIN ST ON AT.AT_STCODE = ST.ST_CODE 
-		WHERE SUBSTR(AT.AT_DATE,1,8) = TO_DATE(#{weedDay}) AND SB.sb_tccode= #{teacherId} AND SB.sb_clcode = #{clCode}
+		WHERE SUBSTR(AT.AT_DATE,1,8) = TO_DATE(#{weekDay}) AND SB.sb_tccode= #{teacherId} AND SB.sb_clcode = #{clCode}
    </select>
    <update id="upSA" parameterType="amaging.schedu.bean.AttendanceBean">
 		UPDATE AT 
@@ -51,11 +51,11 @@
 		WHERE AT_SBACODE = #{subjectCode} AND AT_STCODE= #{studentId} AND SUBSTR(AT_DATE,1,8) = TO_DATE(#{date})
 	</update>
 	<select id="getRcAForm" parameterType="amaging.schedu.bean.Subject" resultType="amaging.schedu.bean.AttendanceBean">
-   		SELECT CO.CO_NAME AS atStatusName, ST.ST_NAME AS studentName ,#{weedDay} as dayDate 
+   		SELECT CO.CO_NAME AS atStatusName, ST.ST_NAME AS studentName ,#{weekDay} as dayDate 
 		FROM AT INNER JOIN CO ON AT.AT_COCODE = CO.CO_CODE 
         		INNER JOIN SB ON AT.AT_SBACODE = SB_ACODE 
         		INNER JOIN ST ON AT.AT_STCODE = ST.ST_CODE 
-		WHERE SUBSTR(AT_DATE,1,8) =TO_DATE(#{weedDay}) AND sb.sb_tccode=#{teacherId}
+		WHERE SUBSTR(AT_DATE,1,8) =TO_DATE(#{weekDay}) AND sb.sb_tccode=#{teacherId}
    </select>
    <select id="checkOverlap" parameterType ="amaging.schedu.bean.AcList" resultType="int">
      	SELECT count(at.at_date) as CT 
@@ -98,7 +98,7 @@
         	INNER JOIN CO ON at.at_cocode = co.co_code 
         	INNER JOIN SB ON at.at_sbacode = sb.sb_acode 
 		WHERE AT_STCODE IN(SELECT ST_CODE FROM ST WHERE ST_NAME = #{userId}) AND 
-		TO_CHAR(at.at_date,'YYYYMMDDHH24') IN(#{weedDay})||(select SUBSTR(sb_stime,1,2) from SB where sb_tccode = #{teacherId})
+		TO_CHAR(at.at_date,'YYYYMMDDHH24') IN(#{weekDay})||(select SUBSTR(sb_stime,1,2) from SB where sb_tccode = #{teacherId})
 	</select>
 	 <select id="checkSI" parameterType ="amaging.schedu.bean.Subject" resultType="int">
       	SELECT COUNT(*) 
@@ -109,7 +109,7 @@
 		UPDATE AT 
 		SET AT_COCODE = #{smCode} 
 		WHERE AT_STCODE IN(SELECT ST_CODE FROM ST WHERE ST_NAME = #{userId}) AND 
-		TO_CHAR(at.at_date,'YYYYMMDD') IN(#{weedDay}) AND SUBSTR(AT_SBACODE,26,5) = #{teacherId}
+		TO_CHAR(at.at_date,'YYYYMMDD') IN(#{weekDay}) AND SUBSTR(AT_SBACODE,26,5) = #{teacherId}
 	</update>
 	 <select id="getJustTime" parameterType="amaging.schedu.bean.AcList" resultType="amaging.schedu.bean.AttendanceBean">
    		SELECT SUBSTR(SB_STIME,1,2) AS dayDate FROM SB WHERE SB_TCCODE = #{userId}

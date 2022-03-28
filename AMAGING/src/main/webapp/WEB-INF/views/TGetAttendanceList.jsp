@@ -549,7 +549,7 @@ function searchSI(){
 	var aDI = yearD + monD + dayD;
 	
 	const action = "searchList";
-	const data = "userId=" + encodeURIComponent(sNI) + "&teacherId=" + encodeURIComponent(tId) + "&weedDay=" + encodeURIComponent(aDI);
+	const data = "userId=" + encodeURIComponent(sNI) + "&teacherId=" + encodeURIComponent(tId) + "&weekDay=" + encodeURIComponent(aDI);
 	getAjax(action, data, "searchResult");
 }
 
@@ -610,7 +610,7 @@ function modDatasend(){
 	var aDI = yearD + monD + dayD;
 	
 	const action = "upSI";
-	const data = "userId=" + encodeURIComponent(sNI) + "&teacherId=" + encodeURIComponent(tId) + "&weedDay=" + encodeURIComponent(aDI) + "&smCode=" + encodeURIComponent(sC);
+	const data = "userId=" + encodeURIComponent(sNI) + "&teacherId=" + encodeURIComponent(tId) + "&weekDay=" + encodeURIComponent(aDI) + "&smCode=" + encodeURIComponent(sC);
 	getAjax(action, data, "upAfterM");
 }
 
@@ -640,7 +640,7 @@ function reOpen(){
 	var aDI = yearD + monD + dayD;
 	
 	const action = "searchList";
-	const data = "userId=" + encodeURIComponent(sNI) + "&teacherId=" + encodeURIComponent(tId) + "&weedDay=" + encodeURIComponent(aDI);
+	const data = "userId=" + encodeURIComponent(sNI) + "&teacherId=" + encodeURIComponent(tId) + "&weekDay=" + encodeURIComponent(aDI);
 	getAjax(action, data, "lastResult");
 }
 function lastResult(searchData){

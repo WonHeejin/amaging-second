@@ -255,7 +255,7 @@ position:absolute; left:45%; top:1%;
 
 </head>
 <body onload="">
-   <form name="" action="" method="get">
+   <form name="pmainservice" action="" method="get">
       <div id="basic">
          <div id="frame">
             <div id="logo"></div>
@@ -268,13 +268,13 @@ position:absolute; left:45%; top:1%;
          <div id="body">
             <div id="colorline"></div>
                <div class="servicebutton">
-                  <input type="button" class="bothB" id="oneB" onclick=""> 
-                  <input type="button" class="bothB" id="twoB" onclick=""> 
-                  <input type="button" class="bothB" id="threeB" onclick=""> 
-                  <input type="button" class="bothB" id="fourB" onclick="">
-                   <input type="button" class="bothB" id="fiveB" onclick=""> 
-                   <input type="button" class="bothB" id="sixB" onclick="">
-                    <input type="button" class="bothB" id="sevenB" onclick="">
+                  <input type="button" class="bothB" id="oneB" onclick="getAcPlanPage('pmainservice','/AcPlanPage')"> 
+                  <input type="button" class="bothB" id="twoB" onclick="getPage('pmainservice','/GradePage')"> 
+                  <input type="button" class="bothB" id="threeB" onclick="getPage('pmainservice','/AttendancePage')"> 
+                  <input type="button" class="bothB" id="fourB" onclick="getPage('pmainservice','/PSClassPage')">
+                   <input type="button" class="bothB" id="fiveB" onclick="getPage('pmainservice','/PFeePage')"> 
+                   <input type="button" class="bothB" id="sixB" onclick="getPage('pmainservice','/PQnAPage')">
+                    <input type="button" class="bothB" id="sevenB" onclick="getAcPlanPage('pmainservice','/InfoPage')"> 
                     <div class="div1">
                     <div class="div2" onclick="" >
                    ●&nbsp;&nbsp;비밀번호 변경
