@@ -24,7 +24,7 @@ public interface TMOracleMapper {
 	public List<ClassBean> getCourseList(UserInfo uf);
 	public int insertClass(ClassBean cb);
 	public int updClass(ClassBean cb);
-	public List<ChildCode> getSList(ChildCode child);
+	public List<ClassBean> getSList(ClassBean cb);
 	public int regStudent(ClassBean cb);
 	public List<ClassBean> getBelongList(ClassBean cb);
 	public String checkFee(ClassBean cb);

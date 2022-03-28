@@ -1,4 +1,5 @@
 let currentRecord=null;
+
 function getCourseList(acCode){
 	let aca="acCode=" + encodeURIComponent(acCode);	
 	getAjaxData("GetCourseList",aca,"regClassForm","post");
@@ -879,12 +880,15 @@ function openModal2(){
 function closeModal(){
    let container = document.getElementById("container");
    container.style.display = "none";
-	closeModal2();
-}
-function closeModal2(){
    let scontainer = document.getElementById("scontainer");
    scontainer.style.display = "none";
+  let gcontainer = document.getElementById("gcontainer");
+   gcontainer.style.display = "none";
+let gcontainer2 = document.getElementById("gcontainer2");
+   gcontainer2.style.display = "none";
+	
 }
+
 function regClass(){
 	const acCode=document.getElementById("accode").value;
 	const extra=document.getElementById("select").value;
@@ -1297,7 +1301,7 @@ function updSubject(){
 	const eTime=document.getElementById("etime").value;
 	const weekDay=document.getElementById("week").innerText;
 	const data="smCode="+subjectCode+acCode+crCode+clCode+teacherId+"&crCode="+crCode+"&clCode="+clCode+"&subjectCode="+subjectCode+"&acCode="+acCode+"&teacherId="+teacherId+"&sTime="+sTime+"&eTime="+eTime+"&weekDay="+splitDay(weekDay)
-	alert(data);
+	
 	getAjaxData("UpdSubject",data,"clickCategory","post");
 }
 function clickCategory(){
@@ -1319,6 +1323,10 @@ function modStudentForm(aca){
 		maindiv.style.left="38%";
 		maindiv.style.clear="both"
 		maindiv.style.position="absolute"
+	let accode=document.createElement("input")
+		accode.setAttribute("type","hidden")
+		accode.setAttribute("value",classlist[0].acCode)
+		accode.setAttribute("id","accode")
 	let table=document.createElement("tbale");
 		 table.style.position="absolute";
 		 table.style.width="100%";
@@ -1336,22 +1344,31 @@ function modStudentForm(aca){
 			//thead.style.border="2px solid #ff0000"	
 		let tdclass=document.createElement("td");
 		tdclass.setAttribute("value",classlist[i].clCode);
+		tdclass.setAttribute("id","clcode");
+		
 		tdclass.innerHTML=classlist[i].clName;
 		tdclass.style.width  = "1000px";
 		tdclass.style.border="1px solid #99E000"
 		/*학생 등록 버튼 */
+		let tdcrcode=document.createElement("input")
+		tdcrcode.setAttribute("type","hidden");
+		tdcrcode.setAttribute("value",classlist[i].crCode);
+		tdcrcode.setAttribute("id","crcode");
 		let tdbtn1=document.createElement("td")
 		tdbtn1.style.border="1px solid #FFBB00"
 		tdbtn1.style.width  = "500px";
 		tdbtn1.setAttribute("type","button");
-		tdbtn1.innerHTML="학생등록";
+		tdbtn1.setAttribute("onClick","regStudentForm('"+classlist[i].clCode+"','"+classlist[i].crCode+"')");
+		tdbtn1.innerHTML="학생등록";   
+
 		/*학생 삭제 버튼 */
 		let tdbtn2=document.createElement("td")
 		tdbtn2.style.border="1px solid #00A6EF"
 		tdbtn2.style.width  = "500px";
 		tdbtn2.setAttribute("type","button");
-		tdbtn2.setAttribute("onClick","");
+		tdbtn2.setAttribute("onClick","getBelongList('"+classlist[i].clCode+"','"+classlist[i].crCode+"','"+classlist[i].acCode+"')");
 		tdbtn2.innerHTML="학생삭제";
+		thead.appendChild(tdcrcode);
 		thead.appendChild(tdclass);
 		thead.appendChild(tdbtn1);
 		thead.appendChild(tdbtn2);
@@ -1360,7 +1377,159 @@ function modStudentForm(aca){
 	}
 	const mainpage=document.getElementById("mainpage")
 	maindiv.appendChild(table)
+	maindiv.appendChild(accode)
 	mainpage.appendChild(maindiv);
 	}
+function regStudentForm(cl,cr){	
 	
+	let a=document.createElement("input");
+	a.setAttribute("type","hidden");
+	a.setAttribute("value",cl);
+	a.setAttribute("id","realcl")
+	let b=document.createElement("input");
+	b.setAttribute("type","hidden");
+	b.setAttribute("value",cr);
+	b.setAttribute("id","realcr")
+	let gcontainer = document.getElementById("gcontainer");
+   gcontainer.style.filter = "alpha(Opacity=50)";
+   gcontainer.style.display = "block";
+   gcontainer.appendChild(a);
+   gcontainer.appendChild(b);	 
+}	
+function searchStudent(){
+	const record=document.getElementsByClassName("record");
+	while(record.length>0){
+		record[0].remove();
+	}	
+	let acCode=document.getElementById("accode").value;
+	let sName=document.getElementById("splace").value;
+	if(sName==""){
+		alert("학생이름을 입력해주세요!");
+	}else{	
+	let data="sName="+sName+"&acCode="+acCode;
+	getAjaxData("SearchStudent",data,"displayStudent","post")
+	}
+}	
+function displayStudent(data){
 	
+	let slist =JSON.parse(data);
+	const gmbody=document.getElementById("gmbody");
+	
+	for(i=0; i<slist.length; i++){
+		let record=createDiv("record","record");
+		record.setAttribute("onClick","selectline(this)");
+		record.style.border="1px solid #EF90FF"
+		let cbox=document.createElement("input")
+		cbox.setAttribute("type","checkbox")
+		cbox.setAttribute("class","checkbox")		
+		cbox.style.left="90%"
+		cbox.style.zoom="1.5";		
+		let sName=document.createElement("div")
+		sName.setAttribute("value",slist[i].studentId)
+		sName.setAttribute("class","sNAME")
+		sName.setAttribute("id","sName")
+		sName.setAttribute("name","checkname")
+		sName.innerHTML=slist[i].sname;
+		sName.style.textAlign="center";
+		let sEmail=document.createElement("div")
+		sEmail.setAttribute("class","sEmail")
+		sEmail.innerHTML=slist[i].semail;
+		sEmail.style.textAlign="center";
+				
+		record.appendChild(sName);
+		record.appendChild(sEmail);
+		record.appendChild(cbox);	
+		gmbody.appendChild(record);
+
+	}
+}
+function regStudent(){
+if(currentRecord!=null){
+		let test=currentRecord.childNodes[0];	
+		const mainpage=document.getElementById("mainpage");
+		let gcontainer = document.getElementById("gcontainer");
+		gcontainer.style.display = "none";
+		const acCode=document.getElementById("accode").value;
+		const clCode=document.getElementById("realcl").value;
+		const crCode=document.getElementById("realcr").value;
+		const studentId=test.getAttribute("value");
+		
+	const data="acCode="+acCode+"&crCode="+crCode+"&clCode="+clCode+"&studentId="+studentId
+	
+	getAjaxData("RegStudent",data,"sendMessage","post");
+	
+	}else{
+		alert("학생을 선택해주세요");
+	}	
+}
+function getBelongList(a,b,c){			
+	let data="clCode="+a+"&crCode="+b+"&acCode="+c
+ getAjaxData("GetBelongList",data,"delStudentForm","post");	 
+}	
+
+function delStudentForm(data){
+	let gcontainer2 = document.getElementById("gcontainer2");
+   		gcontainer2.style.filter = "alpha(Opacity=50)";
+   		gcontainer2.style.display = "block";
+let gmbody2=document.getElementById("gmbody2")
+let studel=JSON.parse(data);
+	for(i=0; i<studel.length; i++){
+	let record=createDiv("record","record");
+		record.style.border="1px solid #EF90FF"
+		record.setAttribute("onClick","selectline(this)");
+	let sName=document.createElement("div")
+		sName.setAttribute("value",studel[i].studentId)
+		sName.setAttribute("class","sNAME2")
+		sName.setAttribute("id","sName")
+		sName.innerHTML=studel[i].sname;
+		sName.style.textAlign="center";
+	let sEmail=document.createElement("div")
+		sEmail.setAttribute("class","sEmail2")
+		sEmail.innerHTML=studel[i].semail;
+		sEmail.style.textAlign="center";
+	let cbox=document.createElement("input")
+		cbox.setAttribute("type","checkbox")
+		cbox.setAttribute("class","checkbox2")		
+		cbox.style.left="90%"
+		cbox.style.zoom="1.5";		
+	let clcode=document.createElement("input")
+		clcode.setAttribute("type","hidden")
+		clcode.setAttribute("value",studel[i].clCode)
+		clcode.setAttribute("id","clcode")
+	let crcode=document.createElement("input")
+		crcode.setAttribute("type","hidden")
+		crcode.setAttribute("value",studel[i].crCode)
+		crcode.setAttribute("id","crcode")
+	let accode=document.createElement("input")
+		accode.setAttribute("type","hidden")
+		accode.setAttribute("value",studel[i].acCode)
+		accode.setAttribute("id","accode")					
+		record.appendChild(sName);
+		record.appendChild(sEmail);
+		record.appendChild(cbox);
+		record.appendChild(clcode);
+		record.appendChild(crcode);
+		record.appendChild(accode);
+		gmbody2.appendChild(record);
+	}	
+} 
+function delBelong(){
+if(currentRecord!=null){
+		let test=currentRecord.childNodes[0];	
+		let test2=currentRecord.childNodes[3];
+		const mainpage=document.getElementById("mainpage");
+		let gcontainer2 = document.getElementById("gcontainer");
+			gcontainer2.style.display = "none";
+		const acCode=document.getElementById("accode").value;
+		const clCode=test2.getAttribute("value");
+		const crCode=document.getElementById("crcode").value;
+		const studentId=test.getAttribute("value");
+		
+	const data="acCode="+acCode+"&crCode="+crCode+"&clCode="+clCode+"&studentId="+studentId
+	alert(data);
+	getAjaxData("DelBelong",data,"sendMessage","post");
+	
+	}else{
+		alert("학생을 선택해주세요");
+	}	
+}

@@ -84,5 +84,18 @@ public class TimeTableController {
 		this.tt.backController(18, mav);
 		return(List<Subject>)mav.getModelMap().getAttribute("event");
 	}
+	@PostMapping("/GetBelongList")
+	public List<ClassBean> getBelongList(ModelAndView mav, @ModelAttribute ClassBean cb) {					
+		mav.getModelMap().addAttribute("cb", cb);
+		this.tt.backController(14, mav);
+
+		return (List<ClassBean>)mav.getModelMap().getAttribute("slist2");
+	}
+	@PostMapping("/DelBelong")
+	public String delBelong(ModelAndView mav, @ModelAttribute ClassBean cb) {
+		mav.getModelMap().addAttribute("cb", cb);
+		this.tt.backController(15, mav);
+		return (String)mav.getModelMap().getAttribute("msg");
+	}
 
 }

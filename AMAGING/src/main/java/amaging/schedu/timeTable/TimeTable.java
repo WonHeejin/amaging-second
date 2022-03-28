@@ -248,11 +248,63 @@ public class TimeTable extends amaging.schedu.common.CommonMethod{
 		mav.addObject("msg",msg);
 		this.setTransactionEnd(tran);		
 	}
-	private void searchStudent(ModelAndView mav) {}
-	private void regStudent(ModelAndView mav) {}
-	private void getBelongList(ModelAndView mav) {}
-	private void delBelong(ModelAndView mav) {}
+	@SuppressWarnings("unchecked")
+	private ModelAndView searchStudent(ModelAndView mav) {
+		List<ClassBean>list =null;
+		mav.addObject("stu",tmo.getSList((ClassBean)mav.getModelMap().getAttribute("cb")));
+		list=(List<ClassBean>)mav.getModelMap().getAttribute("stu");
+		mav.addObject("slist", list);
+		return mav;
+	}
+	private void regStudent(ModelAndView mav) {
+		boolean tran=false;
+		String msg=null;
+		try { 
+			this.setTransactionConf(TransactionDefinition.PROPAGATION_REQUIRED, TransactionDefinition.ISOLATION_READ_COMMITTED, false);
+			int result = -1;
+			result = this.tmo.regStudent((ClassBean)mav.getModelMap().getAttribute("cb"));
+			if(this.convertToBoolean(result)) {
+				msg="등록이 성공되었습니다";	
+				tran =true;
+				System.out.println(result);
+			}else {
+				msg="등록에실패했습니다";
+			}
+			mav.addObject("msg",msg);
+
+			this.setTransactionEnd(tran);	 	
+		}catch(Exception e) {e.printStackTrace();}
+	}
+
+	@SuppressWarnings("unchecked")
+	private ModelAndView getBelongList(ModelAndView mav) {
+		List<ClassBean>list =null;
+		mav.addObject("stu",tmo.getBelongList((ClassBean)mav.getModelMap().getAttribute("cb")));
+		list=(List<ClassBean>)mav.getModelMap().getAttribute("stu");
+		mav.addObject("slist2", list);
+		return mav;
+	}
+	private void delBelong(ModelAndView mav) {
+		boolean tran=false;
+		String msg=null;
+		try { 
+			this.setTransactionConf(TransactionDefinition.PROPAGATION_REQUIRED, TransactionDefinition.ISOLATION_READ_COMMITTED, false);
+			int result = -1;
+			result = this.tmo.delBelong((ClassBean)mav.getModelMap().getAttribute("cb"));
+			if(this.convertToBoolean(result)) {
+				msg="등록이 성공되었습니다";	
+				tran =true;
+				System.out.println(result);
+			}else {
+				msg="등록에실패했습니다";
+			}
+			mav.addObject("msg",msg);
+
+			this.setTransactionEnd(tran);	 	
+		}catch(Exception e) {e.printStackTrace();}
+	}
 	private void getAssignSub(ModelAndView mav) {}
+	
 	
 	@SuppressWarnings("unchecked")
 	private ModelAndView getTeacherList(ModelAndView mav) {

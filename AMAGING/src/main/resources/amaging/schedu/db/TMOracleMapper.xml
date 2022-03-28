@@ -90,6 +90,38 @@ WHERE SB_ACODE=#{smCode} AND SB_CLCRACCODE=#{acCode} AND SB_CLCRCODE=#{crCode} A
         		INNER JOIN CL ON SB.SB_CLCODE=CL.CL_CODE
 		WHERE SB_TCCODE=#{userId}
 	</select>
+		<select id="getSList" parameterType="amaging.schedu.bean.ClassBean" resultType="amaging.schedu.bean.ClassBean">
+	SELECT ST_CODE AS STUDENTID,
+       ST_NAME AS SNAME, 
+       ST_EMAIL AS SEMAIL,
+       SA_ACCODE AS ACCODE   
+	FROM ST INNER JOIN SA ON ST.ST_CODE=SA.SA_STCODE       
+	   WHERE ST_NAME LIKE '%'||#{sName}||'%'
+	</select>
+	
+	<insert id="regStudent" parameterType="amaging.schedu.bean.ClassBean" >
+		INSERT INTO BS(BS_CLCRACCODE,BS_CLCRCODE,BS_CLCODE,BS_STCODE)
+  		 VALUES(#{acCode},#{crCode},#{clCode},#{studentId})
+	</insert>	
+	
+	<select id="getBelongList" parameterType="amaging.schedu.bean.ClassBean" resultType="amaging.schedu.bean.ClassBean">
+	 SELECT BS_STCODE AS STUDENTID,
+          ST_NAME AS SNAME,
+          ST_EMAIL AS SEMAIL,
+          BS_CLCRACCODE AS ACCODE,
+          BS_CLCRCODE AS CRCODE,
+          BS_CLCODE AS CLCODE
+   FROM BS INNER JOIN ST ON BS.BS_STCODE=ST.ST_CODE
+   WHERE BS_CLCRCODE=#{crCode} AND BS_CLCODE=#{clCode} AND BS_CLCRACCODE=#{acCode}     
+	</select>	
+	
+	<delete id="delBelong" parameterType="amaging.schedu.bean.ClassBean">
+	DELETE
+   FROM (SELECT FE_COCODE
+         FROM FE
+         WHERE FE_CLCRACCODE='1024588469' AND FE_CLCRCODE='CR101' AND FE_CLCODE='C1001' AND FE_STCODE='S1004';)
+   WHERE FE_COCODE=14;
+	</delete>
 		<!-- PrivateInfo -->
 		
 	<select id="getAcList" parameterType="amaging.schedu.bean.AcList" resultType="amaging.schedu.bean.AcList">
