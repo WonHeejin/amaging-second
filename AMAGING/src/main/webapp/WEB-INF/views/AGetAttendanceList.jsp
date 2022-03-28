@@ -257,7 +257,7 @@ a:hover				{background-color: #E14FCA;}
 
 </head>
 <body onload="">
-   <form name="" action="" method="get">
+   <form name="amainservice" action="" method="post">
       <div id="basic">
          <div id="frame">
 
@@ -278,10 +278,10 @@ a:hover				{background-color: #E14FCA;}
             <div id="colorline"></div>
             <div class="servicebutton">
 
-               <input type="button" class="bothB" id="oneB" onclick="">                             
-               <input type="button" class="bothB" id="twoB" onclick=""> 
-               <input type="button" class="bothB" id="threeB" onclick="">
-               <input type="button" class="bothB" id="fourB" onclick="">
+              <input type="button" class="bothB" id="oneB" onclick="getPage('amainservice','/AcPlanPage')">                             
+               <input type="button" class="bothB" id="twoB" onclick="getPage('amainservice', '/AClassPage')"> 
+               <input type="button" class="bothB" id="threeB" onclick="getPage('amainservice','AFeePage')">
+               <input type="button" class="bothB" id="fourB" onclick="getPage('amainservice','/AGetAttendanceL')">
                <div class="div1">
                     <div class="div2" onclick="approveWS();" >
                    ●&nbsp;&nbsp;등록

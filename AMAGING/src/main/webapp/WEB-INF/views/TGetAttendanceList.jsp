@@ -274,6 +274,7 @@ position:absolute; left:45%; top:1%;
 
 </head>
 <body onload="closeModal();">
+  <form name="tmainservices" action="" method="post">
       <div id="basic">
          <div id="frame">
             <div id="logo"></div>
@@ -292,9 +293,9 @@ position:absolute; left:45%; top:1%;
          <div id="body">
             <div id="colorline"></div>
                <div class="servicebutton">
-                  <input type="button" class="bothB" id="oneB" onclick=""> 
-                  <input type="button" class="bothB" id="twoB" onclick="">
-                  <input type="button" class="bothB" id="threeB" onclick="">
+                  <input type="button" class="bothB" id="oneB" onclick="getPage('tmainservices','/AcPlanPage')"> 
+                  <input type="button" class="bothB" id="twoB" onclick="getPage('tmainservices','/TGradePage')">
+                  <input type="button" class="bothB" id="threeB" onclick="getPage('tmainservices','/TAttendancePage')">
                        <div class="div1">
                     <div class="div2" id="div1" onclick="attandanceStart('${sessionInfo.userId}');" >
                    ●&nbsp;&nbsp;출석체크
@@ -303,9 +304,9 @@ position:absolute; left:45%; top:1%;
                  ●&nbsp;&nbsp;학생조회
                       </div>
                      </div>  
-                  <input type="button" class="bothB" id="fourB" onclick="">
-                  <input type="button" class="bothB" id="fiveB" onclick="">
-                  <input type="button" class="bothB" id="sixB" onclick="">  
+                  <input type="button" class="bothB" id="fourB" onclick="getPage('tmainservices','/TClassPage')">
+                  <input type="button" class="bothB" id="fiveB" onclick="getPage('tmainservices','/TQnAPage')">
+                  <input type="button" class="bothB" id="sixB" onclick="getPage('tmainservices','/InfoPage')">  
                </div>
             <div id="mainpage">
             	<div id="mainOne" name="mainOne"></div>
@@ -314,7 +315,7 @@ position:absolute; left:45%; top:1%;
             </div>
          </div>
       </div>
-  
+  </form>
 	<form name='dynamicFormData'>
 	<!-- The Modal BackGround -->
 		<div class="container" id="container">
