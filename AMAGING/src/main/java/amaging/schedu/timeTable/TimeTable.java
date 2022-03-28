@@ -253,6 +253,7 @@ public class TimeTable extends amaging.schedu.common.CommonMethod{
 		List<ClassBean>list =null;
 		mav.addObject("stu",tmo.getSList((ClassBean)mav.getModelMap().getAttribute("cb")));
 		list=(List<ClassBean>)mav.getModelMap().getAttribute("stu");
+		System.out.println(list);
 		mav.addObject("slist", list);
 		return mav;
 	}
@@ -294,7 +295,7 @@ public class TimeTable extends amaging.schedu.common.CommonMethod{
 			if(this.convertToBoolean(result)) {
 				msg="등록이 성공되었습니다";	
 				tran =true;
-				System.out.println(result);
+				
 			}else {
 				msg="등록에실패했습니다";
 			}
@@ -308,12 +309,10 @@ public class TimeTable extends amaging.schedu.common.CommonMethod{
 	
 	@SuppressWarnings("unchecked")
 	private ModelAndView getTeacherList(ModelAndView mav) {
-	
 		List<TList>list =null;
 		mav.addObject("tea",tmo.getTeacherList((TList)mav.getModelMap().getAttribute("tl")));
 		list=(List<TList>)mav.getModelMap().getAttribute("tea");
 		mav.addObject("tlist", list);
-		//System.out.println(mav.getModelMap().getAttribute("tlist"));
 		return mav;
 	}
 }

@@ -78,6 +78,21 @@ public class TimeTableController {
 		return (String)mav.getModelMap().getAttribute("msg");
 	}
 	@SuppressWarnings("unchecked")
+	@PostMapping("/SearchStudent")
+	public List<ClassBean> searchStudent(ModelAndView mav, @ModelAttribute ClassBean cb) {					
+		mav.getModelMap().addAttribute("cb", cb);
+		this.tt.backController(12, mav);
+
+		return (List<ClassBean>)mav.getModelMap().getAttribute("slist");
+	}
+	
+	@PostMapping("/RegStudent")
+	public String regStudent(ModelAndView mav, @ModelAttribute ClassBean cb) {
+		mav.getModelMap().addAttribute("cb", cb);
+		this.tt.backController(13, mav);
+		return (String)mav.getModelMap().getAttribute("msg");
+	}
+	@SuppressWarnings("unchecked")
 	@PostMapping(value="/GetSTClassList", produces = "application/json; charset=UTF-8")
 	public List<Subject> getSClassList(ModelAndView mav, @ModelAttribute UserInfo uf){
 		mav.getModelMap().addAttribute("uf", uf);
