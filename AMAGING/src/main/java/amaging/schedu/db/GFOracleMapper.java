@@ -14,8 +14,8 @@ public interface GFOracleMapper {
 	public List<FeeBean> getMonthFee(FeeBean fb);
 	public List<FeeBean> searchName(FeeBean fb);
 	public int updFeeList(FeeBean fb);
-	public int getMonthCheck(FeeBean fb);
-	public List<FeeBean> getStudentList(FeeBean fb);
+	public int getFeeCheck(FeeBean fb);
+	public List<FeeBean> feeStudentList(FeeBean fb);
 	public int insFeeList(FeeBean fb);
 	public List<FeeBean> getMyFeeList(FeeBean fb);
 	/*Grade*/

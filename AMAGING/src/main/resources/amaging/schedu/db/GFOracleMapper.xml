@@ -66,7 +66,7 @@
 		FROM GR INNER JOIN SB ON (SELECT GR.GR_SBACODE FROM GR WHERE GR.GR_STCODE = #{userId}) = SB.SB_ACODE 
        			INNER JOIN AC ON (SELECT SUBSTR(GR.GR_SBACODE,6,10) FROM GR WHERE GR.GR_STCODE = #{userId}) = AC.AC_CODE 
         		INNER JOIN CL ON (SELECT SUBSTR(GR.GR_SBACODE,21,5) FROM GR WHERE GR.GR_STCODE = #{userId}) = CL.CL_CODE 
-                     		 AND (SELECT SUBSTR(GR.GR_SBACODE,6,10) FROM GR WHERE GR.GR_STCODE = #{userId}) = CL.CL_CRACCODE
+                     		 AND (SELECT SUBSTR(GR.GR_SBACODE,6,10) FROM GR WHERE GR.GR_STCODE = #{userId}) = CL.CL_CRACCODE 
 		WHERE GR.GR_STCODE = #{userId} 
 		GROUP BY CL.CL_NAME, AC.AC_NAME, SB.SB_ASNAME, GR.GR_SCORE, GR.GR_RANK
 	</select>
@@ -103,4 +103,34 @@
 		WHERE FE.FE_CLCRACCODE = #{acCode}  AND FE_CLCRCODE = #{clCrCode} AND FE_CLCODE = #{clCode} 
 		AND FE_STCODE = #{studentId} AND FE_UPMONTH = #{upMonth} 
 	</update>
+	
+	<select id="feeStudentList" parameterType ="amaging.schedu.bean.FeeBean" resultType="amaging.schedu.bean.FeeBean">
+		SELECT BS.BS_CLCRCODE AS CLCRCODE, BS.BS_CLCODE AS CLCODE, CL.CL_NAME AS CLNAME, BS.BS_STCODE AS STUDENTID, ST.ST_NAME AS STUDENTNAME,PR.PR_NAME AS PANAME, PR.PR_EMAIL AS PAEMAIL,CL.CL_FEE AS MONEY 
+		FROM BS INNER JOIN CL ON BS.BS_CLCRACCODE = CL.CL_CRACCODE 
+                    		 AND BS.BS_CLCRCODE = CL.CL_CRCODE 
+                     		 AND BS.BS_CLCODE = CL.CL_CODE 
+       			INNER JOIN ST ON BS.BS_STCODE = ST.ST_CODE 
+        		INNER JOIN SP ON ST.ST_CODE =  SP.SP_STCODE 
+        		INNER JOIN PR ON SP.SP_PRCODE = PR.PR_CODE 
+		WHERE BS.BS_CLCRACCODE = #{acCode}
+	</select>
+	
+	<select id="getFeeCheck" parameterType ="amaging.schedu.bean.FeeBean" resultType="int">
+		SELECT COUNT(*) FROM FE WHERE FE.FE_CLCRACCODE = ${acCode} AND SUBSTR(FE.FE_UPMONTH,0,6) = #{upMonth}
+	</select>
+	
+	<insert id="insFeeList" parameterType ="amaging.schedu.bean.FeeBean">
+		INSERT INTO FE(FE.FE_CLCRACCODE,FE.FE_CLCRCODE,FE.FE_CLCODE,FE.FE_STCODE,FE.FE_UPMONTH,FE.FE_FEPMONTH,FE.FE_COCODE,FE.FE_PRICE) 
+		VALUES(#{acCode},#{clCrCode},#{clCode},#{studentId},#{upMonth},SYSDATE,#{status},#{money})
+	</insert>
+	
+	<select id="getMyFeeList" parameterType ="amaging.schedu.bean.FeeBean" resultType="amaging.schedu.bean.FeeBean">
+		SELECT AC.AC_NAME AS ACNAME, CL.CL_NAME AS CLNAME, FE.FE_PRICE AS MONEY, FE.FE_COCODE AS STATUS 
+		FROM FE INNER JOIN AC ON FE.FE_CLCRACCODE = AC.AC_CODE 
+       		 	INNER JOIN CL ON FE.FE_CLCRACCODE = CL.CL_CRACCODE 
+                     		 AND FE.FE_CLCRCODE = CL.CL_CRCODE 
+                     		 AND FE.FE_CLCODE = CL.CL_CODE 
+		WHERE FE.FE_STCODE = #{studentId} AND SUBSTR(FE.FE_UPMONTH,0,6) = #{upMonth}
+	</select>
+	
 </mapper>

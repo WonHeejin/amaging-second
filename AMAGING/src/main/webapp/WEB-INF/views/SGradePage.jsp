@@ -221,7 +221,7 @@ position:absolute; left:45%; top:1%;
 </style>
 
 </head>
-<body onload="getMyGrade()">
+<body onload="getMyGrade('${sessionInfo.userId}')">
 	<form name="sMain" action="" method="post">
 		<div id="basic">
 			<div id="frame">
@@ -237,12 +237,12 @@ position:absolute; left:45%; top:1%;
 			<div id="body">
 				<div id="colorline"></div>
 				<div class="servicebutton">
-					<input type="button" class="bothB" id="oneB" onclick="">
+					<input type="button" class="bothB" id="oneB" onclick="getAcPlanPage('Smainservices','/AcPlanPage')">
 					<input type="button" class="bothB" id="twoB" onclick="getPage('sMain','GradePage')">
 					<input type="button" class="bothB" id="threeB" onclick="">
-					<input type="button" class="bothB" id="fourB" onclick="">
-					<input type="button" class="bothB" id="fiveB" onclick="">
-					<input type="button" class="bothB" id="sixB" onclick="">
+					<input type="button" class="bothB" id="fourB" onclick="getPage('Smainservices','/PSClassPage')">
+					<input type="button" class="bothB" id="fiveB" onclick="getPage('Smainservices','/SQnAPage')">
+					<input type="button" class="bothB" id="sixB" onclick="getPage('Smainservices','/InfoPage')">
 				</div>
 				<div id="mainpage"></div>
 			</div>

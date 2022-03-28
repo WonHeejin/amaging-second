@@ -16,4 +16,5 @@ public class FeeBean {
 	String paEmail;
 	String money;
 	int status;
+	String acName;
 }

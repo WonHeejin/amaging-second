@@ -39,4 +39,27 @@ public class FeeController {
 		this.fee.backController(4, mav);
 		return (String)mav.getModelMap().getAttribute("msg");
 	}
+	
+	@SuppressWarnings("unchecked")
+	@PostMapping(value = "/GetStList", produces = "application/json; charset=UTF-8")
+	public List<FeeBean> getStList(ModelAndView mav, @ModelAttribute FeeBean fb) {
+		mav.addObject("fb",fb);
+		this.fee.backController(5, mav);
+		return (List<FeeBean>)mav.getModelMap().getAttribute("studentList");
+	}
+	
+	@PostMapping(value = "/RegFeeList", consumes="application/json", produces = "application/json; charset=UTF-8")
+	public String regFeeList(ModelAndView mav, @RequestBody List<FeeBean> fb) {
+		mav.getModelMap().addAttribute("fb",fb);
+		this.fee.backController(6, mav);
+		return (String)mav.getModelMap().getAttribute("msg");
+	}
+	
+	@SuppressWarnings("unchecked")
+	@PostMapping(value = "/GetMyFee", produces = "application/json; charset=UTF-8")
+	public List<FeeBean> getMyFee(ModelAndView mav, @ModelAttribute FeeBean fb) {
+		mav.addObject("fb",fb);
+		this.fee.backController(8, mav);
+		return (List<FeeBean>)mav.getModelMap().getAttribute("fee");
+	}
 }

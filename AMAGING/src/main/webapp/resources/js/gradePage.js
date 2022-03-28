@@ -11,6 +11,7 @@ function MyChildList() {
 }
 
 function childSelect(dat) {
+	if(dat != '') {
 	let data = JSON.parse(dat);
 	let sCode = document.getElementById("sCode").value;
 	//let sCode = "S1067";
@@ -19,13 +20,13 @@ function childSelect(dat) {
 	
 			let aSelect = document.createElement("select");
 			aSelect.setAttribute("id", "aSelect");
-			aSelect.setAttribute("onchange","childSelected(" + checkCode + "," + sCode +")");
+			aSelect.setAttribute("onchange","childSelected(" + checkCode + "," + sCode + ")");
 			aSelect.style.width = "200px";
 			aSelect.style.height = "40px";
 			aSelect.style.borderRadius = "5px";
 			aSelect.style.border = "2px solid #92acbb";
 			aSelect.style.position = "relative";
-			aSelect.style.left = "85%";
+			aSelect.style.left = "2%";
 			aSelect.style.top = "1%";
 			
 			let firstOption = document.createElement("option");
@@ -50,34 +51,32 @@ function childSelect(dat) {
 				}
 
 	
-	
-	mainpage.appendChild(aSelect);
-	
+		if(mainpage.hasChildNodes()) {
+			while(mainpage.haschildNodes()){
+				mainpage.removeChild(mainpage.firstChild);
+			}
+			mainpage.appendChild(aSelect);
+		}else {
+			mainpage.appendChild(aSelect);
+		}
+	}
 }
 
 function childSelected(selectedCode,sessionCode) {
-	//let acCode = selectedCode;
-	//const userId = document.getElementsByName("userId")[0].value;
-
 	if(selectedCode != "1133") {
 		if(selectedCode == sessionCode) {
 			getMyGrade(selectedCode);
 		}
 	}else {
-		// onchange로 접근. 선택된값 != 세션값 --> openModal else --> getAjaxData
 		let aSelect = document.getElementById("aSelect");
 		let sCode = aSelect.options[aSelect.selectedIndex].value;
 		if(sCode != sessionCode) {
-			let presentSCode = document.getElementById("sCode");
-			presentSCode.setAttribute("id",sCode);
+			const presentSCode = document.getElementById("sCode");
+			presentSCode.setAttribute("value",sCode);
 			getMyGrade(sCode);
 		}else {
-		
 			getMyGrade(sCode);
 		}
-		
-			//openModal에서 입력된 비밀번호 서버전송 --> 일치 --> 세션에 저장, 클래스목록 조회후 jsonData -> classOnAc()
-			//								   불일치 --> message = 비밀번호가 일치하지 않습니다. or 접근권한이 없습니다.
 	}
 }
 
@@ -87,10 +86,14 @@ function getMyGrade(userId) {
 }
 
 function displayMyGrade(dat) {
+	if(dat != '[]') {
 	let data = JSON.parse(dat);
+	const mainpage = document.getElementById("mainpage");
 	const tableMom = document.createElement("div");
 	tableMom.setAttribute("id","tableMom");
 	tableMom.style.float = "left";
+	tableMom.style.marginTop = "15%";
+	tableMom.style.marginLeft = "7%";
 	
 			let table = document.createElement("table");
 			let mTr = createTr("mTr1");
@@ -134,11 +137,19 @@ function displayMyGrade(dat) {
 				tr.appendChild(td5);
 			table.appendChild(tr);
 			}
+	if(tableMom.hasChildNodes()) {
+		while(tableMom.hasChildNodes()) {
+			tableMom.removeChild(tableMom.firstChild);
+		}
+		tableMom.appendChild(table);
+	}else {
+		tableMom.appendChild(table);
+	}
 	
-	tableMom.appendChild(table);
-	const mainpage = document.getElementById("mainpage");
 	mainpage.appendChild(tableMom);
-	
+	}else {
+		alert("등록된 성적이 없습니다.");
+	}
 }
 
 function myAcademyList(userId,menuCode) {
@@ -148,13 +159,12 @@ function myAcademyList(userId,menuCode) {
 }
 
 function academySelect(dat) {
-	let data = JSON.parse(dat);
-	let aCode = (document.getElementsByName("acCode")[0].value != '')? document.getElementsByName("acCode")[0].value : '';
+	const data = JSON.parse(dat);
+	//let aCode = (document.getElementsByName("acCode")[0].value != '')? document.getElementsByName("acCode")[0].value : '';
+	const aCode = sessionStorage.getItem("acCode");
 	const mainpage = document.getElementById("mainpage");
 	const checkCode = "1133";
 	
-		if(!mainpage.hasChildNodes()) {
-			
 			const selectMom = document.createElement("div");
 			selectMom.setAttribute("id","selectMom");
 			selectMom.style.width = "600px";
@@ -173,6 +183,7 @@ function academySelect(dat) {
 			aSelect.style.left = "0%";
 			aSelect.style.top = "1%";
 			aSelect.style.float = "left";
+			
 			
 			let firstOption = document.createElement("option");
 				firstOption.innerHTML = "학원 선택"
@@ -195,69 +206,23 @@ function academySelect(dat) {
 					aSelect.appendChild(option);
 				}
 			
-			selectMom.appendChild(aSelect);
-	
-			const cSelect = document.createElement("div");
-			cSelect.setAttribute("id","cSelect");
-			selectMom.appendChild(cSelect);
-	mainpage.appendChild(selectMom);
-	
-	
-	
-	}else {
-		while(mainpage.hasChildNodes()) {
-			mainpage.removeChild(mainpage.firstChild);
-		}
-			
-			const selectMom = document.createElement("div");
-			selectMom.setAttribute("id","selectMom");
-			selectMom.style.width = "600px";
-			selectMom.style.height = "50px";
-			selectMom.style.position = "relative";
-			selectMom.style.left = "2%";
-			selectMom.style.top = "1%";
-			let aSelect = document.createElement("select");
-			aSelect.setAttribute("id", "aSelect");
-			aSelect.setAttribute("onchange","makeSelected(" + checkCode + "," + aCode +")");
-			aSelect.style.width = "200px";
-			aSelect.style.height = "40px";
-			aSelect.style.borderRadius = "5px";
-			aSelect.style.border = "2px solid #92acbb";
-			aSelect.style.position = "relative";
-			aSelect.style.left = "0%";
-			aSelect.style.top = "1%";
-			aSelect.style.float = "left";
-			
-			let firstOption = document.createElement("option");
-				firstOption.innerHTML = "학원 선택"
-				//if(acCode == null) {
-				firstOption.setAttribute("selected","selected");
-				//}
-				firstOption.setAttribute("disabled","disabled");
-				aSelect.appendChild(firstOption);
-				for(let i=0; i<data.length; i++) {
-					let option = document.createElement("option");
-					option.setAttribute("id",data[i].acCode);
-					option.setAttribute("value",data[i].acCode);
-					option.innerHTML = data[i].acName;
-					if(aCode != "") {
-						if (aCode == data[i].acCode) {
-							option.setAttribute("selected", "selected")
-							makeSelected(data[i].acCode,aCode);
-						}
-					}
-					aSelect.appendChild(option);
+			if(mainpage.hasChildNodes()) {
+				while(mainpage.hasChildNodes()) {
+				mainpage.removeChild(mainpage.firstChild);
 				}
-			
-			selectMom.appendChild(aSelect);
-	
+			}
+
 			const cSelect = document.createElement("div");
 			cSelect.setAttribute("id","cSelect");
 			selectMom.appendChild(cSelect);
-	mainpage.appendChild(selectMom);
-	
-	
-	}
+			selectMom.appendChild(aSelect);
+			const tableMom = document.createElement("div");
+			tableMom.setAttribute("id","tableMom");
+			tableMom.style.marginLeft = "15%";
+			//tableMom.style.float = "left";
+			tableMom.style.marginTop = "5%";
+			mainpage.appendChild(selectMom);
+			mainpage.appendChild(tableMom);
 }
 
 function makeSelected(selectedCode,sessionCode) {
@@ -276,6 +241,7 @@ function makeSelected(selectedCode,sessionCode) {
 		let aCode = document.getElementById("aSelect");
 		let acCode = aCode.options[aCode.selectedIndex].value;
 		if(acCode != sessionCode) {
+			sessionStorage.setItem("acCode",acCode);
 			openModal(acCode);
 		}else {
 			const data = "teacherId=" + userId + "&acCode=" + sessionCode;
@@ -313,120 +279,62 @@ function checkPassword(acCode) {
 }
 
 function classOnAc(dat) {
-	const presentAcCode = document.getElementsByName("acCode")[0];
-	presentAcCode.setAttribute("value",acCodeHidden);
-	const cSelect = document.getElementById("cSelect");
-	const tableMom = document.createElement("div");
-	tableMom.setAttribute("id","tableMom");
-	tableMom.style.float = "left";
-	let data = JSON.parse(dat);
 	closeModal()
-	
-	if(!cSelect.hasChildNodes()) {
-		if(data != null) {
-			const selectMom = document.getElementById("selectMom");
-				for(let i=0; i<data.length; i++) {
-					let option = document.createElement("input");
-					option.setAttribute("class","selectAndButton");
-					option.setAttribute("onclick", "getGrade('"+ data[i].clCode +"')");
-					option.setAttribute("id",data[i].clCode);
-					option.setAttribute("type","button");
-					option.setAttribute("value",data[i].clName);
-					option.style.textAlign = "center";
-					
-				cSelect.appendChild(option);
-				}
-				selectMom.appendChild(cSelect);
-		const mainpage = document.getElementById("mainpage");
-		mainpage.appendChild(tableMom);
-		mainpage.appendChild(selectMom);
-	}
-	}else if (cSelect.hasChildNodes()) {
-		while(cSelect.hasChildNodes()) {
-		cSelect.removeChild(cSelect.firstChild);
+	if(dat != '[]') {
+		const presentAcCode = document.getElementsByName("acCode")[0];
+			  presentAcCode.setAttribute("value",acCodeHidden);
+		const cSelect = document.getElementById("cSelect");
+		const tableMom = document.getElementById("tableMom");
+
+		let data = JSON.parse(dat);
+
+		if(cSelect.hasChildNodes()) {
+			while(cSelect.hasChildNodes()) {
+			cSelect.removeChild(cSelect.firstChild);
+			}
 		}
-	if(data != null) {
-			const selectMom = document.getElementById("selectMom");
+		if(tableMom.hasChildNodes()) {
+			while(tableMom.hasChildNodes()) {
+			tableMom.removeChild(tableMom.firstChild);
+			}
+		}
+
 				for(let i=0; i<data.length; i++) {
 					let option = document.createElement("input");
-					option.setAttribute("class","selectAndButton");
-					option.setAttribute("onclick", "getGrade('"+ data[i].clCode +"')");
-					option.setAttribute("id",data[i].clCode);
-					option.setAttribute("type","button");
-					option.setAttribute("value",data[i].clName);
-					option.style.textAlign = "center";
-					
-				cSelect.appendChild(option);
+						option.setAttribute("class","selectAndButton");
+						option.setAttribute("onclick", "getGrade('"+ data[i].clCode +"')");
+						option.setAttribute("id",data[i].clCode);
+						option.setAttribute("type","button");
+						option.setAttribute("value",data[i].clName);
+						option.style.textAlign = "center";
+						
+						cSelect.appendChild(option);
 				}
-				selectMom.appendChild(cSelect);
-		option.setAttribute("onclick", "getGrade()");	
-		const mainpage = document.getElementById("mainpage");
-		mainpage.appendChild(tableMom);
-		mainpage.appendChild(selectMom);
+			const selectMom = document.getElementById("selectMom");
+			selectMom.appendChild(cSelect);
+	}else {
+		alert("등록된 반이 존재하지 않습니다.");
 	}
-}
 }
 
 function getGrade(clCode) {
-	const option = document.getElementById("cSelect");
 	const teacherId = document.getElementsByName("userId")[0].value;
 	const acCode = document.getElementsByName("acCode")[0].value;
 	const action = (intCode == "reg")? "getStudent" : "getGrade" ;
 	const fn = (intCode == "get")? "displayGrade": (intCode == "mod")? "modGradeForm" : "regGradeForm";
-	let data = "teacherId=" + teacherId + "&clCode=" + clCode + "&acCode=" + "3568745688";
+	let data = "teacherId=" + teacherId + "&clCode=" + clCode + "&acCode=" + acCode;
 	getAjaxData(action,data,fn,"post");
 }
 
 function displayGrade(dat) {
+	if(dat != '[]') {
 	let data = JSON.parse(dat);
 	const tableMom = document.getElementById("tableMom");
-	if(!tableMom.hasChildNodes()) {
-			let table = document.createElement("table");
-			let mTr = createTr("mTr1");
-			let mTd1 = createTd("mTd1");
-			let mTd2 = createTd("mTd2");
-			let mTd3 = createTd("mTd3");
-			let mTd4 = createTd("mTd4");
-			mTd1.innerHTML = "시험명";
-			mTd2.innerHTML = "학생이름";
-			mTd3.innerHTML = "점수";
-			mTd4.innerHTML = "반석차";
-			
-			mTr.appendChild(mTd1);
-			mTr.appendChild(mTd2);
-			mTr.appendChild(mTd3);
-			mTr.appendChild(mTd4);
-			
-			table.appendChild(mTr);
-			
-			for(let i=0; i<data.length; i++) {
-				let tr = createTr("tr1");
-				
-				let td1 = createTd("td1");
-				let td2 = createTd("td2");
-				let td3 = createTd("td3");
-				let td4 = createTd("td4");
-				
-				td1.innerHTML = data[i].subjectName
-				td2.innerHTML = data[i].sname;
-				td3.innerHTML = data[i].score;
-				td4.innerHTML = data[i].rank + "/" + data[i].headCount;
-				tr.appendChild(td1);
-				tr.appendChild(td2);
-				tr.appendChild(td3);
-				tr.appendChild(td4);
-			table.appendChild(tr);
-			}
-	
-	
-	tableMom.appendChild(table);
-	const mainpage = document.getElementById("mainpage");
-	mainpage.appendChild(tableMom);
-	}else {
+	if(tableMom.hasChildNodes()) {
 		while(tableMom.hasChildNodes()) {
 		tableMom.removeChild(tableMom.firstChild);
 		}
-	
+	}
 			let table = document.createElement("table");
 			let mTr = createTr("mTr1");
 			let mTd1 = createTd("mTd1");
@@ -464,19 +372,22 @@ function displayGrade(dat) {
 			table.appendChild(tr);
 			}
 	
-	
-	tableMom.appendChild(table);
-	const mainpage = document.getElementById("mainpage");
-	mainpage.appendChild(tableMom);
+		tableMom.appendChild(table);
+		
+	}else {
+		alert("등록된 성적이 없습니다.");
 	}
 }
 
 
 function modGradeForm(dat) {
+	if(dat != '') {
+		if(dat == '[]') {
+			alert("등록된 성적이 존재하지 않습니다.");
+		}else {
 	let data = JSON.parse(dat);
 	const tableMom = document.getElementById("tableMom");
-	
-	if(!tableMom.hasChildNodes()) {
+
 			let table = document.createElement("table");
 			table.setAttribute("id","theTable");
 			let mTr = createTr("mTr1");
@@ -555,105 +466,19 @@ function modGradeForm(dat) {
 			hTr1.appendChild(hTd2);
 			
 			table.appendChild(hTr1);
-			
-	tableMom.appendChild(table);
-	const mainpage = document.getElementById("mainpage");
-	mainpage.appendChild(tableMom);
-	
-	}else {
+		
+	if(tableMom.hasChildNodes()) {
 		while(tableMom.hasChildNodes()) {
 		tableMom.removeChild(tableMom.firstChild);
 		}
-	
-			let table = document.createElement("table");
-			table.setAttribute("id","theTable");
-			let mTr = createTr("mTr1");
-
-			let mTd1 = createTd("mTd1");
-			let mTd2 = createTd("mTd2");
-			let mTd3 = createTd("mTd3");
-			let mTd4 = createTd("mTd4");
-			mTd1.innerHTML = "시험명";
-			mTd2.innerHTML = "학생이름";
-			mTd3.innerHTML = "점수";
-			mTd4.innerHTML = "반석차";
-			
-			mTr.appendChild(mTd1);
-			mTr.appendChild(mTd2);
-			mTr.appendChild(mTd3);
-			mTr.appendChild(mTd4);
-			
-			table.appendChild(mTr);
-			
-			for(let i=0; i<data.length; i++) {
-				let tr = createTr("tr1");
-				let td1 = createTd(data[i].sbacode);
-				let td2 = createTd(data[i].studentId);
-				let td3 = createTd("td3");
-				let td4 = createTd("td4");
-				
-				td1.innerHTML = data[i].subjectName;
-				
-				td2.innerHTML = data[i].sname;
-				
-				let mScore = document.createElement("input");
-				mScore.setAttribute("type","text");
-				mScore.setAttribute("value",data[i].score);
-				mScore.style.textAlign = "center";
-				mScore.style.width = "100px";
-				mScore.style.height = "22px";
-				td3.appendChild(mScore);
-				
-				let mRank = document.createElement("input");
-				mRank.setAttribute("type","text");
-				mRank.setAttribute("value",data[i].rank);
-				mRank.style.width = "40px";
-				mRank.style.textAlign = "center";
-				mRank.style.width = "50px";
-				mRank.style.height = "22px";
-				td4.appendChild(mRank);
-				
-				let mhCount = document.createElement("input");
-				mhCount.setAttribute("readonly",true);
-				mhCount.setAttribute("value"," / " +data[i].headCount);
-				mhCount.style.textAlign = "center";
-				mhCount.style.width = "28px";
-				mhCount.style.border = "none";
-				mhCount.style.stroke = "none";
-				td4.appendChild(mhCount);
-				
-				tr.appendChild(td1);
-				tr.appendChild(td2);
-				tr.appendChild(td3);
-				tr.appendChild(td4);
-			table.appendChild(tr);
-			}
-	
-			let hTr1 = document.createElement("tr");
-			
-			let hTd1 = document.createElement("td");
-				hTd1.style.height  = "80px";
-				hTd1.setAttribute("colspan",3);
-			let hTd2 = document.createElement("td");
-				hTd2.style.height  = "80px";
-				hTd2.style.textAlign = "right";
-			
-			hTd2.innerHTML = "<input type = 'button' id='modBtn' value = '등록' onclick='modToJson(1)' style = 'cursor:pointer; text-align:center; width:60px; height:35px'/>";
-			hTr1.appendChild(hTd1);
-			hTr1.appendChild(hTd2);
-			
-			table.appendChild(hTr1);
-			
+	}
 	tableMom.appendChild(table);
-	const mainpage = document.getElementById("mainpage");
-	mainpage.appendChild(tableMom);
-		
+	}
 	}
 }
 	
 // 수정/등록시 등록버튼 onclick function
 function modToJson(numb){
-	alert("action값 = " + numb)
 	let action = "";
 	const theTable = document.getElementById("theTable");
 	let gradeJson = [];
@@ -692,11 +517,12 @@ function modToJson(numb){
 
 function regGradeForm(dat) {
 	if(dat != '') {
+		if(dat == '[]') {
+			alert("학생이 존재하지 않습니다.");
+		}else {
 	let data = JSON.parse(dat);
 	const tableMom = document.getElementById("tableMom");
 	
-	
-	if(!tableMom.hasChildNodes()) {
 			let table = document.createElement("table");
 			table.setAttribute("id","theTable");
 			let mTr = createTr("mTr1");
@@ -768,102 +594,20 @@ function regGradeForm(dat) {
 			hTr1.appendChild(hTd1);
 			hTr1.appendChild(hTd2);
 			
-			table.appendChild(hTr1);
-			
-	
-	
-	//tableMom.appendChild(saveBtn);
-	tableMom.appendChild(table);
-	const mainpage = document.getElementById("mainpage");
-	mainpage.appendChild(tableMom);
-	
-	}else {
+			table.appendChild(hTr1);	
+	if(tableMom.hasChildNodes()) {
 		while(tableMom.hasChildNodes()) {
 		tableMom.removeChild(tableMom.firstChild);
-		}
-	let table = document.createElement("table");
-			table.setAttribute("id","theTable");
-			let mTr = createTr("mTr1");
-			let mTd1 = createTd("mTd1");
-			let mTd2 = createTd("mTd2");
-			let mTd3 = createTd("mTd3");
-			let mTd4 = createTd("mTd4");
-			mTd1.innerHTML = "시험명";
-			mTd2.innerHTML = "학생이름";
-			mTd3.innerHTML = "점수";
-			mTd4.innerHTML = "반석차";
-			
-			mTr.appendChild(mTd1);
-			mTr.appendChild(mTd2);
-			mTr.appendChild(mTd3);
-			mTr.appendChild(mTd4);
-			
-			table.appendChild(mTr);
-			
-			for(let i=0; i<data.length; i++) {
-				let tr = createTr("tr1");
-				let td1 = createTd(data[i].sbacode);
-				let td2 = createTd(data[i].studentId);
-				let td3 = createTd("td3");
-				let td4 = createTd("td4");
-				
-				td1.innerHTML = data[i].subjectName;
-				
-				td2.innerHTML = data[i].sname;
-				
-				let mScore = document.createElement("input");
-				mScore.setAttribute("type","text");
-				mScore.style.textAlign = "center";
-				td3.appendChild(mScore);
-				
-				let mRank = document.createElement("input");
-				mRank.setAttribute("type","text");
-				mRank.style.width = "40px";
-				mRank.style.textAlign = "center";
-				td4.appendChild(mRank);
-				
-				let mhCount = document.createElement("input");
-				mhCount.setAttribute("readonly",true);
-				mhCount.setAttribute("value"," / " +data[i].headCount);
-				mhCount.style.textAlign = "center";
-				mhCount.style.width = "25px";
-				mhCount.style.border = "none";
-				mhCount.style.stroke = "none";
-				td4.appendChild(mhCount);
-				
-				tr.appendChild(td1);
-				tr.appendChild(td2);
-				tr.appendChild(td3);
-				tr.appendChild(td4);
-			table.appendChild(tr);
-			}
-	
-	
-			let hTr1 = document.createElement("tr");
-			
-			let hTd1 = document.createElement("td");
-				hTd1.style.height  = "80px";
-				hTd1.setAttribute("colspan",3);
-			let hTd2 = document.createElement("td");
-				hTd2.style.height  = "80px";
-				hTd2.style.textAlign = "right";
-			
-			hTd2.innerHTML = "<input type = 'button' value = '등록' onclick='modToJson(2)' style = 'cursor:pointer; text-align:center; width:60px; height:35px'/>";
-			hTr1.appendChild(hTd1);
-			hTr1.appendChild(hTd2);
-			
-			table.appendChild(hTr1);
-			
-	
-	
-	tableMom.appendChild(table);
-	const mainpage = document.getElementById("mainpage");
-	mainpage.appendChild(tableMom);
-		
 	}
-	}else {
+
+	tableMom.appendChild(table);
+		}
+	}
+	}else if (dat == ''){
 		alert("이미 성적이 등록되어 있습니다.");
 	}
+	
+	
 }
 
 

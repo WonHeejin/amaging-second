@@ -74,7 +74,6 @@
    height: 80%;
    float: right;
    margin-right: 5.5%;
-   background-image: url(resources/images/.png);
    background-size: 25% 50%;
    background-repeat: no-repeat;
    background-position: center center;
@@ -248,13 +247,13 @@ position:absolute; left:45%; top:1%;
          <div id="body">
             <div id="colorline"></div>
                <div class="servicebutton">
-                  <input type="button" class="bothB" id="oneB" onclick=""> 
+                  <input type="button" class="bothB" id="oneB" onclick="getAcPlanPage('pmainservice','/AcPlanPage')"> 
                   <input type="button" class="bothB" id="twoB" onclick="getPage('pmainservice','GradePage')"> 
                   <input type="button" class="bothB" id="threeB" onclick=""> 
                   <input type="button" class="bothB" id="fourB" onclick="">
-                   <input type="button" class="bothB" id="fiveB" onclick=""> 
-                   <input type="button" class="bothB" id="sixB" onclick="">
-                    <input type="button" class="bothB" id="sevenB" onclick="">  
+                   <input type="button" class="bothB" id="fiveB" onclick="getPage('pmainservice','/PFeePage')"> 
+                   <input type="button" class="bothB" id="sixB" onclick="getPage('pmainservice','/PQnAPage')">
+                    <input type="button" class="bothB" id="sevenB" onclick="getAcPlanPage('pmainservice','/InfoPage')">  
                </div>
             <div id="mainpage"></div>
          </div>

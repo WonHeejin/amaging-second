@@ -7,6 +7,7 @@
 <title>선생님 성적 페이지</title>
  <script src="resources/js/common.js"></script>
  <script src="resources/js/gradePage.js"></script>
+ <script src="resources/js/acPlan.js"></script>
 
  
  
@@ -277,7 +278,7 @@ position:absolute; left:45%; top:1%;
 
 
 
-   <form name="tMain" action="file:///C:/" method="get">
+   <form name="tmainservices" action="file:///C:/" method="post">
       <div id="basic" >
          <div id="frame">
             <div id="logo"></div>
@@ -295,8 +296,8 @@ position:absolute; left:45%; top:1%;
          <div id="body">
             <div id="colorline"></div>
                <div class="servicebutton">
-                  <input type="button" class="bothB" id="oneB" onclick=""> 
-                  <input type="button" class="bothB" id="twoB" onclick="getPage('tMain','TGradePage')">
+                  <input type="button" class="bothB" id="oneB" onclick="getAcPlanPage('tmainservices','/AcPlanPage')"> 
+                  <input type="button" class="bothB" id="twoB" onclick="getPage('tmainservices','TGradePage')">
                   <div class="div1">
                     <div id ="gradeFirst" class="div2" onclick="myAcademyList('${sessionInfo.userId}','get')" >
                    ●&nbsp;&nbsp;성적조회
@@ -308,10 +309,10 @@ position:absolute; left:45%; top:1%;
                  ●&nbsp;&nbsp;성적수정
                       </div>
                      </div> 
-                  <input type="button" class="bothB" id="threeB" onclick="">
+                  <input type="button" class="bothB" id="threeB" onclick="getPage('tmainservices','/TAttendancePage')">
                   <input type="button" class="bothB" id="fourB" onclick="">
-                   <input type="button" class="bothB" id="fiveB" onclick="">
-                   <input type="button" class="bothB" id="sixB" onclick="">
+                   <input type="button" class="bothB" id="fiveB" onclick="getPage('tmainservices','/TQnAPage')">
+                   <input type="button" class="bothB" id="sixB" onclick="getPage('tmainservices','/InfoPage')">
                     
                </div>
             <div id="mainpage" style = "overflow : auto"></div>

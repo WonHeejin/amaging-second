@@ -183,7 +183,6 @@ public class Grade extends amaging.schedu.common.CommonMethod{
 		}else {
 			mav.addObject("def",gfo.getStudentList((Subject)mav.getModelMap().getAttribute("sj")));
 			list = (List<Grade>)mav.getModelMap().getAttribute("def");
-			System.out.println(((List<Grade>)mav.getModelMap().getAttribute("def")).get(0));
 			mav.addObject("regGradeList",list);
 		}
 	}

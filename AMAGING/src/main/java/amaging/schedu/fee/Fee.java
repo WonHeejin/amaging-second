@@ -34,9 +34,12 @@ public class Fee extends amaging.schedu.common.CommonMethod{
 			this.getStudentList(mav);
 			break;
 		case 6:
+			this.regFee(mav);
+			break;	
+		case 7:
 			this.pFeePage(mav);
 			break;
-		case 7:
+		case 8:
 			this.getMyFeeList(mav);
 			break;	
 		}
@@ -84,7 +87,51 @@ public class Fee extends amaging.schedu.common.CommonMethod{
 		mav.addObject("msg",message);
 		
 	}
-	private void getStudentList(ModelAndView mav) {}
-	private void pFeePage(ModelAndView mav) {}
-	private void getMyFeeList(ModelAndView mav) {}
+	@SuppressWarnings("unchecked")
+	private void getStudentList(ModelAndView mav) {
+		List<FeeBean> list;
+		if(this.convertToBoolean(gfo.getFeeCheck((FeeBean)mav.getModelMap().getAttribute("fb")))) {
+			mav.getModelMap().addAttribute("studentList",null);
+		}else {
+			mav.addObject("stl",gfo.feeStudentList((FeeBean)mav.getModelMap().getAttribute("fb")));
+			list = (List<FeeBean>)mav.getModelMap().getAttribute("stl");
+			mav.getModelMap().addAttribute("studentList",list);
+		}
+	}
+	
+	@SuppressWarnings("unchecked")
+	private void regFee(ModelAndView mav) {
+		boolean tran = false;
+		String message = null;
+		
+		this.setTransactionConf(TransactionDefinition.PROPAGATION_REQUIRED, TransactionDefinition.ISOLATION_READ_COMMITTED, false);
+
+		List<FeeBean> fList = (List<FeeBean>)mav.getModelMap().getAttribute("fb");
+		for(int i=0; i<fList.size(); i++) {
+			if(this.convertToBoolean(gfo.insFeeList(fList.get(i)))) {
+				tran = true;
+			}else {
+				tran = false;
+			}
+		} 
+		
+		message = (tran=true)? "feeFirst:등록 완료" : "feeSecond:등록 실패. 다시 시도해주세요.";
+		
+		this.setTransactionEnd(tran);
+		mav.addObject("msg",message);
+		
+	}
+	private void pFeePage(ModelAndView mav) {
+		mav.setViewName("PFeePage");
+	}
+	
+	@SuppressWarnings("unchecked")
+	private void getMyFeeList(ModelAndView mav) {
+		List<FeeBean> list;
+
+		mav.addObject("f",gfo.getMyFeeList((FeeBean)mav.getModelMap().getAttribute("fb")));
+		list = (List<FeeBean>)mav.getModelMap().getAttribute("f");
+		mav.getModelMap().addAttribute("fee",list);
+		
+	}
 }

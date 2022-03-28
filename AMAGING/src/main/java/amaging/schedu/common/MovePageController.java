@@ -105,13 +105,12 @@ public class MovePageController {
    }
    @PostMapping("/AFeePage")
    public ModelAndView aFeePage(ModelAndView mav, @ModelAttribute UserInfo uf) {
-   	System.out.println("AFeePage - MovePageController");
    	fee.backController(1, mav);
    	return mav;
    }
    @PostMapping("/PFeePage")
    public ModelAndView tFeePage(ModelAndView mav, @ModelAttribute UserInfo uf) {
-   	fee.backController(5, mav);
+   	fee.backController(7, mav);
    	return mav;
    }
    @PostMapping("/TGradePage")

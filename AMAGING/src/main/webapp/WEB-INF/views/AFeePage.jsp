@@ -8,6 +8,7 @@
    <script src="resources/js/common.js"></script>
    <script src="resources/js/gradePage.js"></script>
    <script src="resources/js/fee.js"></script>
+      <script src="resources/js/acPlan.js"></script>
 <style>
 #frame {
    width: 100%;
@@ -241,8 +242,8 @@ position:absolute; left:45%; top:1%;
 </style>
 
 </head>
-<body onload="adminFee('get')">
-   <form name="" action="" method="get">
+<body onload="adminFee()">
+   <form name="amainservice" action="" method="post">
       <div id="basic">
          <div id="frame">
 
@@ -260,19 +261,19 @@ position:absolute; left:45%; top:1%;
             <div id="colorline"></div>
             <div class="servicebutton">
 
-               <input type="button" class="bothB" id="oneB" onclick="">                             
-               <input type="button" class="bothB" id="twoB" onclick=""> 
-               <input type="button" class="bothB" id="threeB" onclick="">
+               <input type="button" class="bothB" id="oneB" onclick="getAcPlanPage('amainservice','/AcPlanPage')">                             
+               <input type="button" class="bothB" id="twoB" onclick="getPage('amainservice', '/AClassPage')"> 
+               <input type="button" class="bothB" id="threeB" onclick="getPage('amainservice','AFeePage')">
                  <div class="div1">
-                    <div class="div2" onclick="adminFee('get')" name= "getFee">
-                   ●&nbsp;&nbsp;조회
+                    <div class="div2" onclick="adminFee()">
+                   ●&nbsp;&nbsp;조회/수정
                      </div>
-                    <div class="div2" onclick="adminFee('reg')">
+                    <div class="div2" onclick="adminRegFee()">
                  ●&nbsp;&nbsp;등록
                       </div>
                </div>
                <input type="button" class="bothB" id="fourB" onclick="">
-               <input type="button" class="bothB" id="fiveB" onclick="">
+               <input type="button" class="bothB" id="fiveB" onclick="getPage('amainservice','/AQnAPage')">
 
             </div>
             <div id="mainpage" style = "overflow : auto; overflow-x : hidden"></div>
