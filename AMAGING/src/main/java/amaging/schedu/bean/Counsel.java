@@ -4,11 +4,12 @@ import lombok.Data;
 public class Counsel {
 	String post;
 	String acCode;
+	String acName;
 	String rpCode;
 	String rpName;
 	String category;
 	String userId;
-	String userCode;
+	int userCode;
 	String userName;
 	String sCode;
 	String sName;

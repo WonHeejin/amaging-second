@@ -241,7 +241,9 @@ position:absolute; left:45%; top:1%;
        font-size:130%;
       }
 #selectBox{margin-right : 70%;}
+
 /*Modal CSS*/
+
 #exampleModal {width: 100%;
             height: 100%;
             position: absolute;
@@ -265,13 +267,13 @@ position:absolute; left:45%; top:1%;
             border-radius: 10px;
             border: 5px solid #92acbb;
             width: 450px;
-            height: 500px;
+            height: 520px;
             position: relative;
             top: -100px;
             padding: 10px;
             }
  #mbody{           
- 			 height : 300px;
+ 			 height : 220px;
 			 border-radius : 10px;
 			 border : 2px solid #92acbb;
 			 position : relative;
@@ -287,14 +289,22 @@ position:absolute; left:45%; top:1%;
 			 left : "85%";
 			 top : "1%";
 		}
-#mfooter {           
- 			 height : 40px;
+#answer {           
+ 			 height : 100px;
+ 			 width : 98%;
 			 border-radius : 10px;
 			 border : 2px solid #92acbb;
 			 position : relative;
 			 left : "85%";
 			 top : "1%";
+			 font-size : large;
+			 text-align : center;
 		}
+		
+#btn-close{float : right;}
+#mbtn{float : right;}
+
+#answer::placeholder {color:black;}	
 
 </style>
 
@@ -340,19 +350,23 @@ position:absolute; left:45%; top:1%;
             <div class="mcontent">
          
             <!-- The Modal header -->
-               <div class="mheader">
-               <input type="button" id="btn-close" class="btn-close" value="X" onClick="closeModal();"/>
-                  <h4 class="mtitle" id="mheader"></h4>
-                  
+               <div><input type="button" id="btn-close" class="btn-close" value="X" onClick="closeModal();"/></div><br>
+               <br><div class="mtitle" id="mheader"class="mheader"> 
                </div>
             
             <!-- The Modal body -->
-               <div class="mboby" id="mbody" value="">Modal Body</div>
+               <br><div class="mboby" id="mbody" value="">
+               		<br>
+               		<span id= "from"> </span>
+               		<br><br>
+               		<span id="question"> </span>
+               		<span></span>
+               </div>
             
             <!-- The Modal footer -->
-               <br><div class="mfooter" id="mfooter">
-                  
-               </div><input type="button" class="mbtn" id="mbtn" name="command" />
+               <br><div><input type="text" class="mfooter" id="answer" value="" ></div>
+                 <br> 
+               </input><input type="button" class="mbtn" id="mbtn" name="command" value="등록" onClick="updAnswer()"/>
             </div>
          </div>
       </div>

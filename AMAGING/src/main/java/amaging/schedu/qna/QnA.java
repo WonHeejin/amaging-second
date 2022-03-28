@@ -4,8 +4,10 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.TransactionDefinition;
 import org.springframework.web.servlet.ModelAndView;
 
+import amaging.schedu.bean.ACPlan;
 import amaging.schedu.bean.Counsel;
 import amaging.schedu.bean.UserInfo;
 import amaging.schedu.db.QMLOracleMapper;
@@ -69,14 +71,58 @@ public class QnA extends amaging.schedu.common.CommonMethod{
 		UserInfo uf = (UserInfo) mav.getModel().get("uf");
 		mav.setViewName("AQnaPage");
 	}
-	private void getAcList(ModelAndView mav) {}
-	private void getATlist(ModelAndView mav) {}
-	private void insertQnA(ModelAndView mav) {}
+	private void getAcList(ModelAndView mav) {
+		UserInfo uf = (UserInfo) mav.getModel().get("uf");
+		mav.addObject("contents", this.om.getAcList1(uf));
+	}
+	private void getATlist(ModelAndView mav) {
+		UserInfo uf = (UserInfo) mav.getModel().get("uf");
+		if(uf.getUserCode()==3) {
+			mav.addObject("contents", this.om.getTList(uf));
+		}else if(uf.getUserCode()==4) {
+			mav.addObject("contents11", this.om.getAList(uf));
+		}
+		
+	}
+	private void insertQnA(ModelAndView mav) {
+		Counsel cn = (Counsel)mav.getModel().get("cn");
+		System.out.println(cn);
+		boolean tran=false;
+		String message ="";
+		this.setTransactionConf(TransactionDefinition.PROPAGATION_REQUIRED, 
+				TransactionDefinition.ISOLATION_READ_COMMITTED, false);
+		if(this.convertToBoolean(this.om.insertQnA(cn))) {
+			tran=true;
+			message="글등록 성공!";
+		}		
+		this.setTransactionEnd(tran);
+		mav.getModelMap().addAttribute("msg", message);
+	}
 	private void getContents(ModelAndView mav) {
 		UserInfo uf = (UserInfo) mav.getModel().get("uf");
-		mav.addObject("contents", this.om.getTContents(uf));
+		if(uf.getUserCode()==4) {
+			mav.addObject("contents", this.om.getAContents(uf));
+		}else if(uf.getUserCode()==1) {
+			mav.addObject("contents", this.om.getPContents(uf));
+		}else if(uf.getUserCode()==2) {
+			mav.addObject("contents", this.om.getSContents(uf));
+		}
+		else {mav.addObject("contents", this.om.getTContents(uf));}
+		
 	}
-	private void updAnswer(ModelAndView mav) {}
+	private void updAnswer(ModelAndView mav) {
+		Counsel cn = (Counsel)mav.getModel().get("cn");
+		boolean tran=false;
+		String message ="";
+		this.setTransactionConf(TransactionDefinition.PROPAGATION_REQUIRED, 
+				TransactionDefinition.ISOLATION_READ_COMMITTED, false);
+		if(this.convertToBoolean(this.om.updAnswer(cn))) {
+			tran=true;
+			message="답변입력 성공!";
+		}		
+		this.setTransactionEnd(tran);
+		mav.getModelMap().addAttribute("msg", message);
+	}
 		
 	
 	

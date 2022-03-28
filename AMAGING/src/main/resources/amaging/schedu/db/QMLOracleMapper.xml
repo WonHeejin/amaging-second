@@ -110,5 +110,30 @@
 	<!-- 상담 qna -->
 	<select id="getTContents" parameterType="amaging.schedu.bean.UserInfo" resultType="amaging.schedu.bean.Counsel">
 		SELECT * FROM SCHEDUDBA.TEACHERQNA WHERE RPCODE = #{userId} AND ACCODE = #{acCode}
-	</select> 
+	</select>
+	<update id="updAnswer" parameterType="amaging.schedu.bean.Counsel">
+		UPDATE CN SET CN_ANSWER = #{answer} WHERE CN_POSTCODE = #{post}
+	</update> 
+	<select id="getAContents" parameterType="amaging.schedu.bean.UserInfo" resultType="amaging.schedu.bean.Counsel">
+		SELECT * FROM SCHEDUDBA.TEACHERQNA WHERE RPCODE = #{userId} AND ACCODE = #{acCode}
+	</select>
+	<select id="getPContents" parameterType="amaging.schedu.bean.UserInfo" resultType="amaging.schedu.bean.Counsel">
+		SELECT * FROM SCHEDUDBA.TEACHERQNA WHERE USERID = #{userId}
+	</select>
+	<select id="getSContents" parameterType="amaging.schedu.bean.UserInfo" resultType="amaging.schedu.bean.Counsel">
+		SELECT * FROM SCHEDUDBA.TEACHERQNA WHERE USERID = #{userId}
+	</select>
+	<select id="getAcList1" parameterType="amaging.schedu.bean.UserInfo" resultType="amaging.schedu.bean.ACPlan">
+		SELECT*FROM SCHEDUDBA.SAACNAME WHERE STCODE= #{userId}
+	</select>
+	<select id="getTList" parameterType="amaging.schedu.bean.UserInfo" resultType="amaging.schedu.bean.TList">
+		SELECT*FROM SCHEDUDBA.TCODENAME WHERE ACCODE = #{acCode}
+	</select>
+	<select id="getAList" parameterType="amaging.schedu.bean.UserInfo" resultType="amaging.schedu.bean.AList">
+		SELECT AD_ACCODE AS ACCODE, AD_CODE AS ADCODE, AD_NAME AS ADNAME FROM AD WHERE AD_ACCODE = #{acCode}
+	</select>
+	<insert id="insertQnA" parameterType="amaging.schedu.bean.UserInfo">
+		INSERT INTO CN(CN_POSTCODE, CN_ACCODE, CN_TACODE, CN_USERID, CN_USERCODE, CN_TITLE, CN_ANSWER, CN_QUESTION) 
+		VALUES((SELECT MAX(CN_POSTCODE)+1 FROM CN), #{acCode}, #{rpCode}, #{userId}, #{userCode}, #{title}, DEFAULT, #{question})
+	</insert>
 </mapper>

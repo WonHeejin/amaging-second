@@ -66,7 +66,7 @@ let cc;
 		
 	} 
 
-/*가져온 리스트를 셀렉트 박스에 출력*/
+/*가져온 리스트를 셀렉트 박스에 출력 학사일정용*/
 	function childListBox1(cList){
 		cc=JSON.parse(cList);
 		let sc =  document.getElementById("sCode").value
@@ -82,7 +82,7 @@ let cc;
 		}
 		cbData += '</select>';
 		cb.innerHTML = cbData; 
-		getPlanList();
+		getPlanList('1');
 	}
 	/*셀렉트박스에서 자녀 선택할경우  
 	이름과 같이 가져온 이메일,학생코드를
@@ -111,23 +111,34 @@ let cc;
 	}
 	
 	
-	/*학사일정 가져오기*/
- 	function getPlanList(){
+	/*학부모학사일정 가져오기*/
+ 	function getPlanList(sDate){
  		
+		var today = new Date();
+
+		var year = today.getFullYear();
+		var month = ('0' + (today.getMonth() + 1)).slice(-2);
+		var day = ('0' + today.getDate()).slice(-2);
+		
+		var dateString = year + month;
+		if(sDate == "1"){sDate = dateString;}
+	
  		let cb = document.getElementById("sCode").value;
  		if(cb==""){cb=cc[0].userId}//sCode 입력시 살펴볼필요가있다.
- 		let sDate = document.getElementById("datepicker").value;
- 		const data = "userId="+ encodeURIComponent(cb)+"&sDate="+encodeURIComponent(sDate.substr(0,6))
+ 		
+ 		const data = "userId="+ encodeURIComponent(cb)+"&sDate="+encodeURIComponent(sDate);
  		
 		getAjaxData("/GetPlanList", data, "displayPlan","post" );
 	}
 	
+	/*학사일정 내용표시 */
 	function displayPlan(plan) {
 		let ap = JSON.parse(plan);
 		
 		const list = document.getElementById("acPlanList");
 		let idx = 0;
-		let plandata = '<br><span id = acp >';
+		let plandata = '<div style = "text-align:center;"><span style="font-size: x-large;">'+ap[0].sdate.substr(0,4)+'년'+ap[0].sdate.substr(4,2)+'월'+'</span></div><br>'
+		    plandata += '<span id = acp >';
 		
 		for(idx;idx<ap.length;idx++){
 		    

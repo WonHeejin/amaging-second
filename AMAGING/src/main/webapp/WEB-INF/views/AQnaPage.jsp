@@ -6,6 +6,7 @@
 <meta charset="UTF-8">
 <title>관리자 상담 페이지</title>
  <script src="resources/js/common.js"></script>
+ <script src="resources/js/qna.js"></script>
 <style>
 #frame {
    width: 100%;
@@ -80,7 +81,7 @@
    height: 80%;
    float: right;
    margin-right: 5.5%;
-   background-image: url(resources/images/.png);
+  
    background-size: 30% 55%;
    background-repeat: no-repeat;
    background-position: center center;
@@ -240,10 +241,74 @@ position:absolute; left:45%; top:1%;
        font-size:130%;
       }
  
+ /*Modal CSS*/
+#exampleModal {width: 100%;
+            height: 100%;
+            position: absolute;
+            left: 0;
+            top: 0;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background: rgba(255, 255, 255, 0.25);
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+            backdrop-filter: blur(1.5px);
+            -webkit-backdrop-filter: blur(1.5px);
+            border-radius: 10px;
+            border: 1px solid rgba(255, 255, 255, 0.18);
+ 		}
+ 		
+ #mdialog {background: #FFFFFF;
+            box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+            backdrop-filter: blur( 13.5px );
+            -webkit-backdrop-filter: blur( 13.5px );
+            border-radius: 10px;
+            border: 5px solid #92acbb;
+            width: 450px;
+            height: 520px;
+            position: relative;
+            top: -100px;
+            padding: 10px;
+            }
+ #mbody{           
+ 			 height : 220px;
+			 border-radius : 10px;
+			 border : 2px solid #92acbb;
+			 position : relative;
+			 left : "85%";
+			 top : "1%";
+		}
+		
+ #mheader	{           
+ 			 height : 30px;
+			 border-radius : 10px;
+			 border : 2px solid #92acbb;
+			 position : relative;
+			 left : "85%";
+			 top : "1%";
+		}
+#answer {           
+ 			 height : 100px;
+ 			 width : 98%;
+			 border-radius : 10px;
+			 border : 2px solid #92acbb;
+			 position : relative;
+			 left : "85%";
+			 top : "1%";
+			 font-size : large;
+			 text-align : center;
+		}
+	
+#answer::placeholder {color:black;}		
+		
+#btn-close{float : right;}
+#mbtn{float : right;}
+ 
+ 
 </style>
 
 </head>
-<body onload="">
+<body onload="adminCounsel('${sessionInfo.userId}','${sessionInfo.acCode}','${sessionInfo.userCode}')">
    <form name="" action="" method="get">
       <div id="basic">
          <div id="frame">
@@ -270,13 +335,43 @@ position:absolute; left:45%; top:1%;
                <input type="button" class="bothB" id="fourB" onclick="">
                <input type="button" class="bothB" id="fiveB" onclick="getPage('amainservice','/AQnAPage')">
 
-            </div>
+             </div>
             <div id="mainpage"></div>
          </div>
       </div>
    </form>
-
-   <script type="text/javascript">
+   
+    <form name='dynamicFormData'>
+   <!-- The Modal BackGround -->
+      <div class="container" id="exampleModal">
+         <div id="mdialog">
+            <div class="mcontent">
+         
+            <!-- The Modal header -->
+               <div><input type="button" id="btn-close" class="btn-close" value="X" onClick="closeModal();"/></div><br>
+               <br><div class="mtitle" id="mheader"class="mheader"> 
+               </div>
+            
+            <!-- The Modal body -->
+               <br><div class="mboby" id="mbody" value="">
+               		<br>
+               		<span id= "from"> </span>
+               		<br><br>
+               		<span id="question"> </span>
+               		<span></span>
+               </div>
+            
+            <!-- The Modal footer -->
+               <br><div><input type="text" class="mfooter" id="answer" value="" /></div>
+                 <br> 
+              <input type="button" class="mbtn" id="mbtn" name="command" value="등록" onClick="updAnswer()"/>
+            </div>
+         </div>
+      </div>
+   </form>
+</body>
+   <script>
+   closeModal();
    function mouseOver(obj) {
       let fColor = (obj.id == "btn") ? "#000000" : "#FFFFFF";
       obj.style.color = fColor;
@@ -320,5 +415,5 @@ position:absolute; left:45%; top:1%;
 
    init();
    </script>
-</body>
+
 </html>

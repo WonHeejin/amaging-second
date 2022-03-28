@@ -6,6 +6,8 @@
 <meta charset="UTF-8">
 <title>학부모 상담 페이지</title>
  <script src="resources/js/common.js"></script>
+ <script src="resources/js/qna.js"></script>
+ 
 <style>
 #frame {width:100%; height:100%;
    position:absolute; top:5%;}
@@ -73,6 +75,7 @@
    height: 80%;
    float: right;
    margin-right: 5.5%;
+   margin-top: 0.5%;
    background-image: url(resources/images/.png);
    background-size: 25% 50%;
    background-repeat: no-repeat;
@@ -223,15 +226,143 @@ text-align:center;
  font-size:130%;
  
 	
-	}
+}
 
 #sessionBox{ width:30%; height:10%; 
 position:absolute; left:45%; top:1%;
 }
+/*글쓰기 등록버튼*/
+.rw {
+   width: 5%;
+   height: 4%;
+   border-radius: 20px;
+   margin: 2% 4%;
+
+    background-color: #92acbb;
+   position: relative;
+   left : 45%;
+   top : 30%; 
+   font-size : large;
+}
+
+
+
+/*Modal CSS*/
+
+#exampleModal {width: 100%;
+            height: 100%;
+            position: absolute;
+            left: 0;
+            top: 0;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background: rgba(255, 255, 255, 0.25);
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+            backdrop-filter: blur(1.5px);
+            -webkit-backdrop-filter: blur(1.5px);
+            border-radius: 10px;
+            border: 1px solid rgba(255, 255, 255, 0.18);
+ 		}
+ 
+ #exampleModal1 {width: 100%;
+            height: 100%;
+            position: absolute;
+            left: 0;
+            top: 0;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background: rgba(255, 255, 255, 0.25);
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+            backdrop-filter: blur(1.5px);
+            -webkit-backdrop-filter: blur(1.5px);
+            border-radius: 10px;
+            border: 1px solid rgba(255, 255, 255, 0.18);
+ 		}
+ 		
+ #mdialog {background: #FFFFFF;
+            box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+            backdrop-filter: blur( 13.5px );
+            -webkit-backdrop-filter: blur( 13.5px );
+            border-radius: 10px;
+            border: 5px solid #92acbb;
+            width: 450px;
+            height: 520px;
+            position: relative;
+            top: -100px;
+            padding: 10px;
+            }
+            
+#mdialog1 {background: #FFFFFF;
+            box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+            backdrop-filter: blur( 13.5px );
+            -webkit-backdrop-filter: blur( 13.5px );
+            border-radius: 10px;
+            border: 5px solid #92acbb;
+            width: 450px;
+            height: 400px;
+            position: relative;
+            top: -100px;
+            padding: 10px;
+            }            
+            
+ #mbody{           
+ 			 height : 220px;
+			 border-radius : 10px;
+			 border : 2px solid #92acbb;
+			 position : relative;
+			 left : "85%";
+			 top : "1%";
+		}
+		
+ #mheader	{           
+ 			 height : 30px;
+			 border-radius : 10px;
+			 border : 2px solid #92acbb;
+			 position : relative;
+			 left : "85%";
+			 top : "1%";
+		}
+#answer {           
+ 			 height : 100px;
+ 			 width : 98%;
+			 border-radius : 10px;
+			 border : 2px solid #92acbb;
+			 position : relative;
+			 left : "85%";
+			 top : "1%";
+			 font-size : large;
+			 text-align : center;
+		}
+		
+#btn-close{float : right;}
+#mbtn{float : right;}
+
+ #mbody1{           
+ 			 height : 220px;
+ 			 width : 98%;
+			 border-radius : 10px;
+			 border : 2px solid #92acbb;
+			 position : relative;
+			 left : "85%";
+			 top : "1%";
+		}
+		
+ #mheader1	{           
+ 			 height : 30px;
+ 			 width : 98%;
+			 border-radius : 10px;
+			 border : 2px solid #92acbb;
+			 position : relative;
+			 left : "85%";
+			 top : "1%";
+		}
+
 </style>
 
 </head>
-<body onload="">
+<body onload="parentsCounsel('${sessionInfo.userId}','${sessionInfo.userCode}')">
    <form name="" action="" method="get">
       <div id="basic">
          <div id="frame">
@@ -242,6 +373,7 @@ position:absolute; left:45%; top:1%;
 				<input	type="hidden" value="${sessionInfo.userName}" id ="userName" />
 				<input	type="hidden" value="" name="sEmail" id ="sEmail" />
 				<input	type="hidden" value="" name="sCode" id ="sCode" />
+				<input	type="hidden" value="" name="acCode" id ="sCode" />
 				</span></div>
             <div id="logOut">
                <input type="button" id="btn" value="로그아웃" onclick="accessOut()" onmouseover="mouseOver(this)" onmouseout="mouseLeave(this)">
@@ -251,20 +383,78 @@ position:absolute; left:45%; top:1%;
          <div id="body">
             <div id="colorline"></div>
                <div class="servicebutton">
-                  <input type="button" class="bothB" id="oneB" onclick=""> 
-                  <input type="button" class="bothB" id="twoB" onclick=""> 
+                  <input type="button" class="bothB" id="oneB" onclick="getAcPlanPage('pmainservice','/AcPlanPage')"> 
+                  <input type="button" class="bothB" id="twoB" onclick="getPage('pmainservice','/GradePage')"> 
                   <input type="button" class="bothB" id="threeB" onclick=""> 
                   <input type="button" class="bothB" id="fourB" onclick="">
                    <input type="button" class="bothB" id="fiveB" onclick=""> 
-                   <input type="button" class="bothB" id="sixB" onclick="">
-                    <input type="button" class="bothB" id="sevenB" onclick="">  
+                   <input type="button" class="bothB" id="sixB" onclick="getPage('pmainservice','/PQnAPage')">
+                    <input type="button" class="bothB" id="sevenB" onclick="getAcPlanPage('pmainservice','/InfoPage')">  
                </div>
-            <div id="mainpage"></div>
+            	<div>
+            		<div id="mainpage"></div>
+            	
+         </div><input type="button" class="rw" value="글쓰기" onclick="openModa2()"> 
+      </div>
+   </form>
+   
+     <form name='dynamicFormData'>
+   <!-- 글읽는 모달창 -->
+      <div class="container" id="exampleModal">
+         <div id="mdialog">
+            <div class="mcontent">
+         
+            <!-- The Modal header -->
+               <div><input type="button" id="btn-close" class="btn-close" value="X" onClick="closeModal();"/></div><br>
+               <br><div class="mtitle" id="mheader"class="mheader"> 
+               </div>
+            
+            <!-- The Modal body -->
+               <br><div class="mboby" id="mbody" value="">
+               		<br>
+               		<span id= "from"> </span>
+               		<br><br>
+               		<span id="question"> </span>
+               		<span></span>
+               </div>
+            
+            <!-- The Modal footer -->
+               <br><div type="text" class="mfooter" id="answer"></div>
+                 <br> 
+               
+            </div>
          </div>
       </div>
    </form>
-
+   
+   <!-- 글쓰기 모달창 -->
+   <form name='dynamicFormData'>
+   <!-- The Modal BackGround -->
+      <div class="container" id="exampleModal1">
+         <div id="mdialog1">
+            <div class="mcontent">
+         
+            <!-- The Modal header -->
+               <div id="headclose"><div class="ss" id="selects"></div><div class="ss" id="selects1"></div><div class="ss" id="selects2"></div><input type="button" id="btn-close" class="btn-close" value="X" onClick="closeModal1();"/></div>
+               <br><br>
+               <div><span><input type = "text" class="mtitle" id="mheader1"class="mheader" placeholder = "제목"/></span> </div>
+               <div></div><br>
+            	<div></div>
+            <!-- The Modal body -->
+               <br><span><input type = "text" class="mboby" id="mbody1" value="" placeholder = "내용"/></span>
+              
+            <!-- The Modal footer -->
+               <br><br> 
+               <div><input type="button" class="mbtn" id="mbtn" name="command" value="등록" onClick="insertQnA()"/></div>
+            </div>
+         </div>
+      </div>
+   </form>
+   
+</body>
 <script>
+closeModal();
+closeModal1();
    function mouseOver(obj) {
       let fColor = (obj.id == "btn") ? "#000000" : "#FFFFFF";
       obj.style.color = fColor;
@@ -281,4 +471,4 @@ position:absolute; left:45%; top:1%;
 
    }
 </script>
-</body></html>
+</html>

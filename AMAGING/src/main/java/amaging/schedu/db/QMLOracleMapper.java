@@ -4,10 +4,12 @@ package amaging.schedu.db;
 import java.util.List;
 
 import amaging.schedu.bean.ACPlan;
+import amaging.schedu.bean.AList;
 import amaging.schedu.bean.ChildCode;
 import amaging.schedu.bean.Counsel;
 import amaging.schedu.bean.Login;
 import amaging.schedu.bean.RegMember;
+import amaging.schedu.bean.TList;
 import amaging.schedu.bean.UserInfo;
 
 public interface QMLOracleMapper {
@@ -54,4 +56,12 @@ public interface QMLOracleMapper {
 	
 	/*상담 QnA*/
 	public List<Counsel> getTContents(UserInfo uf);
+	public int updAnswer(Counsel cn);
+	public List<Counsel> getAContents(UserInfo uf);
+	public List<Counsel> getPContents(UserInfo uf);
+	public List<Counsel> getSContents(UserInfo uf);
+	public List<ACPlan> getAcList1(UserInfo uf);
+	public List<TList> getTList(UserInfo uf);
+	public List<AList> getAList(UserInfo uf);
+	public int insertQnA(Counsel cn);
 }
