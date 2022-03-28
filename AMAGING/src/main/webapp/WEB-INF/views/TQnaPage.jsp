@@ -312,7 +312,7 @@ position:absolute; left:45%; top:1%;
 
 <body onload="myAcademyList('${sessionInfo.userId}','get')">
 
-   <form name="tqna" action="file:///C:/" method="post">
+   <form name="tmainservices" action="" method="post">
       <div id="basic">
          <div id="frame">
             <div id="logo"></div>
@@ -331,12 +331,12 @@ position:absolute; left:45%; top:1%;
             <div id="colorline"></div> 
             	<div id = selectBox></div>
                <div class="servicebutton">
-                 <input type="button" class="bothB" id="oneB" onclick="getAcPlanPage('tmainservices','/AcPlanPage')">
+         		  <input type="button" class="bothB" id="oneB" onclick="getPage('tmainservices','/AcPlanPage')">
                   <input type="button" class="bothB" id="twoB" onclick="getPage('tmainservices','/TGradePage')"> 
                   <input type="button" class="bothB" id="threeB" onclick="getPage('tmainservices','/TAttendancePage')"> 
-                  <input type="button" class="bothB" id="fourB" onclick="">
-                   <input type="button" class="bothB" id="fiveB" onclick="getPage('tmainservices','/TQnAPage')">
-                   <input type="button" class="bothB" id="sixB" onclick="getPage('tmainservices','/InfoPage')">  
+                  <input type="button" class="bothB" id="fourB" onclick="getPage('tmainservices','/TClassPage')">
+                  <input type="button" class="bothB" id="fiveB" onclick="getPage('tmainservices','/TQnAPage')">
+                  <input type="button" class="bothB" id="sixB" onclick="getPage('tmainservices','/InfoPage')">   
                 </div>
            <br><br><div id="mainpage"></div>
          </div>

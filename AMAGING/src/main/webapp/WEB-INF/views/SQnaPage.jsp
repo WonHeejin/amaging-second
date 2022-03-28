@@ -367,7 +367,7 @@ position:absolute; left:45%; top:1%;
 
 </head>
 <body onload="stCounsel('${sessionInfo.userId}','${sessionInfo.userCode}')">
-	<form name="" action="" method="get">
+	<form name="Smainservices" action="" method="post">
 		<div id="basic">
 			<div id="frame">
 				<div id="logo"></div>
@@ -385,7 +385,7 @@ position:absolute; left:45%; top:1%;
 			<div id="body">
 				<div id="colorline"></div>
 				<div class="servicebutton">
-					<input type="button" class="bothB" id="oneB" onclick="getAcPlanPage('Smainservices','/AcPlanPage')"> <input
+					<input type="button" class="bothB" id="oneB" onclick="getPage('Smainservices','/AcPlanPage')"> <input
 						type="button" class="bothB" id="twoB" onclick="getPage('Smainservices','/GradePage')"> <input
 						type="button" class="bothB" id="threeB" onclick=""> <input
 						type="button" class="bothB" id="fourB" onclick="getPage('Smainservices','/PSClassPage')"> <input

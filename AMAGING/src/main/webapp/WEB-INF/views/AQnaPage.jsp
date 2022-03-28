@@ -309,7 +309,7 @@ position:absolute; left:45%; top:1%;
 
 </head>
 <body onload="adminCounsel('${sessionInfo.userId}','${sessionInfo.acCode}','${sessionInfo.userCode}')">
-   <form name="" action="" method="get">
+   <form name="amainservice" action="" method="post">
       <div id="basic">
          <div id="frame">
             <span id="logo"></span>
@@ -329,10 +329,10 @@ position:absolute; left:45%; top:1%;
             <div id="colorline"></div>
             <div class="servicebutton">
 
-               <input type="button" class="bothB" id="oneB" onclick="getAcPlanPage('amainservice','/AcPlanPage')">              
+                <input type="button" class="bothB" id="oneB" onclick="getPage('amainservice','/AcPlanPage')">              
                <input type="button" class="bothB" id="twoB" onclick="getPage('amainservice', '/AClassPage')"> 
                <input type="button" class="bothB" id="threeB" onclick="getPage('amainservice','AFeePage')">
-               <input type="button" class="bothB" id="fourB" onclick="">
+               <input type="button" class="bothB" id="fourB" onclick="getPage('amainservice','/AGetAttendanceL')">
                <input type="button" class="bothB" id="fiveB" onclick="getPage('amainservice','/AQnAPage')">
 
              </div>

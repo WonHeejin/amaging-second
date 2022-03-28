@@ -548,7 +548,7 @@
 
 </head>
 <body onload="getAPlanList('1')">
-   <form name="" action="" method="get">
+   <form name="amainservice" action="" method="post">
       <div id="basic">
          <div id="frame">
 
