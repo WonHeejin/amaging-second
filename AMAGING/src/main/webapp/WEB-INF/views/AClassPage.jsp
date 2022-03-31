@@ -8,15 +8,52 @@
 <script src="resources/js/common.js"></script>
 <script src="resources/js/ATimeTable.js"></script>
 <style>
+#yaritakunai{width:10%; height:10%; line-height: 1%;font-size:150%;text-align:center;
+           box-shadow : 5px 5px 5px black; transition-duration:0.3s;
+           position:absolute; top:75%; left:49%;cursor: pointer;
+           border:5px solid #EF90FF ; background-color:#fff; color:#000;
+            border-radius: 30px 10px;}
+#yaritakunai:active{background-color: #D1B2FF  ; color:#FFFFFF; height: 10%;
+              line-height: 10%;width:10%;
+                font-size:150%;text-align:center;
+                 box-shadow : none; margin-left:1%; margin-top:1%;  border:5px solid #D1B2FF ;}
 #btn2{width:10%; height:10%; line-height: 1%;font-size:150%;text-align:center;
            box-shadow : 5px 5px 5px black; transition-duration:0.3s;
            position:absolute; top:75%; left:49%;cursor: pointer;
-           background-color: #EF90FF ; color:#FFFFFF;
-           border-radius:8px;}
-#btn2:active{background-color: #E14FCA  ; color:#FFFFFF; height: 10%;
+           border:5px solid #EF90FF ; background-color:#fff; color:#000;
+            border-radius: 30px 10px;}
+#btn2:active{background-color: #D1B2FF  ; color:#FFFFFF; height: 10%;
               line-height: 10%;width:10%;
                 font-size:150%;text-align:center;
-                 box-shadow : none; margin-left:1%; margin-top:1%;}          
+                 box-shadow : none; margin-left:1%; margin-top:1%;  border:5px solid #D1B2FF ;}    
+#torokubtn{width:8.5%;
+		height:8.5%;
+		border:7px solid #F084C5;
+		border-radius:30px 10px 50px;
+		position:absolute; left:65%; top:50.5%; 
+		text-align:center;
+		font-size:120%;
+		background-color:#fff;}
+#torokubtn:active{background-color: #F084C5  ; color:#E14FCA; height: 8.5%;
+              line-height: 10%;width:8.5%;
+                font-size:120%;text-align:center;
+                 box-shadow : none; margin-left:1%; margin-top:1%;}
+#sanbtn{width:7.5%;
+height:7.5%;
+border:6px inset #FF62C3;
+border-radius:30px 10px;
+position:absolute; left:66%; top:48%; 
+text-align:center;
+font-size:120%;
+background-color:#fff;
+ box-shadow : 5px 5px 5px black;
+ transition-duration:0.3s;line-height: 1%;}                     
+#sanbtn:active{
+		background-color: #FF62C3; color:#000; height: 7.5%;
+              line-height: 10%;width:7%;
+                font-size:120%;text-align:center;
+                 box-shadow : none; margin-left:1%; margin-top:1%; color:#FFFFFF;
+}                       
 #frame {
 	width: 100%;
 	height: 100%;
@@ -65,6 +102,7 @@
 	background-color: #ffffff;
 	position: absolute;
 	top: 15%;
+	
 }
 
 #basic {
@@ -273,7 +311,7 @@
 }
 
 .mbtn {
-	border: 2px solid gray;
+	border: 3px solid gray;
 	border-radius: 5px;
 	position: absolute;
 	left: 93%;
@@ -282,6 +320,8 @@
 	height: 5%;
 	background-color: #D5D5D5;
 	cursor: pointer;
+	color:#ff0000;
+	font-size:80%;
 }
 /*선생 검색 모달*/
 .scontainer {
@@ -309,21 +349,25 @@
 }
 
 .smbody {
-	border: 2px solid #EF90FF;
+	border: 2px solid #A175F0;
 	margin-left: 10%;
 	width: 80%;
 	pont-size: 100pt;
+	overflow-x: hidden;
+    overflow-y: auto;
+
+
 }
 
 .tName {
-	
+	border:2px solid #A175F0;
 	float: left;
 	width: 20%;
 	height: 100%;
 }
 
 .tEmail {
-	border: 2px solid #EF90FF;
+	border: 2px solid #A175F0;
 	width: 100%;
 	height: 100%;
 }
@@ -336,6 +380,7 @@
 	margin-bottom: 10%;
 	width: 40%;
 	height: 50px;
+	
 }
 
 .teacherId {
@@ -364,7 +409,9 @@
 	left: 50%;
 	width: 60%;
 	height: 60%;
-	transform: translate(-50%, -50%)
+	transform: translate(-50%, -50%);
+
+	
 }
 
 .gmbtn {
@@ -380,28 +427,31 @@
 }
 
 .gmbody {
-	border: 2px solid #EF90FF;
+	
 	margin-left: 10%;
 	width: 70%;
-	height:3.3%;
+	height:50%;
 	pont-size: 100pt;
 	position:absolute; top:27%;	
 	float:left;
 	margin-bottom:30%;
-
+	overflow-x: hidden;
+    overflow-y: auto;
 }
 
 
 .sNAME {
 	float: left;
-	width: 30%;
-	height: 100%;
+	width: 37.5%;
+	height: 8%;
+	border:1px solid #EF90FF;
 }
  .sEmail {
-	width: 60%;
-	height: 100%;
+	width: 61.5%;
+	height: 8%;
 	position:left:20%;
 	float: left;
+	border:1px solid #000;
 }
 
 
@@ -440,28 +490,31 @@
 }
 
 .gmbody2 {
-	border: 2px solid #EF90FF;
+	
 	margin-left: 10%;
-	width: 70%;
-	height:3.3%;
+	width: 80%;
+	height:80%;
 	pont-size: 100pt;
-	position:absolute; top:27%;	
+	position:absolute; top:5%;	
 	float:left;
 	margin-bottom:30%;
-
+	overflow-x: hidden;
+    overflow-y: auto;
 }
 
 
 .sNAME2 {
 	float: left;
 	width: 30%;
-	height: 100%;
+	height: 5%;
+	border:3px solid #000;
 }
  .sEmail2 {
 	width: 60%;
-	height: 100%;
+	height: 5%;
 	position:left:20%;
 	float: left;
+	border:3px solid #000;
 }
 
 
@@ -481,6 +534,75 @@
  .section::-webkit-scrollbar-thumb { background-image: linear-gradient(180deg, #D0368A 0%, #708AD4 99%); box-shadow: inset 2px 2px 5px 0 rgba(#fff, 0.5); border-radius: 100px; }
 .section{border-radius:5px;}
 
+.box {
+  width: 80%;
+  height: 100%;
+  border-radius: 5px;
+  box-shadow: 0 2px 30px rgba(black, .2);
+  background: lighten(#f0f4c3, 10%);
+  position: relative;left:40%;
+  overflow: hidden;
+  transform: translate3d(0, 0, 0);
+}
+
+.wave {
+  opacity: .4;
+  position: absolute;
+  top: 3%;
+  left: 50%;
+  background: #FFB2F5;
+  width: 500px;
+  height: 500px;
+  margin-left: -250px;
+  margin-top: -250px;
+  transform-origin: 50% 48%;
+  border-radius: 43%;
+  animation: drift 3000ms infinite linear;
+}
+
+.wave.-three {
+  animation: drift 5000ms infinite linear;
+}
+
+.wave.-two {
+  animation: drift 7000ms infinite linear;
+  opacity: .1;
+  background: yellow;
+}
+
+.box:after {
+  content: '';
+  display: block;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to bottom, rgba(#e8a, 1), rgba(#def, 0) 80%, rgba(white, .5));
+  z-index: 11;
+  transform: translate3d(0, 0, 0);
+}
+
+.title {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  z-index: 1;
+  line-height: 300px;
+  text-align: center;
+  transform: translate3d(0, 0, 0);
+  color: white;
+  text-transform: uppercase;
+  font-family: 'Playfair Display', serif;
+  letter-spacing: .4em;
+  font-size: 24px;
+  text-shadow: 0 1px 0 rgba(black, .1);
+  text-indent: .3em;
+}
+@keyframes drift {
+  from { transform: rotate(0deg); }
+  from { transform: rotate(360deg); }
+}
 
 </style>
 
@@ -501,7 +623,7 @@
 					</span>
 				</div>
 				<div id="logOut">
-					<span><input type="button" id="btn" value="로그아웃" onclick=""
+					<span><input type="button" id="btn" value="로그아웃" onclick="accessAdminOut()"
 						onmouseover="mouseOver(this)" onmouseout="mouseLeave(this)"></span>
 				</div>
 			</div>
@@ -522,7 +644,7 @@
 						<div class="div2"
 							onclick="subjectFormList('${sessionInfo.acCode}')">
 							●&nbsp;&nbsp;과목등록</div>
-						<div class="div2" onclick="getASubjectList('${sessionInfo.acCode}')">
+						<div class="div2" id="modSubject" onclick="getASubjectList('${sessionInfo.acCode}')">
 							●&nbsp;&nbsp;과목수정</div>
 						<div class="div2" onclick="modStudentList('${sessionInfo.acCode}')">
 							●&nbsp;&nbsp;반배정</div>
@@ -557,13 +679,13 @@
 				<div class='smdialog'>
 					<div class='smcontent'>
 						<div class='smheader' style='font-size: 200%'>
-							<h4 id='smheader' class='mtitle'>학원 검색</h4>
+							<h4 id='smheader' class='mtitle'>선생님 검색</h4>
 						</div>
 						<input type='text' name='tName' placeholder='선생님이름 입력'
-							style='height: 35px; width: 30%; position: absolute; top: 19%; left: 30%; border-radius: 5px; border-color: #EF90FF' />
+							style='height: 35px; width: 30%; position: absolute; top: 19%; left: 30%; border-radius: 5px; border-color: #A175F0; ' />
 						<input type='button' value='검색' onClick='teacherSerchForm()'
 							class='searchBtn'
-							style='position: absolute; top: 21%; left: 62%; border-radius: 5px background-color:#EF90FF;' />
+							style='position: absolute; top: 21%; left: 62%; border-radius: 5px; background-color:#fff; border:3px solid #EF90FF;cursor: pointer;' />
 						<div class='smbody' id='smbody' value=''>
 							<div class='teacherId'>선생코드</div>
 							<div class='tName'>이름</div>
@@ -571,9 +693,9 @@
 						</div>
 						<div class='smfooter'>
 							<input type='button' class='mbtn1' value='선택' onclick='selectList(this)'
-								style='border-radius: 5px; background-color: #EF90FF; width: 30%; height: 50%;' />
+								style='border-radius: 5px; background-color: #FFF; width: 30%; height: 50%; border:3px solid #EF90FF; cursor: pointer; ' />
 							<input type='button' class='mbtn2' value='닫기' onclick='closeModal()'
-								style='borderradius: 5px; background-color: #EF90FF; width: 30%; height: 50%;' />
+								style='border-radius: 5px; background-color: #FFF; width: 30%; height: 50%; border:3px solid #EF90FF; cursor: pointer;' />
 						</div>
 					</div>
 				</div>
@@ -590,9 +712,10 @@
 							class='searchBtn'
 							style='position: absolute; top: 21%; left: 62%; border-radius: 5px background-color:#EF90FF;' />
 						<div class='gmbody' id='gmbody' value=''>
+							<div id="ssibal">
 							<div class='sNAME'>학생이름</div>
 							<div class='sEmail'>이메일</div>
-							<div class="checkbox">box</div>							
+							</div>						
 						</div>
 						<div class='gmfooter'>
 							<input type='button' class='mbtn3' value='등록' onclick='regStudent(this)'
@@ -612,7 +735,7 @@
 						<div class='gmbody2' id='gmbody2' value=''>
 							<div class='sNAME2'>학생이름</div>
 							<div class='sEmail2'>이메일</div>
-							<div class="checkbox2">box</div>							
+													
 						</div>
 						<div class='gmfooter2'>
 							<input type='button' class='mbtn3' value='삭제' onclick='delBelong()'

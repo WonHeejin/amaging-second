@@ -31,7 +31,8 @@ public interface TMOracleMapper {
 	public int delBelong(ClassBean cb);
 	public List<Subject> getAssignSub(Subject sb);
 	public String checkParent(RegParent regP);
-	
+	public int checkState(ClassBean cb);
+	public int checkClass(Subject sb);
 	/*PrivateInfo*/
 	public RegParent checkParentEmail(RegParent regP);
 	public Integer checkSPStatus(RegParent regP);

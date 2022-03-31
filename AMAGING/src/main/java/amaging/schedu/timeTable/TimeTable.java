@@ -156,19 +156,17 @@ public class TimeTable extends amaging.schedu.common.CommonMethod{
 
 	private void regSubject(ModelAndView mav) {
 		boolean tran=false;
-		String msg=null;
-		try { 
-			this.setTransactionConf(TransactionDefinition.PROPAGATION_REQUIRED, TransactionDefinition.ISOLATION_READ_COMMITTED, false);
-			int result = -1;
-			result = this.tmo.regSubject((Subject)mav.getModelMap().getAttribute("sb"));
-			if(this.convertToBoolean(result)) {
-				msg="등록이 성공되었습니다";	
+		String message=null;
+		try {  if(!this.convertToBoolean(this.tmo.checkClass((Subject)mav.getModelMap().getAttribute("sb")))) {
+			this.setTransactionConf(TransactionDefinition.PROPAGATION_REQUIRED, TransactionDefinition.ISOLATION_READ_COMMITTED, false);						
+			if(this.convertToBoolean(this.tmo.regSubject((Subject)mav.getModelMap().getAttribute("sb")))) {
+				message="등록이 성공되었습니다";	
 				tran =true;
 				
-			}else {
-				msg="등록에실패했습니다";
+			}}else {
+				message="다시시도해 주세요";
 			}
-			mav.addObject("msg",msg);
+			mav.addObject("message",message);
 
 			this.setTransactionEnd(tran);	 	
 		}catch(Exception e) {e.printStackTrace();}
@@ -185,21 +183,19 @@ public class TimeTable extends amaging.schedu.common.CommonMethod{
 		return mav;
 	}
 
-	private void updSubject(ModelAndView mav) {
-		
+	private void updSubject(ModelAndView mav) {		
 		boolean tran =false;
-		String msg =null;
+		String message =null;
 		this.setTransactionConf(TransactionDefinition.PROPAGATION_REQUIRED, TransactionDefinition.ISOLATION_READ_COMMITTED, false);
-		int result=-1;
-		result=this.tmo.updSubject((Subject)mav.getModelMap().getAttribute("sb"));
-		if(this.convertToBoolean(result)) {
-			System.out.println(result);
-			msg="수정이 완료되었습니다";
+	
+	if(!this.convertToBoolean(this.tmo.checkClass((Subject)mav.getModelMap().getAttribute("sb")))) {
+		if(this.convertToBoolean(this.tmo.updSubject((Subject)mav.getModelMap().getAttribute("sb")))) {			
+			message="수정이 완료되었습니다";
 			tran=true;
-		}else {
-			msg="다시시도해 주세요";
+		}}else {
+			message="다시시도해 주세요";
 		}
-		mav.addObject("msg",msg);
+		mav.addObject("message",message);
 		this.setTransactionEnd(tran);		
 	}
 
@@ -215,18 +211,16 @@ public class TimeTable extends amaging.schedu.common.CommonMethod{
 
 	private void insertClass(ModelAndView mav) {
 		boolean tran =false;
-		String msg =null;
+		String message =null;
 		try { 
 			this.setTransactionConf(TransactionDefinition.PROPAGATION_REQUIRED, TransactionDefinition.ISOLATION_READ_COMMITTED, false);
-			int result = -1;
-			result = this.tmo.insertClass((ClassBean)mav.getModelMap().getAttribute("cb"));
-			if(this.convertToBoolean(result)) {
-				msg="등록이 성공되었습니다";	
+			if(this.convertToBoolean(this.tmo.insertClass((ClassBean)mav.getModelMap().getAttribute("cb")))) {
+				message="등록이 성공되었습니다";	
 				tran =true;
 			}else {
-				msg=null;
+				message="다시시도해 주세요";
 			}
-			mav.addObject("msg",msg);
+			mav.addObject("message",message);
 
 			this.setTransactionEnd(tran);	 	
 		}catch(Exception e) {e.printStackTrace();}
@@ -234,18 +228,16 @@ public class TimeTable extends amaging.schedu.common.CommonMethod{
 
 	private void updClass(ModelAndView mav) {
 		boolean tran =false;
-		String msg =null;
+		String message =null;
 		this.setTransactionConf(TransactionDefinition.PROPAGATION_REQUIRED, TransactionDefinition.ISOLATION_READ_COMMITTED, false);
-		int result=-1;
-		result=this.tmo.updClass((ClassBean)mav.getModelMap().getAttribute("cb"));
-		if(this.convertToBoolean(result)) {
-			System.out.println(result);
-			msg="수정이 완료되었습니다";
+		if(this.convertToBoolean(this.tmo.updClass((ClassBean)mav.getModelMap().getAttribute("cb")))) {
+	
+			message="수정이 완료되었습니다";
 			tran=true;
 		}else {
-			msg="다시시도해 주세요";
+			message="다시시도해 주세요";
 		}
-		mav.addObject("msg",msg);
+		mav.addObject("message",message);
 		this.setTransactionEnd(tran);		
 	}
 	@SuppressWarnings("unchecked")
@@ -253,25 +245,22 @@ public class TimeTable extends amaging.schedu.common.CommonMethod{
 		List<ClassBean>list =null;
 		mav.addObject("stu",tmo.getSList((ClassBean)mav.getModelMap().getAttribute("cb")));
 		list=(List<ClassBean>)mav.getModelMap().getAttribute("stu");
-		System.out.println(list);
+
 		mav.addObject("slist", list);
 		return mav;
 	}
 	private void regStudent(ModelAndView mav) {
 		boolean tran=false;
-		String msg=null;
+		String message=null;
 		try { 
-			this.setTransactionConf(TransactionDefinition.PROPAGATION_REQUIRED, TransactionDefinition.ISOLATION_READ_COMMITTED, false);
-			int result = -1;
-			result = this.tmo.regStudent((ClassBean)mav.getModelMap().getAttribute("cb"));
-			if(this.convertToBoolean(result)) {
-				msg="등록이 성공되었습니다";	
-				tran =true;
-				System.out.println(result);
+			this.setTransactionConf(TransactionDefinition.PROPAGATION_REQUIRED, TransactionDefinition.ISOLATION_READ_COMMITTED, false);		
+			if(this.convertToBoolean(this.tmo.regStudent((ClassBean)mav.getModelMap().getAttribute("cb")))) {
+				message="등록이 성공되었습니다";	
+				tran =true;	
 			}else {
-				msg="등록에실패했습니다";
+				message="다시시도해 주세요";
 			}
-			mav.addObject("msg",msg);
+			mav.addObject("message",message);
 
 			this.setTransactionEnd(tran);	 	
 		}catch(Exception e) {e.printStackTrace();}
@@ -287,19 +276,17 @@ public class TimeTable extends amaging.schedu.common.CommonMethod{
 	}
 	private void delBelong(ModelAndView mav) {
 		boolean tran=false;
-		String msg=null;
+		String message=null;
 		try { 
 			this.setTransactionConf(TransactionDefinition.PROPAGATION_REQUIRED, TransactionDefinition.ISOLATION_READ_COMMITTED, false);
-			int result = -1;
-			result = this.tmo.delBelong((ClassBean)mav.getModelMap().getAttribute("cb"));
-			if(this.convertToBoolean(result)) {
-				msg="등록이 성공되었습니다";	
-				tran =true;
-				
-			}else {
-				msg="등록에실패했습니다";
+		if(this.convertToBoolean(this.tmo.checkState((ClassBean)mav.getModelMap().getAttribute("cb")))) {			
+			if(this.convertToBoolean( this.tmo.delBelong((ClassBean)mav.getModelMap().getAttribute("cb")))) {
+				message="학생이 삭제되었습니다";	
+				tran =true;				
+			}}else {
+				message="다시시도해 주세요";
 			}
-			mav.addObject("msg",msg);
+			mav.addObject("message",message);
 
 			this.setTransactionEnd(tran);	 	
 		}catch(Exception e) {e.printStackTrace();}

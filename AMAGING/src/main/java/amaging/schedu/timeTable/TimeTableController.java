@@ -27,12 +27,11 @@ public class TimeTableController {
 
 	}
 
-	@PostMapping("/InsertClass")
+	@PostMapping(value="/InsertClass" , produces = "application/text; charset=UTF-8")
 	public String insertClass(ModelAndView mav, @ModelAttribute ClassBean cb) {
-		//System.out.println("dddddd");
 		mav.getModelMap().addAttribute("cb", cb);
 		this.tt.backController(10, mav);
-		return (String)mav.getModelMap().getAttribute("msg");
+		return (String)mav.getModelMap().getAttribute("message");
 	}
 
 	@SuppressWarnings("unchecked")
@@ -43,11 +42,11 @@ public class TimeTableController {
 		return (List<ClassBean>)mav.getModelMap().getAttribute("curs");
 	}
 
-	@PostMapping("/UpdClass")
+	@PostMapping(value="/UpdClass" , produces = "application/text; charset=UTF-8")
 	public String UpdClass(ModelAndView mav, @ModelAttribute ClassBean cb) {
 		mav.getModelMap().addAttribute("cb", cb);
 		this.tt.backController(11, mav);
-		return (String)mav.getModelMap().getAttribute("msg");
+		return (String)mav.getModelMap().getAttribute("message");
 	}	
 	@SuppressWarnings("unchecked")
 	@PostMapping("/GetTeacherList")
@@ -57,11 +56,11 @@ public class TimeTableController {
 
 		return (List<TList>)mav.getModelMap().getAttribute("tlist");
 	}
-	@PostMapping("/RegSubject")
+	@PostMapping(value="/RegSubject" , produces = "application/text; charset=UTF-8")
 	public String regSubject(ModelAndView mav, @ModelAttribute Subject sb) {
 		mav.getModelMap().addAttribute("sb", sb);
 		this.tt.backController(6, mav);
-		return (String)mav.getModelMap().getAttribute("msg");
+		return (String)mav.getModelMap().getAttribute("message");
 	}
 	
 	@SuppressWarnings("unchecked")
@@ -71,26 +70,25 @@ public class TimeTableController {
 		this.tt.backController(7, mav);
 		return (List<Subject>)mav.getModelMap().getAttribute("subjectlist");
 	 }
-	@PostMapping("/UpdSubject")
+	@PostMapping(value="/UpdSubject", produces = "application/text; charset=UTF-8")
 	public String UpdSubject(ModelAndView mav, @ModelAttribute Subject sb) {
 		mav.getModelMap().addAttribute("sb", sb);
 		this.tt.backController(8, mav);
-		return (String)mav.getModelMap().getAttribute("msg");
+		return (String)mav.getModelMap().getAttribute("message");
 	}
 	@SuppressWarnings("unchecked")
 	@PostMapping("/SearchStudent")
 	public List<ClassBean> searchStudent(ModelAndView mav, @ModelAttribute ClassBean cb) {					
 		mav.getModelMap().addAttribute("cb", cb);
 		this.tt.backController(12, mav);
-
 		return (List<ClassBean>)mav.getModelMap().getAttribute("slist");
 	}
 	
-	@PostMapping("/RegStudent")
+	@PostMapping(value="/RegStudent", produces = "application/text; charset=UTF-8")
 	public String regStudent(ModelAndView mav, @ModelAttribute ClassBean cb) {
 		mav.getModelMap().addAttribute("cb", cb);
 		this.tt.backController(13, mav);
-		return (String)mav.getModelMap().getAttribute("msg");
+		return (String)mav.getModelMap().getAttribute("message");
 	}
 	@SuppressWarnings("unchecked")
 	@PostMapping(value="/GetSTClassList", produces = "application/json; charset=UTF-8")
@@ -99,18 +97,18 @@ public class TimeTableController {
 		this.tt.backController(18, mav);
 		return(List<Subject>)mav.getModelMap().getAttribute("event");
 	}
+	@SuppressWarnings("unchecked")
 	@PostMapping("/GetBelongList")
 	public List<ClassBean> getBelongList(ModelAndView mav, @ModelAttribute ClassBean cb) {					
 		mav.getModelMap().addAttribute("cb", cb);
 		this.tt.backController(14, mav);
-
 		return (List<ClassBean>)mav.getModelMap().getAttribute("slist2");
 	}
-	@PostMapping("/DelBelong")
+	@PostMapping(value="/DelBelong", produces = "application/text; charset=UTF-8")
 	public String delBelong(ModelAndView mav, @ModelAttribute ClassBean cb) {
 		mav.getModelMap().addAttribute("cb", cb);
 		this.tt.backController(15, mav);
-		return (String)mav.getModelMap().getAttribute("msg");
+		return (String)mav.getModelMap().getAttribute("message");
 	}
 
 }
