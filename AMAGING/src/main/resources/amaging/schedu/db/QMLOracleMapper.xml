@@ -136,4 +136,10 @@
 		INSERT INTO CN(CN_POSTCODE, CN_ACCODE, CN_TACODE, CN_USERID, CN_USERCODE, CN_TITLE, CN_ANSWER, CN_QUESTION) 
 		VALUES((SELECT MAX(CN_POSTCODE)+1 FROM CN), #{acCode}, #{rpCode}, #{userId}, #{userCode}, #{title}, DEFAULT, #{question})
 	</insert>
+	<select id="getReceiverEmail" parameterType="amaging.schedu.bean.Counsel" resultType="amaging.schedu.bean.Counsel">
+		SELECT USERID, EMAIL FROM SCHEDUDBA.CODEANDEMAIL WHERE USERID = #{userId}
+	</select>
+	<select id="getSenderEmail" parameterType="amaging.schedu.bean.Counsel" resultType="amaging.schedu.bean.Counsel">
+		SELECT USERID, EMAIL FROM SCHEDUDBA.CODEANDEMAIL WHERE USERID = #{rpCode}
+	</select>
 </mapper>

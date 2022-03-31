@@ -16,4 +16,6 @@ public class Counsel {
 	String title;
 	String answer;
 	String question;
+	String email;
+	String password;
 }

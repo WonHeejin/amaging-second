@@ -42,8 +42,12 @@ public class Calender extends amaging.schedu.common.CommonMethod{
 		UserInfo uf = new UserInfo();
 		uf = (UserInfo) mav.getModel().get("uf");
 		String page = "";
+		boolean isSession=false;
 
 		try {
+			if(this.sessionCheck(mav)) {
+				
+			}
 			if (uf.getUserCode() == 3) {
 
 				page = "TAcPlanPage";

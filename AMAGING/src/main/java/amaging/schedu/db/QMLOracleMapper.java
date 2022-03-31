@@ -64,4 +64,6 @@ public interface QMLOracleMapper {
 	public List<TList> getTList(UserInfo uf);
 	public List<AList> getAList(UserInfo uf);
 	public int insertQnA(Counsel cn);
+	public Counsel getReceiverEmail(Counsel cn);
+	public Counsel getSenderEmail(Counsel cn);
 }

@@ -21,7 +21,7 @@ public class AuthController {
 	private Authentication auth;
 	
 	@PostMapping("/Login")
-	public ModelAndView login(ModelAndView mav, @ModelAttribute Login lg) {
+	public  ModelAndView login(ModelAndView mav, @ModelAttribute Login lg) {
 		auth.backController(2,mav.addObject("login", lg));
 		return mav;
 	}

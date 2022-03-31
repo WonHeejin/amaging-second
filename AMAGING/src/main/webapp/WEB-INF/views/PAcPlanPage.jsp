@@ -5,6 +5,10 @@
 <head>
 <meta charset="UTF-8">
 <title>학부모 학사일정 페이지</title>
+
+ <style>
+ 
+ </style>
  <script src="resources/js/common.js"></script>
  <script src="resources/js/acPlan.js"></script>
  <script src="resources/js/childList.js"></script>
@@ -47,6 +51,9 @@
 }
 
 #body {
+	background-repeat:  no-repeat ;
+ 	background-position : 50% 33%;
+ 	background-size : 1200px 580px;
    border: 0;
    outline: 0;
    width: 99.8%;
@@ -77,7 +84,7 @@
    height: 80%;
    float: right;
    margin-right: 5.5%;
-   background-image: url(resources/images/.png);
+  
    background-size: 25% 50%;
    background-repeat: no-repeat;
    background-position: center center;
@@ -228,9 +235,17 @@ text-align:center;
 position:absolute; left:45%; top:1%;
 }
 
-#childBox{width: 15%;
-					height: 5%;
-					float:right;
+#childBox{			width: 20%;
+					height: 8%;
+					float:left;
+				
+}
+
+#childSelect{
+			height : 50px;
+			width :  120px;
+			font-size :large;
+			 border : 2px solid #63AA00;
 }
 
 #acPlanList{float:left;
@@ -239,6 +254,7 @@ position:absolute; left:45%; top:1%;
 			border-radius : 10px;
             border : 2px solid #92acbb;
             margin-left : 2%;
+            
 }
 
 #acPlanList{float:right;
@@ -264,6 +280,7 @@ position:absolute; left:45%; top:1%;
 	border-left: 5px solid #63AA00;
 	border-right: 5px solid #63AA00;
 	border-bottom: 5px solid #63AA00;
+
 }
 
 .bothC:active {
@@ -375,7 +392,7 @@ position:absolute; left:45%; top:1%;
       <div id="basic">
          <div id="frame">
             <div id="logo"></div>
-             <div id="sessionBox"><span id="session"><span id='childName'>${sessionInfo.stName}</span>부모 ${sessionInfo.userName}님 환영합니다.
+             <div id="sessionBox"><span id="session"><span id='childName'></span>${sessionInfo.userName}님 환영합니다.
              	<input	type="hidden" value='${sessionInfo.userId}' name="userId" />
 				<input	type="hidden" value='${sessionInfo.userCode}' name="userCode" />
 				<input	type="hidden" value="" name="sEmail" id ="sEmail" />
@@ -390,13 +407,13 @@ position:absolute; left:45%; top:1%;
             <div id="colorline"></div>
                <div class="servicebutton">
                  <!-- <input type="button" class="bothB" id="oneB" onclick="getChildList1('${sessionInfo.userId}')">  --> 
-                   <input type="button" class="bothB" id="oneB" onclick="getPage('pmainservice','/AcPlanPage')"> 
+                  <input type="button" class="bothB" id="oneB" onclick="getPage('pmainservice','/AcPlanPage')"> 
                   <input type="button" class="bothB" id="twoB" onclick="getPage('pmainservice','/GradePage')"> 
                   <input type="button" class="bothB" id="threeB" onclick="getPage('pmainservice','/AttendancePage')"> 
                   <input type="button" class="bothB" id="fourB" onclick="getPage('pmainservice','/PSClassPage')">
-                   <input type="button" class="bothB" id="fiveB" onclick="getPage('pmainservice','/PFeePage')"> 
-                   <input type="button" class="bothB" id="sixB" onclick="getPage('pmainservice','/PQnAPage')">
-                    <input type="button" class="bothB" id="sevenB" onclick="getAcPlanPage('pmainservice','/InfoPage')"> 
+                  <input type="button" class="bothB" id="fiveB" onclick="getPage('pmainservice','/PFeePage')"> 
+                  <input type="button" class="bothB" id="sixB" onclick="getPage('pmainservice','/PQnAPage')">
+                  <input type="button" class="bothB" id="sevenB" onclick="getAcPlanPage('pmainservice','/InfoPage')"> 
                </div>
                <span><div id="childBox" name="childBox"></div></span>
             <div id="mainpage">

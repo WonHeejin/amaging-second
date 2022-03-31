@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>학부모 상담 페이지</title>
+
  <script src="resources/js/common.js"></script>
  <script src="resources/js/qna.js"></script>
  
@@ -69,17 +69,43 @@
    margin-top:-2%;
 
 }
-
-#mainpage {
+#uppermainpage {
    width: 73%;
-   height: 80%;
-   float: right;
+   height: 60px;
+
    margin-right: 5.5%;
    margin-top: 0.5%;
-   background-image: url(resources/images/.png);
+   
    background-size: 25% 50%;
    background-repeat: no-repeat;
    background-position: center center;
+ 
+}
+/*#mainpage {
+   width: 73%;
+   height: 300px;
+   float: right;
+   margin-right: 5.5%;
+   margin-top: 0.5%;
+  
+   background-size: 25% 50%;
+   background-repeat: no-repeat;
+   background-position: center center;
+   overflow:auto;
+}*/
+
+#mainpage {
+    border: 10px solid #99E000;
+	width: 55%;
+	height: 230px;
+	float: right;
+	margin-right: 15%;
+	overflow:auto;
+	background-size: 45% 65%;
+	background-repeat: no-repeat;
+	background-position: center center;
+	overflow:auto;
+	border-radius: 20px;
 }
 
 .bothB {
@@ -234,15 +260,15 @@ position:absolute; left:45%; top:1%;
 /*글쓰기 등록버튼*/
 .rw {
    width: 5%;
-   height: 4%;
+   height: 6%;
    border-radius: 20px;
    margin: 2% 4%;
-
-    background-color: #92acbb;
+   background: #FFFFFF;
    position: relative;
-   left : 45%;
-   top : 30%; 
+   left : 5%;
+   top : 5%;
    font-size : large;
+    border: 5px solid #63AA00;
 }
 
 
@@ -358,6 +384,21 @@ position:absolute; left:45%; top:1%;
 			 left : "85%";
 			 top : "1%";
 		}
+		
+	/*요약정보 CSS*/
+#undermain{ margin-top:1.5%;
+			width : 50%;
+			height : 350px;
+			float : left;
+			position : relative;
+			left : 12%;
+			top : 130%;
+			
+}<!-- #63AA00  #99E000 -->
+.simple_table { width: 100%; border: none; border-collapse: separate; border-spacing: 2px;}
+.simple_table th { padding: 15px; border: none; border-left: 5px solid #63AA00; border-bottom: 1px solid #DDD; background: #99E000; font-size: large; color:#ffffff; text-align:center; vertical-align: middle;}
+.simple_table td { padding: 15px; border: none; border-bottom: 1px solid #DDD; text-align: center; vertical-align: baseline; font-size: large;}
+		
 
 </style>
 
@@ -391,9 +432,38 @@ position:absolute; left:45%; top:1%;
                    <input type="button" class="bothB" id="sixB" onclick="getPage('pmainservice','/PQnAPage')">
                     <input type="button" class="bothB" id="sevenB" onclick="getPage('pmainservice','/InfoPage')"> 
                </div>
+               <div id="uppermainpage"></div>
+               <div></div><br><br><br><br><div></div>
             	<div>
             		<div id="mainpage"></div>
-            	
+            		<div></div><br><div></div>
+            		<div id="undermain">
+					<!----><table class="simple_table">
+					 	<tbody>
+							<tr>
+								<th scope="row">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+								미확인 글의 수
+								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+								</th>
+								<td id ="writing1"></td>
+							</tr>
+							<tr>
+								<th scope="row">답변 대기중 글의 수</th>
+								<td id ="writing2"></td>
+							</tr>
+							<tr>
+								<th scope="row">답변 완료된 글의 수</th>
+								<td id ="writing3"></td>
+							</tr>
+							<tr>
+								<th scope="row">내가올린 글의 수</th>
+								<td id ="writing4"></td>
+							</tr>
+						</tbody>
+					</table> 
+				</div>
          </div><input type="button" class="rw" value="글쓰기" onclick="openModa2()"> 
       </div>
    </form>

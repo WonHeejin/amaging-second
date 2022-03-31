@@ -45,6 +45,12 @@ public class QnAController {
 		return mav.getModelMap().getAttribute("msg").toString();
 	}
 	
+	@PostMapping(value = "/SendReplyEmail", produces="text/plain; charset=utf-8")
+	public String sendReplyEmail(ModelAndView mav, @ModelAttribute Counsel cn) {
+		qna.backController(9, mav.addObject("cn", cn));
+		return mav.getModelMap().getAttribute("msg").toString();
+	}
+	
 	@SuppressWarnings("unchecked")
 	@PostMapping("/GetCAcademyList")
 	public List<ACPlan> getCAcademyList(ModelAndView mav, @ModelAttribute UserInfo uf) {

@@ -75,14 +75,17 @@
 
 }
 #mainpage {
-	width: 73%;
-	height: 80%;
+    border: 10px solid #FFBB00;
+	width: 55%;
+	height: 280px;
 	float: right;
-	margin-right: 5.5%;
-	
+	margin-right: 15%;
+	overflow:auto;
 	background-size: 45% 65%;
 	background-repeat: no-repeat;
 	background-position: center center;
+	overflow:auto;
+	border-radius: 20px;
 }
 
 .bothB {
@@ -220,6 +223,10 @@ text-align:center;
 #sessionBox{ width:30%; height:10%; 
 position:absolute; left:45%; top:1%;
 }
+/*상담글 리스트
+#list{
+	margin-left:4%;
+}*/
 
 /*글쓰기 등록버튼*/
 .rw {
@@ -227,14 +234,13 @@ position:absolute; left:45%; top:1%;
    height: 4%;
    border-radius: 20px;
    margin: 2% 4%;
-
-    background-color: #92acbb;
+   background: #FFFFFF;
    position: relative;
-   left : 55%;
-   top : 50%; 
+   left : 78%;
+   top : 65%;
    font-size : large;
+    border: 5px solid #FFBB00;
 }
-
 
 /*Modal CSS*/
 
@@ -363,6 +369,19 @@ position:absolute; left:45%; top:1%;
 			float : "left";
 }	 */
 
+/*요약정보 CSS*/
+#undermain{
+			width : 50%;
+			height : 400px;
+			float : left;
+			position : relative;
+			left : 12%;
+			top : 5%;
+}
+.simple_table { width: 100%; border: none; border-collapse: separate; border-spacing: 2px;}
+.simple_table th { padding: 15px; border: none; border-left: 5px solid #EA7B03; border-bottom: 1px solid #DDD; background: #FFBB00; font-size: large; color:#ffffff; text-align:center; vertical-align: middle;}
+.simple_table td { padding: 15px; border: none; border-bottom: 1px solid #DDD; text-align: center; vertical-align: baseline; font-size: x-large;}
+
 </style>
 
 </head>
@@ -394,6 +413,29 @@ position:absolute; left:45%; top:1%;
 						type="button" class="bothB" id="sixB" onclick="getPage('Smainservices','/InfoPage')">
 				</div>
 				<div id="mainpage"></div>
+				
+				<div id="undermain">
+					<table class="simple_table">
+						<tbody>
+							<tr>
+								<th scope="row">미확인 글의 수</th>
+								<td id ="writing1"></td>
+							</tr>
+							<tr>
+								<th scope="row">답변 대기중 글의 수</th>
+								<td id ="writing2"></td>
+							</tr>
+							<tr>
+								<th scope="row">답변 완료된 글의 수</th>
+								<td id ="writing3"></td>
+							</tr>
+							<tr>
+								<th scope="row">내가올린 글의 수</th>
+								<td id ="writing4"></td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
 			</div><input type="button" class="rw" value="글쓰기" onclick="openModa3()"> 
 		</div>
 	</form>

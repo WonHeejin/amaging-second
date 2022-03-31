@@ -26,6 +26,43 @@ function getAcPlanPage(formName,action){
  		const data = "userId="+ encodeURIComponent(uId)+"&sDate="+ encodeURIComponent(sDate);
  		
 		getAjaxData("/GetPlanList", data, "displayPlan","post" );
+		if(sDate == "202201"){
+			let img = document.getElementById('body');
+			img.setAttribute("style", "background-image : url(resources/images/1월.jpg)")
+		} else if(sDate == "202202"){
+			let img = document.getElementById('body');
+			img.setAttribute("style", "background-image : linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),url(resources/images/2월.jpg)")
+		}else if(sDate == "202203"){
+			let img = document.getElementById('body');
+			img.setAttribute("style", "background-image : linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),url(resources/images/3월.jpg)")
+		}else if(sDate == "202204"){
+			let img = document.getElementById('body');
+			img.setAttribute("style", "background-image : linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),url(resources/images/4월.jpg)")
+		}else if(sDate == "202205"){
+			let img = document.getElementById('body');
+			img.setAttribute("style", "background-image : linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),url(resources/images/5월.jpg)")
+		}else if(sDate == "202206"){
+			let img = document.getElementById('body');
+			img.setAttribute("style", "background-image : linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),url(resources/images/6월.jpg)")
+		}else if(sDate == "202207"){
+			let img = document.getElementById('body');
+			img.setAttribute("style", "background-image : linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),url(resources/images/7월.jpg)")
+		}else if(sDate == "202208"){
+			let img = document.getElementById('body');
+			img.setAttribute("style", "background-image : linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),url(resources/images/8월.jpg)")
+		}else if(sDate == "202209"){
+			let img = document.getElementById('body');
+			img.setAttribute("style", "background-image : linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),url(resources/images/9월.jpg)")
+		}else if(sDate == "202210"){
+			let img = document.getElementById('body');
+			img.setAttribute("style", "background-image : linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),url(resources/images/10월.jpg)")
+		}else if(sDate == "202211"){
+			let img = document.getElementById('body');
+			img.setAttribute("style", "background-image : linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),url(resources/images/11월.jpg)")
+		}else if(sDate == "202212"){
+			let img = document.getElementById('body');
+			img.setAttribute("style", "background-image : linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),url(resources/images/12월.jpg)")
+		}
 	}
 	
 	/*관리자학사일정 가져오기*/
@@ -73,7 +110,8 @@ let ap;
 		const list = document.getElementById("acPlanList");
 		if(list.innerHTML!=null){list.innerHTML="";}
 		let idx = 0;
-		let plandata = '<div style = "text-align:center;"><span style="font-size: x-large;">'+ap[0].sdate.substr(0,4)+'년'+ap[0].sdate.substr(4,2)+'월'+'</span></div><br>'
+		let plandata = '<div style = "text-align:center;"><span style="font-size: x-large;">'
+						+ap[0].sdate.substr(0,4)+'년'+ap[0].sdate.substr(4,2)+'월'+'</span></div><br>'
 		list.innerHTML=plandata;
 		for(idx;idx<ap.length;idx++){
 			let plandata2 = createDiv("planbox","planbox"+idx,"planbox"+idx,idx);

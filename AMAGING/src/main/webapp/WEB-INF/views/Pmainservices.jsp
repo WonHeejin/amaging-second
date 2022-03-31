@@ -225,9 +225,24 @@ text-align:center;
 position:absolute; left:45%; top:1%;
 }
 
-#childBox{width: 45%;
+
+					
+/*자녀션택#childBox{width: 45%;
 					height: 20%;
-					float:right;}
+					float:right;}*/
+					
+#childBox{			width: 20%;
+					height: 8%;
+					float:left;
+				
+}
+
+#childSelect{
+			height : 50px;
+			width :  120px;
+			font-size :large;
+			 border : 2px solid #63AA00;
+}
 </style>
 
 </head>
@@ -236,7 +251,7 @@ position:absolute; left:45%; top:1%;
       <div id="basic">
          <div id="frame">
             <div id="logo"></div>
-             <div id="sessionBox"><span id="session"><span id='childName'></span>${sessionInfo.userName}님 환영합니다.
+             <div id="sessionBox"><span id="session">${sessionInfo.userName}님 환영합니다.
              	<input	type="hidden" value="${sessionInfo.userId}" name="userId" />
 				<input	type="hidden" value="${sessionInfo.userCode}" name="userCode" />
 				<input	type="hidden" value="${sessionInfo.userName}" id ="userName" />
@@ -268,6 +283,18 @@ position:absolute; left:45%; top:1%;
    </form>
 
 <script>
+
+/*window.onload =function(){
+	   if(sessionStorage.getItem("sCode") == 'S1001'){
+	      document.getElementById("childSelect").selectedIndex = "1";
+	   }else if(sessionStorage.getItem("sCode") == 'S1031'){
+	      document.getElementById("childSelect").selectedIndex = "2";
+	   }else if(sessionStorage.getItem("sCode") == 'S1036'){
+	      document.getElementById("childSelect").selectedIndex = "3";
+	   }
+
+	}*/
+
    function mouseOver(obj) {
       let fColor = (obj.id == "btn") ? "#000000" : "#FFFFFF";
       obj.style.color = fColor;

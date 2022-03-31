@@ -77,16 +77,18 @@
 }
 
 #mainpage {
-   width: 73%;
-   height: 80%;
-   float: right;
-   margin-right: 5.5%;
-  
-   background-size: 30% 55%;
-   background-repeat: no-repeat;
-   background-position: center center;
+    border: 10px solid #EF90FF;
+	width: 55%;
+	height: 230px;
+	float: right;
+	margin-right: 15%;
+	overflow:auto;
+	background-size: 45% 65%;
+	background-repeat: no-repeat;
+	background-position: center center;
+	overflow:auto;
+	border-radius: 20px;
 }
-
 .bothB {
    width: 85%;
    height: 13%;
@@ -304,6 +306,63 @@ position:absolute; left:45%; top:1%;
 #btn-close{float : right;}
 #mbtn{float : right;}
  
+#btn-close1{float : right;}
+#mbtn1{float : right;}
+ 
+ /*요약정보 CSS*/
+#undermain{
+			width : 50%;
+			height : 400px;
+			float : left;
+			position : relative;
+			left : 12%;
+			top : 5%;
+}
+.simple_table { width: 100%; border: none; border-collapse: separate; border-spacing: 2px;}
+.simple_table th { padding: 15px; border: none; border-left: 5px solid #E14FCA  ; border-bottom: 1px solid #DDD; background: #EF90FF ; font-size: large; color:#ffffff; text-align:center; vertical-align: middle;}
+.simple_table td { padding: 15px; border: none; border-bottom: 1px solid #DDD; text-align: center; vertical-align: baseline; font-size: x-large;}
+
+/*비밀번호 입력 모달*/
+ #pwexampleModal {width: 100%;
+            height: 100%;
+            position: absolute;
+            left: 0;
+            top: 0;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background: rgba(255, 255, 255, 0.25);
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+            backdrop-filter: blur(1.5px);
+            -webkit-backdrop-filter: blur(1.5px);
+            border-radius: 10px;
+            border: 1px solid rgba(255, 255, 255, 0.18);
+ 		}	
+ 		
+    #pwmdialog {background: #FFFFFF;
+            box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+            backdrop-filter: blur( 13.5px );
+            -webkit-backdrop-filter: blur( 13.5px );
+            border-radius: 10px;
+            border: 5px solid #92acbb;
+            width: 450px;
+            height: 320px;
+            position: relative;
+            top: -100px;
+            padding: 10px;
+            }   		
+
+#password {           
+ 			 height : 100px;
+ 			 width : 98%;
+			 border-radius : 10px;
+			 border : 2px solid #92acbb;
+			 position : relative;
+			 left : "85%";
+			 top : "1%";
+			 font-size : large;
+			 text-align : center;
+		}
  
 </style>
 
@@ -320,7 +379,7 @@ position:absolute; left:45%; top:1%;
 				<input	type="hidden" value='${sessionInfo.tier}' name="tier" />                         
             	</span></div>
             <div id="logOut">
-               <span><input type="button" id="btn" value="로그아웃" onclick="accessOut()"
+               <span><input type="button" id="btn" value="로그아웃" onclick="accessAdminOut()"
                   onmouseover="mouseOver(this)" onmouseout="mouseLeave(this)"></span>
             </div>
          </div>
@@ -337,6 +396,28 @@ position:absolute; left:45%; top:1%;
 
              </div>
             <div id="mainpage"></div>
+            <div id="undermain">
+					<table class="simple_table">
+						<tbody>
+							<tr>
+								<th scope="row">미확인 글의 수</th>
+								<td id ="writing1"></td>
+							</tr>
+							<tr>
+								<th scope="row">답변 대기중 글의 수</th>
+								<td id ="writing2"></td>
+							</tr>
+							<tr>
+								<th scope="row">답변 완료된 글의 수</th>
+								<td id ="writing3"></td>
+							</tr>
+							<tr>
+								<th scope="row">내가올린 글의 수</th>
+								<td id ="writing4"></td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
          </div>
       </div>
    </form>
@@ -346,9 +427,11 @@ position:absolute; left:45%; top:1%;
       <div class="container" id="exampleModal">
          <div id="mdialog">
             <div class="mcontent">
+            
+         <!-- 답변등록 모달 -->
          
             <!-- The Modal header -->
-               <div><input type="button" id="btn-close" class="btn-close" value="X" onClick="closeModal();"/></div><br>
+               <div><input type="button" id="btn-close" class="btn-close" value="X" onClick="closeModalA11();"/></div><br>
                <br><div class="mtitle" id="mheader"class="mheader"> 
                </div>
             
@@ -364,14 +447,37 @@ position:absolute; left:45%; top:1%;
             <!-- The Modal footer -->
                <br><div><input type="text" class="mfooter" id="answer" value="" /></div>
                  <br> 
-              <input type="button" class="mbtn" id="mbtn" name="command" value="등록" onClick="updAnswer()"/>
+              <input type="button" class="mbtn" id="mbtn" name="command" value="등록" onClick="openModal1()"/>
             </div>
          </div>
       </div>
    </form>
+    
+   <!-- 답변비밀번호입력모달 -->
+   
+   <form name='dynamicFormData'>
+   <!-- The Modal BackGround -->
+      <div class="container" id="pwexampleModal">
+         <div id="pwmdialog">
+            <div class="pwmcontent">
+         
+            <!-- The Modal header -->
+               <div><input type="button" id="btn-close1" class="btn-close" value="X" onClick="closeModalA1();"/></div>
+                      
+            <!-- The Modal footer -->
+               <br><div><input type="password" class="mfooter" id="password" placeholder="EMAIL_비밀번호입력" value="" ></div>
+                 <br> 
+               </input><input type="button" class="mbtn" id="mbtn1" name="command" value="확인" onClick="sendReplyEmail()"/>
+            </div>
+         </div>
+      </div>
+   </form>  
+   
+   
 </body>
    <script>
-   closeModal();
+   closeModalA();
+   closeModalA1();
    function mouseOver(obj) {
       let fColor = (obj.id == "btn") ? "#000000" : "#FFFFFF";
       obj.style.color = fColor;

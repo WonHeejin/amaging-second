@@ -51,6 +51,9 @@
 }
 
 #body {
+	background-repeat:  no-repeat ;
+ 	background-position : 50% 33%;
+ 	background-size : 200px 100px;
 	border: 0;
 	outline: 0;
 	width: 99.8%;
@@ -230,6 +233,7 @@ position:absolute; left:45%; top:1%;
 			border-left: 5px solid #FFBB00;
 			border-right: 5px solid #FFBB00;
 			border-bottom: 5px solid #FFBB00;
+			color :white;
 }
 
 .bothC {
@@ -242,6 +246,7 @@ position:absolute; left:45%; top:1%;
 	border-left: 5px solid #FFBB00;
 	border-right: 5px solid #FFBB00;
 	border-bottom: 5px solid #FFBB00;
+	color : white;
 }
 
 .bothC:active {

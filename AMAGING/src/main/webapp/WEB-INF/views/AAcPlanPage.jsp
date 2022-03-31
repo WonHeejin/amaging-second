@@ -561,7 +561,7 @@
 				<input	type="hidden" value='${sessionInfo.tier}' name="tier" />            
 			</div>
             <div id="logOut">
-               <span><input type="button" id="btn" value="로그아웃" onclick="accessOut()"
+               <span><input type="button" id="btn" value="로그아웃" onclick="accessAdminOut()"
                   onmouseover="mouseOver(this)" onmouseout="mouseLeave(this)"></span>
             </div>
          </div>

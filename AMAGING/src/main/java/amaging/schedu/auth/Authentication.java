@@ -50,7 +50,7 @@ public class Authentication extends amaging.schedu.common.CommonMethod{
 		UserInfo uf = new UserInfo();
 		lg = (Login) mav.getModel().get("login");
 		String page = "";// 1번 page
-
+		String message = "";
 		try {
 
 			if (lg.getUserCode() == 3&&this.convertToBoolean(om.isTeacherEmail(lg))) {
@@ -70,12 +70,29 @@ public class Authentication extends amaging.schedu.common.CommonMethod{
 				uf=om.getAdminInfo(lg);
 				this.om.setAdminAccessHistory(uf);
 				page = "Amainservices";
+			}else {
+				if (lg.getUserCode() == 3) {
+					/*세션bean에 정보담기*/
+					
+					page = "tLoginPage";
+				}else if(lg.getUserCode() == 1){
+					
+					page = "pLoginPage";
+				}else if(lg.getUserCode() == 2){
+					
+					page = "sLoginPage";
+				}else if(lg.getUserCode() == 4) {
+					
+					page = "aLoginPage";
+				}
+				message="계정및 비밀번호를 확인해주세요.";
 			}
 
 			pu.setAttribute("sessionInfo", uf);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		mav.addObject("msg",message);
 		mav.setViewName(page);
 	   }
 	
@@ -83,6 +100,7 @@ public class Authentication extends amaging.schedu.common.CommonMethod{
 		
 		UserInfo uf = new UserInfo();
 		uf = (UserInfo) mav.getModelMap().getAttribute("uf");
+		System.out.println(uf);
 		String page = "";
 		try {
 			if(uf.getUserCode()==4) {

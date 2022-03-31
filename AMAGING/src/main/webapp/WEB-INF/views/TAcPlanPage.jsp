@@ -85,7 +85,7 @@
 }
 
 .bothB {
-     width: 85%;
+   width: 85%;
    height: 13%;
    border-radius: 20px;
    margin: 2% 4%;
@@ -217,7 +217,8 @@ text-align:center;
 position:absolute; left:45%; top:1%;
 }
 
-#acPlanList{float:right;
+#acPlanList{opacity :1.2;
+			float:right;
 			width: 30%;
 			height: 50%;
 			border-radius : 10px;
@@ -228,6 +229,7 @@ position:absolute; left:45%; top:1%;
 			border-left: 5px solid #00A6EF;
 			border-right: 5px solid #00A6EF;
 			border-bottom: 5px solid #00A6EF;
+			
 }
 
 .bothC {
@@ -240,6 +242,7 @@ position:absolute; left:45%; top:1%;
 	border-left: 5px solid #00A6EF;
 	border-right: 5px solid #00A6EF;
 	border-bottom: 5px solid #00A6EF;
+	
 }
 
 .bothC:active {

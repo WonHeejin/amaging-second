@@ -59,6 +59,7 @@ function accessOut(){
       
       document.body.appendChild(form);
        form.submit();
+	sessionStorage.clear();
     
 }
 function getPage(formName,action){
@@ -86,3 +87,10 @@ function findPassword(formName) {
 	/* input개체에 대한 값의 유효성 체크 */
 	form.submit();
 }
+
+/* 뒤로가기 제어
+history.pushState(null, null, location.href);
+window.onpopstate = function(event) {
+    history.go(1);
+};
+*/
