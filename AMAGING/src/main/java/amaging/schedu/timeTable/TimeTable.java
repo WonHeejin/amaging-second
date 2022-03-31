@@ -279,7 +279,7 @@ public class TimeTable extends amaging.schedu.common.CommonMethod{
 		String message=null;
 		try { 
 			this.setTransactionConf(TransactionDefinition.PROPAGATION_REQUIRED, TransactionDefinition.ISOLATION_READ_COMMITTED, false);
-		if(this.convertToBoolean(this.tmo.checkState((ClassBean)mav.getModelMap().getAttribute("cb")))) {			
+		if(!this.convertToBoolean(this.tmo.checkState((ClassBean)mav.getModelMap().getAttribute("cb")))) {			
 			if(this.convertToBoolean( this.tmo.delBelong((ClassBean)mav.getModelMap().getAttribute("cb")))) {
 				message="학생이 삭제되었습니다";	
 				tran =true;				

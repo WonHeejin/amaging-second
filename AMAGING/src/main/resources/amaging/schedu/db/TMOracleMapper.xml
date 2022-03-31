@@ -114,11 +114,9 @@ WHERE SB_ACODE=#{smCode} AND SB_CLCRACCODE=#{acCode} AND SB_CLCRCODE=#{crCode} A
 	</select>	
 	
 	<delete id="delBelong" parameterType="amaging.schedu.bean.ClassBean">
-	DELETE
-   FROM (SELECT FE_COCODE
-         FROM FE
-         WHERE FE_CLCRACCODE=#{acCode} AND FE_CLCRCODE=#{crCode} AND FE_CLCODE=#{clCode} AND FE_STCODE=#{studentId})
-   WHERE FE_COCODE=13
+	DELETE 
+	FROM BS 
+	WHERE BS_CLCRACCODE=#{acCode} AND BS_CLCRCODE=#{crCode} AND BS_CLCODE=#{clCode} AND BS_STCODE=#{studentId}
 	</delete>
 	
 	<select id="checkState" parameterType="amaging.schedu.bean.ClassBean" resultType="int">
@@ -128,9 +126,7 @@ WHERE SB_ACODE=#{smCode} AND SB_CLCRACCODE=#{acCode} AND SB_CLCRCODE=#{crCode} A
      	WHERE FE_CLCRCODE=#{crCode} AND FE_CLCODE=#{clCode} AND FE_STCODE=#{studentId} AND FE_CLCRACCODE=#{acCode})
 	WHERE FE_CLCRCODE=#{crCode} AND FE_CLCODE=#{clCode} AND FE_STCODE=#{studentId} AND FE_CLCRACCODE=#{acCode} AND FE_COCODE=null OR FE_COCODE='13'
 	</select>	
-	
-	
-	
+		
 	<select id="checkClass" parameterType="amaging.schedu.bean.Subject" resultType="int">
 	  SELECT COUNT(*)  
  	  FROM SB 
