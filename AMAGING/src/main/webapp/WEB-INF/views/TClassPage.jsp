@@ -249,14 +249,25 @@ position:absolute; left:45%; top:1%;
       }
 #calendar {
 	margin-left: 5%;
-	width: 150%;
-	height: 73%;
-}      
+	width: 80%;
+	height: 80%;
+}
+.fc-event{
+	font-weight: 900;
+	font-size: 18px;
+}
+.fc .fc-button-primary {
+	background-color: #00A6EF ;
+	border-color: #00A6EF;
+}
+.fc table {
+  	border: 5px solid #00A6EF;
+  }  
 </style>
 
 </head>
 <body onload="calendar('/GetTClassList')">
-   <form name="tmainservices" action="file:///C:/" method="get">
+   <form name="tmainservices" action="file:///C:/" method="post">
       <div id="basic">
          <div id="frame">
             <div id="logo"></div>

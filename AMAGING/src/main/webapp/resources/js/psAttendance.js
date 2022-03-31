@@ -1,16 +1,14 @@
 let earliestStartTime, lastEndTime
-function calendar(action) {
+function calendar() {
 	var calendarEl = document.getElementById('calendar');
 	var calendar = new FullCalendar.Calendar(calendarEl, {
-		slotMinTime: '09:00',
-		slotMaxTime: '23:00',
 		allDaySlot: false,
 		contentHeight: 700,
 		expandRows: true,
 		/*calendar.setOption('slotMaxTime', `09:00:00`),*/
 		locale: 'ko',
-		initialView: 'timeGridWeek',
-		//initialView:'dayGridMonth',
+		//initialView: 'listMonth',
+		initialView:'dayGridMonth',
 		//initialDate: new Date(2022,3,24), // will be parsed as local
 		timeZone: 'local',
 		headerToolbar: {
@@ -18,104 +16,121 @@ function calendar(action) {
 			center: "prev title next",
 			right: "today"
 		},
-		displayEventTime: false,
+		displayEventTime: true,
 		eventTimeFormat: { // like '14:30:00'
 			hour: 'numeric',
 			minute: '2-digit',
 			meridiem: false
 		},
+		eventDisplay: 'block',
 		dayHeaderContent: (args) => {
 			moment.updateLocale('ko', {
 				weekdays: ["일요일", "월요일", "화요일", "수요일", "목요일", "금요일", "토요일"],
 				weekdaysShort: ["일", "월", "화", "수", "목", "금", "토"],
 			});
 
-			return moment(args.date).locale("ko").format('D ddd')
+			return moment(args.date).locale("ko").format('ddd')
 		},
 		events: function(info, successCallback, failureCallback) {
 			const userCode = document.getElementsByName("userCode")[0].value;
 			let userId = (userCode == 1) ? sessionStorage.getItem("sCode")
 				: document.getElementsByName("userId")[0].value;
+				
 			let data = "userId=" + userId + "&userCode=" + document.getElementsByName("userCode")[0].value;
 			$.ajax({
-				type: "post", url: action, data, dataType: "json",
+				type: "post", url: "/PSAttendanceList", data, dataType: "json",
 				success:
 					function(result) {
 						if (result.length > 0) {
 							var events = [];
 							const bcolor = generateHslaColors(result.length);
 							$.each(result, function(index, element) {
-								var startdate = YMDFormatter(element.startDay);
-								var enddate = YMDFormatter(element.endDay);
-								if (userCode ==3) {
+								var attend =(element.attend==21)?'출석':(element.attend==23)?'결석':'지각';
+								var ecolor = (element.attend==21)?'#79ABFF':(element.attend==23)?'#FF8383':'#F2CB61';
 									events.push({
 										id: element.smCode,
-										title: element.acName + "\n" + element.subjectName,
-										startTime: element.stime,
-										endTime: element.etime,
-										startRecur: startdate,
-										endRecur: enddate,
-										daysOfWeek: element.weekDay,
-										color: bcolor[index],
+										title: " " + element.subjectName +" "+(element.startDay).substr(11),
+										start: (element.startDay).replace(/ /g, 'T'),
+										color: ecolor,
 										textColor: 'black',
-										description: element.acName + " " + element.clName + " " + element.subjectName
+										imageurl:'resources/images/학생로고.png',
+										description: element.acName +"\n" + element.clName,
+										attendance: attend
 									}); //.push() end	
-								} else { 
-									events.push({
-										id: element.smCode,
-										title: " " + element.acName + "\n" +  " " + element.subjectName,
-										startTime: element.stime,
-										endTime: element.etime,
-										startRecur: startdate,
-										endRecur: enddate,
-										daysOfWeek: element.weekDay,
-										color: bcolor[index],
-										textColor: 'black',
-										description: element.stime + " ~ " + element.etime + "\n" +  element.clName + "\n" + element.tname
-									}); //.push() end	
-								}
-
 							});//.each()  end			
 							successCallback(events);
-						} else { alert("수업정보가 없습니다.") }//if문 end
+						} else { alert("출석정보가 없습니다.") }//if문 end
 					}//success : function end
 			});//ajax end
 		},//events: function end
 		eventContent: function(arg) {
+			var imageurl="";
+			if((arg.event.extendedProps.attendance).indexOf('출석')!=-1){
+				imageurl="resources/images/출석완료.png";
+			}else if((arg.event.extendedProps.attendance).indexOf('지각')!=-1){
+				imageurl="resources/images/지각.png";
+			}else if((arg.event.extendedProps.attendance).indexOf('결석')!=-1){
+				imageurl="resources/images/결석.png";
+			}
+						
 			return {
-				html: arg.event.title.replace(/\n/g, '<br>'), 
+				html: `<div class="event-icon"><img src="`+imageurl+`" width="16" height="16"/>`+arg.event.title+`</div>`
 			}
 		},
 		eventDidMount: function(arg) {
-			/*const eventStartTime = arg.event.start.getHours()
-			const eventEndTime = arg.event.end.getHours()
-
-			if (!earliestStartTime) {
-				// when undefined
-				earliestStartTime = eventStartTime
-			} else if (eventStartTime < earliestStartTime) {
-				earliestStartTime = eventStartTime
-			}
-
-			if (!lastEndTime) {
-				// when undefined
-				lastEndTime = eventEndTime
-			} else if (eventEndTime > lastEndTime) {
-				lastEndTime = eventEndTime
-			}
-
-			calendar.setOption('slotMinTime', `${earliestStartTime}:00:00`);
-			calendar.setOption('slotMaxTime', `${lastEndTime}:00:00`);*/
-				tippy(arg.el, {
-					content: arg.event.extendedProps.description,//이벤트 디스크립션을 툴팁으로 가져옵니다. 
-					html: true
+			let data = "studentId=" + document.getElementsByName("userId")[0].value
+				+ "&subjectCode=" + arg.event.id;
+				$.ajax({
+					type: "post", url: "/GetAtLog", data, dataType: "json",
+				success:
+					function(result) {
+						console.log(result)
+						let attend;
+						let absent;
+						let late;
+						if(result.length>0){
+							if(result[0].cocodenum==21){
+								attend=result[0].cocode;
+								if(result[1].cocodenum==22){
+									late=result[1].cocode;
+									absent=result[2].cocode;
+								}else{
+									absent=result[1].cocode;
+									late=result[2].cocode;
+								}
+							}else if(result[0].cocodenum==22){
+								late=result[0].cocode;
+								if(result[1].cocodenum==21){
+									attend=result[1].cocode;
+									absent=result[2].cocode;
+								}else{
+									absent=result[1].cocode;
+									attend=result[2].cocode;
+								}
+							}else{
+								absent=result[0].cocode;
+								if(result[1].cocodenum==21){
+									attend=result[1].cocode;
+									late=result[2].cocode;
+								}else{
+									absent=result[1].cocode;
+									late=result[2].cocode;
+								}
+							}
+						}
+						let total=parseInt(attend)+parseInt(absent)+parseInt(late);
+						tippy(arg.el, {
+					content: arg.event.extendedProps.description+"  "+" 출석 "+attend+" 결석 "+absent+" 지각 "+late+ " total( "+ total+"/"+result[0].total+" )",//이벤트 디스크립션을 툴팁으로 가져옵니다. 
+					html: 'true'
 				});
-		}
+					}
+				});				
+		},
 	});// new FullCalendar end
 
 	calendar.render();
 }
-function getEvents() { }
+
 function YMDFormatter(num) {
 	if (!num) return "";
 	var formatNum = '';
@@ -133,14 +148,19 @@ function YMDFormatter(num) {
 }
 //출처: https://sesok808.tistory.com/550 [살아가는 그 이유]
 
+function HHMMSSFormatter(num){
+	if(!num) return "";
+	var formatNum = '';
+	num = num.replace(/\s/gi, "");
+	formatNum=num.replace();
+}
 function generateHslaColors(amount) {
 	let colors = []
 	let huedelta = Math.trunc(360 / amount)
 
-	for (let i = 0; i < amount+1; i++) {
+	for (let i = 0; i < amount; i++) {
 		let hue = i * huedelta
-		/*채도, 명도 */
-		colors.push(`hsla(${hue},60%,80%)`)
+		colors.push(`hsla(${hue},70%,80%)`)
 	}
 	return colors
 }
@@ -163,7 +183,7 @@ function childListBox(cList) {
 	var select=document.getElementById("childSelect");
 	if (sessionStorage.getItem("sCode") == null) { 
 		sessionStorage.setItem("sCode", cc[0].userId); 
-		select[0].selected=true;
+		select[1].selected=true;
 	}else{
 		for(var i=0;i<select.length;i++){
 			if(select[i].value==sessionStorage.getItem("sCode")){
@@ -171,7 +191,7 @@ function childListBox(cList) {
 			}
 		}
 	}
-	calendar('/GetSClassList');
+	calendar();
 }
 function childName(sCode) {
 	sessionStorage.setItem("sCode", sCode);

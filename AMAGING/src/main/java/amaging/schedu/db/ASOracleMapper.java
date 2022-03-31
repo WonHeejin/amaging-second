@@ -4,6 +4,7 @@ import java.util.List;
 
 import amaging.schedu.bean.AcList;
 import amaging.schedu.bean.Admin;
+import amaging.schedu.bean.AtLog;
 import amaging.schedu.bean.AttendanceBean;
 import amaging.schedu.bean.ChildCode;
 import amaging.schedu.bean.ClassBean;
@@ -45,4 +46,14 @@ public interface ASOracleMapper {
 	public List<ChildCode> getDSList(Admin an);
 	public List<ChildCode> getFailSList(Admin an);
 	public int delS(Admin an);
+	/*psAttendance*/
+	public List<Subject> getPSAttendanceList(UserInfo uf);
+	public Subject getSEDate(AttendanceBean ab);
+	public List<AtLog> getAtlog(AttendanceBean ab);
+	/*Graph*/
+	public List<Subject> getGraph(Admin an);
+	public int delST(Admin an);
+	public List<ChildCode> getPSN(Admin an);
+	public List<ChildCode> getPSNN(Admin an);
+	public List<ChildCode> getAG(Admin an);	
 }

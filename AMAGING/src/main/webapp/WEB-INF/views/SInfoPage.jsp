@@ -271,26 +271,35 @@
 	transform: translate(-50%, -50%);
 }
 .mbody {
-	border: 2px solid #92acbb;
+	border: 2px solid white;
 	margin-left:10%;
+	margin-top:5px;
 	width:80%;
 	pont-size: 100pt;
 }
-.acCode{	
-	border: 2px solid #92acbb;
+.record{
+	border-radius: 10px;
+}
+.acCode{		cursor: pointer;
+	border-radius: 10px;
+	border:2px #fffff;
 	float: left;
 	width:20%;
 	height:100%;
 }
-.acName{
-	border: 2px solid #92acbb;
+.acName{	cursor: pointer;
+	border-radius: 10px;
+	border:2px #fffff;	
 	float: left;
 	width:20%;
 	height:100%;
 }
 .acAddress{	
-	border: 2px solid #92acbb;
-	width:100%;
+	float:right;
+	cursor: pointer;
+	border-radius: 10px;
+	border:2px #fffff;	
+	width:60%;
 	height:100%;
 }
 .mfooter{
@@ -303,7 +312,7 @@
 	height:50px;
 }
 .acbox{
-	margin-left:25%;
+	margin-left:20%;
 	margin-top:10%;
 	width: 50%;	
 	height: 20%;
@@ -322,7 +331,7 @@
 	border-right: 5px solid #FFBB00;
 	border-bottom: 5px solid #FFBB00;
 	background-color: #FFBB00;
-	margin-left:20%;
+	margin-left:28%;
 	margin-top:5%;
 	width: 50%;
 	height: 50%;
@@ -331,11 +340,13 @@
 	cursor: pointer;
 	border-radius: 10px;	
 }
-.mbtn{
+.mbtn{float:left;
  border-radius: 10px;background-color: #FFBB00; width:50%; height:100%; border: 1px solid #FFBB00;
+ cursor:pointer;
 }
 .searchBtn{
  border-radius: 10px; background-color: #FFBB00; width:15%; height:40px; border: 1px solid #FFBB00;
+ cursor:pointer;
 } 
 .prbox{
 	margin-left:25%;
@@ -362,7 +373,7 @@
 </style>
 
 </head>
-<body onload="dotClick()">
+<body onload="closeModal()">
 	<form name="Smainservices" action="" method="post">
 		<div id="basic">
 			<div id="frame">
@@ -401,7 +412,23 @@
 			</div>
 		</div>
 	</form>
-
+	<div class='container' id='container'>
+		<div class='mdialog'>
+			<div class='mcontent'>
+				<div class='mheader' style='font-size:200%'>
+				<h4 id='mheader' class='mtitle' >학원 검색</h4></div>
+				<input type='text' name='acName' placeholder='학원이름 입력' style=' height:35px; border-radius: 10px;'/>
+				<input type='button' value='검색' onClick='searchAc()' class='searchBtn'/>
+				<div class='mbody' id='mbody' value=''><div class='acCode' style="background: #EA7B03">등록번호</div><div class='acName'style="background: #EA7B03">이름</div><div class='acAddress'style="background: #EA7B03">주소</div></div>
+				<div class='mfooter'>
+				<input type='button' class='mbtn' value='선택' onclick='selectList()'/>
+				<input type='button' class='mbtn' value='닫기'
+					onclick='closeModal()' style='border-radius: 10px;background-color: #EAEAEA;width:50%; height:100%; border: 1px solid #EAEAEA;'/>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
 	<script>
    function mouseOver(obj) {
       let fColor = (obj.id == "btn") ? "#000000" : "#FFFFFF";
@@ -446,5 +473,5 @@
 
    init();
 </script>
-</body>
+
 </html>

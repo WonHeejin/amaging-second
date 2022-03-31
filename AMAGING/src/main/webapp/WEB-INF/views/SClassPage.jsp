@@ -232,10 +232,22 @@
 }
 
 #calendar {
-	margin-left: 5%;
+	float: left;
+	margin-left: 7%;
 	width: 80%;
-	height: 73%;
+	height: 80%;
 }
+.fc-event{
+	font-weight: 700;
+	font-size: 18px;
+}
+.fc .fc-button-primary {
+	background-color: #FFBB00;
+	border-color: #FFBB00;
+}
+.fc table {
+  	border: 5px solid #FFBB00;
+  }
 </style>
 
 </head>
@@ -258,6 +270,7 @@
 						onclick="accessOut()" onmouseover="mouseOver(this)"
 						onmouseout="mouseLeave(this)"></span>
 				</div>
+				</div>
 				<div id="body">
 					<div id="colorline"></div>
 					<div class="servicebutton">
@@ -273,7 +286,7 @@
 						<div id='calendar'></div>
 					</div>
 				</div>
-			</div>
+			
 		</div>
 	</form>
 

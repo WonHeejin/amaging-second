@@ -13,7 +13,7 @@
 <script src='resources/fullcalendar/main.js'></script>
 <script src='resources/fullcalendar/ko.js'></script>
 <script src="resources/js/common.js"></script>
-<script src="resources/js/class.js"></script>
+<script src="resources/js/psAttendance.js"></script>
 <style>
 #frame {width:100%; height:100%;
    position:absolute; top:5%;}
@@ -239,15 +239,38 @@ position:absolute; left:45%; top:1%;
 }
 
 #calendar {
-	margin-left: 5%;
+	float: left;
+	margin-left: 7%;
 	width: 80%;
-	height: 73%;
+	height: 93%;
 }
+/*event 글씨 진하게*/
+.fc-event{
+	font-weight: bold;
+	
+}
+.legend{
+	padding:0px 30px; border-radius:5px; font-weight: bold;
+	whidth:1%; height: 0%; margin-left:10%; font-size:17px;
+}
+.fc .fc-button-primary {
+	background-color: #99E000;
+	border-color: #99E000;
+}
+.fc table {
+  	border: 5px solid #99E000;
+  }
+ .tippy-box{
+ 	width:150px;
+ 	text-align:center;
+ 	margin:5px;
+ 	padding:20px;
+ }
 </style>
 
 </head>
 <body onload="getChildList('${sessionInfo.userId}')">
-   <form name="pmainservice" action="" method="get">
+   <form name="pmainservice" action="" method="post">
       <div id="basic">
          <div id="frame">
             <div id="logo"></div>
@@ -276,9 +299,14 @@ position:absolute; left:45%; top:1%;
                     <input type="button" class="bothB" id="sevenB" onclick="getAcPlanPage('pmainservice','/InfoPage')"> 
                </div>
             <span><div id="childBox" name="childBox"></div></span>  
-            <div id="mainpage">
-            	<div id='calendar'></div>
-            </div>
+            <div id="mainpage" >
+				<div id= 'legend' style=" whidth:5%; height: 0%;margin-top:0%">
+							<span class="legend"style="background-color: #79ABFF "><img src="resources/images/출석완료.png" width="16" height="16"/> : 출석</span><br/>
+							<span class="legend"style="background-color: #FF8383;"><img src="resources/images/결석.png" width="16" height="16"/> : 결석</span><br/>
+							<span class="legend"style="background-color: #F2CB61;"><img src="resources/images/지각.png" width="16" height="16"/> : 지각</span>
+				</div>
+					<div id='calendar'></div>
+				</div>
          </div>
       </div>
    </form>

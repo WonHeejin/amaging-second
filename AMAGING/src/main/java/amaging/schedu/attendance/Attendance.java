@@ -1,7 +1,9 @@
 package amaging.schedu.attendance;
 
+import java.text.SimpleDateFormat;
 import java.time.LocalTime;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +14,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import amaging.schedu.bean.AcList;
 import amaging.schedu.bean.Admin;
+import amaging.schedu.bean.AtLog;
 import amaging.schedu.bean.AttendanceBean;
 import amaging.schedu.bean.ChildCode;
 import amaging.schedu.bean.Subject;
@@ -96,7 +99,38 @@ public class Attendance extends amaging.schedu.common.CommonMethod{
 		case 19:
 			this.delSResult(model);
 			break;
+		 case 20:
+			this.psAttendanceList(model);
+			break;  
+		 case 21:
+			this.getAtlog(model);
+			break; 
+		 case 25:
+				this.getGraph(model);
+			break;
+		case 26:
+			this.presentSN(model);
+			break;
+		case 27:
+			this.presentSNN(model);
+			break;
+		case 28:
+			this.attgraph(model);
+			break;
 		}
+		
+	}
+	private void attgraph(Model model) {
+		model.addAttribute("getAttgraph",am.getAG((Admin)model.getAttribute("an")));
+	}
+	private void presentSNN(Model model) {
+		model.addAttribute("getPresentSNN",am.getPSNN((Admin)model.getAttribute("an")));
+	}
+	private void presentSN(Model model) {
+		model.addAttribute("getPresentSN",am.getPSN((Admin)model.getAttribute("an")));
+	}
+	private void getGraph(Model model) {
+		model.addAttribute("getGraphR",am.getGraph((Admin)model.getAttribute("an")));
 	}
 	private void delSResult(Model model) {
 		String message = null;
@@ -305,4 +339,23 @@ public class Attendance extends amaging.schedu.common.CommonMethod{
 		mav.setViewName(page);
 		mav.addObject("message", message);
 	}	
+	private void psAttendanceList(Model model) {
+		model.addAttribute("atList", am.getPSAttendanceList((UserInfo)model.getAttribute("uf")));
+	}
+	private void getAtlog(Model model) {
+		AttendanceBean ab=(AttendanceBean)model.getAttribute("ab");
+		Subject sb=am.getSEDate(ab);
+		List<AtLog> atlog=am.getAtlog(ab);
+		String strStartDate=sb.getStartDay();
+		String strEndDate=sb.getEndDay();
+		String strFormat="yyyyMMdd";
+		SimpleDateFormat sdf= new SimpleDateFormat(strFormat);
+		try {
+			Date startDate=sdf.parse(strStartDate);
+			Date endDate=sdf.parse(strEndDate);
+			long diffDay=(endDate.getTime()-startDate.getTime())/(24*60*60*1000);
+			atlog.get(0).setTotal(diffDay);
+		}catch(Exception e) {e.printStackTrace();}
+		model.addAttribute("atlog", atlog);
+	}
 }

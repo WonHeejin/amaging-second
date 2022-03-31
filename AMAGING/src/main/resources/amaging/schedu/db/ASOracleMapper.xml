@@ -150,4 +150,87 @@
 		WHERE SA_STCODE IN(SELECT ST_CODE FROM ST WHERE ST_NAME = #{adCode} AND ST_EMAIL = #{tier}) AND 
 		SA_ACCODE IN(SELECT AD_ACCODE FROM AD WHERE AD_CODE = #{acCode})
 	</update>
+	<update id="delST" parameterType="amaging.schedu.bean.Admin">
+		UPDATE ST 
+		SET ST_DATE = to_char(SYSDATE,'YYYYMM') 
+		WHERE ST_NAME = #{adCode} AND ST_EMAIL =#{tier}
+	</update>
+	<select id="getGraph" parameterType="amaging.schedu.bean.Admin" resultType="amaging.schedu.bean.Subject">
+   		SELECT 
+		(SELECT COUNT(*) 
+		FROM ST INNER JOIN SA ON ST.ST_CODE = SA.SA_STCODE 
+		WHERE SA.SA_ACCODE IN(SELECT AD_ACCODE FROM AD WHERE AD_CODE=#{acCode}) AND ST_DATE='202201') AS smCode, 
+		(SELECT COUNT(*) 
+		FROM ST INNER JOIN SA ON ST.ST_CODE = SA.SA_STCODE 
+		WHERE SA.SA_ACCODE IN(SELECT AD_ACCODE FROM AD WHERE AD_CODE=#{acCode}) AND ST_DATE='202202') AS crCode, 
+		(SELECT COUNT(*) 
+		FROM ST INNER JOIN SA ON ST.ST_CODE = SA.SA_STCODE 
+		WHERE SA.SA_ACCODE IN(SELECT AD_ACCODE FROM AD WHERE AD_CODE=#{acCode}) AND ST_DATE='202203') AS crName, 
+		(SELECT COUNT(*) 
+		FROM ST INNER JOIN SA ON ST.ST_CODE = SA.SA_STCODE 
+		WHERE SA.SA_ACCODE IN(SELECT AD_ACCODE FROM AD WHERE AD_CODE=#{acCode}) AND ST_DATE='202204') AS acName 
+		FROM DUAL
+	</select>
+	<select id="getPSN" parameterType="amaging.schedu.bean.Admin" resultType="amaging.schedu.bean.ChildCode">
+   		SELECT COUNT(*) AS userId 
+		FROM SA 
+		WHERE SA_ACCODE IN(SELECT AD_ACCODE FROM AD WHERE AD_CODE=#{acCode}) AND SA_COCODE=11
+   </select>
+   <select id="getPSNN" parameterType="amaging.schedu.bean.Admin" resultType="amaging.schedu.bean.ChildCode">
+   		SELECT ST.ST_NAME AS sName, ST.ST_EMAIL AS sEmail 
+		FROM ST INNER JOIN SA ON ST.ST_CODE = SA.SA_STCODE 
+		WHERE SA.SA_ACCODE IN(SELECT AD_ACCODE FROM AD WHERE AD_CODE=#{acCode}) AND SA.SA_COCODE=11
+   </select>
+   <select id="getAG" parameterType="amaging.schedu.bean.Admin" resultType="amaging.schedu.bean.ChildCode">
+   		SELECT 
+		(SELECT COUNT(*) 
+		FROM AT 
+		WHERE SUBSTR(AT_SBACODE,26,5) =#{acCode} AND TO_CHAR(AT_DATE,'YYYYMMDD') = TO_CHAR(SYSDATE,'YYYYMMDD') AND AT_COCODE = 21 AND 
+		SUBSTR(AT_SBACODE,6,10) IN(select ac_code from ac where ac_name =#{adCode})) AS userId, 
+		(SELECT COUNT(*) 
+		FROM AT 
+		WHERE SUBSTR(AT_SBACODE,26,5) =#{acCode} AND TO_CHAR(AT_DATE,'YYYYMMDD') = TO_CHAR(SYSDATE,'YYYYMMDD') AND AT_COCODE = 22 AND 
+		SUBSTR(AT_SBACODE,6,10) IN(select ac_code from ac where ac_name =#{adCode})) AS sName, 
+		(SELECT COUNT(*) 
+		FROM AT 
+		WHERE SUBSTR(AT_SBACODE,26,5) =#{acCode} AND TO_CHAR(AT_DATE,'YYYYMMDD') = TO_CHAR(SYSDATE,'YYYYMMDD') AND AT_COCODE = 23 AND 
+		SUBSTR(AT_SBACODE,6,10) IN(select ac_code from ac where ac_name =#{adCode})) AS sEmail 
+		FROM DUAL
+   </select>
+	<select id="getPSAttendanceList" parameterType="amaging.schedu.bean.UserInfo" resultType="amaging.schedu.bean.Subject">
+		SELECT SB_ACODE AS SMCODE, TC_NAME AS TNAME,
+			   AC_NAME AS ACNAME, CL_NAME AS CLNAME,
+			   SB_ASNAME AS SUBJECTNAME, AT_COCODE AS ATTEND, AT_DATE AS STARTDAY
+		FROM BS INNER JOIN SB ON BS.BS_CLCRACCODE=BS.BS_CLCRACCODE
+							 AND BS.BS_CLCRCODE=SB.SB_CLCRCODE
+							 AND BS.BS_CLCODE=SB.SB_CLCODE
+				INNER JOIN AC ON BS.BS_CLCRACCODE=AC.AC_CODE
+				INNER JOIN CL ON BS.BS_CLCRACCODE=CL.CL_CRACCODE
+							 AND BS.BS_CLCRCODE=CL.CL_CRCODE
+							 AND BS.BS_CLCODE=CL.CL_CODE
+				INNER JOIN TC ON SB.SB_TCCODE=TC.TC_CODE
+                LEFT OUTER JOIN AT ON AT.AT_SBACODE=SB.SB_ACODE
+                                AND AT.AT_STCODE=BS.BS_STCODE
+		WHERE BS.BS_STCODE=#{userId} AND AT_COCODE IS NOT NULL	
+	</select>
+	<select id="getSEDate" parameterType="amaging.schedu.bean.AttendanceBean" resultType="amaging.schedu.bean.Subject">
+		SELECT CL_SDATE AS STARTDAY, CL_EDATE AS ENDDAY
+		FROM CL INNER JOIN SB ON CL.CL_CRACCODE=SB.SB_CLCRACCODE 
+                             AND CL.CL_CRCODE=SB.SB_CLCRCODE 
+                             AND CL.CL_CODE=SB.SB_CLCODE
+		WHERE SB_ACODE=#{subjectCode}
+	</select>
+	<select id="getAtlog" parameterType="amaging.schedu.bean.AttendanceBean" resultType="amaging.schedu.bean.AtLog">
+		SELECT COUNT(AT_SBACODE) AS SBACODE, COUNT(AT_COCODE) AS COCODE, 23 AS COCODENUM
+      	FROM AT 
+     	WHERE AT_STCODE=#{studentId} AND AT_SBACODE=#{subjectCode} AND AT_COCODE=23   
+			UNION      
+ 		SELECT COUNT(AT_SBACODE) AS SBACODE, COUNT(AT_COCODE) AS COCODE, 22 AS COCODENUM
+      	FROM AT
+      	WHERE AT_STCODE=#{studentId} AND AT_SBACODE=#{subjectCode} AND AT_COCODE=22
+ 			UNION      
+ 		SELECT COUNT(AT_SBACODE) AS SBACODE, COUNT(AT_COCODE) AS COCODE, 21 AS COCODENUM
+      	FROM AT
+      	WHERE AT_STCODE=#{studentId} AND AT_SBACODE=#{subjectCode} AND AT_COCODE=21
+	</select>
 </mapper>

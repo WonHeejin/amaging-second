@@ -6,6 +6,8 @@
 <meta charset="UTF-8">
 <title>선생님 출석 페이지</title>
  <script src="resources/js/common.js"></script>
+ <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+ 
 <style>
 #frame {width:100%; height:100%;
    position:absolute; top:5%;}
@@ -242,8 +244,8 @@ position:absolute; left:45%; top:1%;
 					border-radius:25px;
 					background-color:#fff;
 					position:absolute;
-					top:30%;
-					left:38.2%;
+					top:50%;
+					left:50%;
 					width:39%;
 					height:450px;
 					transform:translate(-50%,-50%);}
@@ -262,19 +264,24 @@ position:absolute; left:45%; top:1%;
 #mainOne			{width: 10%;
 					height: 20%;
 					float:left;}/*border:2px solid black;*/
+					
+#mainFour			{width: 20%;
+					height: 80%;
+					float:left;}
+					
 #mainThree			{width: 89%;
 					height: 20%;
-					float:right;}		
-#mainTwo			{width: 90%;
+					float:right;}
+						
+#mainTwo			{width: 99%;
 					height: 80%;
-					clear:both;
-					overflow:auto;}
+					clear:right;}
 
 </style>
 
 </head>
-<body onload="closeModal();">
-  <form name="tmainservices" action="" method="post">
+<body onload="">
+	<form name="tmainservices" action="" method="post">
       <div id="basic">
          <div id="frame">
             <div id="logo"></div>
@@ -311,6 +318,7 @@ position:absolute; left:45%; top:1%;
             <div id="mainpage">
             	<div id="mainOne" name="mainOne"></div>
             	<div id="mainThree" name="mainThree"></div>
+            	<div id="mainFour" name="mainFour"></div>
             	<div id="mainTwo" name="mainTwo"></div>
             </div>
          </div>
@@ -355,7 +363,7 @@ input[type="text"] {background-image: url(https://cdn1.iconfinder.com/data/icons
     				font-size:20pt;
     				border-top-left-radius: 30px;
     				border-bottom-left-radius: 30px;
-    				margin-left:10%;
+    				margin-left:30%;
     				margin-right:0.2%;}
     				
 #dateInfo			{height:52px;
@@ -374,7 +382,11 @@ input[type="text"] {background-image: url(https://cdn1.iconfinder.com/data/icons
     				border-bottom-right-radius: 30px;
     				font-weight:bolder;
     				font-size:15px;
-    				margin-left:12.4%;}
+    				margin-left:12.4%;
+    				border:none;}
+    				
+#selectSButton:hover{background-color: #6799FF;
+    				color: white;}
     				
 .spanName			{display:inline-block;
 					border: 2px solid #00A6EF;
@@ -383,7 +395,7 @@ input[type="text"] {background-image: url(https://cdn1.iconfinder.com/data/icons
     				height:22px;
     				text-align:center;
     				background-color:#5CD1E5;
-    				margin-left:26.5%;
+    				margin-left:24.5%;
     				margin-top:3%;}
 .spanSchool			{display:inline-block;
 					border: 2px solid #00A6EF;
@@ -413,7 +425,7 @@ input[type="text"] {background-image: url(https://cdn1.iconfinder.com/data/icons
 					width:120px;
     				height:22px;
     				text-align:center;
-    				margin-left:26.5%;}
+    				margin-left:24.5%;}
 .spanSchoolA		{display:inline-block;
 					border: 2px solid #00A6EF;
 					border-radius: 5px;
@@ -435,8 +447,8 @@ input[type="text"] {background-image: url(https://cdn1.iconfinder.com/data/icons
     				font-weight:bolder;
     				background-color:#5CD1E5;}
     				
-#modButton			{margin-left:62.7%;
-					margin-top:2px;
+#modButton			{margin-left:57.7%;
+					margin-top:5px;
 					cursor:pointer;
 					border-radius: 5px;
 					background-color:#00A6EF;}
@@ -455,6 +467,7 @@ input[type="text"] {background-image: url(https://cdn1.iconfinder.com/data/icons
 					font-family:"jinji";
 					font-weight:bolder;
 					font-size:15px;}
+					
 .aSB				{width:100px;
 					height:40px;
 					border-radius: 5px;
@@ -466,21 +479,75 @@ input[type="text"] {background-image: url(https://cdn1.iconfinder.com/data/icons
     				border-radius: 5px;
     				background-color:#00A6EF;
     				cursor:pointer;
-    				margin-left:10%;
+    				margin-left:5.5%;
     				margin-top:2%;
     				font-weight:bolder;
-    				font-size:20px;}
+    				font-size:20px;
+    				border:none;}
+    				
 .attendanceSBoard	{width:123px;
     				height:50px;
     				margin-left:1%;
     				margin-top:2%;
     				font-size:20px;}
+    				
+#aBox				{width:123px;
+    				height:50px;
+    				background-color:#6799FF;
+    				border-radius: 5px;
+    				margin-left:20px;
+    				margin-top:25px;
+    				text-align:center;
+    				text-weight:bolder;
+    				color:#FFF;
+    				padding-top:20px;}
+    				
+#lBox				{width:123px;
+    				height:50px;
+    				background-color:#C4B73B;
+    				border-radius: 5px;
+    				margin-left:20px;
+    				margin-top:25px;
+    				text-align:center;
+    				text-weight:bolder;
+    				color:#FFF;
+    				padding-top:20px;}
+    				
+#fBox				{width:123px;
+    				height:50px;
+    				background-color:#CC3D3D;
+    				border-radius: 5px;
+    				margin-left:20px;
+    				margin-top:25px;
+    				text-align:center;
+    				text-weight:bolder;
+    				color:#FFF;
+    				padding-top:20px;}
 /*----------------------------------------------------------------------------------------hanjoonghee-------------학생조회--*/
 
 </style>
 <script>
 attandanceS('${sessionInfo.userId}');
-startS();
+window.onload =function(){
+	if(sessionStorage.getItem("acCode") != ""){
+		if(sessionStorage.getItem("acCode") == "3568745688"){
+			sessionStorage.setItem("ID",'성공학원');
+		}else if(sessionStorage.getItem("acCode") == "1024588469"){
+			sessionStorage.setItem("ID",'ICAA');
+		}else if(sessionStorage.getItem("acCode") == "2222234343"){
+			sessionStorage.setItem("ID",'합격학원');
+		}
+	}
+	if(sessionStorage.getItem("ID") == 'ICAA'){
+		document.getElementById("aInfo").selectedIndex = "1";
+	}else if(sessionStorage.getItem("ID") == '합격학원'){
+		document.getElementById("aInfo").selectedIndex = "3";
+	}else if(sessionStorage.getItem("ID") == '성공학원'){
+		document.getElementById("aInfo").selectedIndex = "2";
+	}
+	startS();
+	closeModal();
+}
 
 function searchStudent(userIdData){
 	
@@ -497,8 +564,9 @@ function searchStudent(userIdData){
 		threeData.removeChild(threeData.lastChild);
 	}
 	
-	if(sessionStorage.getItem("ID") != null){
-		return overlapC();
+	if(sessionStorage.getItem("ID") != null || sessionStorage.getItem("acCode") != null){
+		overlapC();
+		apidata();
 	}else{
 		alert("교육기관을 선택해 주세요")
 	}
@@ -541,6 +609,7 @@ function resultM(data){
 function searchSI(){
 	const sNI = document.getElementById("studentNameInfo").value;
 	var tId = document.getElementsByName("userId")[0].value;
+	var han = sessionStorage.getItem("ID");
 	
 	const dI = document.getElementById("dateInfo").value;
 	var yearD = dI.substring(0,4);
@@ -550,7 +619,7 @@ function searchSI(){
 	var aDI = yearD + monD + dayD;
 	
 	const action = "searchList";
-	const data = "userId=" + encodeURIComponent(sNI) + "&teacherId=" + encodeURIComponent(tId) + "&weekDay=" + encodeURIComponent(aDI);
+	const data = "userId=" + encodeURIComponent(sNI) + "&teacherId=" + encodeURIComponent(tId) + "&weekDay=" + encodeURIComponent(aDI) + "&endDay=" + encodeURIComponent(han);
 	getAjax(action, data, "searchResult");
 }
 
@@ -596,12 +665,14 @@ function autoChange(){
 	}else if(ac == '23'){
 		document.getElementById("attendanceStatus").selectedIndex = "2";
 	}
+	
 }
 
 function modDatasend(){
 	const sNI = document.getElementById("studentNameInfo").value;
 	var tId = document.getElementsByName("userId")[0].value;
 	const sC = document.getElementById("attendanceStatus").value;
+	var han = sessionStorage.getItem("ID");
 	
 	const dI = document.getElementById("dateInfo").value;
 	var yearD = dI.substring(0,4);
@@ -611,7 +682,8 @@ function modDatasend(){
 	var aDI = yearD + monD + dayD;
 	
 	const action = "upSI";
-	const data = "userId=" + encodeURIComponent(sNI) + "&teacherId=" + encodeURIComponent(tId) + "&weekDay=" + encodeURIComponent(aDI) + "&smCode=" + encodeURIComponent(sC);
+	const data = "userId=" + encodeURIComponent(sNI) + "&teacherId=" + encodeURIComponent(tId) + "&weekDay=" + encodeURIComponent(aDI) + "&smCode=" + encodeURIComponent(sC) + "&endDay=" + encodeURIComponent(han);
+	
 	getAjax(action, data, "upAfterM");
 }
 
@@ -632,6 +704,7 @@ function upAfterM(data){
 function reOpen(){
 	const sNI = document.getElementById("studentNameInfo").value;
 	var tId = document.getElementsByName("userId")[0].value;
+	var han = sessionStorage.getItem("ID");
 	
 	const dI = document.getElementById("dateInfo").value;
 	var yearD = dI.substring(0,4);
@@ -641,10 +714,73 @@ function reOpen(){
 	var aDI = yearD + monD + dayD;
 	
 	const action = "searchList";
-	const data = "userId=" + encodeURIComponent(sNI) + "&teacherId=" + encodeURIComponent(tId) + "&weekDay=" + encodeURIComponent(aDI);
+	const data = "userId=" + encodeURIComponent(sNI) + "&teacherId=" + encodeURIComponent(tId) + "&weekDay=" + encodeURIComponent(aDI) + "&endDay=" + encodeURIComponent(han);
 	getAjax(action, data, "lastResult");
 }
+
+function apidata(){
+	var tId = document.getElementsByName("userId")[0].value;
+	var han = sessionStorage.getItem("ID");
+	
+	const action = "attgraph";
+	const data = "acCode=" + encodeURIComponent(tId) + "&adCode=" + encodeURIComponent(han);;
+	getAjax(action, data, "getChartR");
+}
+var oneD;
+var twoD;
+var threeD;
+function getChartR(graphD){
+	let cData;
+	cData = JSON.parse(graphD);
+	oneD = parseInt(cData[0].userId);
+	twoD = parseInt(cData[0].sname);
+	threeD = parseInt(cData[0].semail);
+	
+	return getChartRD();
+} 
+
+google.charts.load('current', {'packages':['bar','corechart']});
+
+function getChartRD() {
+    var data = google.visualization.arrayToDataTable([
+           ["Title",{label: '출석',type: 'number'},{label: '결석',type: 'number'},{label: '지각',type: 'number'}],
+           ["",oneD,threeD,twoD]
+   ]);
+
+   var barChartOption = {
+           bars: 'vertical',
+           height :301,
+           width :'100%',
+           legend: { position: "top" },
+           isStacked: false,
+           tooltip:{textStyle : {fontSize:12}, showColorCode : true},
+           animation: {
+             startup: true,
+             duration: 1000,
+             easing: 'linear' },
+           annotations: {
+               textStyle: {
+                 fontSize: 15,
+                 bold: true,
+                 italic: true,
+                 color: '#871b47',
+                 auraColor: '#d799ae',
+                 opacity: 0.8
+               }
+          }
+    };
+
+   var chart = new google.visualization.BarChart(document.getElementById('mainFour'));
+
+   chart.draw(data, barChartOption);
+   window.addEventListener('resize', function() { chart.draw(data, barChartOption); }, false);
+}
+
+
+
+
 function lastResult(searchData){
+	google.charts.setOnLoadCallback(getChartRD);
 	let sData;
 	sData = JSON.parse(searchData);
 	
@@ -673,9 +809,10 @@ function lastResult(searchData){
 		rightData += '</div>';
 		
 		upTitle.innerHTML = rightData;
-		
+		apidata();
 		autoChange();
 }
+
 /*---------------------------------------------------------------------------------------------------------학생조회----END-----------*/
 function startS(){
 	if(sessionStorage.getItem("ID") != ""){
@@ -688,13 +825,18 @@ function startS(){
 	}
 }
 function attandanceStart(userIdData){
+	
 	let twoData = document.getElementById("mainTwo");
 	let threeData = document.getElementById("mainThree");
+	let udData = document.getElementById("mainFour");
 	while(threeData.hasChildNodes()){
 		threeData.removeChild(threeData.lastChild);
 	}
 	while(twoData.hasChildNodes()){
 		twoData.removeChild(twoData.lastChild);
+	}
+	while(udData.hasChildNodes()){
+		udData.removeChild(udData.lastChild);
 	}
 	if(sessionStorage.getItem("ID") != null){
 		abcd();
@@ -707,10 +849,12 @@ function attandanceStart(userIdData){
 	getAjax(action, data, "academyList");
 }
 
-function attandanceS(userIdData){//학원 리스트 갖고 오기
+function attandanceS(userIdData){
+	const hans = document.getElementById("mainFour");
 	const action = "GetASchoolList";
 	const data = "userId=" + encodeURIComponent(userIdData);
-	getAjax(action, data, "academyList");
+ 	getAjax(action, data, "academyList");
+ 	
 }
 
 let acList;
@@ -770,12 +914,31 @@ function abcd(){
 	var han = aIdx.getAttribute("value");
 	
 	sessionStorage.setItem('ID',han);
+	if(han == 'ICAA'){
+		sessionStorage.setItem('acCode','1024588469');
+	}else if(han == '합격학원'){
+		sessionStorage.setItem('acCode','2222234343');
+	}else if(han == '성공학원'){
+		sessionStorage.setItem('acCode','3568745688');
+	}
 	
 	const userId =document.getElementsByName("tCode")[0].value;
 	const action = "selectClass";
 	const dataAcName = "userId=" + encodeURIComponent(userId) + "&acName=" + encodeURIComponent(han);
 	getAjax( action, dataAcName, "selectClassBar");
 }
+function autoselectbarD(){
+	if(sessionStorage.getItem("ID") != ""){
+		if(sessionStorage.getItem("ID") == 'ICAA'){
+			aInfo.selectedIndex = 'ICAA';
+		}else if(sessionStorage.getItem("ID") == '합격학원'){
+			aInfo.selectedIndex = '합격학원';
+		}else if(sessionStorage.getItem("ID") == '성공학원'){
+			aInfo.selectedIndex = '성공학원';
+		}
+	}
+}
+
 function sClass(data){
 	if(data == "success"){
 		alert("교육기관이 선택되었습니다.");
@@ -812,9 +975,8 @@ function selectClassBar(ClList){
 }
 
 function stList(idx){
-	var dataClName = document.getElementsByName("crList("+idx+")")[idx].value;
+	var dataClName = document.getElementsByName("crList("+idx+")")[idx].value;/*T1001의 경우::하버드반*/
 	var dataTId = document.getElementsByName("userId")[0].value;
-	
 	const action = "attendanceCheck";
 	const dataAcName = "userId=" + encodeURIComponent(dataTId) + "&acName=" + encodeURIComponent(dataClName);
 	getAjax( action, dataAcName, "checkSA");
@@ -833,25 +995,31 @@ function checkSA(SAList){
 		saData += '<span>';
 		if(a != 0 && a%4 == 3){
 			if(sAList[a].atStatus == '21'){
-				saData += '<input type="button" class="attendanceBoard" name="checkSA('+a+')" value="'+ sAList[a].studentName +'" onClick="modSA('+a+');"/>';
-				saData += '<span id="checkSA('+a+')" class="attendanceSBoard" value="'+ sAList[a].dayDate +'" >출석</span></p>'
+				saData += '<input type="button" id="colorB('+a+')" class="attendanceBoard" name="checkSA('+a+')" value="'+ sAList[a].studentName +'" onClick="modSA('+a+');"/>';
+				saData += '<span id="checkSA('+a+')" value="'+ sAList[a].dayDate +'" >출석</span></p>'
+				saData += '<input type="hidden" id="colorC('+a+')" value="'+sAList[a].atStatus+'">'
 			}else if(sAList[a].atStatus == '22'){
-				saData += '<input type="button" class="attendanceBoard" name="checkSA('+a+')" value="'+ sAList[a].studentName +'" onClick="modSA('+a+');"/>';
-				saData += '<span id="checkSA('+a+')" class="attendanceSBoard" value="'+ sAList[a].dayDate +'" >지각</span></p>'
+				saData += '<input type="button" id="colorB('+a+')" class="attendanceBoard" name="checkSA('+a+')" value="'+ sAList[a].studentName +'" onClick="modSA('+a+');"/>';
+				saData += '<span id="checkSA('+a+')" value="'+ sAList[a].dayDate +'" >지각</span></p>'
+				saData += '<input type="hidden" id="colorC('+a+')" value="'+sAList[a].atStatus+'">'
 			}else if(sAList[a].atStatus == '23'){
-				saData += '<input type="button" class="attendanceBoard" name="checkSA('+a+')" value="'+ sAList[a].studentName +'" onClick="modSA('+a+');"/>';
-				saData += '<span id="checkSA('+a+')" class="attendanceSBoard" value="'+ sAList[a].dayDate +'" >결석</span></p>'
+				saData += '<input type="button" id="colorB('+a+')" class="attendanceBoard" name="checkSA('+a+')" value="'+ sAList[a].studentName +'" onClick="modSA('+a+');"/>';
+				saData += '<span id="checkSA('+a+')" value="'+ sAList[a].dayDate +'" >결석</span></p>'
+				saData += '<input type="hidden" id="colorC('+a+')" value="'+sAList[a].atStatus+'">'
 			}
 		}else{
 			if(sAList[a].atStatus == '21'){
-				saData += '<input type="button" class="attendanceBoard" name="checkSA('+a+')" value="'+ sAList[a].studentName +'" onClick="modSA('+a+');"/>';
-				saData += '<span id="checkSA('+a+')" class="attendanceSBoard" value="'+ sAList[a].dayDate +'" >출석</span>'
+				saData += '<input type="button" id="colorB('+a+')" class="attendanceBoard" name="checkSA('+a+')" value="'+ sAList[a].studentName +'" onClick="modSA('+a+');"/>';
+				saData += '<span id="checkSA('+a+')" value="'+ sAList[a].dayDate +'" >출석</span>'
+				saData += '<input type="hidden" id="colorC('+a+')" value="'+sAList[a].atStatus+'">'
 			}else if(sAList[a].atStatus == '22'){
-				saData += '<input type="button" class="attendanceBoard" name="checkSA('+a+')" value="'+ sAList[a].studentName +'" onClick="modSA('+a+');"/>';
-				saData += '<span id="checkSA('+a+')" class="attendanceSBoard" value="'+ sAList[a].dayDate +'" >지각</span>'
+				saData += '<input type="button" id="colorB('+a+')" class="attendanceBoard" name="checkSA('+a+')" value="'+ sAList[a].studentName +'" onClick="modSA('+a+');"/>';
+				saData += '<span id="checkSA('+a+')" value="'+ sAList[a].dayDate +'" >지각</span>'
+				saData += '<input type="hidden" id="colorC('+a+')" value="'+sAList[a].atStatus+'">'
 			}else if(sAList[a].atStatus == '23'){
-				saData += '<input type="button" class="attendanceBoard" name="checkSA('+a+')" value="'+ sAList[a].studentName +'" onClick="modSA('+a+');"/>';
-				saData += '<span id="checkSA('+a+')" class="attendanceSBoard" value="'+ sAList[a].dayDate +'" >결석</span>'
+				saData += '<input type="button" id="colorB('+a+')" class="attendanceBoard" name="checkSA('+a+')" value="'+ sAList[a].studentName +'" onClick="modSA('+a+');"/>';
+				saData += '<span id="checkSA('+a+')" value="'+ sAList[a].dayDate +'" >결석</span>'
+				saData += '<input type="hidden" id="colorC('+a+')" value="'+sAList[a].atStatus+'">'
 			}
 		}
 		saData += '</span>';
@@ -859,16 +1027,49 @@ function checkSA(SAList){
 		saData += '</div>';	
 	
 	downTitle.innerHTML = saData;
+	
+	return colorChange(sAList);
 }
 
+function colorChange(data){
+	
+	for(let idx=0 ; idx<data.length ; idx++){
+		let dTitle = document.getElementById("colorB("+idx+")");
+		if(document.getElementById("colorC("+idx+")").value == '21'){
+			dTitle.style.backgroundColor = "#6799FF";
+			dTitle.style.color = "#E5D85C";
+		}else if(document.getElementById("colorC("+idx+")").value == '22'){
+			dTitle.style.backgroundColor = "#C4B73B";
+			dTitle.style.color = "#5D5D5D";
+		}else if(document.getElementById("colorC("+idx+")").value == '23'){
+			dTitle.style.backgroundColor = "#CC3D3D";
+			dTitle.style.color = "#E4F7BA";
+		}
+	}
+	
+	exampleData();
+}
+function exampleData(){
+	
+	let downLTitle = document.getElementById("mainFour");
+	
+	let exampleD = '<div id="aBox" >출&nbsp&nbsp&nbsp석</div>';
+		exampleD += '<div id="lBox" >지&nbsp&nbsp&nbsp각</div>';
+		exampleD += '<div id="fBox" >결&nbsp&nbsp&nbsp석</div>';
+		
+		downLTitle.innerHTML = exampleD;
+	
+}
 function modSA(idx){
 	const dataTId = document.getElementsByName("userId")[0].value;
 	const dataSI = document.getElementsByName("checkSA("+idx+")")[0].value;
 	var dataTI = document.getElementById("checkSA("+idx+")");
 	var dataT = dataTI.getAttribute("value");
+	var hanD =  document.getElementsByClassName("aSB")[0].value; 
 	/*acName::학생이름 , 출첵시간::acCode, 선생아뒤::userId*/
 	const action = "modStudentA";
-	var sendData = "acName=" + encodeURIComponent(dataSI) + "&acCode=" + encodeURIComponent(dataT) + "&userId=" + encodeURIComponent(dataTId);
+	var sendData = "tCode=" + encodeURIComponent(dataSI) + "&acCode=" + encodeURIComponent(dataT) + "&userId=" + encodeURIComponent(dataTId) + "&acName=" + encodeURIComponent(hanD);
+	
 	getAjax(action, sendData, "checkSA");
 }
 //-----------------------------------------------------------------------------------------------------------------------------2차로그인

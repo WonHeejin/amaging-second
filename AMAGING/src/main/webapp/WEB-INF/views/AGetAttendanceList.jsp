@@ -6,6 +6,7 @@
 <meta charset="UTF-8">
 <title>관리자 인사관리 페이지</title>
  <script src="resources/js/common.js"></script>
+ <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 <style>
 #frame {
    width: 100%;
@@ -237,26 +238,27 @@ position:absolute; left:45%; top:1%;
        font-weight:800;
        font-size:130%;
       }
-#mainOne			{width: 10%;
-					height: 20%;
+      
+#mainOne			{width: 40%;
+					height: 10%;
 					float:left;}/*border:2px solid black;*/
-#mainThree			{width: 89%;
+					
+#mainFour			{width: 40%;
+					height: 60%;
+					clear:left;}
+					
+#mainTwo			{width: 58%;
 					height: 20%;
 					float:right;}
 						
-#mainTwo			{width: 90%;
-					height: 10%;
-					clear:both;}
-#mainDTwo			{width: 90%;
-					height: 70%;
-					float:left;
-					overflow:auto;}
+#mainThree			{width: 58%;
+					height: 50%;
+					float:right;}
 
-a:hover				{background-color: #E14FCA;}
 </style>
 
 </head>
-<body onload="">
+<body onload="deleteS();">
    <form name="amainservice" action="" method="post">
       <div id="basic">
          <div id="frame">
@@ -278,31 +280,32 @@ a:hover				{background-color: #E14FCA;}
             <div id="colorline"></div>
             <div class="servicebutton">
 
-              <input type="button" class="bothB" id="oneB" onclick="getPage('amainservice','/AcPlanPage')">                             
+               <input type="button" class="bothB" id="oneB" onclick="getPage('amainservice','/AcPlanPage')">                             
                <input type="button" class="bothB" id="twoB" onclick="getPage('amainservice', '/AClassPage')"> 
                <input type="button" class="bothB" id="threeB" onclick="getPage('amainservice','AFeePage')">
                <input type="button" class="bothB" id="fourB" onclick="getPage('amainservice','/AGetAttendanceL')">
                <div class="div1">
-                    <div class="div2" onclick="approveWS();" >
-                   ●&nbsp;&nbsp;등록
+                    <div class="div2" onclick="deleteS();" >
+                   ●&nbsp;&nbsp;회원탈퇴
                      </div>
-                    <div class="div2" onclick="deleteS();">
-                 ●&nbsp;&nbsp;삭제
+                    <div class="div2" onclick="approveWS();">
+                 ●&nbsp;&nbsp;대기회원
                       </div>
                </div>
-               <input type="button" class="bothB" id="fiveB" onclick="">
+               <input type="button" class="bothB" id="fiveB" onclick="getPage('amainservice','/AQnAPage')">
 
             </div>
             <div id="mainpage">
             	<div id="mainOne" name="mainOne"></div>
-            	<div id="mainThree" name="mainThree"></div>
             	<div id="mainTwo" name="mainTwo"></div>
-            	<div id="mainDTwo" name="mainDTwo"></div>
+            	<div id="mainThree" name="mainThree"></div>
+            	<div id="mainFour" name="mainFour"></div>
             </div>
          </div>
       </div>
    </form>
 <style>
+#mainTwo			{padding-top:5%;}
 #displayS			{width:100px;
 					height:40px;
 					border: 2px solid #EF90FF;
@@ -325,8 +328,10 @@ input[type="text"] {background-image: url(https://cdn1.iconfinder.com/data/icons
     				font-size:20pt;
     				border-top-left-radius: 30px;
     				border-bottom-left-radius: 30px;
-    				margin-left:30%;
+    				margin-left:20%;
     				margin-right:0.5%;}
+
+/*-------------------------------------------------------------------------*/   
 
 #nameTitle			{margin-left:37%;
 					margin-right:42%;
@@ -352,12 +357,17 @@ input[type="text"] {background-image: url(https://cdn1.iconfinder.com/data/icons
     				border-bottom-right-radius: 30px;
     				font-weight:bolder;
     				font-size:15px;
-    				position:fixed}
+    				position:fixed;
+    				color: black;
+    				border: none;}
+    				
+.inputBOL:hover 	{background-color: #F361A6;
+    				color: white;}
  
 .delSTopTitle		{width:600px;
     				height:200px;
     				padding-top:70px;
-    				margin-left:310px;}
+    				margin-left:110px;}
     				 				
 .delSTOne			{display:inline-block;
 					border: 2px solid #EF90FF;
@@ -406,124 +416,241 @@ input[type="text"] {background-image: url(https://cdn1.iconfinder.com/data/icons
 					background-color:#FFB2F5;}
 .pRButton			{background-color:#FFB2F5;
 					cursor:pointer;}
+a:hover				{background-color:#B2EBF4}
 
+#studentNum			{font-size:20px;
+					font-weight:bolder;
+					color:#EF90FF;
+					margin-left:30%;
+					margin-top:5%;}
+#psnnName			{display:inline-block;
+					border: 2px solid #4374D9;
+					border-radius: 5px;
+					width:120px;
+    				height:22px;
+    				text-align:center;
+    				background-color:#B2EBF4;}
+#psnnEmail			{display:inline-block;
+					border: 2px solid #4374D9;
+					border-radius: 5px;
+					width:200px;
+    				height:22px;
+    				text-align:center;}
+    				
+.nPosition			{display:inline-block;
+					border: 2px solid #fff;
+					border-radius: 5px;
+					width:120px;
+    				height:22px;
+					text-align:right;}
 </style>
 <script type="text/javascript">
-function deleteS(){
+function approveWS(){
+	let twoData = document.getElementById("mainTwo");
+	while(twoData.hasChildNodes()){
+		twoData.removeChild(twoData.lastChild);
+	}
 	let threeData = document.getElementById("mainThree");
 	while(threeData.hasChildNodes()){
 		threeData.removeChild(threeData.lastChild);
 	}
-	let twoeData = document.getElementById("mainTwo");
-	while(twoeData.hasChildNodes()){
-		twoeData.removeChild(twoeData.lastChild);
+	let fourData = document.getElementById("mainFour");
+	while(fourData.hasChildNodes()){
+		fourData.removeChild(fourData.lastChild);
 	}
-	let twoData = document.getElementById("mainDTwo");
-	while(twoData.hasChildNodes()){
-		twoData.removeChild(twoData.lastChild);
-	}
+	return displaySW();
+}
+function displaySW(){	
+	var nameData = document.getElementsByName("userId")[0].value;
 	
+	var actionO = "approveWS";
+	var sendOData = "adCode=" + encodeURIComponent(nameData);
+	getAjax(actionO, sendOData, "resultWS");
+	
+	var actionT = "presentSN";
+	var sendTData = "acCode=" + encodeURIComponent(nameData);
+	getAjax(actionT, sendTData, "resultPSN");
+	
+	var actionTh = "presentSNN";
+	var sendThData = "acCode=" + encodeURIComponent(nameData);
+	getAjax(actionTh, sendThData, "resultPSNN");
+}
+function resultPSNN(data){
+	let psnnList; 
+	psnnList = JSON.parse(data);
+	let dTitle = document.getElementById("mainFour");
+	dTitle.style.overflow ="auto";
+	dTitle.style.border = "7px solid #EF90FF";
+	dTitle.style.borderRadius = "15px";
+	
+	let	outLine = '</div>';
+	for(let idx =0 ; idx < psnnList.length ; idx++){
+		outLine += '<div>';
+		outLine += '<span class="nPosition" >'+(idx+1)+' : &nbsp</span>';
+		outLine += '<span id="psnnName" >' + psnnList[idx].sname +'</span>';
+		outLine += '<span id="psnnEmail" >' + psnnList[idx].semail +'</span>';
+		outLine += '</div>';
+	}
+	outLine += '</div>';
+	
+	dTitle.innerHTML = outLine;
+}
+function resultPSN(data){//학생수
+	let psnList; 
+	psnList = JSON.parse(data);
 	let upTitle = document.getElementById("mainOne");
 	
-	let outLine = '<div>';
-		outLine += '<select id="displayS" onchange="displayDS(this)">';
-		outLine += '<option value="11">변경대상';
-		outLine += '<option value="12">학생';
-		outLine += '<option value="13">선생님';
-		outLine += '<option value="14">관리자';
-		outLine += '</select>';
-		outLine += '</div>';
-	   
-	   upTitle.innerHTML = outLine;
+	let outULine = '<div id="studentNum"><재학중인 원생 : '+ psnList[0].userId +'명></div>';
+	
+	upTitle.innerHTML = outULine;
 }
 
-function displayDS(data){
-	var pointD = data.value;
-	let threeData = document.getElementById("mainTwo");
-	let twoData = document.getElementById("mainDTwo");
+function resultWS(data){
+	let wsList; 
+	wsList = JSON.parse(data);
+	let upTitle = document.getElementById("mainTwo");
+	let dTitle = document.getElementById("mainThree");
+	
+	let outULine = '<div id="nameTitle">&nbsp&nbsp&nbsp요청목록</div>';
+		
+	let	outLine = '<div class="delSTopTitle">';
+		outLine += '<div>';
+		outLine += '<span class="delSTOne">학생 이름</span>';
+		outLine += '<span class="delSTTwo"> 이메일</span>';
+		outLine += '</div>';
+		for(let idx =0 ; idx < wsList.length ; idx++){
+			outLine += '<span id="waitSID('+idx+')"  class="delSDOne" value="'+ wsList[idx].userId+'">' + wsList[idx].sname +'</span>';
+			outLine += '<span id="delSDTwoL" >' + wsList[idx].semail +'</span>';
+			outLine += '<input type="button" class="pRButton" value="수락" onClick="permissionB('+idx+')"/>';
+			outLine += '<input type="button" class="pRButton" value="거절" onClick="rejectB('+idx+')"/></br>';
+		}
+		outLine += '</div>';
+		
+		 upTitle.innerHTML = outULine;
+		 dTitle.innerHTML = outLine;
+}
+function permissionB(idx){
+	var getData = document.getElementById("waitSID("+idx+")");
+	var sendData = getData.getAttribute("value");
+	
+	var nameData = document.getElementsByName("userId")[0].value;
+	
+	var action = "permissionWS";
+	var sendData = "adCode=" + encodeURIComponent(nameData) +  "&acCode=" + encodeURIComponent(sendData);
+	getAjax(action, sendData, "resultWS");
+	
+	var actionT = "presentSN";
+	var sendTData = "acCode=" + encodeURIComponent(nameData);
+	getAjax(actionT, sendTData, "resultPSN");
+	
+	var actionTh = "presentSNN";
+	var sendThData = "acCode=" + encodeURIComponent(nameData);
+	getAjax(actionTh, sendThData, "resultPSNN");
+	
+}
+function rejectB(idx){
+	var getData = document.getElementById("waitSID("+idx+")");
+	var sendData = getData.getAttribute("value");
+
+	var nameData = document.getElementsByName("userId")[0].value;
+	
+	var action = "rejectWS";
+	var sendData = "adCode=" + encodeURIComponent(nameData) +  "&acCode=" + encodeURIComponent(sendData);
+	return getAjax(action, sendData, "resultWS");
+}
+//----------------------------------------------------------------------------------회원탈퇴
+function deleteS(){
+	let oneData = document.getElementById("mainOne");
+	while(oneData.hasChildNodes()){
+		oneData.removeChild(oneData.lastChild);
+	}
+	let twoData = document.getElementById("mainTwo");
 	while(twoData.hasChildNodes()){
 		twoData.removeChild(twoData.lastChild);
 	}
+	let threeData = document.getElementById("mainThree");
+	while(threeData.hasChildNodes()){
+		threeData.removeChild(threeData.lastChild);
+	}
+	let dTitle = document.getElementById("mainFour");
+		dTitle.style.overflow ="";
+		dTitle.style.border = "";
+		dTitle.style.borderRadius = "";
 	
-	if(pointD == 12){
-		let searchData = '<div>';
+	let searchData = '<div>';
 		searchData += '<span >';
 		searchData += '<input type="text" id="studentNameInfo" value="" placeholder="학생 이름"/>';
 		searchData += '</span>';
 		searchData += '<span>';
-		searchData += '<input type="button" class="inputBOL" value="검색" onmouseover="this.style.backgroundColor=\'#FFB2F5\'" onmouseout="this.style.backgroundColor=\'#EF90FF\'" onClick="checkS(1);"/>';
+		searchData += '<input type="button" class="inputBOL" value="검색" onClick="checkS();"/>';
 		searchData += '</span>';
 		searchData += '</div>';
-		
-		threeData.innerHTML = searchData;
-	}else if(pointD == 13){
-		let searchData = '<div>';
-		searchData += '<span>';
-		searchData += '<input type="text" id="teacherNameInfo" value="" placeholder="선생님 이름"/>';
-		searchData += '</span>';
-		searchData += '<span>';
-		searchData += '<input type="button" class="inputBOL" value="검색" onmouseover="this.style.backgroundColor=\'#FFB2F5\'" onmouseout="this.style.backgroundColor=\'#EF90FF\'" onClick="checkS(2);"/>';
-		searchData += '</span>';
-		searchData += '</div>';
-		
-		threeData.innerHTML = searchData;
-		
-		
-	}else if(pointD == 14){
-		let searchData = '<div>';
-		searchData += '<span>';
-		searchData += '<input type="text" id="adminNameInfo" value="" placeholder="관리자 이름"/>';
-		searchData += '</span>';
-		searchData += '<span>';
-		searchData += '<input type="button" class="inputBOL" value="검색" onmouseover="this.style.backgroundColor=\'#FFB2F5\'" onmouseout="this.style.backgroundColor=\'#EF90FF\'" onClick="checkS(3);"/>';
-		searchData += '</span>';
-		searchData += '</div>';
-		
-		threeData.innerHTML = searchData;
-	}
+	
+	twoData.innerHTML = searchData;
+	getChart();
+}
+function getChart(){
+	var aNameData = document.getElementsByName("userId")[0].value;
+	
+	const action = "getGraph";
+	var sendData = "acCode=" + encodeURIComponent(aNameData);
+	getAjax(action, sendData, "getChartR");
+}
+var oneD;
+var twoD;
+var threeD;
+var fourD;
+function getChartR(graphD){
+	let cData;
+	cData = JSON.parse(graphD);
+	oneD = parseInt(cData[0].smCode);
+	twoD = parseInt(cData[0].crCode);
+	threeD = parseInt(cData[0].crName);
+	fourD = parseInt(cData[0].acName);
+	
+	return getChartRD();
 }
 
-function checkS(data){
-	let threeData = document.getElementById("mainDTwo");
-	if(data == '1'){
+
+google.charts.load('current', {'packages':['bar']});
+google.charts.setOnLoadCallback(getChartRD);
+
+function getChartRD(){
+	
+	var data = google.visualization.arrayToDataTable([
+        ['Date', '1월', '2월', '3월','4월'],
+        ['2022년', oneD, twoD, threeD,fourD],
+    ]);
+ 
+    var options = {
+        chart: {
+        title: 'The person who quit the cram school',
+        width: '100%'
+        }
+    };
+ 
+    var chart = new google.charts.Bar(document.getElementById('mainFour'));
+ 
+    chart.draw(data, google.charts.Bar.convertOptions(options));
+}
+
+function checkS(){
 		var nameDate = document.getElementById("studentNameInfo").value;
 		var aNameData = document.getElementsByName("userId")[0].value;
 		
 		const action = "stListInfo";
 		const sendData = "acCode=" + encodeURIComponent(nameDate) + "&adCode=" + encodeURIComponent(aNameData);
 		return getAjax(action, sendData, "studentInfoL");
-		
-	}else if(data == '2'){
-		threeData.style.marginLeft = "330px";
-		threeData.style.marginTop = "40px";
-		threeData.style.color = "red";
-		threeData.style.fontSize = "40px";
-		threeData.style.fontWeight = "bolder";
-		threeData.innerText = "대상자가 존재하지 않습니다.";
-		
-	}else if(data == '3'){
-		threeData.innerText = "대상자가 존재하지 않습니다.";
-	}
 }
 
 function studentInfoL(data){
 	let dSList;
 	dSList = JSON.parse(data);
-	let threeData = document.getElementById("mainDTwo");
+	let threeData = document.getElementById("mainThree");
+	
 	if(dSList[0].semail == '0'){
-		threeData.style.marginLeft = "330px";
-		threeData.style.marginTop = "40px";
-		threeData.style.color = "red";
-		threeData.style.fontSize = "40px";
-		threeData.style.fontWeight = "bolder";
-		return threeData.innerText = "대상자가 존재하지 않습니다.";
+		alert("대상자가 존재하지 않습니다.");
 	}else{
-		threeData.style.marginLeft = "";
-		threeData.style.marginTop = "";
-		threeData.style.color = "";
-		threeData.style.fontSize = "";
-		threeData.style.fontWeight = "";
-		
 		var idx = 0;
 		
 		let searchData = '<div class="delSTopTitle" >';
@@ -557,141 +684,12 @@ function deleteStudent(data){
 
 function delSR(data){
 	if(data == "success"){
-		let threeData = document.getElementById("mainDTwo");
-		threeData.style.marginLeft = "330px";
-		threeData.style.marginTop = "40px";
-		threeData.style.color = "red";
-		threeData.style.fontSize = "40px";
-		threeData.style.fontWeight = "bolder";
-		threeData.innerText = "대상자가 삭제 되었습니다."
+		alert("대상자가 삭제 되었습니다.");
+		window.location.reload();
 	}
-	
+	window.location.reload();
 }
-//----------------------------------------------------------------------------------------------
-approveWS();   
-function approveWS(){
-	let threeData = document.getElementById("mainThree");
-	while(threeData.hasChildNodes()){
-		threeData.removeChild(threeData.lastChild);
-	}
-	let twoeData = document.getElementById("mainTwo");
-	while(twoeData.hasChildNodes()){
-		twoeData.removeChild(twoeData.lastChild);
-	}
-	let twoData = document.getElementById("mainDTwo");
-	while(twoData.hasChildNodes()){
-		twoData.removeChild(twoData.lastChild);
-	}
-	
-	let upTitle = document.getElementById("mainOne");
-	
-	let outLine = '<div>';
-		outLine += '<select id="displayS" onchange="displaySW(this)">';
-		outLine += '<option value="11">변경대상';
-		outLine += '<option value="12">학생';
-		outLine += '<option value="13">선생님';
-		outLine += '<option value="14">관리자';
-		outLine += '</select>';
-		outLine += '</div>';
-	   
-	   upTitle.innerHTML = outLine;
-}
-
-function displaySW(a){
-	var b = a.value;
-	if(b == 12){
-		var nameData = document.getElementsByName("userId")[0].value;
-		
-		var action = "approveWS";
-		var sendData = "adCode=" + encodeURIComponent(nameData);
-		return getAjax(action, sendData, "resultWS");
-		
-	}else if(b == 13){
-		alert("대자가가 없습니다.");
-		document.getElementById("displayS").selectedIndex = '0';
-		
-		let upTitle = document.getElementById("mainTwo");
-		let dTitle = document.getElementById("mainDTwo");
-		
-		let outULine = '<div class="nameTitleC" >&nbsp&nbsp&nbsp&nbsp선생님&nbsp&nbsp요청목록</div>';
-			
-		let	outLine = '<div class="delSTopTitle">';
-			outLine += '<span class="delSTOne">선생님 이름</span>';
-			outLine += '<span class="delSTTwo"> 이메일</span>';
-			outLine += '</div>';
-		   
-		   upTitle.innerHTML = outULine;
-		   dTitle.innerHTML = outLine;
-	}else if(b == 14){
-		alert("대자가가 없습니다.");
-		document.getElementById("displayS").selectedIndex = '0';
-		
-		let upTitle = document.getElementById("mainTwo");
-		let dTitle = document.getElementById("mainDTwo");
-		
-		let outULine = '<div class="nameTitleC">&nbsp&nbsp&nbsp&nbsp관리자&nbsp&nbsp요청목록</div>';
-			
-		let	outLine = '<div class="delSTopTitle">';
-			outLine += '<span class="delSTOne">관리자 이름</span>';
-			outLine += '<span class="delSTTwo"> 이메일</span>';
-			outLine += '</div>';
-		   
-		   upTitle.innerHTML = outULine;
-		   dTitle.innerHTML = outLine;
-	}
-}
-
-function resultWS(data){/*userId,sname,semail*/
-	let wsList; 
-	wsList = JSON.parse(data);
-	let upTitle = document.getElementById("mainTwo");
-	let dTitle = document.getElementById("mainDTwo");
-	
-	dTitle.style.marginLeft = "";
-	dTitle.style.marginTop = "";
-	dTitle.style.color = "";
-	dTitle.style.fontSize = "";
-	dTitle.style.fontWeight = "";
-	
-	let outULine = '<div id="nameTitle">&nbsp&nbsp&nbsp&nbsp학생&nbsp&nbsp&nbsp요청목록</div>';
-		
-	let	outLine = '<div class="delSTopTitle">';
-		outLine += '<div>';
-		outLine += '<span class="delSTOne">학생 이름</span>';
-		outLine += '<span class="delSTTwo"> 이메일</span>';
-		outLine += '</div>';
-		for(let idx =0 ; idx < wsList.length ; idx++){
-			outLine += '<span id="waitSID('+idx+')"  class="delSDOne" value="'+ wsList[idx].userId+'">' + wsList[idx].sname +'</span>';
-			outLine += '<span id="delSDTwoL" >' + wsList[idx].semail +'</span>';
-			outLine += '<input type="button" class="pRButton" value="수락" onClick="permissionB('+idx+')"/>';
-			outLine += '<input type="button" class="pRButton" value="거절" onClick="rejectB('+idx+')"/></br>';
-		}
-		outLine += '</div>';
-		
-		 upTitle.innerHTML = outULine;
-		 dTitle.innerHTML = outLine;
-}
-function permissionB(idx){
-	var getData = document.getElementById("waitSID("+idx+")");
-	var sendData = getData.getAttribute("value");
-	
-	var nameData = document.getElementsByName("userId")[0].value;
-	
-	var action = "permissionWS";
-	var sendData = "adCode=" + encodeURIComponent(nameData) +  "&acCode=" + encodeURIComponent(sendData);
-	return getAjax(action, sendData, "resultWS");
-}
-function rejectB(idx){
-	var getData = document.getElementById("waitSID("+idx+")");
-	var sendData = getData.getAttribute("value");
-
-	var nameData = document.getElementsByName("userId")[0].value;
-	
-	var action = "rejectWS";
-	var sendData = "adCode=" + encodeURIComponent(nameData) +  "&acCode=" + encodeURIComponent(sendData);
-	return getAjax(action, sendData, "resultWS");
-}
-/*-------------------------------------------------------------------------*/
+//------------------------------------------------------------------------------------------------------------------
 function getAjax(action, data, fn) {
 	let ajax = new XMLHttpRequest();
 	ajax.onreadystatechange = function() {
@@ -703,7 +701,6 @@ function getAjax(action, data, fn) {
 	ajax.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 	ajax.send(data);	
 }
-/*-------------------------------------------------------------------------*/
    function mouseOver(obj) {
       let fColor = (obj.id == "btn") ? "#000000" : "#FFFFFF";
       obj.style.color = fColor;

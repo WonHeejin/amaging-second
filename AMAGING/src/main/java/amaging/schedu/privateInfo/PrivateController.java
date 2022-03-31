@@ -19,6 +19,7 @@ public class PrivateController {
 	@PostMapping(value="/ParentRegEmail", produces = "application/text; charset=UTF-8")
 	public String parentRegEmail(ModelAndView mav, @ModelAttribute RegParent regp) {
 		mav.addObject("regp", regp);
+		System.out.println(regp.getPEmail());
 		pi.backController(3, mav);
 		return (String)mav.getModelMap().getAttribute("message");
 	}

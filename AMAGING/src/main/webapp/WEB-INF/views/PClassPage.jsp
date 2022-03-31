@@ -243,13 +243,24 @@ position:absolute; left:45%; top:1%;
 #calendar {
 	margin-left: 5%;
 	width: 80%;
-	height: 73%;
+	height: 80%;
 }
+.fc-event{
+	font-weight: 900;
+	font-size: 18px;
+}
+.fc .fc-button-primary {
+	background-color: #99E000;
+	border-color: #99E000;
+}
+.fc table {
+  	border: 5px solid #99E000;
+  }
 </style>
 
 </head>
 <body onload="getChildList('${sessionInfo.userId}')">
-   <form name="pmainservice" action="" method="get">
+   <form name="pmainservice" action="" method="post">
       <div id="basic">
          <div id="frame">
             <div id="logo"></div>

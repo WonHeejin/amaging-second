@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 import amaging.schedu.bean.AcList;
 import amaging.schedu.bean.Admin;
+import amaging.schedu.bean.AtLog;
 import amaging.schedu.bean.AttendanceBean;
 import amaging.schedu.bean.ChildCode;
 import amaging.schedu.bean.ClassBean;
@@ -125,4 +126,40 @@ public class AttendanceController {
 		ad.aBackController(19, model.addAttribute("an",an));
 		return model.getAttribute("meg").toString();
 	}
+	@SuppressWarnings("unchecked")
+	@PostMapping("/PSAttendanceList")
+	public List<Subject> psAttendanceList(Model model, @ModelAttribute UserInfo uf) {
+		ad.aBackController(20, model.addAttribute("uf",uf));
+		return (List<Subject>)model.getAttribute("atList");
+	}
+	@SuppressWarnings("unchecked")
+	@PostMapping("/GetAtLog")
+	public List<AtLog> getAtlog(Model model, @ModelAttribute AttendanceBean ab) {
+		ad.aBackController(21, model.addAttribute("ab", ab));
+		return (List<AtLog>)model.getAttribute("atlog");
+	}
+	@SuppressWarnings("unchecked")
+	@PostMapping("/getGraph")
+	public List<Subject> getGraph(Model model, @ModelAttribute Admin an) {
+		ad.aBackController(25, model.addAttribute("an",an));
+		return (List<Subject>)model.getAttribute("getGraphR");
+	}
+	@SuppressWarnings("unchecked")
+	@PostMapping("/presentSN")
+	public List<ChildCode> presentSN(Model model, @ModelAttribute Admin an) {
+		ad.aBackController(26, model.addAttribute("an",an));
+		return (List<ChildCode>)model.getAttribute("getPresentSN");
+	}
+	@SuppressWarnings("unchecked")
+	@PostMapping("/presentSNN")
+	public List<ChildCode> presentSNN(Model model, @ModelAttribute Admin an) {
+		ad.aBackController(27, model.addAttribute("an",an));
+		return (List<ChildCode>)model.getAttribute("getPresentSNN");
+	}
+	@SuppressWarnings("unchecked")
+	@PostMapping("/attgraph")
+	public List<ChildCode> attgraph(Model model, @ModelAttribute Admin an) {
+		ad.aBackController(28, model.addAttribute("an",an));
+		return (List<ChildCode>)model.getAttribute("getAttgraph");
+	}	
 }

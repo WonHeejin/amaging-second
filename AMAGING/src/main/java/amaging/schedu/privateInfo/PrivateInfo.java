@@ -69,10 +69,9 @@ public class PrivateInfo extends amaging.schedu.common.CommonMethod{
 		   page="PInfoPage";
 		  }else if(userCode==2) {
 		   page="SInfoPage";
-		  }else{
-		 
+		  }else if(userCode==3){
 			page="TInfoPage";
-		}
+		  }
 		mav.addObject("category", "regAcademy");
 		mav.setViewName(page);
 	}
@@ -82,6 +81,7 @@ public class PrivateInfo extends amaging.schedu.common.CommonMethod{
 		/*대기중인 등록요청 있는지 조회*/
 		RegParent regp=(RegParent)mav.getModelMap().getAttribute("regp");
 		int spStatus=tm.checkSPStatus(regp);
+		System.out.println(spStatus);
 		if(spStatus==11) {
 			/* 11 >> 이미 등록됨 메세지 전송*/
 			message="이미 등록이 완료된 이메일입니다.";
@@ -106,6 +106,7 @@ public class PrivateInfo extends amaging.schedu.common.CommonMethod{
 			String contents="<a href='http://localhost/UpdPrPage?regPrInfo="+regPrInfo+"'>"+regp.getStudentName()+"님이 당신을 부모님으로 등록하길 원합니다! 링크를 통해 요청을 수락해주세요. </a>";
 			String from="swhong_test@naver.com";
 			String to=regp.getPEmail();
+			System.out.println(to);
 			/* Creation MimeMessage */
 			MimeMessage mail=javaMail.createMimeMessage();
 			MimeMessageHelper helper = new MimeMessageHelper(mail,"UTF-8");
@@ -126,20 +127,29 @@ public class PrivateInfo extends amaging.schedu.common.CommonMethod{
 	}
 	private void parentUpdPage(ModelAndView mav) {
 		String code=null;
+		String page="SPMain";
+		String message="만료된 페이지입니다.";
 		RegParent regp=(RegParent)mav.getModelMap().getAttribute("regp");
+
 		try {
-			code=this.enc.aesDecode(regp.getRegPrInfo(), "regParent");
+			code = this.enc.aesDecode(regp.getRegPrInfo(), "regParent");
 		} catch (InvalidKeyException | UnsupportedEncodingException | NoSuchAlgorithmException | NoSuchPaddingException
 				| InvalidAlgorithmParameterException | IllegalBlockSizeException | BadPaddingException e) {
 			e.printStackTrace();
 		}
-		regp.setUserId(code.substring(0,code.indexOf(",")));
-		regp.setPrCode(code.substring(code.indexOf(",")+1));
-		RegParent spEmail=tm.getSPEmail(regp);
-		regp.setSEmail(spEmail.getSEmail());
-		regp.setPEmail(spEmail.getPEmail());
-		mav.addObject("code", regp);
-		mav.setViewName("mysonplease");
+		regp.setUserId(code.substring(0, code.indexOf(",")));
+		regp.setPrCode(code.substring(code.indexOf(",") + 1));
+		System.out.println(tm.checkSPStatus(regp));
+		if (tm.checkSPStatus(regp) ==12) {
+			RegParent spEmail = tm.getSPEmail(regp);
+			regp.setSEmail(spEmail.getSEmail());
+			regp.setPEmail(spEmail.getPEmail());
+			mav.addObject("code", regp);
+			page = "mysonplease";
+			message = "";
+		}
+		mav.addObject("message", message);
+		mav.setViewName(page);
 	}
 	private void updParent(ModelAndView mav) {
 		boolean tran=false;
@@ -165,7 +175,7 @@ public class PrivateInfo extends amaging.schedu.common.CommonMethod{
 			message="이미 등록되어 수행할 수 없는 작업입니다. 본사에 문의하세요. 창은 자동으로 종료됩니다.";
 		}else {
 			this.setTransactionConf(TransactionDefinition.PROPAGATION_REQUIRED, TransactionDefinition.ISOLATION_READ_COMMITTED, false);
-			if(this.convertToBoolean(tm.updParent((RegParent)mav.getModelMap().getAttribute("regp")))) {
+			if(this.convertToBoolean(tm.delParent((RegParent)mav.getModelMap().getAttribute("regp")))) {
 				tran=true;
 				message="거절되었습니다. 창은 자동으로 종료됩니다.";
 			}

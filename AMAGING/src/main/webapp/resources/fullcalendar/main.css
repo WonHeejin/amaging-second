@@ -32,7 +32,7 @@
     box-sizing: border-box;
   }
 .fc table {
-  	border: 5px solid #FFBB00;
+  	border: 5px solid;
     border-collapse: collapse;
     border-spacing: 0;
     font-size: 1em; /* normalize cross-browser */
@@ -290,8 +290,10 @@ When it's NOT activated, the fc-button classes won't even be in the DOM.
     justify-content: space-between;
     align-items: center;
   }
+  /*header-toolbar position*/
 .fc .fc-toolbar.fc-header-toolbar {
-    margin-bottom: 0.7em;
+    /*margin-bottom: 1.5em;*/
+    padding-bottom:2em;
   }
 .fc .fc-toolbar.fc-footer-toolbar {
     margin-top: 1.5em;
@@ -430,6 +432,8 @@ When it's NOT activated, the fc-button classes won't even be in the DOM.
     left: 0;
   }
 .fc .fc-col-header-cell-cushion {
+	/*요일 font-size*/
+	font-size: 20px;
     display: inline-block; /* x-browser for when sticky (when multi-tier header) */
     padding: 2px 4px;
   }
@@ -740,6 +744,8 @@ A HORIZONTAL event
 
 }
 .fc .fc-daygrid-day-number {
+	/*daygird 날짜 font-size*/
+	font-size:18px;
     position: relative;
     z-index: 4;
     padding: 4px;
@@ -750,6 +756,8 @@ A HORIZONTAL event
 
 }
 .fc .fc-daygrid-day-events {
+	/*daygird 이벤트 font-size*/
+	font-size:20px;
     margin-top: 1px; /* needs to be margin, not padding, so that available cell height can be computed */
   }
 .fc {
@@ -1075,8 +1083,9 @@ A VERTICAL event
     position: relative;
     z-index: 1;
   }
+  /*timegrid slot size*/
 .fc .fc-timegrid-slot { /* a <td> */
-    height: 2em;
+    height: 2.5em;
     border-bottom: 0 /* each cell owns its top border */
   }
 .fc .fc-timegrid-slot:empty:before {
@@ -1086,6 +1095,8 @@ A VERTICAL event
     border-top-style: dotted;
   }
 .fc .fc-timegrid-slot-label-cushion {
+	/*timegird 시간 font-size*/
+	font-size:20px;
     display: inline-block;
     white-space: nowrap;
   }

@@ -23,21 +23,14 @@ function regAcForm(){
 	mainpage.appendChild(acbox);
 }
 function searchAcForm(){
-		const mainpage=document.getElementById("mainpage");
-	mainpage.innerHTML+="<div class='container' id='container'>"
-					+"<div class='mdialog'>"
-						+"<div class='mcontent'>"
-							+"<div class='mheader' style='font-size:200%'>"
-								+"<h4 id='mheader' class='mtitle' >학원 검색</h4></div>"
-							+"<input type='text' name='acName' placeholder='학원이름 입력' style=' height:35px; border-radius: 10px;'/>"
-							+"<input type='button' value='검색' onClick='searchAc()' class='searchBtn'/>"
-							+"<div class='mbody' id='mbody' value=''><div class='acCode'>등록번호</div><div class='acName'>이름</div><div class='acAddress'>주소</div></div>"
-						
-							+"<div class='mfooter'>"
-								+"<input type='button' class='mbtn' value='선택'"
-									+"onclick='selectList()'/>"				
-							+"<input type='button' class='mbtn' value='닫기'"
-									+"onclick='closeModal()' style='border-radius: 10px;background-color: #EAEAEA;width:50%; height:100%; border: 1px solid #EAEAEA;'/></div></div></div></div>";
+	const mbody=document.getElementById("mbody");
+	const record=document.getElementsByClassName("record");
+	while(record.length>0){
+		record[0].remove();
+	}
+		const container=document.getElementById("container");
+		container.style.display="block";
+		
 }
 function searchAc(){
 	const record=document.getElementsByClassName("record");
@@ -67,21 +60,25 @@ function displayAcList(pacList){
 	}
 }
 function selectBotton(obj){
+	const userCode=document.getElementsByName("userCode")[0].value;
 	if(currentRecord!=null){
-		currentRecord.style.backgroundColor="#ffffff";
+		currentRecord.childNodes[0].style.backgroundColor="#ffffff";
+		currentRecord.childNodes[1].style.backgroundColor="#ffffff";
+		currentRecord.childNodes[2].style.backgroundColor="#ffffff";
 		currentRecord.style.color="black";
 		currentRecord=null;
 	}
 	currentRecord=obj;
-	obj.style.backgroundColor="#FF2E2E";
+	obj.childNodes[0].style.backgroundColor=(userCode==2)?"#FFBB00":"#00A6EF";
+	obj.childNodes[1].style.backgroundColor=(userCode==2)?"#FFBB00":"#00A6EF";
+	obj.childNodes[2].style.backgroundColor=(userCode==2)?"#FFBB00":"#00A6EF";
 	obj.style.color="#ffffff";
 }
 function selectList(){
 	if(currentRecord!=null){
 		document.getElementsByName("selectedAcName")[0].value=currentRecord.childNodes[1].innerHTML;
-		const mainpage=document.getElementById("mainpage");
 		let container = document.getElementById("container");
-		mainpage.removeChild(container);
+		container.style.display="none";
 	}else{
 		alert("학원을 선택해주세요");
 	}
@@ -118,16 +115,18 @@ function checkParentEmail(){
 	}
 }
 function confirmPr(pPrInfo){
-	const prInfo=JSON.parse(pPrInfo);
-	if(prInfo.prName==undefined){
+	if(pPrInfo==""){
 		alert("등록된 정보가 없습니다. 회원가입 한 부모님의 이메일을 입력해주세요.");
 	}else{
+		const prInfo=JSON.parse(pPrInfo);
 		const pEmail=document.getElementsByName("pEmail")[0].value;
+		let emailform=document.getElementById("emailform");
+		emailform=emailform.options[emailform.selectedIndex].text;
 		let check=confirm(prInfo.prName+"("+pEmail+")님을 부모님으로 등록하시겠습니까?"
 							+"\n 요청은 취소할 수 없습니다. 다시한번 확인해 주세요.");
 		if(check==true){
 			const data="userId="+document.getElementsByName("userId")[0].value
-						+"&pEmail="+pEmail
+						+"&pEmail="+pEmail+emailform
 						+"&prCode="+prInfo.prCode
 						+"&studentName="+document.getElementsByName("userName")[0].value
 			getAjaxData("ParentRegEmail",data,"sendMessage","post");
@@ -144,9 +143,9 @@ function closePage(message){
 	window.close();
 }
 function closeModal(){
-	const mainpage=document.getElementById("mainpage");
-	let container = document.getElementById("container");
-	mainpage.removeChild(container);
+	const container=document.getElementById("container");
+	container.style.display="none"
+	dotClick();
 }
 function createDiv(className,id,name){
 	let div= document.createElement("div");

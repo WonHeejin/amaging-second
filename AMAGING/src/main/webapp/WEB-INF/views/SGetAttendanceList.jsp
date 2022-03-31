@@ -13,7 +13,7 @@
 <script src='resources/fullcalendar/main.js'></script>
 <script src='resources/fullcalendar/ko.js'></script>
 <script src="resources/js/common.js"></script>
-<script src="resources/js/class.js"></script>
+<script src="resources/js/psAttendance.js"></script>
 <style>
 #frame {
 	width: 100%;
@@ -86,7 +86,6 @@
 	height: 80%;
 	float: right;
 	margin-right: 5.5%;
-	
 	background-size: 45% 65%;
 	background-repeat: no-repeat;
 	background-position: center center;
@@ -127,7 +126,7 @@
 }
 
 #twoB {
-height:9%;
+	height:9%;
 	margin-bottom: 3%;
 	float: left;
 	background-image: url(resources/images/성적.png);
@@ -139,7 +138,7 @@ height:9%;
 }
 
 #threeB {
-height:9%;
+	height:9%;
 	margin-bottom: 3%;
 	float: left;
 	background-image: url(resources/images/출석.png);
@@ -151,7 +150,7 @@ height:9%;
 }
 
 #fourB {
-height:9%;
+	height:9%;
 	margin-bottom: 3%;
 	float: left;
 	background-image: url(resources/images/시간표.png);
@@ -162,8 +161,8 @@ height:9%;
 }
 
 #fiveB {
-margin-bottom: 3%;
-height:9%;
+	margin-bottom: 3%;
+	height:9%;
 	float: left;
 	background-image: url(resources/images/상담.png);
 	background-size: 100% 80%;
@@ -171,17 +170,19 @@ height:9%;
 	background-position: right center;
 	cursor: pointer;
 }
-#sixB{height:9%;
+#sixB{
+	height:9%;
 	float: left;
 	background-image: url(resources/images/정보수정.png);
 	background-size: 100% 80%;
 	background-repeat: no-repeat;
 	background-position: right center;
-	cursor: pointer;}
+	cursor: pointer;
+}
 
 #btn {
 	width: 50%;
-   height: 50%;
+    height: 50%;
 	border-radius: 10px;
 	margin-left: 15%;
 	margin-top: 10%;
@@ -213,23 +214,56 @@ height:9%;
 	left: 13%;
 	box-shadow: none;
 }
-#session{ width:100%;  height:50%; 
-
-position:absolute; top:44%; left:60%;
-text-align:center;
- font-size:130%;
- 
-	
+#session{ 
+	width:100%;
+	height:50%; 
+	position:absolute; 
+	top:44%; 
+	left:60%;
+	text-align:center;
+ 	font-size:130%;
 	}
 
-#sessionBox{ width:30%; height:10%; 
-position:absolute; left:45%; top:1%;
+#sessionBox{ 
+	width:30%; 
+	height:10%; 
+	position:absolute; 
+	left:45%;
+	 top:1%;
 }
+#calendar {
+	float: left;
+	margin-left: 7%;
+	width: 80%;
+	height: 93%;
+}
+/*event 글씨 진하게*/
+.fc-event{
+	font-weight: bold;
+	cursor:pointer;
+}
+.legend{
+	padding:0px 30px; border-radius:5px; font-weight: bold;
+	whidth:1%; height: 0%; margin-left:10%; font-size:17px;
+}
+.fc .fc-button-primary {
+	background-color: #FFBB00;
+	border-color: #FFBB00;
+}
+.fc table {
+  	border: 5px solid #FFBB00;
+  }
+ .tippy-box{
+ 	width:150px;
+ 	text-align:center;
+ 	margin:5px;
+ 	padding:20px;
+ }
 </style>
 
 </head>
 <body onload="calendar()">
-	<form name="Smainservices" action="" method="get">
+	<form name="Smainservices" action="" method="post">
 		<div id="basic">
 			<div id="frame">
 				<div id="logo"></div>
@@ -259,7 +293,12 @@ position:absolute; left:45%; top:1%;
 						<input
 						type="button" class="bothB" id="sixB" onclick="getPage('Smainservices','/InfoPage')">
 				</div>
-				<div id="mainpage">
+				<div id="mainpage" >
+				<div id= 'legend' style=" whidth:5%; height: 0%;margin-top:0%">
+							<span class="legend"style="background-color: #79ABFF "><img src="resources/images/출석완료.png" width="16" height="16"/> : 출석</span><br/>
+							<span class="legend"style="background-color: #FF8383;"><img src="resources/images/결석.png" width="16" height="16"/> : 결석</span><br/>
+							<span class="legend"style="background-color: #F2CB61;"><img src="resources/images/지각.png" width="16" height="16"/> : 지각</span>
+				</div>
 					<div id='calendar'></div>
 				</div>
 			</div>
