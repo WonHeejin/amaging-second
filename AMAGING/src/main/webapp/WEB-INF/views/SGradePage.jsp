@@ -221,13 +221,14 @@ position:absolute; left:45%; top:1%;
 </style>
 
 </head>
-<body onload="getMyGrade('${sessionInfo.userId}')">
+<body onload="childAcademyList('${sessionInfo.userId}')">
 	<form name="Smainservices" action="" method="post">
 		<div id="basic">
 			<div id="frame">
 				<div id="logo"></div>
 				 <div id="sessionBox"><span id="session">${sessionInfo.userName}님 환영합니다.</span></div>
-				 <input id="userId" type="hidden" value="${sessionInfo.userId}"/>
+				 	<input	type="hidden" value='${sessionInfo.userId}' name="userId" />
+					<input	type="hidden" value='${sessionInfo.userCode}' name="userCode" />
 				<div id="logOut">
 					<input type="button" id="btn" value="로그아웃" onclick="accessOut()"
 						onmouseover="mouseOver(this)" onmouseout="mouseLeave(this)">
@@ -237,9 +238,9 @@ position:absolute; left:45%; top:1%;
 			<div id="body">
 				<div id="colorline"></div>
 				<div class="servicebutton">
-					<input type="button" class="bothB" id="oneB" onclick="getAcPlanPage('Smainservices','/AcPlanPage')">
+					<input type="button" class="bothB" id="oneB" onclick="getPage('Smainservices','/AcPlanPage')">
 					<input type="button" class="bothB" id="twoB" onclick="getPage('Smainservices','GradePage')">
-					<input type="button" class="bothB" id="threeB" onclick="">
+					<input type="button" class="bothB" id="threeB" onclick="getPage('Smainservices','/AttendancePage')">
 					<input type="button" class="bothB" id="fourB" onclick="getPage('Smainservices','/PSClassPage')">
 					<input type="button" class="bothB" id="fiveB" onclick="getPage('Smainservices','/SQnAPage')">
 					<input type="button" class="bothB" id="sixB" onclick="getPage('Smainservices','/InfoPage')">

@@ -7,6 +7,8 @@
 <title>학부모 성적 페이지</title>
  <script src="resources/js/common.js"></script>
  <script src="resources/js/gradePage.js"></script>
+
+ 
 <style>
 #frame {width:100%; height:100%;
    position:absolute; top:5%;}
@@ -228,7 +230,7 @@ position:absolute; left:45%; top:1%;
 </style>
 
 </head>
-<body onload="MyChildList()">
+<body onload="myChildList()">
    <form name="pmainservice" action="" method="post">
       <div id="basic">
          <div id="frame">
@@ -247,13 +249,13 @@ position:absolute; left:45%; top:1%;
          <div id="body">
             <div id="colorline"></div>
                <div class="servicebutton">
-                  <input type="button" class="bothB" id="oneB" onclick="getAcPlanPage('pmainservice','/AcPlanPage')"> 
+                  <input type="button" class="bothB" id="oneB" onclick="getPage('pmainservice','/AcPlanPage')"> 
                   <input type="button" class="bothB" id="twoB" onclick="getPage('pmainservice','GradePage')"> 
                   <input type="button" class="bothB" id="threeB" onclick="getPage('pmainservice','/AttendancePage')"> 
                   <input type="button" class="bothB" id="fourB" onclick="getPage('pmainservice','/PSClassPage')">
                    <input type="button" class="bothB" id="fiveB" onclick="getPage('pmainservice','/PFeePage')"> 
                    <input type="button" class="bothB" id="sixB" onclick="getPage('pmainservice','/PQnAPage')">
-                    <input type="button" class="bothB" id="sevenB" onclick="getAcPlanPage('pmainservice','/InfoPage')">  
+                    <input type="button" class="bothB" id="sevenB" onclick="getPage('pmainservice','/InfoPage')">  
                </div>
             <div id="mainpage"></div>
          </div>

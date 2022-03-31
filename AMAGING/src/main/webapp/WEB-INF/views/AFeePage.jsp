@@ -237,7 +237,7 @@ position:absolute; left:45%; top:1%;
         color: #EF90FF;
        font-weight:800;
        font-size:130%;
-      }
+}
  
 </style>
 
@@ -251,9 +251,11 @@ position:absolute; left:45%; top:1%;
             <span id="logo"></span>
             <div id="sessionBox"><span id="session">김현우님 환영합니다.</span></div>
             <div id="logOut">
-               <span><input type="button" id="btn" value="로그아웃" onclick="accessOut()"
+               <span><input type="button" id="btn" value="로그아웃" onclick="accessAdminOut()"
                   onmouseover="mouseOver(this)" onmouseout="mouseLeave(this)"></span>
-               <input type = "hidden" value = '${sessionInfo.acCode}' name="acCode"/>
+            	<input	type="hidden" value='${sessionInfo.userId}' name="userId" />
+				<input	type="hidden" value='${sessionInfo.userCode}' name="userCode" />
+				<input	type="hidden" value='${sessionInfo.acCode}' name="acCode" />
             </div>
          </div>
 
@@ -261,7 +263,7 @@ position:absolute; left:45%; top:1%;
             <div id="colorline"></div>
             <div class="servicebutton">
 
-               <input type="button" class="bothB" id="oneB" onclick="getAcPlanPage('amainservice','/AcPlanPage')">                             
+               <input type="button" class="bothB" id="oneB" onclick="getPage('amainservice','/AcPlanPage')">                  
                <input type="button" class="bothB" id="twoB" onclick="getPage('amainservice', '/AClassPage')"> 
                <input type="button" class="bothB" id="threeB" onclick="getPage('amainservice','AFeePage')">
                  <div class="div1">
@@ -272,11 +274,11 @@ position:absolute; left:45%; top:1%;
                  ●&nbsp;&nbsp;등록
                       </div>
                </div>
-               <input type="button" class="bothB" id="fourB" onclick="">
+               <input type="button" class="bothB" id="fourB" onclick="getPage('amainservice','/AGetAttendanceL')">
                <input type="button" class="bothB" id="fiveB" onclick="getPage('amainservice','/AQnAPage')">
 
             </div>
-            <div id="mainpage" style = "overflow : auto; overflow-x : hidden"></div>
+            <div id="mainpage"></div>
          </div>
       </div>
    </form>

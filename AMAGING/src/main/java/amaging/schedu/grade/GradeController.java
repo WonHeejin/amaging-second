@@ -24,7 +24,7 @@ public class GradeController {
 	private Grade grade;
 	
 	@SuppressWarnings("unchecked")
-	@PostMapping("/myAcademyList")
+	@PostMapping("/MyAcademyList")
 	public List<ACPlan> myAcademyList(ModelAndView mav, @ModelAttribute AcList ac) {
 		mav.getModelMap().addAttribute("ac",ac);
 		this.grade.backController(2, mav);
@@ -32,7 +32,7 @@ public class GradeController {
 	}
 	
 	@SuppressWarnings("unchecked")
-	@PostMapping(value = "/checkPwd", produces = "application/json; charset=UTF-8")
+	@PostMapping(value = "/CheckPwd", produces = "application/json; charset=UTF-8")
 	public List<ACPlan> checkPwd(ModelAndView mav, @ModelAttribute AcList ac) {
 		
 		mav.getModelMap().addAttribute("ac",ac);
@@ -41,7 +41,7 @@ public class GradeController {
 	}
 	
 	@SuppressWarnings("unchecked")
-	@PostMapping(value = "/myClassList", produces = "application/json; charset=UTF-8")
+	@PostMapping(value = "/MyClassList", produces = "application/json; charset=UTF-8")
 	public List<ACPlan> myClassList(ModelAndView mav, @ModelAttribute AcList ac) {
 		
 		mav.getModelMap().addAttribute("ac",ac);
@@ -50,15 +50,15 @@ public class GradeController {
 	}
 	
 	@SuppressWarnings("unchecked")
-	@PostMapping(value = "/getGrade", produces = "application/json; charset=UTF-8")
-	public List<Grade> getGrade(ModelAndView mav, @ModelAttribute Subject sj) {
+	@PostMapping(value = "/GetGrade", produces = "application/json; charset=UTF-8")
+	public List<Grade> getGrade(ModelAndView mav, @ModelAttribute GradeBean gr) {
 		
-		mav.getModelMap().addAttribute("sj",sj);
+		mav.getModelMap().addAttribute("gr",gr);
 		this.grade.backController(5, mav);
 		return (List<Grade>)mav.getModelMap().getAttribute("gradeList");
 	}
 	
-	@PostMapping(value = "/modGrade", consumes="application/json", produces = "application/json; charset=UTF-8")
+	@PostMapping(value = "/ModGrade", consumes="application/json", produces = "application/json; charset=UTF-8")
 	public String modGrade(ModelAndView mav, @RequestBody List<GradeBean> gr) {
 		
 		mav.getModelMap().addAttribute("gr",gr);
@@ -67,39 +67,73 @@ public class GradeController {
 	}
 	
 	@SuppressWarnings("unchecked")
-	@PostMapping(value = "/getStudent", produces = "application/json; charset=UTF-8")
-	public List<Grade> getStudentList(ModelAndView mav, @ModelAttribute Subject sj) {
-		
-		mav.getModelMap().addAttribute("sj",sj);
+	@PostMapping(value = "/GetStudent", produces = "application/json; charset=UTF-8")
+	public List<Grade> getStudentList(ModelAndView mav, @ModelAttribute GradeBean gr) {
+		mav.getModelMap().addAttribute("gr",gr);
 		this.grade.backController(7, mav);
 		return (List<Grade>)mav.getModelMap().getAttribute("regGradeList");
 	}
 	
-	@PostMapping(value = "/regGrade", consumes="application/json", produces = "application/json; charset=UTF-8")
+	@SuppressWarnings("unchecked")
+	@PostMapping(value = "/ChildAcademy", produces = "application/json; charset=UTF-8")
+	public List<ACPlan> childAcademy(ModelAndView mav, @ModelAttribute ACPlan ac) {
+		
+		mav.getModelMap().addAttribute("ac",ac);
+		this.grade.backController(8, mav);
+		return (List<ACPlan>)mav.getModelMap().getAttribute("acList");
+	}
+	
+	@PostMapping(value = "/RegGrade", consumes="application/json", produces = "application/json; charset=UTF-8")
 	public String regGrade(ModelAndView mav, @RequestBody List<GradeBean> gr) {
 		
 		mav.getModelMap().addAttribute("gr",gr);
-		this.grade.backController(8, mav);
+		this.grade.backController(10, mav);
 		return (String)mav.getModelMap().getAttribute("msg");
 	}
 	
 	@SuppressWarnings("unchecked")
-	@PostMapping(value = "/getMyGrade", produces = "application/json; charset=UTF-8")
+	@PostMapping(value = "/ChildSubject", produces = "application/json; charset=UTF-8")
+	public List<GradeBean> childsubject(ModelAndView mav, @ModelAttribute Subject sj) {
+		
+		mav.getModelMap().addAttribute("sj",sj);
+		this.grade.backController(11, mav);
+		return (List<GradeBean>)mav.getModelMap().getAttribute("subjectList");
+	}
+	
+	@SuppressWarnings("unchecked")
+	@PostMapping(value = "/GetMyGrade", produces = "application/json; charset=UTF-8")
 	public List<Grade> getMyGrade(ModelAndView mav, @ModelAttribute UserInfo ui) {
-		System.out.println(" 학생/학부모 getGrade " + ui.getStudentId());
 		
 		mav.getModelMap().addAttribute("ui",ui);
-		this.grade.backController(10, mav);
+		this.grade.backController(12, mav);
 		return (List<Grade>)mav.getModelMap().getAttribute("gradeList");
 	}
 	
 	@SuppressWarnings("unchecked")
-	@PostMapping("/myChildList")
+	@PostMapping("/MyChildList")
 	public List<ACPlan> myChildList(ModelAndView mav, @ModelAttribute UserInfo ui) {
-		System.out.println("CONTROLLER" + ui.getUserId());
 		mav.getModelMap().addAttribute("ui",ui);
-		this.grade.backController(11, mav);
+		this.grade.backController(13, mav);
 		return (List<ACPlan>)mav.getModelMap().getAttribute("childList");
 	}
+	
+	@SuppressWarnings("unchecked")
+	@PostMapping(value = "/GetSubjectGrade", produces = "application/json; charset=UTF-8")
+	public List<Grade> getSubjectGrade(ModelAndView mav, @ModelAttribute GradeBean gr) {
+		System.out.println("GetSubjectGrade = " + gr.getSBACode() + " : " + gr.getAcCode() + " : " + gr.getSubjectCode() + " : " + gr.getStudentId());
+		mav.getModelMap().addAttribute("gr",gr);
+		this.grade.backController(14, mav);
+		return (List<Grade>)mav.getModelMap().getAttribute("latestGrade");
+	}
+	
+	@PostMapping("/GetAmounts")
+	public String regGrade(ModelAndView mav, @ModelAttribute UserInfo uf) {
+		System.out.println(uf.getUserId());
+		mav.getModelMap().addAttribute("uf",uf);
+		this.grade.backController(15, mav);
+		return (String)mav.getModelMap().getAttribute("msg");
+	}
+	
+	
 	
 }

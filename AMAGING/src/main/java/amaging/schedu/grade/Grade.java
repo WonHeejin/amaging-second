@@ -47,19 +47,37 @@ public class Grade extends amaging.schedu.common.CommonMethod{
 			this.getStudent(mav);
 			break;
 		case 8:
-			this.regClassGrade(mav);
+			this.getAcademy(mav);
 			break;
 		case 9:
 			this.getGradePage(mav);
 			break;
 		case 10:
-			this.getGrade(mav);
+			this.regClassGrade(mav);
 			break;
 		case 11:
+			this.getSubjectList(mav);
+			break;
+		case 12:
+			this.getGrade(mav);
+			break;
+		case 13:
 			this.getChildList(mav);
+			break;
+		case 14:
+			this.getOneGrade(mav);
+			break;
+		case 15:
+			this.feeAmounts(mav);
 			break;
 			
 		}
+	}
+	
+	private void feeAmounts(ModelAndView mav) {
+		String amount = gfo.getAmounts((UserInfo)mav.getModelMap().getAttribute("uf"));
+		mav.addObject("msg",amount);
+		System.out.println("feeAmounts : " + mav.getModelMap().getAttribute("msg"));
 	}
 	
 	@SuppressWarnings("unchecked")
@@ -92,6 +110,22 @@ public class Grade extends amaging.schedu.common.CommonMethod{
 	}
 	
 	@SuppressWarnings("unchecked")
+	private void getAcademy(ModelAndView mav) {
+		List<ACPlan> list;
+		mav.addObject("uin",gfo.getChildAcademy((ACPlan)mav.getModelMap().getAttribute("ac")));
+		list = (List<ACPlan>)mav.getModelMap().getAttribute("uin");
+		mav.addObject("acList",list);
+	}
+	
+	@SuppressWarnings("unchecked")
+	private void getSubjectList(ModelAndView mav) {
+		List<GradeBean> list;
+		mav.addObject("sub",gfo.getSubject((Subject)mav.getModelMap().getAttribute("sj")));
+		list = (List<GradeBean>)mav.getModelMap().getAttribute("sub");
+		mav.addObject("subjectList",list);
+	}
+	
+	@SuppressWarnings("unchecked")
 	private void checkPwd(ModelAndView mav) {
 		List<Subject> list;
 		
@@ -115,12 +149,19 @@ public class Grade extends amaging.schedu.common.CommonMethod{
 	
 	@SuppressWarnings("unchecked")
 	private void teacherGrade(ModelAndView mav) {
-
 		List<GradeBean> list;
-		
-		mav.addObject("cde",gfo.getTGrade((Subject)mav.getModelMap().getAttribute("sj")));
+		mav.addObject("cde",gfo.getTGrade((GradeBean)mav.getModelMap().getAttribute("gr")));
 		list = (List<GradeBean>)mav.getModelMap().getAttribute("cde");
 		mav.addObject("gradeList",list);
+	}
+
+	@SuppressWarnings("unchecked")
+	private void getOneGrade(ModelAndView mav) {
+		List<GradeBean> list;
+		
+		mav.addObject("max",gfo.getMaxGrade((GradeBean)mav.getModelMap().getAttribute("gr")));
+		list = (List<GradeBean>)mav.getModelMap().getAttribute("max");
+		mav.addObject("latestGrade",list);
 	}
 
 	@SuppressWarnings("unchecked")
@@ -137,7 +178,6 @@ public class Grade extends amaging.schedu.common.CommonMethod{
 		boolean tran = false;
 		String message = null;
 		this.setTransactionConf(TransactionDefinition.PROPAGATION_REQUIRED, TransactionDefinition.ISOLATION_READ_COMMITTED, false);
-		
 		List<GradeBean> gList = (List<GradeBean>)mav.getModelMap().getAttribute("gr");
 		for(int i=0; i<gList.size(); i++) {
 			if(this.convertToBoolean(gfo.modGrade(gList.get(i)))) {
@@ -157,19 +197,22 @@ public class Grade extends amaging.schedu.common.CommonMethod{
 	private void regClassGrade(ModelAndView mav) {
 		boolean tran = false;
 		String message = null;
-		
-		this.setTransactionConf(TransactionDefinition.PROPAGATION_REQUIRED, TransactionDefinition.ISOLATION_READ_COMMITTED, false);
-		
 		List<GradeBean> gList = (List<GradeBean>)mav.getModelMap().getAttribute("gr");
-		for(int i=0; i<gList.size(); i++) {
-			if(this.convertToBoolean(gfo.regGrade(gList.get(i)))) {
-				tran = true;
-			}else {
-				tran = false;
+		this.setTransactionConf(TransactionDefinition.PROPAGATION_REQUIRED, TransactionDefinition.ISOLATION_READ_COMMITTED, false);
+		if(this.convertToBoolean(gfo.isGrade(gList.get(0)))) {
+			tran = false;
+			message = "gradeFirst:이번달 성적은 이미 등록 되어 있습니다.";
+		}else {
+			for(int i=0; i<gList.size(); i++) {
+				if(this.convertToBoolean(gfo.regGrade(gList.get(i)))) {
+					tran = true;
+					message = "gradeFirst:등록 완료";
+				}else {
+					tran = false;
+					message = "gradeSecond:등록 실패. 다시 시도해주세요.";
+				}
 			}
 		}
-		
-		message = (tran=true)? "gradeFirst:등록 완료" : "gradeSecond:등록 실패. 다시 시도해주세요.";
 		
 		this.setTransactionEnd(tran);
 		mav.addObject("msg",message);
@@ -177,14 +220,14 @@ public class Grade extends amaging.schedu.common.CommonMethod{
 	
 	@SuppressWarnings("unchecked")
 	private void getStudent(ModelAndView mav) {
-		List<Grade> list;
-		if(this.convertToBoolean(gfo.isGrade((Subject)mav.getModelMap().getAttribute("sj")))) {
-			mav.addObject("regGradeList",null);
+		List<GradeBean> list;
+		if(!this.convertToBoolean(gfo.isGrade((GradeBean)mav.getModelMap().getAttribute("gr")))) {
+			mav.addObject("def",gfo.getStudentList((GradeBean)mav.getModelMap().getAttribute("gr")));
+			list = (List<GradeBean>)mav.getModelMap().getAttribute("def");
 		}else {
-			mav.addObject("def",gfo.getStudentList((Subject)mav.getModelMap().getAttribute("sj")));
-			list = (List<Grade>)mav.getModelMap().getAttribute("def");
-			mav.addObject("regGradeList",list);
+			list = null;
 		}
+		mav.addObject("regGradeList",list);
 	}
 	
 }

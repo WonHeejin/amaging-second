@@ -73,6 +73,7 @@ public class Fee extends amaging.schedu.common.CommonMethod{
 		this.setTransactionConf(TransactionDefinition.PROPAGATION_REQUIRED, TransactionDefinition.ISOLATION_READ_COMMITTED, false);
 
 		List<FeeBean> fList = (List<FeeBean>)mav.getModelMap().getAttribute("fb");
+		System.out.println(fList.size());
 		for(int i=0; i<fList.size(); i++) {
 			if(this.convertToBoolean(gfo.updFeeList(fList.get(i)))) {
 				tran = true;

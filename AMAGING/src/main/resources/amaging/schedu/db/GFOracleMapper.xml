@@ -24,22 +24,22 @@
 		WHERE CL.CL_CRACCODE = #{acCode} AND SB.SB_TCCODE = #{teacherId}
 	</select>
 	
-	<select id="getTGrade" parameterType ="amaging.schedu.bean.Subject" resultType="amaging.schedu.bean.GradeBean">
-		SELECT GR.GR_SBACODE AS SBACODE, SB.SB_ASCODE AS SUBJECTCODE, SB.SB_ASNAME AS SUBJECTNAME, GR.GR_STCODE AS STUDENTID, ST.ST_NAME AS SNAME, GR.GR_SCORE AS SCORE, GR.GR_RANK AS RANK, (SELECT COUNT(*) FROM BS WHERE BS_CLCRACCODE = #{acCode} AND BS.BS_CLCODE = #{clCode}) AS HEADCOUNT 
+	<select id="getTGrade" parameterType ="amaging.schedu.bean.GradeBean" resultType="amaging.schedu.bean.GradeBean">
+		SELECT GR.GR_SBACODE AS SBACODE, SB.SB_ASCODE AS SUBJECTCODE, SB.SB_ASNAME AS SUBJECTNAME, GR.GR_STCODE AS STUDENTID, ST.ST_NAME AS SNAME, GR.GR_DATE AS MONTH, GR.GR_SCORE AS SCORE, GR.GR_RANK AS RANK, (SELECT COUNT(*) FROM BS WHERE BS_CLCRACCODE = #{acCode} AND BS.BS_CLCODE = #{clCode}) AS HEADCOUNT 
 		FROM GR INNER JOIN SB ON GR.GR_SBACODE = SB.SB_ACODE 
        			INNER JOIN ST ON ST.ST_CODE = GR.GR_STCODE 
         		INNER JOIN BS ON SB.SB_CLCODE = BS.BS_CLCODE 
-		WHERE SB.SB_TCCODE = #{teacherId} AND SB.SB_CLCRACCODE = #{acCode} AND SB.SB_CLCODE = #{clCode} 
-		GROUP BY GR.GR_SBACODE, SB.SB_ASCODE, SB.SB_ASNAME, GR.GR_STCODE, ST.ST_NAME, 
-       			 GR.GR_SCORE, GR.GR_RANK
+		WHERE SB.SB_TCCODE = #{teacherId} AND SB.SB_CLCRACCODE = #{acCode} AND SB.SB_CLCODE = #{clCode} AND GR.GR_DATE = #{month} 
+		GROUP BY GR.GR_SBACODE, SB.SB_ASCODE, SB.SB_ASNAME, GR.GR_STCODE, ST.ST_NAME, GR.GR_DATE, GR.GR_SCORE, GR.GR_RANK 
+		ORDER BY GR.GR_STCODE ASC
 	</select>
 	
 	<update id="modGrade" parameterType = "amaging.schedu.bean.GradeBean">
-		UPDATE GR SET GR.GR_SCORE = #{score}, GR.GR_RANK = #{rank} WHERE GR.GR_SBACODE = #{sBACode} and GR.GR_STCODE = #{studentId}
+		UPDATE GR SET GR.GR_SCORE = #{score}, GR.GR_RANK = #{rank} WHERE GR.GR_SBACODE = #{sBACode} AND GR.GR_STCODE = #{studentId} AND GR.GR_DATE = #{month} 
 	</update>
 	
-	<select id="getStudentList" parameterType ="amaging.schedu.bean.Subject" resultType="amaging.schedu.bean.GradeBean">
-		SELECT SB.SB_ACODE AS SBACODE, SB.SB_ASNAME AS SUBJECTNAME,BS.BS_STCODE AS STUDENTID , ST.ST_NAME AS SNAME FROM BS 
+	<select id="getStudentList" parameterType ="amaging.schedu.bean.GradeBean" resultType="amaging.schedu.bean.GradeBean">
+		SELECT SB.SB_ACODE AS SBACODE, SB.SB_ASNAME AS SUBJECTNAME,BS.BS_STCODE AS STUDENTID , ST.ST_NAME AS SNAME, (SELECT COUNT(*) FROM BS WHERE BS_CLCRACCODE = #{acCode} AND BS.BS_CLCODE = #{clCode}) AS HEADCOUNT FROM BS 
 		INNER JOIN ST ON BS.BS_STCODE = ST.ST_CODE 
         INNER JOIN SB ON BS.BS_CLCRACCODE = SB.SB_CLCRACCODE 
                      AND BS.BS_CLCRCODE = SB.SB_CLCRCODE 
@@ -50,25 +50,54 @@
 	<select id="isGrade" parameterType = "amaging.schedu.bean.GradeBean" resultType ="int">
 		SELECT COUNT(*) FROM GR WHERE SUBSTR(GR_SBACODE,26,5) = #{teacherId} 
                           AND SUBSTR(GR.GR_SBACODE,6,10) = #{acCode} 
-                          AND SUBSTR(GR.GR_SBACODE,21,5) = #{clCode}
+                          AND SUBSTR(GR.GR_SBACODE,21,5) = #{clCode} 
+                          AND GR.GR_DATE = #{month}
 	</select>
 	
 	<insert id="regGrade" parameterType = "amaging.schedu.bean.GradeBean">
-		INSERT INTO GR(GR_SBACODE,GR_STCODE,GR_SCORE,GR_RANK) 
-		VALUES(#{sBACode},#{studentId},#{score},#{rank})
+		INSERT INTO GR(GR_SBACODE,GR_STCODE,GR_SCORE,GR_RANK,GR_DATE) 
+		VALUES(#{sBACode},#{studentId},#{score},#{rank},#{month})
 	</insert>
 	
+	<select id="getChildAcademy" parameterType ="amaging.schedu.bean.ACPlan" resultType="amaging.schedu.bean.ACPlan">
+		SELECT AC.AC_CODE AS ACCODE, AC.AC_NAME AS ACNAME 
+		FROM AC INNER JOIN SA ON AC.AC_CODE = SA.SA_ACCODE 
+		WHERE SA.SA_STCODE = #{userId} 
+	</select>
+	
+	<select id="getSubject" parameterType ="amaging.schedu.bean.Subject" resultType="amaging.schedu.bean.GradeBean">
+		SELECT SB.SB_ACODE AS SBACODE, SB.SB_ASCODE AS SUBJECTCODE, SB.SB_ASNAME AS SUBJECTNAME 
+		FROM SB INNER JOIN BS ON SUBSTR(SB.SB_ACODE,6,10) = BS.BS_CLCRACCODE 
+                    		 AND SUBSTR(SB.SB_ACODE,16,5) = BS.BS_CLCRCODE 
+                    		 AND SUBSTR(SB.SB_ACODE,21,5) = BS.BS_CLCODE 
+		WHERE BS.BS_CLCRACCODE = #{acCode} AND BS.BS_STCODE = #{userId}
+	</select>
+	
+	<select id="getMaxGrade" parameterType ="amaging.schedu.bean.GradeBean" resultType="amaging.schedu.bean.GradeBean">
+		SELECT AC.AC_NAME AS ACNAME, CL.CL_NAME AS CLNAME, SB.SB_ASNAME AS SUBJECTNAME, GR.GR_SCORE AS SCORE, GR.GR_RANK AS RANK , GR.GR_DATE AS MONTH , 
+		(SELECT COUNT(*) FROM BS WHERE BS.BS_CLCRACCODE =(SELECT BS.BS_CLCRACCODE FROM BS WHERE BS.BS_STCODE = #{studentId} AND BS.BS_CLCRACCODE = #{acCode}) 
+                                    AND BS.BS_CLCRCODE = (SELECT BS.BS_CLCRCODE FROM BS WHERE BS.BS_STCODE = #{studentId} AND BS.BS_CLCRCODE = SUBSTR(#{sBACode},16,5)) 
+                                      AND BS.BS_CLCODE = (SELECT BS.BS_CLCODE FROM BS WHERE BS.BS_STCODE = #{studentId} AND BS.BS_CLCODE = SUBSTR(#{sBACode},21,5))) AS HEADCOUNT 
+		FROM GR INNER JOIN SB ON (SELECT GR.GR_SBACODE FROM GR WHERE GR.GR_STCODE = #{studentId} AND GR.GR_SBACODE = #{sBACode}  GROUP BY GR.GR_SBACODE) = SB.SB_ACODE 
+       			INNER JOIN AC ON (SELECT SUBSTR(GR.GR_SBACODE,6,10) FROM GR WHERE GR.GR_STCODE = #{studentId} AND SUBSTR(GR.GR_SBACODE,6,10) = #{acCode} GROUP BY GR.GR_SBACODE) = AC.AC_CODE 
+        		INNER JOIN CL ON (SELECT SUBSTR(GR.GR_SBACODE,21,5) FROM GR WHERE GR.GR_STCODE = #{studentId} AND SUBSTR(GR.GR_SBACODE,21,5) = SUBSTR(#{sBACode},21,5) GROUP BY GR.GR_SBACODE) = CL.CL_CODE 
+                     		 AND (SELECT SUBSTR(GR.GR_SBACODE,6,10) FROM GR WHERE GR.GR_STCODE = #{studentId} AND SUBSTR(GR.GR_SBACODE,6,10) = #{acCode} GROUP BY GR.GR_SBACODE) = CL.CL_CRACCODE 
+		WHERE GR.GR_STCODE = #{studentId} AND SUBSTR(GR.GR_SBACODE,0,5) = #{subjectCode} AND GR.GR_DATE = (SELECT MAX(GR.GR_DATE) FROM GR WHERE SUBSTR(GR.GR_SBACODE,0,5) = #{subjectCode} 
+                                 AND SUBSTR(GR.GR_SBACODE,6,10) = #{acCode}) 
+		GROUP BY CL.CL_NAME, AC.AC_NAME, SB.SB_ASNAME, GR.GR_SCORE, GR.GR_RANK, GR.GR_DATE
+	</select>
+	
 	<select id="getGrade" parameterType ="amaging.schedu.bean.UserInfo" resultType="amaging.schedu.bean.GradeBean">
-		SELECT AC.AC_NAME AS ACNAME, CL.CL_NAME AS CLNAME, SB.SB_ASNAME AS SUBJECTNAME, GR.GR_SCORE AS SCORE, GR.GR_RANK AS RANK , 
+		SELECT AC.AC_NAME AS ACNAME, CL.CL_NAME AS CLNAME, SB.SB_ASNAME AS SUBJECTNAME, GR.GR_SCORE AS SCORE, GR.GR_RANK AS RANK , GR.GR_DATE AS MONTH , 
 		(SELECT COUNT(*) FROM BS WHERE BS.BS_CLCRACCODE =(SELECT BS.BS_CLCRACCODE FROM BS WHERE BS.BS_STCODE = #{userId}) 
                                     AND BS.BS_CLCRCODE = (SELECT BS.BS_CLCRCODE FROM BS WHERE BS.BS_STCODE = #{userId}) 
                                       AND BS.BS_CLCODE = (SELECT BS.BS_CLCODE FROM BS WHERE BS.BS_STCODE = #{userId})) AS HEADCOUNT 
-		FROM GR INNER JOIN SB ON (SELECT GR.GR_SBACODE FROM GR WHERE GR.GR_STCODE = #{userId}) = SB.SB_ACODE 
-       			INNER JOIN AC ON (SELECT SUBSTR(GR.GR_SBACODE,6,10) FROM GR WHERE GR.GR_STCODE = #{userId}) = AC.AC_CODE 
-        		INNER JOIN CL ON (SELECT SUBSTR(GR.GR_SBACODE,21,5) FROM GR WHERE GR.GR_STCODE = #{userId}) = CL.CL_CODE 
-                     		 AND (SELECT SUBSTR(GR.GR_SBACODE,6,10) FROM GR WHERE GR.GR_STCODE = #{userId}) = CL.CL_CRACCODE 
+		FROM GR INNER JOIN SB ON (SELECT GR.GR_SBACODE FROM GR WHERE GR.GR_STCODE = #{userId} GROUP BY GR.GR_SBACODE) = SB.SB_ACODE 
+       			INNER JOIN AC ON (SELECT SUBSTR(GR.GR_SBACODE,6,10) FROM GR WHERE GR.GR_STCODE = #{userId} GROUP BY GR.GR_SBACODE) = AC.AC_CODE 
+        		INNER JOIN CL ON (SELECT SUBSTR(GR.GR_SBACODE,21,5) FROM GR WHERE GR.GR_STCODE = #{userId} GROUP BY GR.GR_SBACODE) = CL.CL_CODE 
+                     		 AND (SELECT SUBSTR(GR.GR_SBACODE,6,10) FROM GR WHERE GR.GR_STCODE = #{userId} GROUP BY GR.GR_SBACODE) = CL.CL_CRACCODE 
 		WHERE GR.GR_STCODE = #{userId} 
-		GROUP BY CL.CL_NAME, AC.AC_NAME, SB.SB_ASNAME, GR.GR_SCORE, GR.GR_RANK
+		GROUP BY CL.CL_NAME, AC.AC_NAME, SB.SB_ASNAME, GR.GR_SCORE, GR.GR_RANK, GR.GR_DATE
 	</select>
 	
 	<select id="getMyChilds" parameterType ="amaging.schedu.bean.UserInfo" resultType="amaging.schedu.bean.GradeBean">
@@ -131,6 +160,15 @@
                      		 AND FE.FE_CLCRCODE = CL.CL_CRCODE 
                      		 AND FE.FE_CLCODE = CL.CL_CODE 
 		WHERE FE.FE_STCODE = #{studentId} AND SUBSTR(FE.FE_UPMONTH,0,6) = #{upMonth}
+	</select>
+	
+	<select id="getAmounts" parameterType ="amaging.schedu.bean.UserInfo" resultType="String">
+		SELECT SUM(FE.FE_PRICE) AS MONEY 
+		FROM FE INNER JOIN AC ON FE.FE_CLCRACCODE = AC.AC_CODE 
+        		INNER JOIN CL ON FE.FE_CLCODE = CL.CL_CODE 
+        		INNER JOIN SP ON FE.FE_STCODE = SP.SP_STCODE 
+        		INNER JOIN ST ON FE.FE_STCODE = ST.ST_CODE 
+		WHERE SP.SP_PRCODE = #{userId} AND FE.FE_COCODE = 13
 	</select>
 	
 </mapper>

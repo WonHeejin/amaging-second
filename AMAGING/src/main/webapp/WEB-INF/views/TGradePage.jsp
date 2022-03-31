@@ -296,7 +296,7 @@ position:absolute; left:45%; top:1%;
          <div id="body">
             <div id="colorline"></div>
                <div class="servicebutton">
-                  <input type="button" class="bothB" id="oneB" onclick="getAcPlanPage('tmainservices','/AcPlanPage')"> 
+                  <input type="button" class="bothB" id="oneB" onclick="getPage('tmainservices','/AcPlanPage')"> 
                   <input type="button" class="bothB" id="twoB" onclick="getPage('tmainservices','TGradePage')">
                   <div class="div1">
                     <div id ="gradeFirst" class="div2" onclick="myAcademyList('${sessionInfo.userId}','get')" >
@@ -315,7 +315,7 @@ position:absolute; left:45%; top:1%;
                    <input type="button" class="bothB" id="sixB" onclick="getPage('tmainservices','/InfoPage')">
                     
                </div>
-            <div id="mainpage" style = "overflow : auto"></div>
+            <div id="mainpage"></div>
          </div>
       </div>
       

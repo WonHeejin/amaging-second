@@ -11,7 +11,9 @@ public class GradeBean {
 	String subjectCode;
 	String subjectName;
 	String studentId;
+	String teacherId;
 	String sName;
+	String month;
 	int score;
 	int rank;
 	int headCount;
