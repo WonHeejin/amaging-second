@@ -38,7 +38,7 @@ function calendar(action) {
 				: document.getElementsByName("userId")[0].value;
 			let data = "userId=" + userId + "&userCode=" + document.getElementsByName("userCode")[0].value;
 			$.ajax({
-				type: "post", url: action, data, dataType: "json",
+				type: "post", url: "/GetSTClassList", data, dataType: "json",
 				success:
 					function(result) {
 						if (result.length > 0) {
