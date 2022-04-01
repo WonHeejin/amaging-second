@@ -5,9 +5,9 @@
 <head>
 <meta charset="UTF-8">
 <title>관리자 메인 페이지</title>
- <link rel="stylesheet" type="text/css" href="resources/css/ad.css" />
  <script src="resources/js/common.js"></script>
  <script src="resources/js/acPlan.js"></script>
+  <link rel="stylesheet" type="text/css" href="resources/css/ad.css" />
 <style>
 #frame {
    width: 100%;
@@ -71,12 +71,12 @@
    height: 80%;
    float: right;
    margin-right: 5.5%;
-   background-image: url(resources/images/관리자.png);
+    background: #fff;
+/*   background-image: url(resources/images/관리자.png);
    background-size: 30% 55%;
    background-repeat: no-repeat;
-   background-position: center center;
+   background-position: center center; */
 }
-
 
 .bothB:active {
    width: 85%;
@@ -182,13 +182,144 @@
 position:absolute; top:44%; left:60%;
 text-align:center;
  font-size:130%;
- 
-	
-	}
+    }
 
 #sessionBox{ width:30%; height:10%; 
 position:absolute; left:45%; top:1%;
 }
+/*
+ #circle1 {
+      width: 200px;
+      height: 200px;
+      background: white;
+      border-radius: 50%;
+      position:absolute;left:38%;top:15%; border:1px solid #000;
+      background: linear-gradient(red, blue);
+
+    }
+   #circle2 {
+      width: 200px;
+      height: 200px;
+      background: white;
+      border-radius: 50%;
+      position:absolute;left:30%; border:1px solid #000;
+      background: linear-gradient(red, blue);
+
+    }
+     #circle3 {
+      width: 200px;
+      height: 200px;
+      background: white;
+      border-radius: 50%;
+      position:absolute;left:58%;top:50%;
+       border:1px solid #000;
+    }
+     #circle4 {
+      width: 200px;
+      height: 200px;
+      background: white;
+      border-radius: 50%;
+      position:absolute;left:85%; top:80%; 
+      border:1px solid #ff0000;
+    }
+     #circle5 {
+      width: 200px;
+      height: 200px;
+      background: white;
+      border-radius: 50%;
+      position:absolute;left:97%; top:60%; 
+      border:1px solid #000;
+    } 
+     #circle6 {
+      width: 200px;
+      height: 200px;
+      background: white;
+      border-radius: 50%;
+      position:absolute;left:92%; top:10%; 
+      border:1px solid #000;
+    } 
+     #circle7 {
+      width: 200px;
+      height: 200px;
+      background: white;
+      border-radius: 50%;
+      position:absolute;left:63%; top:40%; 
+      border:1px solid #000;
+    } 
+      #circle8 {
+      width: 200px;
+      height: 200px;
+      background: white;
+      border-radius: 50%;
+      position:absolute;left:25%; top:53%; 
+      border:1px solid #000;
+    }     
+      #circle9 {
+      width: 200px;
+      height: 200px;
+      background: white;
+      border-radius: 50%;
+      position:absolute;left:27%; top:68%; 
+      border:1px solid #000;
+      background: linear-gradient(45deg, yellow, Orange);
+    }  
+    */  
+  figure {
+  width: 210px;
+  height: 210px;
+  animation: rotation 7s linear infinite;
+  position: absolute;
+  top: 50%;
+  left: 55%;
+  margin-top: -105px;
+  margin-left: -105px;
+  transform-style: preserve-3d;
+}
+
+.face {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  transform-origin: center;
+}
+
+.face div {
+  border: 6px double #FFD9FA;
+  width: 70px;
+  height: 70px;
+  display: inline-block;
+  box-sizing: border-box;
+  vertical-align: top;
+}
+
+.front {
+  transform: translate3d(0,0,105px);
+}
+
+.back {
+  transform: rotateY(180deg) translate3d(0,0,105px);
+}
+
+.left {
+  transform: rotateY(-90deg) translate3d(0,0,105px);
+}
+
+.right {
+  transform: rotateY(90deg) translate3d(0,0,105px);
+}
+
+.top {
+  transform: rotateX(90deg) translate3d(0,0,105px);
+}
+
+.bottom {
+  transform: rotateX(-90deg) translate3d(0,0,105px);
+}
+
+@keyframes rotation {
+  from { transform: rotateY(0) rotateX(0); }
+  to   { transform: rotateY(-360deg) rotateX(360deg); }
+}     
 </style>
 
 </head>
@@ -200,10 +331,10 @@ position:absolute; left:45%; top:1%;
 
             <span id="logo"></span>
             <div id="sessionBox"><span id="session">${sessionInfo.userName}님 환영합니다.
-            	<input	type="hidden" value='${sessionInfo.userId}' name="userId" />
-				<input	type="hidden" value='${sessionInfo.userCode}' name="userCode" />
-				<input	type="hidden" value='${sessionInfo.acCode}' name="acCode" />
-				<input	type="hidden" value='${sessionInfo.tier}' name="tier" />                         
+               <input   type="hidden" value='${sessionInfo.userId}' name="userId" />
+            <input   type="hidden" value='${sessionInfo.userCode}' name="userCode" />
+            <input   type="hidden" value='${sessionInfo.acCode}' name="acCode" />
+            <input   type="hidden" value='${sessionInfo.tier}' name="tier" />                         
             </span></div>
             <div id="logOut">
                <span><input type="button" id="btn" value="로그아웃" onclick="accessAdminOut()"
@@ -222,7 +353,31 @@ position:absolute; left:45%; top:1%;
                <input type="button" class="bothB" id="fiveB" onclick="getPage('amainservice','/AQnAPage')">
 
             </div>
-            <div id="mainpage"></div>
+            <div id="mainpage">
+            <figure>
+  <div class="face front">
+    <div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div>
+  </div>
+
+  <div class="face top">
+    <div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div>
+  </div>
+  
+  <div class="face right">
+    <div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div>
+  </div>
+
+  <div class="face left">
+    <div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div>
+  </div>
+
+  <div class="face bottom"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div>
+  </div>
+
+  <div class="face back"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div>
+  </div>
+</figure>
+            </div>
          </div>
       </div>
    </form>
@@ -235,24 +390,24 @@ position:absolute; left:45%; top:1%;
 
    }
    /*function getCheckPage(formName,action){
-		const checkLevel = document.getElementsByName("tier")[0].value;
-		
-		if(checkLevel == 1){
-	   		const form = document.getElementsByName(formName)[0];
-	      		form.setAttribute("action",action);
-	      		return form.submit();
-		}else if(checkLevel == 2){
-			if(action == "/AQnAPage"){
-				const form = document.getElementsByName(formName)[0];
-  					form.setAttribute("action",action);
-  					return form.submit();
-			}
-		}else if(checkLevel == 3){
-			
-		}
-		alert("볼수없는 기능입니다.");
-		
-	}*/
+      const checkLevel = document.getElementsByName("tier")[0].value;
+      
+      if(checkLevel == 1){
+            const form = document.getElementsByName(formName)[0];
+               form.setAttribute("action",action);
+               return form.submit();
+      }else if(checkLevel == 2){
+         if(action == "/AQnAPage"){
+            const form = document.getElementsByName(formName)[0];
+                 form.setAttribute("action",action);
+                 return form.submit();
+         }
+      }else if(checkLevel == 3){
+         
+      }
+      alert("볼수없는 기능입니다.");
+      
+   }*/
    function mouseLeave(obj) {
 
       let fColor = (obj.id == "btn") ? "#ffffff" : "#FF0000";

@@ -7,6 +7,8 @@
 <title>관리자 수업관리 페이지</title>
 <script src="resources/js/common.js"></script>
 <script src="resources/js/ATimeTable.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+ <link rel="stylesheet" type="text/css" href="resources/css/ad.css" />
 <style>
 #yaritakunai{width:10%; height:10%; line-height: 1%;font-size:150%;text-align:center;
            box-shadow : 5px 5px 5px black; transition-duration:0.3s;
@@ -82,16 +84,7 @@ background-color:#fff;
 	right: 1%;
 }
 
-#colorline {
-	border: 0;
-	outline: 0;
-	height: 1.5%;
-	width: 90%;
-	float: left;
-	margin: 2% 4.5%;
-	border-radius: 20px;
-	background-color: #EF90FF;
-}
+
 
 #body {
 	outline: 0;
@@ -130,17 +123,6 @@ background-color:#fff;
 /*	border:3px dashed #EF90FF; */
 }
 
-.bothB {
-	width: 85%;
-	height: 13%;
-	border-radius: 20px;
-	margin: 2% 4%;
-	background-color: transparent;
-	border-top: 5px solid #EF90FF;
-	border-left: 5px solid #EF90FF;
-	border-right: 5px solid #EF90FF;
-	border-bottom: 5px solid #EF90FF;
-}
 
 .bothB:active {
 	width: 85%;
@@ -432,7 +414,7 @@ background-color:#fff;
 	width: 70%;
 	height:50%;
 	pont-size: 100pt;
-	position:absolute; top:27%;	
+	position:absolute; top:27%; left:5.3%;	
 	float:left;
 	margin-bottom:30%;
 	overflow-x: hidden;
@@ -442,16 +424,16 @@ background-color:#fff;
 
 .sNAME {
 	float: left;
-	width: 37.5%;
+	width: 37%;
 	height: 8%;
-	border:1px solid #EF90FF;
+	border:3px solid #D1B2FF;
 }
  .sEmail {
-	width: 61.5%;
+	width: 61%;
 	height: 8%;
 	position:left:20%;
 	float: left;
-	border:1px solid #000;
+	border:3px solid #D1B2FF;
 }
 
 
@@ -492,10 +474,10 @@ background-color:#fff;
 .gmbody2 {
 	
 	margin-left: 10%;
-	width: 80%;
-	height:80%;
+	width: 70%;
+	height:60%;
 	pont-size: 100pt;
-	position:absolute; top:5%;	
+	position:absolute; top:16%; left:7%;	
 	float:left;
 	margin-bottom:30%;
 	overflow-x: hidden;
@@ -505,16 +487,16 @@ background-color:#fff;
 
 .sNAME2 {
 	float: left;
-	width: 30%;
-	height: 5%;
-	border:3px solid #000;
+	width: 34%;
+	height: 6%;
+	border:2px solid #000;
 }
  .sEmail2 {
-	width: 60%;
-	height: 5%;
+	width: 64%;
+	height: 6%;
 	position:left:20%;
 	float: left;
-	border:3px solid #000;
+	border:2px solid #000;
 }
 
 
@@ -613,7 +595,7 @@ background-color:#fff;
 			<div id="frame">
 
 
-				<span id="logo"></span>
+				<span id="logo" onclick="getPage('amainservice','/MoveMainservice')"></span>
 				<div id="sessionBox">
 					<span id="session">${sessionInfo.userName}님 환영합니다. <input
 						type="hidden" value='${sessionInfo.userId}' name="userId" /> <input
@@ -704,24 +686,25 @@ background-color:#fff;
 			<div class='gcontainer' id='gcontainer'>
 				<div class='gmdialog'>
 					<div class='gmcontent'>
-						<div class='gmheader' style='font-size: 200%'>	
+						<div class='gmheader' style='font-size: 200%'>
+							<h4 id='smheader' class='mtitle'>학생 검색</h4>	
 						</div>
 						<input type='text' name='sName' id='splace' placeholder='학생이름 입력'
-							style='height: 35px; width: 30%; position: absolute; top: 19%; left: 30%; border-radius: 5px; border-color: #EF90FF' />
+							style='height: 35px; width: 30%; position: absolute; top: 19%; left: 30%; border-radius: 5px; border-color: #F29FF0' />
 						<input type='button' value='조회' onClick='searchStudent()'
 							class='searchBtn'
-							style='position: absolute; top: 21%; left: 62%; border-radius: 5px background-color:#EF90FF;' />
+							style='position: absolute; top: 21%; left: 62%; border-radius: 5px; background-color:#fff; border:3px solid #F29FF0;cursor: pointer;'' />
 						<div class='gmbody' id='gmbody' value=''>
-							<div id="ssibal">
+							
 							<div class='sNAME'>학생이름</div>
 							<div class='sEmail'>이메일</div>
-							</div>						
+												
 						</div>
 						<div class='gmfooter'>
 							<input type='button' class='mbtn3' value='등록' onclick='regStudent(this)'
-								style='border-radius: 5px; background-color: #EF90FF; width: 30%; height: 50%;' />
+								style='border-radius: 5px; background-color: #FFF; width: 30%; height: 50%; border:3px solid #F29FF0; cursor: pointer; ' />
 							<input type='button' class='mbtn3' value='닫기' onclick='closeModal()'
-								style='borderradius: 5px; background-color: #EF90FF; width: 30%; height: 50%;' />
+								style='border-radius: 5px; background-color: #FFF; width: 30%; height: 50%; border:3px solid #F29FF0; cursor: pointer;' />
 						</div>
 					</div>
 				</div>
@@ -730,7 +713,8 @@ background-color:#fff;
 		<div class='gcontainer2' id='gcontainer2' >
 				<div class='gmdialog2'>
 					<div class='gmcontent2'>
-						<div class='gmheader2' style='font-size: 200%'>	
+						<div class='gmheader2' style='font-size: 200%'>
+							<h4 id='smheader' class='mtitle'>학생 삭제</h4>	
 						</div>
 						<div class='gmbody2' id='gmbody2' value=''>
 							<div class='sNAME2'>학생이름</div>
@@ -739,9 +723,9 @@ background-color:#fff;
 						</div>
 						<div class='gmfooter2'>
 							<input type='button' class='mbtn3' value='삭제' onclick='delBelong()'
-								style='border-radius: 5px; background-color: #EF90FF; width: 30%; height: 50%;' />
+								style='border-radius: 5px; background-color: #FFF; width: 30%; height: 50%; border:3px solid #C09AF0; cursor: pointer; ' />
 							<input type='button' class='mbtn3' value='닫기' onclick='closeModal()'
-								style='borderradius: 5px; background-color: #EF90FF; width: 30%; height: 50%;' />
+								style='border-radius: 5px; background-color: #FFF; width: 30%; height: 50%; border:3px solid #C09AF0; cursor: pointer; ' />
 						</div>
 					</div>
 				</div>

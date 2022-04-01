@@ -117,7 +117,7 @@ function getCourseList(acCode){
 			dateFrom.style.top="50%";
 			dateFrom.style.borderRadius="30px 10px 50px";
 			dateFrom.style.textAlign = "center";
-			dateFrom.style.fontSize="120%";
+			dateFrom.style.fontSize="140%";
 			
         	let stday = document.createElement("option");
 			stday.setAttribute("selected",stday);
@@ -145,7 +145,7 @@ function getCourseList(acCode){
 			dateFrom2.style.top="50%";
 			dateFrom2.style.borderRadius="30px 10px 50px";
 			dateFrom2.style.textAlign = "center";
-			dateFrom2.style.fontSize="120%";        	
+			dateFrom2.style.fontSize="140%";        	
          
          let enday = document.createElement("option");			
 			enday.setAttribute("selected",enday);
@@ -239,22 +239,31 @@ function updClassForm(abc){
 		 tablebox.style.position="absolute"
 		 tablebox.setAttribute("class","section")
 		 tablebox.style.top="15%"
-		 tablebox.style.left="25%"
-		 tablebox.style.border="3px solid #A566FF"		 
+		 tablebox.style.left="25%"		 
 	 let table = document.createElement("table");
  		 table.style.position="absolute";
 		 table.style.width="100%";
 		 table.style.borderRadius="5px";
-		 table.style.borderCollapse="collapse";			
-	
+		 table.style.borderCollapse="separate";					 		 
+		 table.style.borderSpacing="10px"
 	let mtr =createTr("mtr");
-	mtr.style.border="5px ridge #A566FF"
-			
+	
 	let mtd1 =createTd("mtd1");
+	mtd1.style.borderBottom="5px solid #A566FF"
+	mtd1.style.borderRight="5px solid #A566FF"
 	let mtd2 =createTd("mtd2");
+	mtd2.style.borderBottom="5px solid #A566FF"
+	mtd2.style.borderRight="5px solid #A566FF"
 	let mtd3 =createTd("mtd3");
+	mtd3.style.borderBottom="5px solid #A566FF"
+	mtd3.style.borderRight="5px solid #A566FF"
 	let mtd4 =createTd("mtd4");
+	mtd4.style.borderBottom="5px solid #A566FF"
+	mtd4.style.borderRight="5px solid #A566FF"
 	let mtd5 =createTd("mtd5");
+	mtd5.style.borderBottom="5px solid #A566FF"
+	mtd5.style.borderRight="5px solid #A566FF"
+	
 	mtd1.innerHTML="과정명";
 	mtd2.innerHTML="수업명";
 	mtd3.innerHTML="수업료";
@@ -270,21 +279,21 @@ function updClassForm(abc){
 		for(let i=0; i<risuto.length; i++){
 		
 			let tr=createTr("tr");
-			tr.style.borderBottom="1px solid #E14FCA"
 		
 			let td1=createTd("td1");
 			td1.setAttribute("value",risuto[i].crCode);
 			td1.innerHTML=risuto[i].crName;
-			
+			td1.style.borderBottom="1px solid #E14FCA"
 			let td2 =createTd("td2");
 			td2.setAttribute("value",risuto[i].clCode);
 			td2.innerHTML=risuto[i].clName;
-	
+			td2.style.borderBottom="1px solid #E14FCA"
 			let td3 =createTd("td3");
-		
+			td3.style.borderBottom="1px solid #E14FCA"
 			let td4 =createTd("td4");
+			td4.style.borderBottom="1px solid #E14FCA"
 			let td5 =createTd("td5");			
-			
+			td5.style.borderBottom="1px solid #E14FCA"
 			td3.innerHTML=risuto[i].clFee;
 			td4.innerHTML=risuto[i].clSdate;
 			td5.innerHTML=risuto[i].clEdate;
@@ -310,7 +319,7 @@ function updClassForm(abc){
          name.style.left="27%";
          name.style.width = "10%";
          name.style.height = "7.5%";
-         name.style.fontSize="100%";
+         name.style.fontSize="120%";
          name.style.textAlign="center";
 									
 		let fee = document.createElement("input")		
@@ -326,7 +335,7 @@ function updClassForm(abc){
 			fee.style.left="42%";
 			fee.style.width = "10%";
       		fee.style.height = "7.5%";
-			fee.style.fontSize="100%";
+			fee.style.fontSize="120%";
 			fee.style.textAlign="center";
 			
 				/* -----------개강일 달력-------------- */
@@ -351,7 +360,7 @@ function updClassForm(abc){
 			dateFrom.style.top="62%";
 			dateFrom.style.borderRadius="30px 10px";
 			dateFrom.style.textAlign = "center";
-			dateFrom.style.fontSize="100%";
+			dateFrom.style.fontSize="140%";
 			
         	let stday = document.createElement("option");
 			stday.setAttribute("selected",stday);
@@ -379,7 +388,7 @@ function updClassForm(abc){
 			dateFrom2.style.top="62%";
 			dateFrom2.style.borderRadius="30px 10px";
 			dateFrom2.style.textAlign = "center";
-			dateFrom2.style.fontSize="100%";
+			dateFrom2.style.fontSize="140%";
          	      
          let enday = document.createElement("option");	
 			enday.setAttribute("selected",enday);
@@ -408,7 +417,7 @@ function updClassForm(abc){
 function createTr(id) {
    const tr = document.createElement("tr");
    tr.setAttribute("name",id); 
-   
+   tr.style.cursor="pointer"
    tr.setAttribute("onClick","javascript:getSelectClass(this)")
 	return tr;
 }
@@ -537,7 +546,7 @@ function subjectRegForm(abc){
 	  select.style.top="30%";
 	  select.style.borderRadius="30px 10px";
 	  select.style.textAlign = "center";
-	  select.style.fontSize="100%";
+	  select.style.fontSize="120%";
                  
   let classname = document.createElement("option");
 	  classname.innerHTML="수업명";
@@ -561,7 +570,7 @@ function subjectRegForm(abc){
 	  subj.style.top="30%";
 	  subj.style.borderRadius="30px 10px";
 	  subj.style.textAlign = "center";
-	  subj.style.fontSize="100%";
+	  subj.style.fontSize="120%";
 	let sbna=document.createElement("option")
 	  sbna.innerHTML="과목명";
 	  subj.appendChild(sbna);
@@ -602,6 +611,7 @@ function subjectRegForm(abc){
 	  tdiv.style.textAlign = "center"
 	  tdiv.style.fontSize="16px";
 	  tdiv.style.paddingTop="20px"
+	  tdiv.style.fontSize="120%"
 	  tdiv.setAttribute("onClick","openModal2()")
 	  div.appendChild(tdiv)						
 		    /*과목시작시간 */
@@ -623,7 +633,7 @@ function subjectRegForm(abc){
 	  sTime.style.top="48%";
 	  sTime.style.borderRadius="30px 10px";
 	  sTime.style.textAlign = "center";
-	  sTime.style.fontSize="100%"; 
+	  sTime.style.fontSize="140%"; 
  				 
 		    /*과목종료시간 */
 let elabel=document.createElement("div")
@@ -644,7 +654,7 @@ let eTime =document.createElement("input");
 	  eTime.style.top="48%";
 	  eTime.style.borderRadius="30px 10px";
 	  eTime.style.textAlign = "center";
-	  eTime.style.fontSize="100%";
+	  eTime.style.fontSize="140%";
  
 			/*요일선택 */
 let week=document.createElement("div");
@@ -659,7 +669,7 @@ let week=document.createElement("div");
 	  week.style.top="48%";
 	  week.style.borderRadius="30px 10px";
 	  week.style.textAlign = "center"
-	  week.style.fontSize="16px";
+	  week.style.fontSize="120%";
 	  week.style.paddingTop="20px"
 	  week.setAttribute("onClick","javascript:openModal(this)");
 	
@@ -970,7 +980,6 @@ function updSubjectForm(aca){
 		div.style.height="40%"
 		div.style.overflowX="hidden"
 		div.setAttribute("class","section")
-		div.style.border="3px solid #C09AF0"
 		div.style.top="15%";
 		div.style.left="25%";
 		div.style.clear="both"
@@ -979,45 +988,62 @@ function updSubjectForm(aca){
  		 table.style.position="absolute";
 		 table.style.width="100%";
 		 table.style.borderRadius="5px";
-		 table.style.borderCollapse="collapse";	
-		 table.style.borderTop= "2px solid #92acbb";
+		 table.style.borderCollapse="separate";
+		 table.style.borderSpacing="10px"	
+		 
 		
-	
-		let mtr =createTr1("mtr");
-		mtr.style.border=" 5px ridge rgb(165, 102, 255)"		
+		let mtr =createTr1("mtr");		
 		let mtd1 =createTd1("mtd1");mtd1.innerHTML="과정명";mtr.appendChild(mtd1);
+		mtd1.style.borderBottom="5px solid rgb(165, 102, 255)"
+		mtd1.style.borderRight="5px solid rgb(165, 102, 255)"
 		let mtd2 =createTd1("mtd2");mtd2.innerHTML="수업명";mtr.appendChild(mtd2);
+		mtd2.style.borderBottom="5px solid rgb(165, 102, 255)"
+		mtd2.style.borderRight="5px solid rgb(165, 102, 255)"
 		let mtd3 =createTd1("mtd3");mtd3.innerHTML="과목명";mtr.appendChild(mtd3);
+		mtd3.style.borderBottom="5px solid rgb(165, 102, 255)"
+		mtd3.style.borderRight="5px solid rgb(165, 102, 255)"
 		let mtd4 =createTd1("mtd4");mtd4.innerHTML="선생님";mtr.appendChild(mtd4);
+		mtd4.style.borderBottom="5px solid rgb(165, 102, 255)"
+		mtd4.style.borderRight="5px solid rgb(165, 102, 255)"
 		let mtd5 =createTd1("mtd5");mtd5.innerHTML="시작시간";mtr.appendChild(mtd5);
+		mtd5.style.borderBottom="5px solid rgb(165, 102, 255)"
+		mtd5.style.borderRight="5px solid rgb(165, 102, 255)"
 		let mtd6 =createTd1("mtd6");mtd6.innerHTML="종료시간";mtr.appendChild(mtd6);
+		mtd6.style.borderBottom="5px solid rgb(165, 102, 255)"
+		mtd6.style.borderRight="5px solid rgb(165, 102, 255)"
 		let mtd7 =createTd1("mtd7");mtd7.innerHTML="요일";mtr.appendChild(mtd7);
+		mtd7.style.borderBottom="5px solid rgb(165, 102, 255)"
+		mtd7.style.borderRight="5px solid rgb(165, 102, 255)"
 		table.appendChild(mtr);
 		
 		for(let i=0; i<sblist.length; i++){
 		
 			let tr=createTr1("tr");
-			tr.style.borderBottom="1px solid #E14FCA"
 			let td1=createTd1("td1");
 			td1.setAttribute("value",sblist[i].crCode);
 			td1.innerHTML=sblist[i].crName;
-			
+			td1.style.borderBottom="1px solid #E14FCA"
 			let td2 =createTd1("td2");
 			td2.setAttribute("value",sblist[i].clCode);
 			td2.innerHTML=sblist[i].clName;
-	
+			td2.style.borderBottom="1px solid #E14FCA"
 			let td3 =createTd1("td3");
 			td3.setAttribute("value",sblist[i].subjectCode);
 			td3.innerHTML=sblist[i].subjectName;
+			td3.style.borderBottom="1px solid #E14FCA"
 			let td4 =createTd1("td4");
 			td4.setAttribute("value",sblist[i].teacherId);
 			td4.innerHTML=sblist[i].tname
+			td4.style.borderBottom="1px solid #E14FCA"
 			let td5 =createTd1("td5");
-			td5.innerHTML=sblist[i].stime			
+			td5.innerHTML=sblist[i].stime
+			td5.style.borderBottom="1px solid #E14FCA"			
 			let td6 =createTd1("td6");
 			td6.innerHTML=sblist[i].etime
+			td6.style.borderBottom="1px solid #E14FCA"
 			let td7 =createTd1("td7");		
 			td7.innerHTML=sblist[i].weekDay
+			td7.style.borderBottom="1px solid #E14FCA"
 			
 			tr.appendChild(td1);
 			tr.appendChild(td2);
@@ -1346,7 +1372,7 @@ function modStudentForm(aca){
 		 maindiv.setAttribute("class","section")
 		 maindiv.style.top="23%"
 		 maindiv.style.left="25%"
-		 maindiv.style.border="3px solid #A566FF"	
+		
 	let accode=document.createElement("input")
 		accode.setAttribute("type","hidden")
 		accode.setAttribute("value",classlist[0].acCode)
@@ -1355,8 +1381,8 @@ function modStudentForm(aca){
 		 table.style.position="absolute";
 		 table.style.width="100%";
 		 table.style.borderRadius="5px";
-		 table.style.borderCollapse="collapse";	
-		 table.style.borderTop= "2px solid #92acbb";
+		 table.style.borderCollapse="separate";
+		 table.style.borderSpacing="10px"			
 		
 	let mtr=document.createElement("div")
 		mtr.innerHTML="반배정"
@@ -1370,8 +1396,7 @@ function modStudentForm(aca){
 		mtr.style.textAlign="center"
 		
 	for(i=0; i<classlist.length; i++){
-		let thead=document.createElement("tr")
-		
+		let thead=document.createElement("tr")	
 		let tdclass=document.createElement("td");
 		tdclass.setAttribute("value",classlist[i].clCode);
 		tdclass.setAttribute("id","clcode");
@@ -1381,8 +1406,7 @@ function modStudentForm(aca){
 		tdclass.innerHTML=classlist[i].clName;
 		tdclass.style.width  = "1000px";
 		tdclass.style.height  = "40px";
-		tdclass.style.border="7px solid #F5D6FF"
-		
+		tdclass.style.border="7px solid #F5D6FF"	
 		
 		/*학생 등록 버튼 */
 		let tdcrcode=document.createElement("input")
@@ -1396,22 +1420,20 @@ function modStudentForm(aca){
 		tdbtn1.setAttribute("type","button");
 		tdbtn1.setAttribute("onClick","regStudentForm('"+classlist[i].clCode+"','"+classlist[i].crCode+"')");
 		tdbtn1.innerHTML="학생등록";   
-		tdbtn1.style.textAlign="center"
-		tdbtn1.style.backgroundColor="#C09AF0"
-		tdbtn1.style.color="#fff"
-		tdbtn1.style.fontSize="110%"
+		tdbtn1.style.textAlign="center"	
+		tdbtn1.style.fontSize="120%"
+		tdbtn1.style.cursor="pointer"
 		/*학생 삭제 버튼 */
 		let tdbtn2=document.createElement("td")
 		tdbtn2.style.border="5px solid #C09AF0"
-		tdbtn2.style.width  = "490px";
+		tdbtn2.style.width  = "500px";
 		tdbtn2.style.borderRadius="10px 30px"
 		tdbtn2.style.textAlign="center"
 		tdbtn2.setAttribute("type","button");
 		tdbtn2.setAttribute("onClick","getBelongList('"+classlist[i].clCode+"','"+classlist[i].crCode+"','"+classlist[i].acCode+"')");
 		tdbtn2.innerHTML="학생삭제";
-		tdbtn2.style.backgroundColor="#F29FF0"
-		tdbtn2.style.color="#fff"
-		tdbtn2.style.fontSize="110%"
+		tdbtn2.style.cursor="pointer"
+		tdbtn2.style.fontSize="120%"
 		thead.appendChild(tdcrcode);
 		thead.appendChild(tdclass);
 		thead.appendChild(tdbtn1);
@@ -1459,11 +1481,10 @@ function displayStudent(data){
 	
 	let slist =JSON.parse(data);
 	const gmbody=document.getElementById("gmbody");
-	const ssibal=document.getElementById("ssibal")	
+	
 	for(i=0; i<slist.length; i++){
 		let record=createDiv("record","record");
 		record.setAttribute("onClick","selectline(this)");
-		record.style.height="100%"
 		let sName=document.createElement("div")
 		sName.setAttribute("value",slist[i].studentId)
 		sName.setAttribute("class","sNAME")
@@ -1471,18 +1492,20 @@ function displayStudent(data){
 		sName.setAttribute("name","checkname")
 		sName.innerHTML=slist[i].sname;
 		sName.style.textAlign="center";
+		sName.style.backgroundColor="#BFA0ED"
 		let sEmail=document.createElement("div")
 		sEmail.setAttribute("class","sEmail")
 		sEmail.innerHTML=slist[i].semail;
 		sEmail.style.textAlign="center";
-				
+		sEmail.style.backgroundColor="#BFA0ED"		
 		record.appendChild(sName);
 		record.appendChild(sEmail);
-		ssibal.appendChild(record)
-		gmbody.appendChild(ssibal);
+		
+		gmbody.appendChild(record);
 		}
 		
 }
+
 function regStudent(){
 if(currentRecord!=null){
 		let test=currentRecord.childNodes[0];	
@@ -1516,18 +1539,18 @@ let studel=JSON.parse(data);
 	for(i=0; i<studel.length; i++){
 	let record=createDiv("record","record");
 		record.setAttribute("onClick","selectline(this)");
-		record.style.border="3px solid #ff0000"
 	let sName=document.createElement("div")
 		sName.setAttribute("value",studel[i].studentId)
 		sName.setAttribute("class","sNAME2")
 		sName.setAttribute("id","sName")
 		sName.innerHTML=studel[i].sname;
 		sName.style.textAlign="center";
+		sName.style.backgroundColor="#C09AF0"
 	let sEmail=document.createElement("div")
 		sEmail.setAttribute("class","sEmail2")
 		sEmail.innerHTML=studel[i].semail;
 		sEmail.style.textAlign="center";
-	
+		sEmail.style.backgroundColor="#C09AF0"
 	let clcode=document.createElement("input")
 		clcode.setAttribute("type","hidden")
 		clcode.setAttribute("value",studel[i].clCode)
@@ -1551,8 +1574,7 @@ let studel=JSON.parse(data);
 function delBelong(){
 if(currentRecord!=null){
 		let test=currentRecord.childNodes[0];	
-		let test2=currentRecord.childNodes[2];
-		
+		let test2=currentRecord.childNodes[2];		
 		const mainpage=document.getElementById("mainpage");
 		let gcontainer2 = document.getElementById("gcontainer");
 			gcontainer2.style.display = "none";
