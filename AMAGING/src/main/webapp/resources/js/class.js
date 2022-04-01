@@ -168,7 +168,7 @@ function childListBox(cList) {
 	var select=document.getElementById("childSelect");
 	if (sessionStorage.getItem("sCode") == null) { 
 		sessionStorage.setItem("sCode", cc[0].userId); 
-		select[0].selected=true;
+		select[1].selected=true;
 	}else{
 		for(var i=0;i<select.length;i++){
 			if(select[i].value==sessionStorage.getItem("sCode")){
