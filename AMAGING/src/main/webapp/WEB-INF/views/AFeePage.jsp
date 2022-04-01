@@ -5,10 +5,11 @@
 <head>
 <meta charset="UTF-8">
   <title>관리자 납부내역 페이지</title>
-   <script src="resources/js/common.js"></script>
-   <script src="resources/js/gradePage.js"></script>
-   <script src="resources/js/fee.js"></script>
-      <script src="resources/js/acPlan.js"></script>
+	<script src="resources/js/common.js"></script>
+	<script src="resources/js/gradePage.js"></script>
+	<script src="resources/js/fee.js"></script>
+	<script src="resources/js/acPlan.js"></script>
+	<link rel="stylesheet" type="text/css" href="resources/css/ad.css" />
 <style>
 #frame {
    width: 100%;
@@ -40,16 +41,6 @@
    
 }
 
-#colorline {
-   border: 0;
-   outline: 0;
-   height: 1.5%;
-   width: 90%;
-   float: left;
-   margin: 2% 4.5%;
-   border-radius: 20px;
-   background-color: #EF90FF;
-}
 
 #body {
    outline: 0;
@@ -88,17 +79,6 @@
    background-position: center center;
 }
 
-.bothB {
-   width: 85%;
-   height: 13%;
-   border-radius: 20px;
-   margin: 2% 4%;
-   background-color: transparent;
-   border-top: 5px solid #EF90FF;
-   border-left: 5px solid #EF90FF;
-   border-right: 5px solid #EF90FF;
-   border-bottom: 5px solid #EF90FF;
-}
 
 .bothB:active {
    width: 85%;
@@ -248,7 +228,7 @@ position:absolute; left:45%; top:1%;
          <div id="frame">
 
 
-            <span id="logo"></span>
+            <span id="logo" onclick="getPage('amainservice','/MoveMainservice')"></span>
             <div id="sessionBox"><span id="session">김현우님 환영합니다.</span></div>
             <div id="logOut">
                <span><input type="button" id="btn" value="로그아웃" onclick="accessAdminOut()"

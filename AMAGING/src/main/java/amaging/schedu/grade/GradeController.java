@@ -63,6 +63,7 @@ public class GradeController {
 		
 		mav.getModelMap().addAttribute("gr",gr);
 		this.grade.backController(6, mav);
+		System.out.println("성공??" + (String)mav.getModelMap().getAttribute("msg"));
 		return (String)mav.getModelMap().getAttribute("msg");
 	}
 	
@@ -132,6 +133,15 @@ public class GradeController {
 		mav.getModelMap().addAttribute("uf",uf);
 		this.grade.backController(15, mav);
 		return (String)mav.getModelMap().getAttribute("msg");
+	}
+	
+	@SuppressWarnings("unchecked")
+	@PostMapping(value = "/GetGradeForGraph", produces = "application/json; charset=UTF-8")
+	public List<Grade> GetGradeForGraph(ModelAndView mav, @ModelAttribute GradeBean gr) {
+		System.out.println("GetGradeForGraph = " + gr.getSBACode());
+		mav.getModelMap().addAttribute("gr",gr);
+		this.grade.backController(16, mav);
+		return (List<Grade>)mav.getModelMap().getAttribute("subjectGrade");
 	}
 	
 	

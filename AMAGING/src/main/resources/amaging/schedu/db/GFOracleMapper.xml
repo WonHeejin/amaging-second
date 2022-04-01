@@ -31,7 +31,7 @@
         		INNER JOIN BS ON SB.SB_CLCODE = BS.BS_CLCODE 
 		WHERE SB.SB_TCCODE = #{teacherId} AND SB.SB_CLCRACCODE = #{acCode} AND SB.SB_CLCODE = #{clCode} AND GR.GR_DATE = #{month} 
 		GROUP BY GR.GR_SBACODE, SB.SB_ASCODE, SB.SB_ASNAME, GR.GR_STCODE, ST.ST_NAME, GR.GR_DATE, GR.GR_SCORE, GR.GR_RANK 
-		ORDER BY GR.GR_STCODE ASC
+		ORDER BY GR.GR_STCODE ASC 
 	</select>
 	
 	<update id="modGrade" parameterType = "amaging.schedu.bean.GradeBean">
@@ -61,8 +61,8 @@
 	
 	<select id="getChildAcademy" parameterType ="amaging.schedu.bean.ACPlan" resultType="amaging.schedu.bean.ACPlan">
 		SELECT AC.AC_CODE AS ACCODE, AC.AC_NAME AS ACNAME 
-		FROM AC INNER JOIN SA ON AC.AC_CODE = SA.SA_ACCODE 
-		WHERE SA.SA_STCODE = #{userId} 
+		FROM AC INNER JOIN BS ON AC.AC_CODE = BS.BS_CLCRACCODE 
+        WHERE BS.BS_STCODE = #{userId} 
 	</select>
 	
 	<select id="getSubject" parameterType ="amaging.schedu.bean.Subject" resultType="amaging.schedu.bean.GradeBean">
@@ -85,6 +85,12 @@
 		WHERE GR.GR_STCODE = #{studentId} AND SUBSTR(GR.GR_SBACODE,0,5) = #{subjectCode} AND GR.GR_DATE = (SELECT MAX(GR.GR_DATE) FROM GR WHERE SUBSTR(GR.GR_SBACODE,0,5) = #{subjectCode} 
                                  AND SUBSTR(GR.GR_SBACODE,6,10) = #{acCode}) 
 		GROUP BY CL.CL_NAME, AC.AC_NAME, SB.SB_ASNAME, GR.GR_SCORE, GR.GR_RANK, GR.GR_DATE
+	</select>
+	
+	<select id="getSubjectGrade" parameterType ="amaging.schedu.bean.GradeBean" resultType="amaging.schedu.bean.GradeBean">
+		SELECT GR.GR_SCORE AS SCORE, GR.GR_RANK AS RANK,GR.GR_DATE AS MONTH FROM GR 
+		WHERE GR.GR_SBACODE = #{sBACode} AND GR.GR_STCODE = #{studentId} 
+		ORDER BY GR.GR_DATE ASC
 	</select>
 	
 	<select id="getGrade" parameterType ="amaging.schedu.bean.UserInfo" resultType="amaging.schedu.bean.GradeBean">
@@ -165,7 +171,9 @@
 	<select id="getAmounts" parameterType ="amaging.schedu.bean.UserInfo" resultType="String">
 		SELECT SUM(FE.FE_PRICE) AS MONEY 
 		FROM FE INNER JOIN AC ON FE.FE_CLCRACCODE = AC.AC_CODE 
-        		INNER JOIN CL ON FE.FE_CLCODE = CL.CL_CODE 
+        		INNER JOIN CL ON FE.FE_CLCRACCODE = CL.CL_CRACCODE 
+                             AND FE.FE_CLCRCODE = CL.CL_CRCODE 
+                             AND FE.FE_CLCODE = CL.CL_CODE 
         		INNER JOIN SP ON FE.FE_STCODE = SP.SP_STCODE 
         		INNER JOIN ST ON FE.FE_STCODE = ST.ST_CODE 
 		WHERE SP.SP_PRCODE = #{userId} AND FE.FE_COCODE = 13

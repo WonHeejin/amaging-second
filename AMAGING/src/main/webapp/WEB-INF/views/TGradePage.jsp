@@ -8,6 +8,8 @@
  <script src="resources/js/common.js"></script>
  <script src="resources/js/gradePage.js"></script>
  <script src="resources/js/acPlan.js"></script>
+ <link rel="stylesheet" type="text/css" href="resources/css/tc.css" />
+ <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
 
  
  
@@ -37,16 +39,7 @@
    
 }
 
-#colorline {
-   border: 0;
-   outline: 0;
-  height: 1.5%;
-   width: 90%;
-   float: left;
-   margin: 2% 4.5%;
-   border-radius: 20px;
-   background-color: #00A6EF ;
-}
+
 
 #body {
    border: 0;
@@ -83,18 +76,6 @@
    background-size: 30% 55%;
    background-repeat: no-repeat;
    background-position: center center;
-}
-
-.bothB {
-     width: 85%;
-   height: 13%;
-   border-radius: 20px;
-   margin: 2% 4%;
-   background-color: transparent;
-   border-top: 5px solid #00A6EF  ;
-   border-left: 5px solid #00A6EF  ;
-   border-right: 5px solid #00A6EF  ;
-   border-bottom: 5px solid #00A6EF  ;
 }
 
 .bothB:active {
@@ -281,7 +262,7 @@ position:absolute; left:45%; top:1%;
    <form name="tmainservices" action="file:///C:/" method="post">
       <div id="basic" >
          <div id="frame">
-            <div id="logo"></div>
+            <div id="logo" onclick="getPage('tmainservices','/MoveMainservice')"></div>
              <div id="sessionBox"><span id="session">${sessionInfo.userName}님 환영합니다.</span>
              					  <input type="hidden" value='${sessionInfo.userId}' name="userId" />
 								  <input type="hidden" value='${sessionInfo.userCode}' name="userCode" />

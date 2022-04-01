@@ -7,7 +7,9 @@
 <title>학생 성적 페이지</title>
  <script src="resources/js/common.js"></script>
  <script src="resources/js/gradePage.js"></script>
-
+ <link rel="stylesheet" type="text/css" href="resources/css/st.css" />
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
+ 
 <style>
 #frame {
 	width: 100%;
@@ -38,16 +40,6 @@
    
 }
 
-#colorline {
-	border: 0;
-	outline: 0;
-	height: 1.5%;
-	width: 90%;
-	float: left;
-	margin: 2% 4.5%;
-	border-radius: 20px;
-	background-color: #FFBB00;
-}
 
 #body {
 	border: 0;
@@ -84,18 +76,6 @@
 	background-size: 45% 65%;
 	background-repeat: no-repeat;
 	background-position: center center;
-}
-
-.bothB {
-	width: 85%;
-	height: 13%;
-	border-radius: 20px;
-	margin: 2% 4%;
-	background-color: transparent;
-	border-top: 5px solid #FFBB00;
-	border-left: 5px solid #FFBB00;
-	border-right: 5px solid #FFBB00;
-	border-bottom: 5px solid #FFBB00;
 }
 
 .bothB:active {
@@ -225,7 +205,7 @@ position:absolute; left:45%; top:1%;
 	<form name="Smainservices" action="" method="post">
 		<div id="basic">
 			<div id="frame">
-				<div id="logo"></div>
+				<div id="logo" onclick="getPage('Smainservices','/MoveMainservice')"></div>
 				 <div id="sessionBox"><span id="session">${sessionInfo.userName}님 환영합니다.</span></div>
 				 	<input	type="hidden" value='${sessionInfo.userId}' name="userId" />
 					<input	type="hidden" value='${sessionInfo.userCode}' name="userCode" />

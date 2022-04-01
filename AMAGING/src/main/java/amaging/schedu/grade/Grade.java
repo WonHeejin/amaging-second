@@ -70,8 +70,19 @@ public class Grade extends amaging.schedu.common.CommonMethod{
 		case 15:
 			this.feeAmounts(mav);
 			break;
+		case 16:
+			this.subjectGrade(mav);
+			break;
 			
 		}
+	}
+	
+	@SuppressWarnings("unchecked")
+	private void subjectGrade(ModelAndView mav) {
+		List<GradeBean> list;
+		mav.addObject("graph",gfo.getSubjectGrade((GradeBean)mav.getModelMap().getAttribute("gr")));
+		list = (List<GradeBean>)mav.getModelMap().getAttribute("graph");
+		mav.addObject("subjectGrade",list);
 	}
 	
 	private void feeAmounts(ModelAndView mav) {
@@ -187,7 +198,7 @@ public class Grade extends amaging.schedu.common.CommonMethod{
 			}
 		}
 		
-		message = (tran=true)? "gradeFirst:수정 완료" : "gradeThird:수정 실패. 다시 시도해주세요.";
+		message = (tran=true)? "수정 완료" : "수정 실패. 다시 시도해주세요.";
 		
 		this.setTransactionEnd(tran);
 		mav.addObject("msg",message);
@@ -201,15 +212,15 @@ public class Grade extends amaging.schedu.common.CommonMethod{
 		this.setTransactionConf(TransactionDefinition.PROPAGATION_REQUIRED, TransactionDefinition.ISOLATION_READ_COMMITTED, false);
 		if(this.convertToBoolean(gfo.isGrade(gList.get(0)))) {
 			tran = false;
-			message = "gradeFirst:이번달 성적은 이미 등록 되어 있습니다.";
+			message = "이번달 성적은 이미 등록 되어 있습니다.";
 		}else {
 			for(int i=0; i<gList.size(); i++) {
 				if(this.convertToBoolean(gfo.regGrade(gList.get(i)))) {
 					tran = true;
-					message = "gradeFirst:등록 완료";
+					message = "등록 완료";
 				}else {
 					tran = false;
-					message = "gradeSecond:등록 실패. 다시 시도해주세요.";
+					message = "등록 실패. 다시 시도해주세요.";
 				}
 			}
 		}

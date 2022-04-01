@@ -82,7 +82,7 @@ public class Fee extends amaging.schedu.common.CommonMethod{
 			}
 		}
 		
-		message = (tran=true)? "feeFirst:수정 완료" : "feeSecond:수정 실패. 다시 시도해주세요.";
+		message = (tran=true)? "수정 완료" : "수정 실패. 다시 시도해주세요.";
 		
 		this.setTransactionEnd(tran);
 		mav.addObject("msg",message);
@@ -116,7 +116,7 @@ public class Fee extends amaging.schedu.common.CommonMethod{
 			}
 		} 
 		
-		message = (tran=true)? "feeFirst:등록 완료" : "feeSecond:등록 실패. 다시 시도해주세요.";
+		message = (tran=true)? "등록 완료" : "등록 실패. 다시 시도해주세요.";
 		
 		this.setTransactionEnd(tran);
 		mav.addObject("msg",message);

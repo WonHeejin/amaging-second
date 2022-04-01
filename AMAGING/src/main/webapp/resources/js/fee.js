@@ -7,8 +7,10 @@ function adminFee() {
 	const tableMom = document.createElement("div");
 	tableMom.setAttribute("id","tableMom");
 	//tableMom.style.border = "1px solid #000000";
+	tableMom.style.width = "75%";
 	tableMom.style.height = "65%";
 	tableMom.style.marginTop = "100px";
+	tableMom.style.marginLeft = "160px";
 	tableMom.style.overflow = "auto";
 	tableMom.style.overflowX = "hidden";
 	
@@ -21,7 +23,7 @@ function adminFee() {
 		const dateSelect = document.createElement("input");
 		dateSelect.setAttribute("id","dateSelect");
 		dateSelect.setAttribute("type","month");
-		//dateSelect.setAttribute("value",new Date().toISOString().slice(0, 7));		
+		dateSelect.setAttribute("value",new Date().toISOString().slice(0, 7));		
 		dateSelect.style.width = "150px";
 		dateSelect.style.height = "40px";
 		dateSelect.style.textAlign = "center";
@@ -92,11 +94,11 @@ function dateSelected(a) {
 }
 
 function getAdminFeeList(dat) {
-	if(dat != '[]') {
-	const data = JSON.parse(dat);
 	const mainpage = document.getElementById("mainpage");
 	const tableMom = document.getElementById("tableMom");
 	const modBtnDiv = document.getElementById("modBtnDiv");
+	if(dat != '[]') {
+	const data = JSON.parse(dat);
 	
 		if(tableMom.hasChildNodes()) {
 			while(tableMom.hasChildNodes()){
@@ -123,6 +125,8 @@ function getAdminFeeList(dat) {
 			modBtnDiv.appendChild(modBtn);
 			
 			let table = document.createElement("table");
+			table.style.borderCollapse = "separate";
+			table.style.borderSpacing = "10px";
 			let mTr = createTr("mTr1");
 			let mTd1 = createTd("mTd1");
 			let mTd2 = createTd("mTd2");
@@ -149,12 +153,12 @@ function getAdminFeeList(dat) {
 			for(let i=0; i<data.length; i++) {
 				let tr = createTr("tr1");
 				
-				let td1 = createTd("td1");
-				let td2 = createTd("td2");
-				let td3 = createTd("td3");
-				let td4 = createTd("td4");
-				let td5 = createTd("td5");
-				let td6 = createTd("td6");
+				let td1 = createSTd("td1");
+				let td2 = createSTd("td2");
+				let td3 = createSTd("td3");
+				let td4 = createSTd("td4");
+				let td5 = createSTd("td5");
+				let td6 = createSTd("td6");
 				
 				td1.innerHTML = data[i].studentName;
 				td2.innerHTML = data[i].clName;
@@ -176,7 +180,17 @@ function getAdminFeeList(dat) {
 		tableMom.appendChild(table);
 		mainpage.appendChild(tableMom);
 	}else {
-		alert("등록된 납부내역이 없습니다.");
+		sendMessage("등록된 납부내역이 없습니다.");
+				if(tableMom.hasChildNodes()) {
+					while(tableMom.hasChildNodes()){
+						tableMom.removeChild(tableMom.firstChild);
+					}
+				}
+				if(modBtnDiv.hasChildNodes()) {
+					while(modBtnDiv.hasChildNodes()) {
+    	    			 modBtnDiv.removeChild(modBtnDiv.firstChild);
+					}
+				}
 	}
 }
 function searchFee() {
@@ -184,7 +198,8 @@ function searchFee() {
 	const date = document.getElementById("dateSelect").value;
 	const name = document.getElementById("nameSearch").value
 	if (name == '') {
-		alert("이름을 입력해 주세요.");
+		
+		sendMessage("이름을 입력해 주세요.");
 	}else {
 		const data = "acCode=" + acCode + "&upMonth=" + date.substring(0,4) + date.substring(5,7) + "&studentName=" + name;
 		getAjaxData("SearchName",data,"getAdminFeeList","post");
@@ -227,12 +242,12 @@ function modFeeList(dat) {
 		for(let i=0; i<data.length; i++) {
 			let tr = createTr("tr1");
             
-            let td1 = createTd(data[i].studentId);
-            let td2 = createTd(data[i].clCode);
-            let td3 = createTd(data[i].clCrCode);
-            let td4 = createTd(data[i].upMonth);
-            let td5 = createTd("td5");
-            let td6 = createTd(data[i].fepMonth);
+            let td1 = createSTd(data[i].studentId);
+            let td2 = createSTd(data[i].clCode);
+            let td3 = createSTd(data[i].clCrCode);
+            let td4 = createSTd(data[i].upMonth);
+            let td5 = createSTd("td5");
+            let td6 = createSTd(data[i].fepMonth);
             
             td1.innerHTML = data[i].studentName;
             td2.innerHTML = data[i].clName;
@@ -428,6 +443,8 @@ function regFeeForm(dat) {
 		
 			
 			let table = document.createElement("table");
+			table.style.borderCollapse = "separate";
+			table.style.borderSpacing = "10px";
 			table.setAttribute("id","theTable");
 			let mTr = createTr("mTr1");
 			let mTd1 = createTd("mTd1");
@@ -449,10 +466,10 @@ function regFeeForm(dat) {
 			for(let i=0; i<data.length; i++) {
 				let tr = createTr("tr1");
 				
-				let td1 = createTd(data[i].clCrCode);
-				let td2 = createTd(data[i].clCode);
-				let td3 = createTd(data[i].studentId);
-				let td4 = createTd(data[i].money);
+				let td1 = createSTd(data[i].clCrCode);
+				let td2 = createSTd(data[i].clCode);
+				let td3 = createSTd(data[i].studentId);
+				let td4 = createSTd(data[i].money);
 				
 				td1.innerHTML = data[i].studentName;
 				td2.innerHTML = data[i].paName;
@@ -479,7 +496,7 @@ function regFeeForm(dat) {
 		tableMom.appendChild(table);
 		
 	}else {
-		alert("이미 등록되어 있습니다.");
+		sendMessage("이미 등록되어 있습니다.");
 		if(tableMom.hasChildNodes()) {
 			while(tableMom.hasChildNodes()) {
 			tableMom.removeChild(tableMom.firstChild);
@@ -614,10 +631,17 @@ function childSelectF(dat) {
 		//amountDiv.style.marginLeft = "-70%";
 		amountDiv.style.textAlign = "center";
 		//amountDiv.style.border = "1px solid #000000";
-		amountDiv.style.height = "30px";
+		amountDiv.style.height = "40px";
 		amountDiv.style.width = "240px";
 		amountDiv.style.float = "left";
-		amountDiv.innerHTML = "미납요금 : " + totAmounts;
+		amountDiv.style.textAlign = "center";
+		const totFee = document.createElement("h4");
+		totFee.style.marginTop = "30%";
+		totFee.style.marginTop = "0px";
+		totFee.style.textAlign = "center";
+		totFee.style.color = "#A6A6A6";
+		totFee.innerHTML = "미납요금 : " + totAmounts;
+		amountDiv.appendChild(totFee);
 		selectMom.appendChild(aSelect);
 		if(totAmounts != '') {
 			
@@ -634,7 +658,7 @@ function childSelectF(dat) {
 			const dateDiv = document.createElement("div");
 			dateDiv.setAttribute("id","dateDiv");
 			dateDiv.style.height = "40%";
-			dateDiv.style.border = "1px solid #000000";
+			//dateDiv.style.border = "1px solid #000000";
 			
 			const tableMom = document.createElement("div");
 			tableMom.setAttribute("id","tableMom");
@@ -693,6 +717,8 @@ function displayMyFee(dat) {
 	const tableMom = document.getElementById("tableMom");
 	
 			let table = document.createElement("table");
+			table.style.borderCollapse = "separate";
+			table.style.borderSpacing = "10px";
 			table.style.marginTop = "0.5%";
 			table.style.position = "absolute";
 			table.style.width = "51%";
@@ -716,10 +742,10 @@ function displayMyFee(dat) {
 			for(let i=0; i<data.length; i++) {
 				let tr = createTr("tr1");
 				
-				let td1 = createTd("td1");
-				let td2 = createTd("td2");
-				let td3 = createTd("td3");
-				let td4 = createTd("td4");
+				let td1 = createSTd("td1");
+				let td2 = createSTd("td2");
+				let td3 = createSTd("td3");
+				let td4 = createSTd("td4");
 				
 				td1.innerHTML = data[i].acName;
 				td2.innerHTML = data[i].clName;
@@ -740,7 +766,7 @@ function displayMyFee(dat) {
 	}
 	tableMom.appendChild(table);
 	}else {
-		alert("납부내역이 존재하지 않습니다.");
+		sendMessage("납부내역이 존재하지 않습니다.");
 		if(tableMom.hasChildNodes()){
 		
 		while(tableMom.hasChildNodes()) {

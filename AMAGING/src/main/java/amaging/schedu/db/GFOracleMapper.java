@@ -27,6 +27,7 @@ public interface GFOracleMapper {
 	public List<Subject> getTeacherClass(AcList ac);
 	public int modGrade(GradeBean grade);
 	public List<GradeBean> getStudentList(GradeBean grade);
+	public List<GradeBean> getSubjectGrade(GradeBean grade);
 	public int isGrade(GradeBean grade);
 	public int regGrade(GradeBean grade);
 	public List<GradeBean> getTGrade(GradeBean grade);
