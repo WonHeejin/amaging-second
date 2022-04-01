@@ -14,6 +14,8 @@
 <script src='resources/fullcalendar/ko.js'></script>
 <script src="resources/js/common.js"></script>
 <script src="resources/js/psAttendance.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+<link rel="stylesheet" type="text/css" href="resources/css/st.css" />
 <style>
 #frame {
 	width: 100%;
@@ -42,17 +44,6 @@
    top: 1%;
    right: 1%;
    
-}
-
-#colorline {
-	border: 0;
-	outline: 0;
-	height: 1.5%;
-	width: 90%;
-	float: left;
-	margin: 2% 4.5%;
-	border-radius: 20px;
-	background-color: #FFBB00;
 }
 
 #body {
@@ -89,18 +80,6 @@
 	background-size: 45% 65%;
 	background-repeat: no-repeat;
 	background-position: center center;
-}
-
-.bothB {
-	width: 85%;
-	height: 13%;
-	border-radius: 20px;
-	margin: 2% 4%;
-	background-color: transparent;
-	border-top: 5px solid #FFBB00;
-	border-left: 5px solid #FFBB00;
-	border-right: 5px solid #FFBB00;
-	border-bottom: 5px solid #FFBB00;
 }
 
 .bothB:active {
@@ -254,11 +233,13 @@
   	border: 5px solid #FFBB00;
   }
  .tippy-box{
- 	width:150px;
+ 	width:190px;
  	text-align:center;
- 	margin:5px;
- 	padding:20px;
+ 	padding:5px;
  }
+.swal2-confirm{
+	background-color:#FFBB00 !important;
+}
 </style>
 
 </head>
@@ -266,7 +247,7 @@
 	<form name="Smainservices" action="" method="post">
 		<div id="basic">
 			<div id="frame">
-				<div id="logo"></div>
+				<div id="logo" onclick="getPage('Smainservices','/MoveMainservice')"></div>
 				 <div id="sessionBox">
 				 	<span id="session">${sessionInfo.userName}님 환영합니다.</span> <input
 						type="hidden" value='${sessionInfo.userName}' name="userName" />

@@ -325,19 +325,12 @@ public class Attendance extends amaging.schedu.common.CommonMethod{
 	}
 	private void psAttendancePage(ModelAndView mav) {
 		String page="SPMain";
-		String message="사용자 정보가 존재하지 않습니다. 다시 로그인해주세요.";
-		if(this.sessionCheck(mav)) {
-			if(((UserInfo)mav.getModelMap().getAttribute("uf")).getUserCode()==1) {
-				page="PGetAttendanceList";
-				message="";
-			}else {
-				page="SGetAttendanceList";
-				message="";
-			}
+		if (((UserInfo) mav.getModelMap().getAttribute("uf")).getUserCode() == 1) {
+			page = "PGetAttendanceList";
+		} else {
+			page = "SGetAttendanceList";
 		}
-				
 		mav.setViewName(page);
-		mav.addObject("message", message);
 	}	
 	private void psAttendanceList(Model model) {
 		model.addAttribute("atList", am.getPSAttendanceList((UserInfo)model.getAttribute("uf")));

@@ -85,18 +85,12 @@ public class TimeTable extends amaging.schedu.common.CommonMethod{
 	private ModelAndView psClassPage(ModelAndView mav) {
 		int userCode=((UserInfo)mav.getModelMap().getAttribute("uf")).getUserCode();
 		String page="SPMain";
-		String message="사용자 정보가 존재하지 않습니다. 다시 로그인해주세요.";
-		if(this.sessionCheck(mav)) {
-			if(userCode==1) {
-				page="PClassPage";
-				message="";
-			}else if(userCode==2) {
-				page="SClassPage";
-				message="";
-			}
+		if (userCode == 1) {
+			page = "PClassPage";
+		} else if (userCode == 2) {
+			page = "SClassPage";
 		}
 		mav.setViewName(page);
-		mav.addObject("message", message);
 		return mav;
 	}
 	private void makeData(ModelAndView mav) {

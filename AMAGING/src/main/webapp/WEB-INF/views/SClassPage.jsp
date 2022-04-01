@@ -14,7 +14,8 @@
 <script src='resources/fullcalendar/ko.js'></script>
 <script src="resources/js/common.js"></script>
 <script src="resources/js/class.js"></script>
-
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+<link rel="stylesheet" type="text/css" href="resources/css/st.css" />
 <style>
 #frame {
 	width: 100%;
@@ -248,6 +249,11 @@
 .fc table {
   	border: 5px solid #FFBB00;
   }
+ .tippy-box{
+ 	width:200px;
+ 	text-align:center;
+ 	padding:5px;
+ }
 </style>
 
 </head>
@@ -255,7 +261,7 @@
 	<form name="Smainservices" action="" method="post">
 		<div id="basic">
 			<div id="frame">
-				<div id="logo"></div>
+				<div id="logo" onclick="getPage('Smainservices','/MoveMainservice')"></div>
 				<div id="sessionBox">
 					<span id="session">${sessionInfo.userName}님 환영합니다.</span> <input
 						type="hidden" value='${sessionInfo.userName}' name="userName" />

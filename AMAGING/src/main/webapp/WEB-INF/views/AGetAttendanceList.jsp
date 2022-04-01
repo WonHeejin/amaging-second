@@ -7,13 +7,14 @@
 <title>관리자 인사관리 페이지</title>
  <script src="resources/js/common.js"></script>
  <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+ <link rel="stylesheet" type="text/css" href="resources/css/ad.css" />
 <style>
 #frame {
    width: 100%;
    height: 100%;
    position: absolute;
    top: 5%;
- 
+
 }
 
 #logo {
@@ -38,16 +39,7 @@
    
 }
 
-#colorline {
-   border: 0;
-   outline: 0;
-   height: 1.5%;
-   width: 90%;
-   float: left;
-   margin: 2% 4.5%;
-   border-radius: 20px;
-   background-color: #EF90FF;
-}
+
 
 #body {
    outline: 0;
@@ -86,17 +78,7 @@
    background-position: center center;
 }
 
-.bothB {
-   width: 85%;
-   height: 13%;
-   border-radius: 20px;
-   margin: 2% 4%;
-   background-color: transparent;
-   border-top: 5px solid #EF90FF;
-   border-left: 5px solid #EF90FF;
-   border-right: 5px solid #EF90FF;
-   border-bottom: 5px solid #EF90FF;
-}
+
 
 .bothB:active {
    width: 85%;
@@ -264,7 +246,7 @@ position:absolute; left:45%; top:1%;
          <div id="frame">
 
 
-            <span id="logo"></span>
+            <span id="logo" onclick="getPage('amainservice','/MoveMainservice')"></span>
             <div id="sessionBox"><span id="session">${sessionInfo.userName}님 환영합니다.</span></div>
             <input	type="hidden" value='${sessionInfo.userId}' name="userId" />
 				<input	type="hidden" value='${sessionInfo.userCode}' name="userCode" />
@@ -318,26 +300,22 @@ input[type="text"] {background-image: url(https://cdn1.iconfinder.com/data/icons
     				background-position: 13px center;
    	 				background-size: contain;
     				background-repeat: no-repeat;
-    				border-top:3px solid #EF90FF;
-    				border-left:30px solid #EF90FF;
-    				border-right:15px solid #EF90FF;
-    				border-bottom:5px solid #EF90FF;
+    				box-shadow:5px 5px 5px #8C8C8C;
     				text-indent: 80px;
     				width: 300px;
     				height:50px;
-    				font-size:20pt;
-    				border-top-left-radius: 30px;
-    				border-bottom-left-radius: 30px;
+    				font-size:15pt;
     				margin-left:20%;
-    				margin-right:0.5%;}
+    				margin-right:0.2%;
+    				border:none;}
 
 /*-------------------------------------------------------------------------*/   
 
-#nameTitle			{margin-left:37%;
+#nameTitle			{margin-left:35%;
 					margin-right:42%;
 					border-bottom:5px solid #EF90FF;
 					font-size:20pt;
-					padding-top:70px;
+					padding-top:50px;
 					font-weight:bolder;
 					color:#EF90FF;}
 					
@@ -348,75 +326,125 @@ input[type="text"] {background-image: url(https://cdn1.iconfinder.com/data/icons
 					padding-top:70px;
 					font-weight:bolder;
 					color:#EF90FF;}
-    				
-.inputBOL			{width:70px;
-    				height:60px;
-    				background-color:#EF90FF;
+ 
+.inputBOL			{height:52px;
+					width:50px;
+					position:fixed;
     				cursor:pointer;
-    				border-top-right-radius: 30px;
-    				border-bottom-right-radius: 30px;
+    				background-color:#D5D5D5;
     				font-weight:bolder;
     				font-size:15px;
-    				position:fixed;
-    				color: black;
-    				border: none;}
-    				
-.inputBOL:hover 	{background-color: #F361A6;
-    				color: white;}
+    				border:none;
+    				box-shadow:5px 5px 5px #8C8C8C;
+    				margin-left:5px;}
+.inputBOL:active	{box-shadow:none;
+					margin-left:5px;
+					margin-top:5px;}   				
+.inputBOL:hover		{background-color: #747474;
+    				color: #D5D5D5;}
  
 .delSTopTitle		{width:600px;
     				height:200px;
-    				padding-top:70px;
+    				padding-top:30px;
     				margin-left:110px;}
-    				 				
+     				
 .delSTOne			{display:inline-block;
-					border: 2px solid #EF90FF;
-					border-radius: 5px;
+					box-shadow:5px 5px 5px #EF90FF;
+					border-bottom-right-radius: 5px;
 					width:120px;
-    				height:22px;
-    				text-align:center;
-    				background-color:#FFB2F5;}
+    				height:50px;
+    				text-align:left;
+    				padding-top:15px;
+    				padding-left:2%;
+    				color:#EF90FF;
+    				font-size:15pt;}    				
     				
 .delSTTwo			{display:inline-block;
-					border: 2px solid #EF90FF;
-					border-radius: 5px;
-					width:400px;
-    				height:22px;
-    				text-align:center;
-    				background-color:#FFB2F5;}
-    				
+					box-shadow:5px 5px 5px #EF90FF;
+					border-bottom-right-radius: 5px;
+					width:350px;
+    				height:50px;
+    				margin-left:8px;
+    				text-align:left;
+    				padding-top:15px;
+    				padding-left:2%;
+    				color:#EF90FF;
+    				font-size:15pt;}   
+     				   				
 .delSDOne			{display:inline-block;
-					border: 2px solid #EF90FF;
-					border-radius: 5px;
+					border-bottom: 2px solid #8C8C8C;
 					width:120px;
-    				height:22px;
-    				text-align:center;}
+    				height:50px;
+    				font-size:15pt;
+    				padding-top:15px;
+    				padding-left:2%;
+    				text-align:left;}
+
 #delSDTwo			{display:inline-block;
-					border: 2px solid #EF90FF;
-					border-radius: 5px;
-					width:365px;
-    				height:22px;
-    				text-align:center;}
+					border-bottom: 2px solid #8C8C8C;
+					width:307px;
+    				height:50px;
+    				font-size:15pt;
+    				padding-top:15px;
+    				padding-left:2%;
+    				margin-left:8px;
+    				text-align:left;}
+
+
+.delSDOneL			{display:inline-block;
+					border-bottom: 2px solid #8C8C8C;
+					width:120px;
+    				height:30px;
+    				font-size:15pt;
+    				padding-top:15px;
+    				padding-left:2%;
+    				text-align:left;}
+
+   				
 #delSDTwoL			{display:inline-block;
-					border: 2px solid #EF90FF;
-					border-radius: 5px;
-					width:315px;
-    				height:22px;
-    				text-align:center;}
+					border-bottom: 2px solid #8C8C8C;
+					margin-left:7px;
+					width:350px;
+    				height:30px;
+    				font-size:15pt;
+    				padding-top:15px;
+    				padding-left:2%;
+    				text-align:left;}
+    				
 #delSDThree			{display:inline-block;
-					border: 2px solid #EF90FF;
-					border-radius: 5px;
+					border-bottom: 2px solid #8C8C8C;
 					width:30px;
-    				height:22px;
-    				text-align:center;}
-#delSButton			{margin-left:485px;
-					margin-top:2px;
+    				height:50px;
+    				font-size:15pt;
+    				padding-top:15px;
+    				padding-left:2%;
+    				margin-left:8px;
+    				text-align:left;}
+    									
+#delSButton			{margin-left:360px;
+					margin-top:7px;
+					height:50px;
+					font-weight:bolder;
 					cursor:pointer;
+					width:150px;
+					box-shadow:5px 5px 5px #8C8C8C;
 					border-radius: 5px;
-					background-color:#FFB2F5;}
-.pRButton			{background-color:#FFB2F5;
-					cursor:pointer;}
-a:hover				{background-color:#B2EBF4}
+					border:none;}
+#delSButton	:active	{box-shadow:none;}   				
+#delSButton	:hover	{background-color: #747474;
+    				color: #D5D5D5;}
+					
+.pRButton			{cursor:pointer;
+					height:30px;
+					box-shadow:5px 5px 5px #8C8C8C;
+					border-radius: 5px;
+					border:none;
+					margin-left:7px;
+					font-weight:bolder;
+					font-size:15px;}
+.pRButton:active	{box-shadow:none;}   				
+.pRButton:hover		{background-color: #747474;
+    				color: #D5D5D5;}
 
 #studentNum			{font-size:20px;
 					font-weight:bolder;
@@ -424,23 +452,30 @@ a:hover				{background-color:#B2EBF4}
 					margin-left:30%;
 					margin-top:5%;}
 #psnnName			{display:inline-block;
-					border: 2px solid #4374D9;
-					border-radius: 5px;
+					/*border-right: 2px solid #4374D9;
+					border-bottom: 2px solid #4374D9;*/
+					border-bottom-right-radius: 5px;
+					box-shadow:5px 5px 5px #EF90FF;
+					color:#EF90FF;
+					font-weight:bolder;
+					margin-top:4px;
 					width:120px;
     				height:22px;
-    				text-align:center;
-    				background-color:#B2EBF4;}
+    				text-align:left;
+    				padding-left:20px;}
 #psnnEmail			{display:inline-block;
-					border: 2px solid #4374D9;
-					border-radius: 5px;
-					width:200px;
+					border-bottom: 2px solid #EF90FF;
+					margin-top:4px;
+					margin-left:4px;
+					width:220px;
     				height:22px;
-    				text-align:center;}
+    				text-align:left;
+    				padding-left:20px;}
     				
 .nPosition			{display:inline-block;
 					border: 2px solid #fff;
 					border-radius: 5px;
-					width:120px;
+					width:100px;
     				height:22px;
 					text-align:right;}
 </style>
@@ -519,7 +554,7 @@ function resultWS(data){
 		outLine += '<span class="delSTTwo"> 이메일</span>';
 		outLine += '</div>';
 		for(let idx =0 ; idx < wsList.length ; idx++){
-			outLine += '<span id="waitSID('+idx+')"  class="delSDOne" value="'+ wsList[idx].userId+'">' + wsList[idx].sname +'</span>';
+			outLine += '<span id="waitSID('+idx+')"  class="delSDOneL" value="'+ wsList[idx].userId+'">' + wsList[idx].sname +'</span>';
 			outLine += '<span id="delSDTwoL" >' + wsList[idx].semail +'</span>';
 			outLine += '<input type="button" class="pRButton" value="수락" onClick="permissionB('+idx+')"/>';
 			outLine += '<input type="button" class="pRButton" value="거절" onClick="rejectB('+idx+')"/></br>';

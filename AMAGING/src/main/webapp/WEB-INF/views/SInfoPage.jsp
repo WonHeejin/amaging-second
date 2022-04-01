@@ -7,6 +7,8 @@
 <title>학생 정보수정 페이지</title>
 <script src="resources/js/common.js"></script>
 <script src="resources/js/info.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+<link rel="stylesheet" type="text/css" href="resources/css/st.css" />
 <style>
 #frame {
 	width: 100%;
@@ -34,17 +36,6 @@
 	position: absolute;
 	top: 1%;
 	right: 1%;
-}
-
-#colorline {
-	border: 0;
-	outline: 0;
-	height: 1.5%;
-	width: 90%;
-	float: left;
-	margin: 2% 4.5%;
-	border-radius: 20px;
-	background-color: #FFBB00;
 }
 
 #body {
@@ -81,18 +72,6 @@
 	background-size: 45% 65%;
 	background-repeat: no-repeat;
 	background-position: center center;
-}
-
-.bothB {
-	width: 85%;
-	height: 13%;
-	border-radius: 20px;
-	margin: 2% 4%;
-	background-color: transparent;
-	border-top: 5px solid #FFBB00;
-	border-left: 5px solid #FFBB00;
-	border-right: 5px solid #FFBB00;
-	border-bottom: 5px solid #FFBB00;
 }
 
 .bothB:active {
@@ -273,34 +252,65 @@
 .mbody {
 	border: 2px solid white;
 	margin-left:10%;
-	margin-top:5px;
+	margin-top:10px;
 	width:80%;
 	pont-size: 100pt;
 }
 .record{
 	border-radius: 10px;
 }
-.acCode{		cursor: pointer;
-	border-radius: 10px;
-	border:2px #fffff;
+.hacCode{		
+	border-Bottom: 2px solid #EA7B03; 
+	border-Right: 2px solid #EA7B03;
+	border-radius: 5px;
 	float: left;
-	width:20%;
+	width:19%;
 	height:100%;
+	padding: 2px;
 }
-.acName{	cursor: pointer;
-	border-radius: 10px;
-	border:2px #fffff;	
+.hacName{
+	border-Bottom: 2px solid #EA7B03; 
+	border-Right: 2px solid #EA7B03;	
+	border-radius: 5px;
 	float: left;
-	width:20%;
+	width:21%;
 	height:100%;
+	margin-left:6px;
+	padding: 2px;
+}
+.hacAddress{
+	border-Bottom: 2px solid #EA7B03; 
+	border-Right: 2px solid #EA7B03;	
+	float:right;
+	border-radius: 5px;	
+	width:56%;
+	height:100%;
+	padding: 2px;
+}
+.acCode{		
+	cursor: pointer;
+	border-Bottom: 2px solid #FFBB00;
+	float: left;
+	width:19%;
+	height:100%;
+	padding: 2px;
+}
+.acName{	
+	cursor: pointer;
+	border-Bottom: 2px solid #FFBB00;
+	float: left;
+	width:21%;
+	height:100%;
+	margin-left:6px;
+	padding: 2px;
 }
 .acAddress{	
 	float:right;
 	cursor: pointer;
-	border-radius: 10px;
-	border:2px #fffff;	
-	width:60%;
+	border-Bottom: 2px solid #FFBB00;	
+	width:56%;
 	height:100%;
+	padding: 2px;
 }
 .mfooter{
 	top:85%;
@@ -342,7 +352,7 @@
 }
 .mbtn{float:left;
  border-radius: 10px;background-color: #FFBB00; width:50%; height:100%; border: 1px solid #FFBB00;
- cursor:pointer;
+ cursor:pointer;font-size: 13pt;
 }
 .searchBtn{
  border-radius: 10px; background-color: #FFBB00; width:15%; height:40px; border: 1px solid #FFBB00;
@@ -370,6 +380,9 @@
 	height: 100%;
 	border-radius: 10px;
 }
+.swal2-confirm{
+	background-color:#FFBB00 !important;
+}
 </style>
 
 </head>
@@ -377,7 +390,7 @@
 	<form name="Smainservices" action="" method="post">
 		<div id="basic">
 			<div id="frame">
-				<div id="logo"></div>
+				<div id="logo" onclick="getPage('Smainservices','/MoveMainservice')"></div>
 				<div id="sessionBox"><span id="session">${sessionInfo.userName}님 환영합니다.
 				 	<input	type="hidden" value='${sessionInfo.userName}' name ="userName" />
 				 	<input	type="hidden" value='${sessionInfo.userId}' name="userId" />
@@ -414,13 +427,16 @@
 	</form>
 	<div class='container' id='container'>
 		<div class='mdialog'>
-			<div class='mcontent'>
-				<div class='mheader' style='font-size:200%'>
-				<h4 id='mheader' class='mtitle' >학원 검색</h4></div>
-				<input type='text' name='acName' placeholder='학원이름 입력' style=' height:35px; border-radius: 10px;'/>
-				<input type='button' value='검색' onClick='searchAc()' class='searchBtn'/>
-				<div class='mbody' id='mbody' value=''><div class='acCode' style="background: #EA7B03">등록번호</div><div class='acName'style="background: #EA7B03">이름</div><div class='acAddress'style="background: #EA7B03">주소</div></div>
-				<div class='mfooter'>
+			<div class='mcontent' >
+				<div class='mheader' style='font-size:180%'>
+				<h5 id='mheader' class='mtitle' style="margin-top:50px%; margin-bottom: 30px;" >학원 검색</h5></div>
+				<input type='text' name='acName' placeholder='학원이름 입력' style=' height:35px; border-radius: 10px; border:3px solid #FFBB00; padding-left: 7px; font-size: 13pt; margin-bottom:10px%;'/>
+				<input type='button' value='검색' onClick='searchAc()' class='searchBtn' style="font-size: 13pt;"/>
+				<div class='mbody' id='mbody' value='' style="font-size: 13pt;">
+					<div class='hacCode'>등록번호</div>
+					<div class='hacName'>이름</div>
+					<div class='hacAddress'>주소</div></div>
+				<div class='mfooter' style="font-size: 15pt;">
 				<input type='button' class='mbtn' value='선택' onclick='selectList()'/>
 				<input type='button' class='mbtn' value='닫기'
 					onclick='closeModal()' style='border-radius: 10px;background-color: #EAEAEA;width:50%; height:100%; border: 1px solid #EAEAEA;'/>

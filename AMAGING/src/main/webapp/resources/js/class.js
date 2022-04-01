@@ -57,7 +57,7 @@ function calendar(action) {
 										endRecur: enddate,
 										daysOfWeek: element.weekDay,
 										color: bcolor[index],
-										textColor: 'black',
+										textColor: 'white',
 										description: element.acName + " " + element.clName + " " + element.subjectName
 									}); //.push() end	
 								} else { 
@@ -70,14 +70,19 @@ function calendar(action) {
 										endRecur: enddate,
 										daysOfWeek: element.weekDay,
 										color: bcolor[index],
-										textColor: 'black',
+										textColor: 'white',/*353535*/
 										description: element.stime + " ~ " + element.etime + "\n" +  element.clName + "\n" + element.tname
 									}); //.push() end	
 								}
 
 							});//.each()  end			
 							successCallback(events);
-						} else { alert("수업정보가 없습니다.") }//if문 end
+						} else { 
+							Swal.fire({
+								icon: 'warning',
+								text: "수업정보가 없습니다."
+							});
+						}//if문 end
 					}//success : function end
 			});//ajax end
 		},//events: function end
@@ -135,12 +140,12 @@ function YMDFormatter(num) {
 
 function generateHslaColors(amount) {
 	let colors = []
-	let huedelta = Math.trunc(360 / amount)
+	let huedelta = Math.trunc(360 /amount)
 
 	for (let i = 0; i < amount+1; i++) {
 		let hue = i * huedelta
 		/*채도, 명도 */
-		colors.push(`hsla(${hue},60%,80%)`)
+		colors.push(`hsla(${hue},53%,58%)`)
 	}
 	return colors
 }

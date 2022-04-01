@@ -5,8 +5,13 @@
 <head>
 <meta charset="UTF-8">
 <title>선생님 출석 페이지</title>
- <script src="resources/js/common.js"></script>
- <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+<script src="resources/js/common.js"></script>
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
+<link rel="stylesheet" type="text/css" href="resources/css/tc.css" />
+ 
  
 <style>
 #frame {width:100%; height:100%;
@@ -34,16 +39,7 @@
    
 }
 
-#colorline {
-   border: 0;
-   outline: 0;
-  height: 1.5%;
-   width: 90%;
-   float: left;
-   margin: 2% 4.5%;
-   border-radius: 20px;
-   background-color: #00A6EF ;
-}
+
 
 #body {
    border: 0;
@@ -71,17 +67,7 @@
 
 }
 
-.bothB {
-     width: 85%;
-   height: 13%;
-   border-radius: 20px;
-   margin: 2% 4%;
-   background-color: transparent;
-   border-top: 5px solid #00A6EF  ;
-   border-left: 5px solid #00A6EF  ;
-   border-right: 5px solid #00A6EF  ;
-   border-bottom: 5px solid #00A6EF  ;
-}
+
 
 .bothB:active {
     width: 85%;
@@ -231,8 +217,7 @@ position:absolute; left:45%; top:1%;
        font-size:130%;
       }
       
-	.container		{background-color:gray;
-					background: rgba(0,0,0,0.4);
+	.container		{background-color:rgba(255,255,255,0.5);
 					position:absolute;
 					width:100%;
 					height:100%;
@@ -240,9 +225,9 @@ position:absolute; left:45%; top:1%;
 					top:0;
 					text-align:center;
 					display:flex;}
-	.mdialog		{border:2px solid white;
-					border-radius:25px;
+	.mdialog		{
 					background-color:#fff;
+					background-color: rgba(255,255,255,0.5);
 					position:absolute;
 					top:50%;
 					left:50%;
@@ -265,7 +250,7 @@ position:absolute; left:45%; top:1%;
 					height: 20%;
 					float:left;}/*border:2px solid black;*/
 					
-#mainFour			{width: 20%;
+#mainFour			{width: 35%;
 					height: 80%;
 					float:left;}
 					
@@ -284,7 +269,7 @@ position:absolute; left:45%; top:1%;
 	<form name="tmainservices" action="" method="post">
       <div id="basic">
          <div id="frame">
-            <div id="logo"></div>
+            <div id="logo" onclick="getPage('tmainservices','/MoveMainservice')"></div>
              <div id="sessionBox">
              	<span id="academySession" value="as"></span>
              	<span id="nameSession" >${sessionInfo.userName}님 환영합니다.</span>
@@ -333,7 +318,7 @@ position:absolute; left:45%; top:1%;
 				<!-- The Modal header -->
 					<div class="mheader">
 						<h4 class="mtitle" id="mheader"></h4>
-						<input type="button" id="btn-close" class="btn-close" value="X" onClick="closeModalS();"/>
+						<input type="button" id="btn-close" class="btn-close" title="종료버튼" value="X" onClick="closeModalS();"/>
 					</div>
 				
 				<!-- The Modal body -->
@@ -349,116 +334,187 @@ position:absolute; left:45%; top:1%;
 	</form>
 </body>
 <style>
+#pwText				{font-size:20px;
+					font-weight:bolder;
+					padding-top:5px;}
+					
+#btn-close			{position:absolute;
+					left:75%;
+					font-size:15;
+					cursor:pointer;
+					border:none;
+					background-color:#fff;
+					top:0px;}
+#secondPaword		{width:250px;
+					height:30px;
+					border:none;
+					box-shadow:5px 5px 5px black;
+					background-color:#F6F6F6;
+					padding-left:20px;
+					border-radius:5px;}
+					
+.mbtn				{margin-top:10px;
+					margin-left:42%;
+					border:none;
+					width:70px;
+					height:30px;
+					cursor:pointer;
+					border-radius:5px;
+					font-size:12px;
+					background-color:#D5D5D5;
+					box-shadow:5px 5px 5px black;}
+.mbtn:active		{box-shadow:none;}
+.mbtn:hover			{background-color:#747474;
+					color:#fff;}
+
 input[type="text"] {background-image: url(https://cdn1.iconfinder.com/data/icons/hawcons/32/698627-icon-111-search-256.png);
     				background-position: 13px center;
    	 				background-size: contain;
     				background-repeat: no-repeat;
-    				border-top:3px solid #00A6EF;
-    				border-left:30px solid #00A6EF;
-    				border-right:3px solid #00A6EF;
-    				border-bottom:5px solid #00A6EF;
+    				box-shadow:5px 5px 5px #8C8C8C;
     				text-indent: 80px;
     				width: 300px;
     				height:50px;
-    				font-size:20pt;
-    				border-top-left-radius: 30px;
-    				border-bottom-left-radius: 30px;
+    				font-size:15pt;
     				margin-left:30%;
-    				margin-right:0.2%;}
-    				
-#dateInfo			{height:52px;
-					border-top:3px solid #00A6EF;
-    				border-left:3px solid #00A6EF;
-    				border-right:3px solid #00A6EF;
-    				border-bottom:5px solid #00A6EF;
-    				font-size:20pt;
-    				position:fixed;}
-
-#selectSButton		{height:59px;
-					position:fixed;
-					background-color:#00A6EF;
-    				cursor:pointer;
-    				border-top-right-radius: 30px;
-    				border-bottom-right-radius: 30px;
-    				font-weight:bolder;
-    				font-size:15px;
-    				margin-left:12.4%;
+    				margin-right:0.2%;
+    				border-radius:5px;
     				border:none;}
     				
-#selectSButton:hover{background-color: #6799FF;
-    				color: white;}
+#dateInfo			{height:52px;
+					border:none;
+					border-radius:5px;
+					position:fixed;
+    				font-size:15pt;
+    				text-align:center;
+    				box-shadow:5px 5px 5px #8C8C8C;
+    				margin-left:5px;}
+
+#selectSButton		{height:52px;
+					border-radius:5px;
+					position:fixed;
+    				cursor:pointer;
+    				background-color:#D5D5D5;
+    				font-weight:bolder;
+    				font-size:15px;
+    				border:none;
+    				box-shadow:5px 5px 5px #8C8C8C;
+    				margin-left:193px;}
+#selectSButton:active{box-shadow:none;}   				
+#selectSButton:hover{background-color: #747474;
+    				color: #D5D5D5;}				
     				
 .spanName			{display:inline-block;
-					border: 2px solid #00A6EF;
-					border-radius: 5px;
+					box-shadow:5px 5px 5px #00A6EF;
+					border-bottom-right-radius: 5px;
 					width:120px;
-    				height:22px;
-    				text-align:center;
-    				background-color:#5CD1E5;
-    				margin-left:24.5%;
-    				margin-top:3%;}
+    				height:50px;
+    				text-align:left;
+    				margin-left:3%;
+    				margin-top:3%;
+    				padding-top:8px;
+    				padding-left:2%;
+    				color:#00A6EF;
+    				font-size:15pt;}
 .spanSchool			{display:inline-block;
-					border: 2px solid #00A6EF;
-					border-radius: 5px;
-					width:120px;
-    				height:22px;
-    				text-align:center;
-    				background-color:#5CD1E5;}
+					box-shadow:5px 5px 5px #00A6EF;
+					border-bottom-right-radius: 5px;
+					width:150px;
+    				height:50px;
+    				margin-left:8px;
+    				color:#00A6EF;
+    				text-align:left;
+    				padding-top:8px;
+    				padding-left:2%;
+    				font-size:15pt;}
 .spanSubject		{display:inline-block;
-					border: 2px solid #00A6EF;
-					border-radius: 5px;
+					box-shadow:5px 5px 5px #00A6EF;
+					border-bottom-right-radius: 5px;
 					width:120px;
-    				height:22px;
-    				text-align:center;
-    				background-color:#5CD1E5;}
+    				height:50px;
+    				margin-left:8px;
+    				color:#00A6EF;
+    				text-align:left;
+    				padding-top:8px;
+    				padding-left:2%;
+    				font-size:15pt;}
 .spanAttendance		{display:inline-block;
-					border: 2px solid #00A6EF;
-					border-radius: 5px;
-					width:120px;
-    				height:22px;
-    				text-align:center;
-    				background-color:#5CD1E5;}
+					box-shadow:5px 5px 5px #00A6EF;
+					border-bottom-right-radius: 5px;
+					width:150px;
+    				height:50px;
+    				color:#00A6EF;
+    				margin-left:8px;
+    				text-align:left;
+    				padding-top:8px;
+    				padding-left:2%;
+    				font-size:15pt;}
     				
 .spanNameA			{display:inline-block;
-					border: 2px solid #00A6EF;
-					border-radius: 5px;
+					border-bottom: 2px solid #8C8C8C;
 					width:120px;
-    				height:22px;
-    				text-align:center;
-    				margin-left:24.5%;}
+    				height:50px;
+    				font-size:15pt;
+    				padding-top:8px;
+    				padding-left:2%;
+    				margin-top:20px;
+    				text-align:left;
+    				margin-left:3%;}
 .spanSchoolA		{display:inline-block;
-					border: 2px solid #00A6EF;
-					border-radius: 5px;
-					width:120px;
-    				height:22px;
-    				text-align:center;}
+					border-bottom: 2px solid #8C8C8C;
+					width:150px;
+    				height:50px;
+    				margin-left:8px;
+    				font-size:15pt;
+    				padding-top:8px;
+    				padding-left:2%;
+    				text-align:left;}
 .spanSubjectA		{display:inline-block;
-					border: 2px solid #00A6EF;
-					border-radius: 5px;
+					border-bottom: 2px solid #8C8C8C;
 					width:120px;
-    				height:22px;
-    				text-align:center;}
-#attendanceStatus	{width:123px;
-    				height:26px;
-    				border: 2px solid #00A6EF;
-    				text-align:center;
-    				border-radius: 5px;
-    				font-size:18px;
+    				height:50px;
+    				margin-left:8px;
+    				font-size:15pt;
+    				padding-top:8px;
+    				padding-left:2%;
+    				text-align:left;}
+#attendanceStatus	{width:178px;
+    				height:50px;
+    				border-top:#fff;
+    				border-left:#fff;
+    				border-right:#fff;
+    				border-bottom: 2px solid #8C8C8C;
+    				font-size:15pt;
+    				padding-bottom:19px;
+    				padding-left:2%;
+    				text-align:left;
+    				margin-top:7px;
     				font-weight:bolder;
-    				background-color:#5CD1E5;}
+    				margin-left:8px;}
     				
-#modButton			{margin-left:57.7%;
-					margin-top:5px;
+#modButton			{margin-left:39.2%;
+					margin-top:7px;
+					height:50px;
+					font-weight:bolder;
 					cursor:pointer;
+					width:178px;
+					font-size:15pt;
+					box-shadow:5px 5px 5px #8C8C8C;
 					border-radius: 5px;
-					background-color:#00A6EF;}
+					border:none;}
+#modButton:active	{box-shadow:none;}   				
+#modButton:hover	{background-color: #747474;
+    				color: #D5D5D5;}
 					
 .spanAttendanceEnd	{display:inline-block;
-					width:120px;
-    				height:22px;
-    				border: 2px solid #00A6EF;
-    				text-align:center;
-    				border-radius: 5px;}
+					border-bottom: 2px solid #8C8C8C;
+					width:150px;
+    				height:50px;
+    				margin-left:8px;
+    				font-size:15pt;
+    				padding-top:8px;
+    				padding-left:2%;
+    				text-align:left;}
     				
 #aInfo				{width:100px;
 					height:40px;
@@ -479,50 +535,58 @@ input[type="text"] {background-image: url(https://cdn1.iconfinder.com/data/icons
     				border-radius: 5px;
     				background-color:#00A6EF;
     				cursor:pointer;
-    				margin-left:5.5%;
     				margin-top:2%;
     				font-weight:bolder;
     				font-size:20px;
-    				border:none;}
+    				border:none;
+    				box-shadow:5px 5px 5px black;
+    				margin-left:2.3%;
+    				margin-right:4.8%;}
     				
+.attendanceBoard:active{box-shadow:none;}
+  				
 .attendanceSBoard	{width:123px;
     				height:50px;
     				margin-left:1%;
     				margin-top:2%;
     				font-size:20px;}
     				
+#outLineBox			{border: 2px solid #00A6EF;
+					width:35%;
+					height:160px;
+					margin-left:20%;
+					margin-top:10%;
+					border-radius:5px;}    				
+
 #aBox				{width:123px;
-    				height:50px;
-    				background-color:#6799FF;
+    				height:20px;
+    				background-color:#79ABFF;
     				border-radius: 5px;
     				margin-left:20px;
     				margin-top:25px;
     				text-align:center;
     				text-weight:bolder;
-    				color:#FFF;
-    				padding-top:20px;}
+    				color:#FFF;}  				
     				
 #lBox				{width:123px;
-    				height:50px;
-    				background-color:#C4B73B;
+    				height:20px;
+    				background-color:#F2CB61;
     				border-radius: 5px;
     				margin-left:20px;
     				margin-top:25px;
     				text-align:center;
     				text-weight:bolder;
-    				color:#FFF;
-    				padding-top:20px;}
+    				color:#FFF;}
     				
 #fBox				{width:123px;
-    				height:50px;
-    				background-color:#CC3D3D;
+    				height:20px;
+    				background-color:#FF8383;
     				border-radius: 5px;
     				margin-left:20px;
     				margin-top:25px;
     				text-align:center;
     				text-weight:bolder;
-    				color:#FFF;
-    				padding-top:20px;}
+    				color:#FFF;}
 /*----------------------------------------------------------------------------------------hanjoonghee-------------학생조회--*/
 
 </style>
@@ -567,6 +631,7 @@ function searchStudent(userIdData){
 	if(sessionStorage.getItem("ID") != null || sessionStorage.getItem("acCode") != null){
 		overlapC();
 		apidata();
+		todayDate();
 	}else{
 		alert("교육기관을 선택해 주세요")
 	}
@@ -580,15 +645,23 @@ function overlapC(){
 	searchData += '<input type="text" id="studentNameInfo" value="" placeholder="학생이름"/>';
 	searchData += '</span>';
 	searchData += '<span>';
-	searchData += '<input type="date" id="dateInfo" value="" />';
+	searchData += '<input type="date" id="dateInfo" />';
 	searchData += '</span>';
 	searchData += '<span>';
-	searchData += '<input type="button" id="selectSButton" value="Search" onClick="beforeSearchSI();"/>';
+	searchData += '<input type="button" id="selectSButton" value=" 검 색 " onClick="beforeSearchSI();"/>';
 	searchData += '</span>';
 	searchData += '</div>';
 	
 	threeData.innerHTML = searchData;
 }
+function todayDate() {
+    var today = new Date();
+    today.setDate(today.getDate());
+    var yyyy = today.getFullYear();
+    var mm = ("0" + (today.getMonth() + 1)).slice(-2);
+    var dd = ("0" + today.getDate()).slice(-2);
+    document.getElementById("dateInfo").value = yyyy + '-' + mm + '-' + dd;
+  }
 function beforeSearchSI(){
 	const sNI = document.getElementById("studentNameInfo").value;
 	
@@ -743,37 +816,20 @@ google.charts.load('current', {'packages':['bar','corechart']});
 
 function getChartRD() {
     var data = google.visualization.arrayToDataTable([
-           ["Title",{label: '출석',type: 'number'},{label: '결석',type: 'number'},{label: '지각',type: 'number'}],
-           ["",oneD,threeD,twoD]
+          ['name','score'],
+		  ['출석',oneD],
+		  ['결석',threeD],
+		  ['지각',twoD],
    ]);
 
    var barChartOption = {
-           bars: 'vertical',
-           height :301,
-           width :'100%',
-           legend: { position: "top" },
-           isStacked: false,
-           tooltip:{textStyle : {fontSize:12}, showColorCode : true},
-           animation: {
-             startup: true,
-             duration: 1000,
-             easing: 'linear' },
-           annotations: {
-               textStyle: {
-                 fontSize: 15,
-                 bold: true,
-                 italic: true,
-                 color: '#871b47',
-                 auraColor: '#d799ae',
-                 opacity: 0.8
-               }
-          }
+		title: '[Todays attendance rate]',
+		width: '100%'
     };
 
-   var chart = new google.visualization.BarChart(document.getElementById('mainFour'));
+   var chart = new google.visualization.PieChart(document.getElementById('mainFour'));
 
    chart.draw(data, barChartOption);
-   window.addEventListener('resize', function() { chart.draw(data, barChartOption); }, false);
 }
 
 
@@ -900,9 +956,9 @@ function insertA(e){
 		command.setAttribute("onClick","secondLogin('"+value+"')");
 		command.setAttribute("value","로그인");
 	
-		mheader.innerText = "PW 입력 해주세요";
+		mheader.innerText = "비밀번호를 입력 해주세요";
 		let slf = "<div>";
-			slf += "<div><input type='password' name='secondPassword' placeholder='PASSWORD'/></div>";
+			slf += "<div><span id='pwText' >PassWord : </span><input type='password' id='secondPaword' name='secondPassword' placeholder='PASSWORD'/></div>";
 			slf += "<div><span name='wrongMessage' value='as'></span></div>";
 			slf += "</div>";
 		mbody.innerHTML = slf;
@@ -996,29 +1052,29 @@ function checkSA(SAList){
 		if(a != 0 && a%4 == 3){
 			if(sAList[a].atStatus == '21'){
 				saData += '<input type="button" id="colorB('+a+')" class="attendanceBoard" name="checkSA('+a+')" value="'+ sAList[a].studentName +'" onClick="modSA('+a+');"/>';
-				saData += '<span id="checkSA('+a+')" value="'+ sAList[a].dayDate +'" >출석</span></p>'
+				saData += '<span id="checkSA('+a+')" class="attendanceBoardText" value="'+ sAList[a].dayDate +'" ></span></p>'
 				saData += '<input type="hidden" id="colorC('+a+')" value="'+sAList[a].atStatus+'">'
 			}else if(sAList[a].atStatus == '22'){
 				saData += '<input type="button" id="colorB('+a+')" class="attendanceBoard" name="checkSA('+a+')" value="'+ sAList[a].studentName +'" onClick="modSA('+a+');"/>';
-				saData += '<span id="checkSA('+a+')" value="'+ sAList[a].dayDate +'" >지각</span></p>'
+				saData += '<span id="checkSA('+a+')" class="attendanceBoardText" value="'+ sAList[a].dayDate +'" ></span></p>'
 				saData += '<input type="hidden" id="colorC('+a+')" value="'+sAList[a].atStatus+'">'
 			}else if(sAList[a].atStatus == '23'){
 				saData += '<input type="button" id="colorB('+a+')" class="attendanceBoard" name="checkSA('+a+')" value="'+ sAList[a].studentName +'" onClick="modSA('+a+');"/>';
-				saData += '<span id="checkSA('+a+')" value="'+ sAList[a].dayDate +'" >결석</span></p>'
+				saData += '<span id="checkSA('+a+')" class="attendanceBoardText" value="'+ sAList[a].dayDate +'" ></span></p>'
 				saData += '<input type="hidden" id="colorC('+a+')" value="'+sAList[a].atStatus+'">'
 			}
 		}else{
 			if(sAList[a].atStatus == '21'){
 				saData += '<input type="button" id="colorB('+a+')" class="attendanceBoard" name="checkSA('+a+')" value="'+ sAList[a].studentName +'" onClick="modSA('+a+');"/>';
-				saData += '<span id="checkSA('+a+')" value="'+ sAList[a].dayDate +'" >출석</span>'
+				saData += '<span id="checkSA('+a+')" class="attendanceBoardText" value="'+ sAList[a].dayDate +'" ></span>'
 				saData += '<input type="hidden" id="colorC('+a+')" value="'+sAList[a].atStatus+'">'
 			}else if(sAList[a].atStatus == '22'){
 				saData += '<input type="button" id="colorB('+a+')" class="attendanceBoard" name="checkSA('+a+')" value="'+ sAList[a].studentName +'" onClick="modSA('+a+');"/>';
-				saData += '<span id="checkSA('+a+')" value="'+ sAList[a].dayDate +'" >지각</span>'
+				saData += '<span id="checkSA('+a+')" class="attendanceBoardText" value="'+ sAList[a].dayDate +'" ></span>'
 				saData += '<input type="hidden" id="colorC('+a+')" value="'+sAList[a].atStatus+'">'
 			}else if(sAList[a].atStatus == '23'){
 				saData += '<input type="button" id="colorB('+a+')" class="attendanceBoard" name="checkSA('+a+')" value="'+ sAList[a].studentName +'" onClick="modSA('+a+');"/>';
-				saData += '<span id="checkSA('+a+')" value="'+ sAList[a].dayDate +'" >결석</span>'
+				saData += '<span id="checkSA('+a+')" class="attendanceBoardText" value="'+ sAList[a].dayDate +'" ></span>'
 				saData += '<input type="hidden" id="colorC('+a+')" value="'+sAList[a].atStatus+'">'
 			}
 		}
@@ -1036,14 +1092,14 @@ function colorChange(data){
 	for(let idx=0 ; idx<data.length ; idx++){
 		let dTitle = document.getElementById("colorB("+idx+")");
 		if(document.getElementById("colorC("+idx+")").value == '21'){
-			dTitle.style.backgroundColor = "#6799FF";
-			dTitle.style.color = "#E5D85C";
+			dTitle.style.backgroundColor = "#79ABFF";
+			dTitle.style.color = "#5D5D5D";
 		}else if(document.getElementById("colorC("+idx+")").value == '22'){
-			dTitle.style.backgroundColor = "#C4B73B";
+			dTitle.style.backgroundColor = "#F2CB61";
 			dTitle.style.color = "#5D5D5D";
 		}else if(document.getElementById("colorC("+idx+")").value == '23'){
-			dTitle.style.backgroundColor = "#CC3D3D";
-			dTitle.style.color = "#E4F7BA";
+			dTitle.style.backgroundColor = "#FF8383";
+			dTitle.style.color = "#5D5D5D";
 		}
 	}
 	
@@ -1053,9 +1109,11 @@ function exampleData(){
 	
 	let downLTitle = document.getElementById("mainFour");
 	
-	let exampleD = '<div id="aBox" >출&nbsp&nbsp&nbsp석</div>';
-		exampleD += '<div id="lBox" >지&nbsp&nbsp&nbsp각</div>';
+	let exampleD = '<div id="outLineBox" >';
+		exampleD += '<div title="수업시작 10분전까지" id="aBox" >출&nbsp&nbsp&nbsp석</div>';
+		exampleD += '<div title="수업시작 10분후부터" id="lBox" >지&nbsp&nbsp&nbsp각</div>';
 		exampleD += '<div id="fBox" >결&nbsp&nbsp&nbsp석</div>';
+		exampleD += '</div>';
 		
 		downLTitle.innerHTML = exampleD;
 	

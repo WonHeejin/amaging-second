@@ -14,6 +14,8 @@
 <script src='resources/fullcalendar/ko.js'></script>
 <script src="resources/js/common.js"></script>
 <script src="resources/js/psAttendance.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+<link rel="stylesheet" type="text/css" href="resources/css/pr.css" />
 <style>
 #frame {width:100%; height:100%;
    position:absolute; top:5%;}
@@ -38,16 +40,6 @@
    top: 1%;
    right: 1%;
    
-}
-#colorline {
-   border: 0;
-   outline: 0;
-   height: 1.5%;
-   width: 90%;
-   float: left;
-   margin: 2% 4.5%;
-   border-radius: 20px;
-   background-color: #99E000;
 }
 
 #body {
@@ -84,18 +76,6 @@
    background-size: 25% 50%;
    background-repeat: no-repeat;
    background-position: center center;
-}
-
-.bothB {
-   width: 85%;
-   height: 13%;
-   border-radius: 20px;
-   margin: 2% 4%;
-   background-color: transparent;
-   border-top: 5px solid #99E000 ;
-   border-left: 5px solid #99E000 ;
-   border-right: 5px solid #99E000 ;
-   border-bottom: 5px solid #99E000 ;
 }
 
 .bothB:active {
@@ -261,11 +241,13 @@ position:absolute; left:45%; top:1%;
   	border: 5px solid #99E000;
   }
  .tippy-box{
- 	width:150px;
+ 	width:190px;
  	text-align:center;
- 	margin:5px;
- 	padding:20px;
+ 	padding:5px;
  }
+.swal2-confirm{
+	background-color:#99E000 !important;
+}
 </style>
 
 </head>
@@ -273,7 +255,7 @@ position:absolute; left:45%; top:1%;
    <form name="pmainservice" action="" method="post">
       <div id="basic">
          <div id="frame">
-            <div id="logo"></div>
+            <div id="logo" onclick="getPage('pmainservice','/MoveMainservice')"></div>
              <div id="sessionBox"><span id="session"><span id='childName'></span>${sessionInfo.userName}님 환영합니다.
              	<input	type="hidden" value="${sessionInfo.userId}" name="userId" />
 				<input	type="hidden" value="${sessionInfo.userCode}" name="userCode" />

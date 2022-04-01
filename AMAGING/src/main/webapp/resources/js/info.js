@@ -1,7 +1,10 @@
 let currentRecord=null;
-/*function sendMessage(message){
-	alert(message);
-}*/
+function sendMessage(message){
+	Swal.fire({
+			icon: (message.indexOf('수락')!=-1)?'success':'error',
+			text: message
+		});
+}
 function dotClick(){
 	let category=sessionStorage.getItem("category");
 	if(category==null){category="regAcademy";}
@@ -39,7 +42,10 @@ function searchAc(){
 	}
 	const acName=document.getElementsByName("acName")[0].value;
 	if(acName==""){
-		alert("학원 이름을 입력해주세요!");
+		Swal.fire({
+			icon: 'warning',
+			text: "학원 이름을 입력해주세요!"
+		});
 	}else{
 		const data="acName="+acName.toUpperCase();
 		getAjaxData("SearchAc",data,"displayAcList","post");	
@@ -80,7 +86,10 @@ function selectList(){
 		let container = document.getElementById("container");
 		container.style.display="none";
 	}else{
-		alert("학원을 선택해주세요");
+		Swal.fire({
+			icon: 'warning',
+			text: "학원을 선택해주세요."
+		});
 	}
 	
 }
@@ -107,7 +116,10 @@ function checkParentEmail(){
 	emailform=emailform.options[emailform.selectedIndex].text;
 	const pEmail=document.getElementsByName("pEmail")[0].value;
 	if(pEmail==""){
-		alert("등록할 부모님의 이메일을 입력해주세요.");
+		Swal.fire({
+			icon: 'warning',
+			text: "등록할 부모님의 이메일을 입력해주세요."
+		});
 	}else{
 		emailform=(emailform=="직접입력"?"":emailform);
 		const data="pEmail="+pEmail+emailform;
@@ -116,21 +128,35 @@ function checkParentEmail(){
 }
 function confirmPr(pPrInfo){
 	if(pPrInfo==""){
-		alert("등록된 정보가 없습니다. 회원가입 한 부모님의 이메일을 입력해주세요.");
+		Swal.fire({
+			icon: 'warning',
+			text: "등록된 정보가 없습니다. 회원가입 한 부모님의 이메일을 입력해주세요."
+		});
 	}else{
 		const prInfo=JSON.parse(pPrInfo);
 		const pEmail=document.getElementsByName("pEmail")[0].value;
 		let emailform=document.getElementById("emailform");
 		emailform=emailform.options[emailform.selectedIndex].text;
-		let check=confirm(prInfo.prName+"("+pEmail+")님을 부모님으로 등록하시겠습니까?"
-							+"\n 요청은 취소할 수 없습니다. 다시한번 확인해 주세요.");
-		if(check==true){
-			const data="userId="+document.getElementsByName("userId")[0].value
-						+"&pEmail="+pEmail+emailform
-						+"&prCode="+prInfo.prCode
-						+"&studentName="+document.getElementsByName("userName")[0].value
-			getAjaxData("ParentRegEmail",data,"sendMessage","post");
-		}
+		emailform=(emailform=="직접입력"?"":emailform);
+		let check;
+		Swal.fire({
+			icon: 'warning',
+			text: prInfo.prName+"("+pEmail+")님을 부모님으로 등록하시겠습니까?"
+							+"\n 요청은 취소할 수 없습니다. 다시한번 확인해 주세요.",
+			confirmButtonText: '진행',
+			showCancelButton: true,
+			canselButtonText: '취소'
+		}).then((result) => {
+			if(result.isConfirmed){
+				const data = "userId=" + document.getElementsByName("userId")[0].value
+					+ "&pEmail=" + pEmail + emailform
+					+ "&prCode=" + prInfo.prCode
+					+ "&studentName=" + document.getElementsByName("userName")[0].value
+				getAjaxData("ParentRegEmail", data, "sendMessage", "post");
+			}else if(result.isCancled){
+				check=false;
+			}
+		});
 	}	
 }
 function parentReg(action,userId, prCode){
@@ -139,8 +165,15 @@ function parentReg(action,userId, prCode){
 	getAjaxData(action,data,"closePage","post")
 }	
 function closePage(message){
-	alert(message);
-	window.close();
+	Swal.fire({
+			icon: 'warning',
+			text: message,
+			confirmButtonText: '확인'
+		}).then((result) => {
+			if(result.isConfirmed){
+				window.close();
+			}
+		})
 }
 function closeModal(){
 	const container=document.getElementById("container");

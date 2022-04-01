@@ -43,7 +43,6 @@ function calendar() {
 					function(result) {
 						if (result.length > 0) {
 							var events = [];
-							const bcolor = generateHslaColors(result.length);
 							$.each(result, function(index, element) {
 								var attend =(element.attend==21)?'출석':(element.attend==23)?'결석':'지각';
 								var ecolor = (element.attend==21)?'#79ABFF':(element.attend==23)?'#FF8383':'#F2CB61';
@@ -52,14 +51,19 @@ function calendar() {
 										title: " " + element.subjectName +" "+(element.startDay).substr(11),
 										start: (element.startDay).replace(/ /g, 'T'),
 										color: ecolor,
-										textColor: 'black',
+										textColor: '#353535',
 										imageurl:'resources/images/학생로고.png',
-										description: element.acName +"\n" + element.clName,
+										description: element.acName +" " + element.clName,
 										attendance: attend
 									}); //.push() end	
 							});//.each()  end			
 							successCallback(events);
-						} else { alert("출석정보가 없습니다.") }//if문 end
+						} else { 
+							Swal.fire({
+								icon: 'warning',
+								text: "출석정보가 없습니다."
+							});
+						}//if문 end
 					}//success : function end
 			});//ajax end
 		},//events: function end
@@ -78,6 +82,20 @@ function calendar() {
 			}
 		},
 		eventDidMount: function(arg) {
+			let data = "studentId=" + document.getElementsByName("userId")[0].value
+				+ "&subjectCode=" + arg.event.id;
+				$.ajax({
+					type: "post", url: "/GetAtLog", data, dataType: "json",
+				success:
+					function(result) {					
+						tippy(arg.el, {
+					content: arg.event.extendedProps.description,//이벤트 디스크립션을 툴팁으로 가져옵니다. 
+					html: 'true'
+				});// tippy end
+					}//success end
+				});//ajax end		
+		},//eventDidMount end
+		eventClick: function(arg){
 			let data = "studentId=" + document.getElementsByName("userId")[0].value
 				+ "&subjectCode=" + arg.event.id;
 				$.ajax({
@@ -117,15 +135,18 @@ function calendar() {
 									late=result[2].cocode;
 								}
 							}
-						}
+						}//if(result.length>0) end 
 						let total=parseInt(attend)+parseInt(absent)+parseInt(late);
-						tippy(arg.el, {
-					content: arg.event.extendedProps.description+"  "+" 출석 "+attend+" 결석 "+absent+" 지각 "+late+ " total( "+ total+"/"+result[0].total+" )",//이벤트 디스크립션을 툴팁으로 가져옵니다. 
-					html: 'true'
-				});
-					}
-				});				
-		},
+			Swal.fire({
+				title: ' 출석현황'+"<br>"+arg.event.extendedProps.description,
+				html: 	"출석 "+attend+"</br>"
+						+"지각 "+late+"</br>"
+						+"결석 "+absent+"</br>"
+						+"출석률 "+ Math.round(parseInt(total)/parseInt(result[0].total)*100)+"% ( "+ total+"/"+result[0].total+"일 )"
+			})
+		}//seccess end
+		});//ajax end
+		}
 	});// new FullCalendar end
 
 	calendar.render();
@@ -148,22 +169,6 @@ function YMDFormatter(num) {
 }
 //출처: https://sesok808.tistory.com/550 [살아가는 그 이유]
 
-function HHMMSSFormatter(num){
-	if(!num) return "";
-	var formatNum = '';
-	num = num.replace(/\s/gi, "");
-	formatNum=num.replace();
-}
-function generateHslaColors(amount) {
-	let colors = []
-	let huedelta = Math.trunc(360 / amount)
-
-	for (let i = 0; i < amount; i++) {
-		let hue = i * huedelta
-		colors.push(`hsla(${hue},70%,80%)`)
-	}
-	return colors
-}
 function getChildList(uId) {
 	const data = "userId=" + encodeURIComponent(uId)
 	getAjaxData("/GetChildList", data, "childListBox", "post");

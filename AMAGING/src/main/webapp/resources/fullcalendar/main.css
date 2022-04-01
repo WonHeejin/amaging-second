@@ -433,7 +433,7 @@ When it's NOT activated, the fc-button classes won't even be in the DOM.
   }
 .fc .fc-col-header-cell-cushion {
 	/*요일 font-size*/
-	font-size: 20px;
+	font-size: 18px;
     display: inline-block; /* x-browser for when sticky (when multi-tier header) */
     padding: 2px 4px;
   }
@@ -745,7 +745,7 @@ A HORIZONTAL event
 }
 .fc .fc-daygrid-day-number {
 	/*daygird 날짜 font-size*/
-	font-size:18px;
+	font-size:15px;
     position: relative;
     z-index: 4;
     padding: 4px;
