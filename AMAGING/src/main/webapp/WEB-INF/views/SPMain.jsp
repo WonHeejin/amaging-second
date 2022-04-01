@@ -6,6 +6,7 @@
 <meta charset="UTF-8">
 <title>SPMain</title>
 <script src="resources/js/common.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
 <script>
    /*브라우저 67%로 설정하기*/
    /*페이지 이동*/

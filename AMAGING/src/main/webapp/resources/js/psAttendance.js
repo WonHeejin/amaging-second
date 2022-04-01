@@ -207,5 +207,5 @@ function childName(sCode) {
 			select[i].selected=true;
 		}
 	}
-	calendar('/GetSClassList');
+	calendar();
 }

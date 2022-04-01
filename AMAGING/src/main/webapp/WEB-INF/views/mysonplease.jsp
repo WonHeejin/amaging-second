@@ -7,6 +7,7 @@
 <title>자녀등록 메일</title>
  <script src="resources/js/common.js"></script>
   <script src="resources/js/info.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
 <style>
 #body {
 	
@@ -57,9 +58,9 @@
 	width:100%;
 		height:8%;
 }
-#btn{ width:35%;
+#abtn{ width:35%;
 		height:100%;
-		margin-left:33%; border-radius: 15px;
+		margin-left:10%; border-radius: 15px;
 		cursor: pointer;
 		border-bottom: 5px solid #99E000;
 	border-top: 5px solid #99E000;
@@ -68,6 +69,23 @@
 	background-color: #99E000;
 	text-align: center;
 	font-size: 100%;
+	clear: left;
+	float:left;
+	padding:10px 40px;
+}
+#bbtn{ width:35%;
+		height:100%;
+		margin-right:10%; border-radius: 15px;
+		cursor: pointer;
+		border-bottom: 5px solid  #EAEAEA;
+	border-top: 5px solid #EAEAEA;
+	border-left: 5px solid #EAEAEA;
+	border-right: 5px solid #EAEAEA; 
+	background-color: #EAEAEA;
+	text-align: center;
+	font-size: 100%;
+	float: right;
+	padding:10px 40px;
 }
 #btn:active {
 	width:35%;
@@ -91,8 +109,8 @@
 		<span>부모님 이메일</span>
 		<input class="box" type="text" id="mom" placeholder='${code.PEmail}' readOnly/>
 		<div id="btnbox">
-		<input type="button" id="btn" value="수락" onClick="parentReg('UpdParent','${code.userId}','${code.prCode}')" />
-		<input type="button" id="btn" value="거절" onClick="parentReg('RejectParent','${code.userId}','${code.prCode}')" />
+		<div><input type="button" id="abtn" value="수락" onClick="parentReg('UpdParent','${code.userId}','${code.prCode}')"/></div>
+		<div><input type="button" id="bbtn" value="거절" onClick="parentReg('RejectParent','${code.userId}','${code.prCode}')" /></div>
 		</div>
 		</div>
 	</div>

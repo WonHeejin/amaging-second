@@ -128,7 +128,7 @@ public class PrivateInfo extends amaging.schedu.common.CommonMethod{
 	private void parentUpdPage(ModelAndView mav) {
 		String code=null;
 		String page="SPMain";
-		String message="만료된 페이지입니다.";
+		String message="만료된 페이지입니다. <br> 메인페이지로 이동합니다.";
 		RegParent regp=(RegParent)mav.getModelMap().getAttribute("regp");
 
 		try {
