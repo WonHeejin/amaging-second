@@ -191,6 +191,12 @@ public class MovePageController {
 		return mav;
 		
 	}
+	 @PostMapping("/MoveMainservice")
+	   public ModelAndView moveMainservice(ModelAndView mav, @ModelAttribute UserInfo uf) {
+		   
+	      auth.backController(7, mav.addObject("uf",uf));
+	      return mav;
+	   }
 	
 }
 

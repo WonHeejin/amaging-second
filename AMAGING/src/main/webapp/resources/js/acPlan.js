@@ -28,7 +28,7 @@ function getAcPlanPage(formName,action){
 		getAjaxData("/GetPlanList", data, "displayPlan","post" );
 		if(sDate == "202201"){
 			let img = document.getElementById('body');
-			img.setAttribute("style", "background-image : url(resources/images/1월.jpg)")
+			img.setAttribute("style", "background-image : linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),url(resources/images/1월.jpg)")
 		} else if(sDate == "202202"){
 			let img = document.getElementById('body');
 			img.setAttribute("style", "background-image : linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),url(resources/images/2월.jpg)")
@@ -80,6 +80,43 @@ function getAcPlanPage(formName,action){
  		const data = "userId="+ encodeURIComponent(uId)+"&acCode="+ encodeURIComponent(ac)+"&sDate="+encodeURIComponent(sDate);
  
 		getAjaxData("/GetPlanList", data, "displayAPlan","post" );
+		if(sDate == "202201"){
+			let img = document.getElementById('body');
+			img.setAttribute("style", "background-image : linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),url(resources/images/1월.jpg)")
+		} else if(sDate == "202202"){
+			let img = document.getElementById('body');
+			img.setAttribute("style", "background-image : linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),url(resources/images/2월.jpg)")
+		}else if(sDate == "202203"){
+			let img = document.getElementById('body');
+			img.setAttribute("style", "background-image : linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),url(resources/images/3월.jpg)")
+		}else if(sDate == "202204"){
+			let img = document.getElementById('body');
+			img.setAttribute("style", "background-image : linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),url(resources/images/4월.jpg)")
+		}else if(sDate == "202205"){
+			let img = document.getElementById('body');
+			img.setAttribute("style", "background-image : linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),url(resources/images/5월.jpg)")
+		}else if(sDate == "202206"){
+			let img = document.getElementById('body');
+			img.setAttribute("style", "background-image : linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),url(resources/images/6월.jpg)")
+		}else if(sDate == "202207"){
+			let img = document.getElementById('body');
+			img.setAttribute("style", "background-image : linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),url(resources/images/7월.jpg)")
+		}else if(sDate == "202208"){
+			let img = document.getElementById('body');
+			img.setAttribute("style", "background-image : linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),url(resources/images/8월.jpg)")
+		}else if(sDate == "202209"){
+			let img = document.getElementById('body');
+			img.setAttribute("style", "background-image : linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),url(resources/images/9월.jpg)")
+		}else if(sDate == "202210"){
+			let img = document.getElementById('body');
+			img.setAttribute("style", "background-image : linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),url(resources/images/10월.jpg)")
+		}else if(sDate == "202211"){
+			let img = document.getElementById('body');
+			img.setAttribute("style", "background-image : linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),url(resources/images/11월.jpg)")
+		}else if(sDate == "202212"){
+			let img = document.getElementById('body');
+			img.setAttribute("style", "background-image : linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),url(resources/images/12월.jpg)")
+		}
 	}
 	/*학사일정 내용표시 */
 	function displayPlan(plan) {
@@ -89,15 +126,15 @@ function getAcPlanPage(formName,action){
 		
 		let idx = 0;
 		let plandata = '<div style = "text-align:center;"><span style="font-size: x-large;">'+ap[0].sdate.substr(0,4)+'년'+ap[0].sdate.substr(4,2)+'월'+'</span></div><br>'
-		    plandata += '<span id = acp >';
+		    plandata += '<span id = acp style="font-size: large;" >';
 		
 		for(idx;idx<ap.length;idx++){
 		    
-		    plandata += '■'+ap[idx].sdate.substr(-2)+'일'; 
+		    plandata += '■ '+ap[idx].sdate.substr(-2)+'일'; 
 		    if(ap[idx].sdate!=ap[idx].edate){
 		    plandata += ' ~ ' + ap[idx].edate.substr(-2)+'일';
 		    }
-		    plandata += ' [' + ap[idx].acName+'] ' + ': ' + ap[idx].contents+'<br>';
+		    plandata += ' [' + ap[idx].acName+'] ' + ' : ' + ap[idx].contents+'<br>';
 		   
 		}
 		 plandata +='</span>';
@@ -115,11 +152,11 @@ let ap;
 		list.innerHTML=plandata;
 		for(idx;idx<ap.length;idx++){
 			let plandata2 = createDiv("planbox","planbox"+idx,"planbox"+idx,idx);
-		    plandata2.innerHTML = '■'+ap[idx].sdate.substr(-2)+'일'; 
+		    plandata2.innerHTML = '■ '+ap[idx].sdate.substr(-2)+'일'; 
 		    if(ap[idx].sdate!=ap[idx].edate){
 		    plandata2.innerHTML += ' ~ ' + ap[idx].edate.substr(-2)+'일';
 		    }
-		    plandata2.innerHTML += ' [' + ap[idx].acName+'] ' + ': ' + ap[idx].contents+'<br>';
+		    plandata2.innerHTML += ' [' + ap[idx].acName+'] ' + ' : ' + ap[idx].contents+'<br>';
 		    plandata2.setAttribute("onClick","selectBotton(this)");
 		
 			list.appendChild(plandata2);
@@ -188,7 +225,7 @@ let currentRecord=null;
 			document.getElementById("ed").value="";
 		}
 	document.getElementById("acPlanList").innerHTML="";	
-	document.getElementById("oneB").click();
+	//document.getElementById("oneB").click();
 	}
 	
 	/*학사일정 수정 */
@@ -230,12 +267,13 @@ let currentRecord=null;
 			document.getElementById("ed").value="";
 		}
 	document.getElementById("acPlanList").innerHTML="";	
-	document.getElementById("oneB").click();
+	//document.getElementById("oneB").click();
 	}
 
 function sendMessage1(message){
 	let m =JSON.stringify(message);
-		alert(m);
+
+		Swal.fire(m);
 		if(ap[0].sdate.substr(4,2)=="01"){document.getElementById("jan").click();}	
 	else if(ap[0].sdate.substr(4,2)=="02"){document.getElementById("feb").click();}
 	else if(ap[0].sdate.substr(4,2)=="03"){document.getElementById("mar").click();}

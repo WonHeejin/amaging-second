@@ -38,7 +38,37 @@ public class Authentication extends amaging.schedu.common.CommonMethod{
 		case 6:
 			this.joinPage(mav);
 			break;
+		case 7:
+			moveMainservice(mav);
+			break;
 		}
+	}
+	
+	private void moveMainservice(ModelAndView mav) {
+		UserInfo uf = new UserInfo();
+		uf = (UserInfo) mav.getModel().get("uf");
+		String page = "";// 1번 page
+		String message = "";
+		try {
+
+			if (uf.getUserCode() == 3) {
+				
+				page = "Tmainservices";
+			}else if(uf.getUserCode() == 1){
+				
+				page = "Pmainservices";
+			}else if(uf.getUserCode() == 2){
+				
+				page = "Smainservices";
+			}else if(uf.getUserCode() == 4) {
+				
+				page = "Amainservices";
+			}
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		mav.setViewName(page);
 	}
 
 	private void moveLoginPage(ModelAndView mav) {

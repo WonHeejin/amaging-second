@@ -5,13 +5,14 @@
 <head>
 <meta charset="UTF-8">
 <title>학부모 학사일정 페이지</title>
-
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
  <style>
  
  </style>
  <script src="resources/js/common.js"></script>
  <script src="resources/js/acPlan.js"></script>
  <script src="resources/js/childList.js"></script>
+  <link rel="stylesheet" type="text/css" href="resources/css/pr.css" />
 
   
 <style>
@@ -39,21 +40,11 @@
    right: 1%;
    
 }
-#colorline {
-   border: 0;
-   outline: 0;
-   height: 1.5%;
-   width: 90%;
-   float: left;
-   margin: 2% 4.5%;
-   border-radius: 20px;
-   background-color: #99E000;
-}
 
 #body {
 	background-repeat:  no-repeat ;
- 	background-position : 50% 33%;
- 	background-size : 1200px 580px;
+ 	background-position : 75% 33%;
+ 	background-size : 1350px 550px;
    border: 0;
    outline: 0;
    width: 99.8%;
@@ -62,6 +53,7 @@
    float: left;
    background-color: #ffffff;
    position:absolute; top:15%;
+   color :white;
 }
 
 #basic {
@@ -88,18 +80,6 @@
    background-size: 25% 50%;
    background-repeat: no-repeat;
    background-position: center center;
-}
-
-.bothB {
-   width: 85%;
-   height: 13%;
-   border-radius: 20px;
-   margin: 2% 4%;
-   background-color: transparent;
-   border-top: 5px solid #99E000 ;
-   border-left: 5px solid #99E000 ;
-   border-right: 5px solid #99E000 ;
-   border-bottom: 5px solid #99E000 ;
 }
 
 .bothB:active {
@@ -238,6 +218,7 @@ position:absolute; left:45%; top:1%;
 #childBox{			width: 20%;
 					height: 8%;
 					float:left;
+					margin-left:4%;
 				
 }
 
@@ -248,45 +229,34 @@ position:absolute; left:45%; top:1%;
 			 border : 2px solid #63AA00;
 }
 
-#acPlanList{float:left;
-			width: 25%;
-			height: 50%;
-			border-radius : 10px;
-            border : 2px solid #92acbb;
-            margin-left : 2%;
-            
-}
 
-#acPlanList{float:right;
+
+#acPlanList{
+			float:right;
 			width: 30%;
 			height: 50%;
 			border-radius : 10px;
-            border : 2px solid #92acbb;
-            margin-right : 20%;
+            margin-right : 15%;
             background-color: transparent;
-			border-top: 5px solid #63AA00;
-			border-left: 5px solid #63AA00;
-			border-right: 5px solid #63AA00;
-			border-bottom: 5px solid #63AA00;
+			
 }
 
 .bothC {
 	width: 85%;
 	height: 13%;
-	border-radius: 20px;
 	margin: 1% 2%;
 	background-color: transparent;
-	border-top: 5px solid #63AA00;
-	border-left: 5px solid #63AA00;
-	border-right: 5px solid #63AA00;
-	border-bottom: 5px solid #63AA00;
-
+	border-top: 3px solid #fff;
+	border-left: 3px solid #fff;
+	border-right: 3px solid #63AA00;
+	border-bottom: 3px solid #63AA00;
+	color :white;
+	cursor:pointer;
 }
 
 .bothC:active {
 	width: 85%;
 	height: 13%;
-	border-radius: 20px;
 	margin: 1% 2%;
 	background-color: #63AA00;
 }
@@ -391,7 +361,7 @@ position:absolute; left:45%; top:1%;
    <form name="pmainservice" action="" method="post">
       <div id="basic">
          <div id="frame">
-            <div id="logo"></div>
+            <div id="logo" onclick="getPage('pmainservice','/MoveMainservice')"></div>
              <div id="sessionBox"><span id="session"><span id='childName'></span>${sessionInfo.userName}님 환영합니다.
              	<input	type="hidden" value='${sessionInfo.userId}' name="userId" />
 				<input	type="hidden" value='${sessionInfo.userCode}' name="userCode" />

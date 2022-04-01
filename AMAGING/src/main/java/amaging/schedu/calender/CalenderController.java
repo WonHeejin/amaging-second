@@ -24,7 +24,9 @@ public class CalenderController {
 	@PostMapping(value = "/SetPlanList", produces="text/plain; charset=utf-8")
 	public String setPlanList(ModelAndView mav, @ModelAttribute ACPlan plan) {
 		cal.backController(3,mav.addObject("plan", plan));
-		return (String)mav.getModelMap().getAttribute("msg");
+		String a =(String)mav.getModelMap().getAttribute("msg");
+		System.out.println(a);
+		return a;
 	}
 	@PostMapping(value = "/UpdPlanList", produces="text/plain; charset=utf-8")
 	public String updPlanList(ModelAndView mav, @ModelAttribute ACPlan plan) {

@@ -7,7 +7,8 @@
 
  <script src="resources/js/common.js"></script>
  <script src="resources/js/qna.js"></script>
- 
+ <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+  <link rel="stylesheet" type="text/css" href="resources/css/pr.css" />
 <style>
 #frame {width:100%; height:100%;
    position:absolute; top:5%;}
@@ -33,16 +34,7 @@
    right: 1%;
    
 }
-#colorline {
-   border: 0;
-   outline: 0;
-   height: 1.5%;
-   width: 90%;
-   float: left;
-   margin: 2% 4.5%;
-   border-radius: 20px;
-   background-color: #99E000;
-}
+
 
 #body {
    border: 0;
@@ -95,9 +87,9 @@
 }*/
 
 #mainpage {
-    border: 10px solid #99E000;
+    
 	width: 55%;
-	height: 230px;
+	height: 300px;
 	float: right;
 	margin-right: 15%;
 	overflow:auto;
@@ -108,17 +100,7 @@
 	border-radius: 20px;
 }
 
-.bothB {
-   width: 85%;
-   height: 13%;
-   border-radius: 20px;
-   margin: 2% 4%;
-   background-color: transparent;
-   border-top: 5px solid #99E000 ;
-   border-left: 5px solid #99E000 ;
-   border-right: 5px solid #99E000 ;
-   border-bottom: 5px solid #99E000 ;
-}
+
 
 .bothB:active {
    width: 85%;
@@ -260,15 +242,17 @@ position:absolute; left:45%; top:1%;
 /*글쓰기 등록버튼*/
 .rw {
    width: 5%;
-   height: 6%;
+   height: 4%;
    border-radius: 20px;
-   margin: 2% 4%;
+   margin-top: 0%;
+   margin-left:  50%;
    background: #FFFFFF;
    position: relative;
    left : 5%;
    top : 5%;
    font-size : large;
     border: 5px solid #63AA00;
+    cursor:pointer;
 }
 
 
@@ -386,19 +370,17 @@ position:absolute; left:45%; top:1%;
 		}
 		
 	/*요약정보 CSS*/
-#undermain{ margin-top:1.5%;
-			width : 50%;
-			height : 350px;
+#undermain{
+			width : 55%;
+			height : 100px;
 			float : left;
 			position : relative;
-			left : 12%;
-			top : 130%;
-			
-}<!-- #63AA00  #99E000 -->
+			left : 11%;
+			top : 0%;
+}
 .simple_table { width: 100%; border: none; border-collapse: separate; border-spacing: 2px;}
-.simple_table th { padding: 15px; border: none; border-left: 5px solid #63AA00; border-bottom: 1px solid #DDD; background: #99E000; font-size: large; color:#ffffff; text-align:center; vertical-align: middle;}
-.simple_table td { padding: 15px; border: none; border-bottom: 1px solid #DDD; text-align: center; vertical-align: baseline; font-size: large;}
-		
+.simple_table th { padding: 15px; border: none; border-bottom: 5px solid #99E000  ; border-right: 5px solid #99E000; background: #fff ; font-size: large; color:#63AA00 ; text-align:center; vertical-align: middle;}
+.simple_table td { padding: 15px; border: none; border-bottom: 1px solid #DDD; text-align: center; vertical-align: baseline; font-size: x-large;}
 
 </style>
 
@@ -407,7 +389,8 @@ position:absolute; left:45%; top:1%;
    <form name="pmainservice" action="" method="post">
       <div id="basic">
          <div id="frame">
-            <div id="logo"></div>
+         
+            <div id="logo" onclick="getPage('pmainservice','/MoveMainservice')"></div>
              	<div id="sessionBox"><span id="session"><span id='childName'></span>${sessionInfo.userName}님 환영합니다.
              	<input	type="hidden" value="${sessionInfo.userId}" name="userId" />
 				<input	type="hidden" value="${sessionInfo.userCode}" name="userCode" />
@@ -435,35 +418,25 @@ position:absolute; left:45%; top:1%;
                <div id="uppermainpage"></div>
                <div></div><br><br><br><br><div></div>
             	<div>
-            		<div id="mainpage"></div>
-            		<div></div><br><div></div>
-            		<div id="undermain">
-					<!----><table class="simple_table">
-					 	<tbody>
+			<div id="undermain">
+					<table class="simple_table">
+						<tbody>
 							<tr>
-								<th scope="row">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-								미확인 글의 수
-								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-								</th>
+								<th scope="row">미확인</th>
 								<td id ="writing1"></td>
-							</tr>
-							<tr>
-								<th scope="row">답변 대기중 글의 수</th>
+								<th scope="row">답변 대기중</th>
 								<td id ="writing2"></td>
-							</tr>
-							<tr>
-								<th scope="row">답변 완료된 글의 수</th>
+								<th scope="row">답변 완료</th>
 								<td id ="writing3"></td>
-							</tr>
-							<tr>
-								<th scope="row">내가올린 글의 수</th>
+								<th scope="row">합계</th>
 								<td id ="writing4"></td>
 							</tr>
 						</tbody>
-					</table> 
+					</table>
 				</div>
+            		<div id="mainpage"></div>
+            		<div></div><br><div></div>
+            	
          </div><input type="button" class="rw" value="글쓰기" onclick="openModa2()"> 
       </div>
    </form>

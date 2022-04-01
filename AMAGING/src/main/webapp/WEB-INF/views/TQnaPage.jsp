@@ -5,11 +5,19 @@
 <head>
 <meta charset="UTF-8">
 <title>선생님 상담 페이지</title>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
  <script src="resources/js/common.js"></script>
  <script src="resources/js/qna.js"></script>
+ <link rel="stylesheet" type="text/css" href="resources/css/tc.css" />
 <style>
-#frame {width:100%; height:100%;
-   position:absolute; top:5%;}
+#frame {
+   width: 100%;
+   height: 100%;
+   position: absolute;
+   top: 5%;
+ 
+}
+
 #logo {
    width: 30%;
    height: 10%;
@@ -33,16 +41,6 @@
    
 }
 
-#colorline {
-   border: 0;
-   outline: 0;
-  height: 1.5%;
-   width: 90%;
-   float: left;
-   margin: 2% 4.5%;
-   border-radius: 20px;
-   background-color: #00A6EF ;
-}
 
 #body {
    border: 0;
@@ -71,9 +69,9 @@
 }
 
 #mainpage {
-    border: 10px solid #00A6EF;
+   
 	width: 55%;
-	height: 230px;
+	height: 350px;
 	float: right;
 	margin-right: 15%;
 	overflow:auto;
@@ -82,19 +80,10 @@
 	background-position: center center;
 	overflow:auto;
 	border-radius: 20px;
+	   position:relative;
+   top:10%;
 }
 
-.bothB {
-     width: 85%;
-   height: 13%;
-   border-radius: 20px;
-   margin: 2% 4%;
-   background-color: transparent;
-   border-top: 5px solid #00A6EF  ;
-   border-left: 5px solid #00A6EF  ;
-   border-right: 5px solid #00A6EF  ;
-   border-bottom: 5px solid #00A6EF  ;
-}
 
 .bothB:active {
     width: 85%;
@@ -333,6 +322,7 @@ position:absolute; left:45%; top:1%;
 			 top : "1%";
 			 font-size : large;
 			 text-align : center;
+#answer::placeholder {color:black;}		
 		}
 
 #password {           
@@ -357,15 +347,15 @@ position:absolute; left:45%; top:1%;
 
 /*요약정보 CSS*/
 #undermain{
-			width : 50%;
-			height : 400px;
+			width : 55%;
+			height : 13-0px;
 			float : left;
 			position : relative;
 			left : 12%;
 			top : 5%;
 }
 .simple_table { width: 100%; border: none; border-collapse: separate; border-spacing: 2px;}
-.simple_table th { padding: 15px; border: none; border-left: 5px solid #0042ED ; border-bottom: 1px solid #DDD; background: #00A6EF; font-size: large; color:#ffffff; text-align:center; vertical-align: middle;}
+.simple_table th { padding: 15px; border: none; border-bottom: 5px solid #0042ED  ; border-right: 5px solid #0042ED; background: #fff ; font-size: large; color:#00A6EF; text-align:center; vertical-align: middle;}
 .simple_table td { padding: 15px; border: none; border-bottom: 1px solid #DDD; text-align: center; vertical-align: baseline; font-size: x-large;}
 	
 
@@ -378,7 +368,7 @@ position:absolute; left:45%; top:1%;
    <form name="tmainservices" action="" method="post">
       <div id="basic">
          <div id="frame">
-            <div id="logo"></div>
+            <div id="logo" onclick="getPage('tmainservices','/MoveMainservice')"  ></div>
              	<div id="sessionBox"><span id="session">${sessionInfo.userName}님 환영합니다.</span>
              	<input	type="hidden" value='${sessionInfo.userId}' name="userId" />
 				<input	type="hidden" value='${sessionInfo.userCode}' name="userCode" />
@@ -401,29 +391,24 @@ position:absolute; left:45%; top:1%;
                   <input type="button" class="bothB" id="fiveB" onclick="getPage('tmainservices','/TQnAPage')">
                   <input type="button" class="bothB" id="sixB" onclick="getPage('tmainservices','/InfoPage')">   
                 </div>
-           <br><br><div id="mainpage"></div>
-           <div id="undermain">
+             <div id="undermain">
 					<table class="simple_table">
 						<tbody>
 							<tr>
-								<th scope="row">미확인 글의 수</th>
+								<th scope="row">미확인</th>
 								<td id ="writing1"></td>
-							</tr>
-							<tr>
-								<th scope="row">답변 대기중 글의 수</th>
+								<th scope="row">답변 대기중</th>
 								<td id ="writing2"></td>
-							</tr>
-							<tr>
-								<th scope="row">답변 완료된 글의 수</th>
+								<th scope="row">답변 완료</th>
 								<td id ="writing3"></td>
-							</tr>
-							<tr>
-								<th scope="row">내가올린 글의 수</th>
+								<th scope="row">합계</th>
 								<td id ="writing4"></td>
 							</tr>
 						</tbody>
 					</table>
-				</div>
+				</div>    
+           <div id="mainpage"></div>
+          
          </div>
       </div>
    </form>

@@ -5,6 +5,8 @@
 <head>
 <meta charset="UTF-8">
 <title>학생 학사일정 페이지</title>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+<link rel="stylesheet" type="text/css" href="resources/css/st.css" />
  <script src="resources/js/common.js"></script>
  <script src="resources/js/acPlan.js"></script>
     	 
@@ -39,21 +41,12 @@
    
 }
 
-#colorline {
-	border: 0;
-	outline: 0;
-	height: 1.5%;
-	width: 90%;
-	float: left;
-	margin: 2% 4.5%;
-	border-radius: 20px;
-	background-color: #FFBB00;
-}
+
 
 #body {
 	background-repeat:  no-repeat ;
- 	background-position : 50% 33%;
- 	background-size : 200px 100px;
+ 	background-position : 75% 33%;
+ 	background-size : 1350px 550px;
 	border: 0;
 	outline: 0;
 	width: 99.8%;
@@ -80,27 +73,18 @@
 
 }
 #mainpage {
-	width: 73%;
-	height: 80%;
-	float: right;
-	margin-right: 5.5%;
-	
-	background-size: 45% 65%;
-	background-repeat: no-repeat;
-	background-position: center center;
+   
+ width: 73%;
+   height: 80%;
+   float: right;
+   margin-right: 5.5%;
+   
+   background-size: 30% 55%;
+   background-repeat: no-repeat;
+   background-position: center center;
 }
 
-.bothB {
-	width: 85%;
-	height: 13%;
-	border-radius: 20px;
-	margin: 2% 4%;
-	background-color: transparent;
-	border-top: 5px solid #FFBB00;
-	border-left: 5px solid #FFBB00;
-	border-right: 5px solid #FFBB00;
-	border-bottom: 5px solid #FFBB00;
-}
+
 
 .bothB:active {
 	width: 85%;
@@ -226,33 +210,28 @@ position:absolute; left:45%; top:1%;
 			width: 30%;
 			height: 50%;
 			border-radius : 10px;
-            border : 2px solid #92acbb;
-            margin-right : 20%;
+        
+            margin-right : 15%;
             background-color: transparent;
-			border-top: 5px solid #FFBB00;
-			border-left: 5px solid #FFBB00;
-			border-right: 5px solid #FFBB00;
-			border-bottom: 5px solid #FFBB00;
-			color :white;
+			color:white;
 }
 
 .bothC {
 	width: 85%;
 	height: 13%;
-	border-radius: 20px;
 	margin: 1% 2%;
 	background-color: transparent;
-	border-top: 5px solid #FFBB00;
-	border-left: 5px solid #FFBB00;
-	border-right: 5px solid #FFBB00;
-	border-bottom: 5px solid #FFBB00;
-	color : white;
+	border-top: 3px solid #fff;
+	border-left: 3px solid #fff;
+	border-right: 3px solid #FFBB00;
+	border-bottom: 3px solid #FFBB00;
+	color :white;
+	cursor:pointer;
 }
 
 .bothC:active {
 	width: 85%;
 	height: 13%;
-	border-radius: 20px;
 	margin: 1% 2%;
 	background-color: #FFBB00;
 }
@@ -309,6 +288,7 @@ position:absolute; left:45%; top:1%;
 		width: 10%;
 		font-size: large;
 	
+#answer::placeholder {color:black;}		
 }
 
 #aug{	
@@ -357,7 +337,7 @@ position:absolute; left:45%; top:1%;
 	<form name="Smainservices" action="" method="POST">
 		<div id="basic">
 			<div id="frame">
-				<div id="logo"></div>
+				<div id="logo" onclick="getPage('Smainservices','/MoveMainservice')"></div>
 				 <div id="sessionBox"><span id="session">${sessionInfo.userName}님 환영합니다.</span>
 				 	<input	type="hidden" value='${sessionInfo.userId}' name="userId" />
 					<input	type="hidden" value='${sessionInfo.userCode}' name="userCode" />

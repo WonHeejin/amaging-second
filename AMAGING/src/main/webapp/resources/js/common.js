@@ -43,7 +43,8 @@ function getAjaxData(action,data,fn,method){
 
 function sendMessage(message){
 	if(message!=""){
-	alert(message);
+	//alert(message);
+	Swal.fire(message)
 	} 
 }
 function accessOut(){

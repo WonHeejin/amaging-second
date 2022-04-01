@@ -47,7 +47,7 @@
 #colorline {
 	border: 0;
 	outline: 0;
-	height: 1.5%;
+	height: 1%;
 	width: 90%;
 	float: left;
 	margin: 2% 4.5%;
@@ -94,13 +94,13 @@
 .bothB {
 	width: 85%;
 	height: 13%;
-	border-radius: 20px;
+	border-radius: 10px;
 	margin: 2% 4%;
 	background-color: transparent;
-	border-top: 5px solid #FFBB00;
-	border-left: 5px solid #FFBB00;
-	border-right: 5px solid #FFBB00;
-	border-bottom: 5px solid #FFBB00;
+	border-top: 3px solid #fff;
+	border-left: 3px solid #fff;
+	border-right: 3px solid #FFBB00;
+	border-bottom: 3px solid #FFBB00;
 }
 
 .bothB:active {

@@ -33,8 +33,6 @@ let selectedNumber;
 		
 		
 		cb.innerHTML = cbData; 
-		//(sessionStorage.getItem("sCode")==cc[0].userId)?document.getElementById("childSelect").selectedIndex = "1":(sessionStorage.getItem("sCode")==cc[1].userId)?document.getElementById("childSelect").selectedIndex = "2":document.getElementById("childSelect").selectedIndex = "3";
-		//cb.innerHTML = cbData; 
 		
 			if(sessionStorage.getItem("sCode") == cc[0].userId){
 	      document.getElementById("childSelect").selectedIndex = "1";
@@ -45,19 +43,7 @@ let selectedNumber;
 	   }
 		
 		
-		 
-		//alert(cc.length);
-		
-		/*for(idx=0;idx<cc.length;idx++){
-			if(sessionStorage.getItem("sCode") == cc[idx].userid){
-				document.getElementById("childSelect").selectedIndex=idx+1;
-			}
-		
-		}*/
-		
-		//alert(sessionStorage.getItem("sCode"));
-		
-		//getPlanList();
+
 	}
 	
 	
@@ -85,13 +71,7 @@ let selectedNumber;
 			}
 		}
 		
-		/*if(selectedNumber!=" "){
-			document.getElementById("childSelect").selectedIndex = selectedNumber+1;
-		}*/
-		//alert(document.getElementById("childSelect").selectedIndex);
-		//alert(selectedNumber);
-		//cn.innerText = cc[selectedNumber].sname;
-		
+
 	}
 	
 
@@ -186,7 +166,7 @@ let selectedNumber;
 		sessionStorage.setItem('sCode',cb);
 		if(sDate == "202201"){
 			let img = document.getElementById('body');
-			img.setAttribute("style", "background-image : url(resources/images/1월.jpg)")
+			img.setAttribute("style", "background-image : linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),url(resources/images/1월.jpg)")
 		} else if(sDate == "202202"){
 			let img = document.getElementById('body');
 			img.setAttribute("style", "background-image : linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),url(resources/images/2월.jpg)")
@@ -231,15 +211,15 @@ let selectedNumber;
 		const list = document.getElementById("acPlanList");
 		let idx = 0;
 		let plandata = '<div style = "text-align:center;"><span style="font-size: x-large;">'+ap[0].sdate.substr(0,4)+'년'+ap[0].sdate.substr(4,2)+'월'+'</span></div><br>'
-		    plandata += '<span id = acp >';
+		    plandata += '<span id = acp style="font-size: large;" >';
 		
 		for(idx;idx<ap.length;idx++){
 		    
-		    plandata += '■'+ap[idx].sdate.substr(-2)+'일'; 
+		    plandata += '■ '+ap[idx].sdate.substr(-2)+'일'; 
 		    if(ap[idx].sdate!=ap[idx].edate){
 		    plandata += ' ~ ' + ap[idx].edate.substr(-2)+'일';
 		    }
-		    plandata += ' [' + ap[idx].acName+'] ' + ': ' + ap[idx].contents+'<br>';
+		    plandata += ' [' + ap[idx].acName+'] ' + ' : ' + ap[idx].contents+'<br>';
 		   
 		}
 		 plandata +='</span>';

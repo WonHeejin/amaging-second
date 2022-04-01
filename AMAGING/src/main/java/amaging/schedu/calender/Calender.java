@@ -99,6 +99,7 @@ public class Calender extends amaging.schedu.common.CommonMethod{
 		if(this.convertToBoolean(this.om.setPlanList(plan))) {
 			tran=true;
 			message="학사일정 등록성공";
+	//		System.out.println(message);
 		}
 		this.setTransactionEnd(tran);
 		mav.getModelMap().addAttribute("msg", message);

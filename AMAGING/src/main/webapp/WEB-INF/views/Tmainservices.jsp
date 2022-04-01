@@ -5,6 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>선생님 메인 페이지</title>
+<link rel="stylesheet" type="text/css" href="resources/css/tc.css" />
  <script src="resources/js/common.js"></script>
  <script src="resources/js/acPlan.js"></script>
 <style>
@@ -33,16 +34,6 @@
    
 }
 
-#colorline {
-   border: 0;
-   outline: 0;
-  height: 1.5%;
-   width: 90%;
-   float: left;
-   margin: 2% 4.5%;
-   border-radius: 20px;
-   background-color: #00A6EF ;
-}
 
 #body {
    border: 0;
@@ -81,17 +72,6 @@
    background-position: center center;
 }
 
-.bothB {
-     width: 85%;
-   height: 13%;
-   border-radius: 20px;
-   margin: 2% 4%;
-   background-color: transparent;
-   border-top: 5px solid #00A6EF  ;
-   border-left: 5px solid #00A6EF  ;
-   border-right: 5px solid #00A6EF  ;
-   border-bottom: 5px solid #00A6EF  ;
-}
 
 .bothB:active {
     width: 85%;

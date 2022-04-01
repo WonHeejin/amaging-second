@@ -5,6 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>선생님 학사일정 페이지</title>
+<link rel="stylesheet" type="text/css" href="resources/css/tc.css" />
  <script src="resources/js/common.js"></script>
  <script src="resources/js/acPlan.js"></script>
  
@@ -36,18 +37,11 @@
    
 }
 
-#colorline {
-   border: 0;
-   outline: 0;
-  height: 1.5%;
-   width: 90%;
-   float: left;
-   margin: 2% 4.5%;
-   border-radius: 20px;
-   background-color: #00A6EF ;
-}
 
 #body {
+	background-repeat:  no-repeat ;
+ 	background-position : 75% 33%;
+ 	background-size : 1350px 550px;
    border: 0;
    outline: 0;
    width: 99.8%;
@@ -82,18 +76,6 @@
    background-size: 30% 55%;
    background-repeat: no-repeat;
    background-position: center center;
-}
-
-.bothB {
-   width: 85%;
-   height: 13%;
-   border-radius: 20px;
-   margin: 2% 4%;
-   background-color: transparent;
-   border-top: 5px solid #00A6EF  ;
-   border-left: 5px solid #00A6EF  ;
-   border-right: 5px solid #00A6EF  ;
-   border-bottom: 5px solid #00A6EF  ;
 }
 
 .bothB:active {
@@ -219,36 +201,32 @@ position:absolute; left:45%; top:1%;
 
 #acPlanList{opacity :1.2;
 			float:right;
-			width: 30%;
+			width: 35%;
 			height: 50%;
-			border-radius : 10px;
-            border : 2px solid #92acbb;
-            margin-right : 20%;
+            margin-right : 13%;
             background-color: transparent;
-			border-top: 5px solid #00A6EF;
-			border-left: 5px solid #00A6EF;
-			border-right: 5px solid #00A6EF;
-			border-bottom: 5px solid #00A6EF;
-			
+            color:white;
+	
 }
 
 .bothC {
 	width: 85%;
 	height: 13%;
-	border-radius: 20px;
+
 	margin: 1% 2%;
 	background-color: transparent;
-	border-top: 5px solid #00A6EF;
-	border-left: 5px solid #00A6EF;
-	border-right: 5px solid #00A6EF;
-	border-bottom: 5px solid #00A6EF;
-	
+	border-top: 3px solid #fff;
+	border-left: 3px solid #fff;
+	border-right: 3px solid #00A6EF;
+	border-bottom: 3px solid #00A6EF;
+	color :white;
+	cursor:pointer;
 }
 
 .bothC:active {
 	width: 85%;
 	height: 13%;
-	border-radius: 20px;
+
 	margin: 1% 2%;
 	background-color: #00A6EF;
 }
@@ -354,7 +332,7 @@ position:absolute; left:45%; top:1%;
    <form name="tmainservices" action="" method="post">
       <div id="basic">
          <div id="frame">
-            <div id="logo"></div>
+            <div id="logo" onclick="getPage('tmainservices','/MoveMainservice')"></div>
              <div id="sessionBox"><span id="session">${sessionInfo.userName}님 환영합니다.</span>
              	<input	type="hidden" value='${sessionInfo.userId}' name="userId" />
 				<input	type="hidden" value='${sessionInfo.userCode}' name="userCode" />

@@ -7,6 +7,7 @@
 <title>학생 로그인</title>
  <script src="resources/js/common.js"></script>
 <script src="resources/js/login.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
 </head>
 <style>
 

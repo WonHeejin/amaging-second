@@ -5,6 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>관리자 메인 페이지</title>
+ <link rel="stylesheet" type="text/css" href="resources/css/ad.css" />
  <script src="resources/js/common.js"></script>
  <script src="resources/js/acPlan.js"></script>
 <style>
@@ -38,16 +39,7 @@
    
 }
 
-#colorline {
-   border: 0;
-   outline: 0;
-   height: 1.5%;
-   width: 90%;
-   float: left;
-   margin: 2% 4.5%;
-   border-radius: 20px;
-   background-color: #EF90FF;
-}
+
 
 #body {
    outline: 0;
@@ -85,17 +77,6 @@
    background-position: center center;
 }
 
-.bothB {
-   width: 85%;
-   height: 13%;
-   border-radius: 20px;
-   margin: 2% 4%;
-   background-color: transparent;
-   border-top: 5px solid #EF90FF;
-   border-left: 5px solid #EF90FF;
-   border-right: 5px solid #EF90FF;
-   border-bottom: 5px solid #EF90FF;
-}
 
 .bothB:active {
    width: 85%;

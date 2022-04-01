@@ -14,7 +14,7 @@ function divide(menuCode) {
 function MyChildList() {
 	const userId = document.getElementsByName("userId")[0].value;
 	const data = "userId=" + userId;
-	getAjaxData("myChildList",data,"childSelect","post");
+	getAjaxData("MyChildList",data,"childSelect","post");
 }
 
 function childSelect(dat) {
@@ -128,7 +128,7 @@ function childSelected(a,sessionCode) {
 function myAcademyList(userId,menuCode) {
 	const data = "teacherId=" + userId;
 	divide(menuCode);
-	getAjaxData("myAcademyList",data,"academySelect","post")
+	getAjaxData("MyAcademyList",data,"academySelect","post")
 	teacherCounsel();
 }
 
@@ -144,7 +144,7 @@ function updAnswer(){
 function sendMessage1(message){
 	let m =JSON.stringify(message);
 	
-		alert(m);
+	Swal.fire(m);
 		//closeModal();
 		document.getElementById("answer").value="";
 	
@@ -165,7 +165,7 @@ function sendReplyEmail(){
 
 function sendMessageE(message){
 	let m =JSON.stringify(message);
-		alert(m);
+	Swal.fire(m);
 	//let uc = document.getElementById("userCode").value;
 	
 	
@@ -204,10 +204,10 @@ function updAAnswer(){
 
 function sendMessageA(message){
 	let m =JSON.stringify(message);
-		alert(m);
-		
-		document.getElementById("answer").value="";
 
+    Swal.fire(m);
+		//alert(m);		
+		document.getElementById("answer").value="";
 	
 }
 
@@ -234,15 +234,27 @@ function dpTCounselList(dat) {
 			let table = document.createElement("table");
 			let	mTr = createTTr("mTr1");
 			let mTd1 = createTTd("mTd1");
-				mTd1.style.backgroundColor="#0042ED";
-				mTd1.style.color="#FFFFFF";
+				mTd1.style.backgroundColor="#fff";
+				mTd1.style.color="#000000";
+				mTd1.style.borderRight = "3px solid #0042ED";
+				mTd1.style.borderLeft = "3px solid #ffffff";
+				mTd1.style.borderBottom = "3px solid #0042ED";
+				mTd1.style.borderTop = "3px solid #fff ";
 			let mTd2 = createTTd("mTd2");
 			    mTd2.setAttribute("colspan",2);
-				mTd2.style.backgroundColor="#0042ED";
-				mTd2.style.color="#FFFFFF";
+				mTd2.style.backgroundColor="#fff";
+				mTd2.style.color="#000000";
+				mTd2.style.borderRight = "3px solid #0042ED";
+				mTd2.style.borderLeft = "3px solid #ffffff";
+				mTd2.style.borderBottom = "3px solid #0042ED";
+				mTd2.style.borderTop = "3px solid #fff ";
 			let mTd3 = createTTd("mTd3");
-				mTd3.style.backgroundColor="#0042ED";
-				mTd3.style.color="#FFFFFF";
+				mTd3.style.backgroundColor="#fff";
+				mTd3.style.color="#000000";
+				mTd3.style.borderRight = "3px solid #0042ED";
+				mTd3.style.borderLeft = "3px solid #ffffff";
+				mTd3.style.borderBottom = "3px solid #0042ED";
+				mTd3.style.borderTop = "3px solid #fff ";
 			
 			mTd1.innerHTML = "상담요청제목";
 			mTd2.innerHTML = "From";
@@ -305,17 +317,31 @@ function dpACounselList(dat) {
 	
 			const tableMom = document.createElement("div");
 			let table = document.createElement("table");
+				table.style.width="100%";
+				table.style.borderSpacing="10px";
 			let	mTr = createATr("mTr1");
 			let mTd1 = createATd("mTd1");
-				mTd1.style.backgroundColor="#E14FCA";
-				mTd1.style.color="#FFFFFF";
+				mTd1.style.backgroundColor="#FFF";``
+				mTd1.style.color="#000";
+				mTd1.style.borderRight = "3px solid #E14FCA";
+				mTd1.style.borderLeft = "3px solid #ffffff";
+				mTd1.style.borderBottom = "3px solid #E14FCA";
+				mTd1.style.borderTop = "3px solid #fff ";
 			let mTd2 = createATd("mTd2");
 			    mTd2.setAttribute("colspan",2);
-				mTd2.style.backgroundColor="#E14FCA";
-				mTd2.style.color="#FFFFFF";
+				mTd2.style.backgroundColor="#FFF";
+				mTd2.style.color="#000";
+				mTd2.style.borderRight = "3px solid #E14FCA";
+				mTd2.style.borderLeft = "3px solid #ffffff";
+				mTd2.style.borderBottom = "3px solid #E14FCA";
+				mTd2.style.borderTop = "3px solid #fff ";
 			let mTd3 = createATd("mTd3");
-				mTd3.style.backgroundColor="#E14FCA";
-				mTd3.style.color="#FFFFFF";
+				mTd3.style.backgroundColor="#FFF";
+				mTd3.style.color="#000";
+				mTd3.style.borderRight = "3px solid #E14FCA";
+				mTd3.style.borderLeft = "3px solid #ffffff";
+				mTd3.style.borderBottom = "3px solid #E14FCA";
+				mTd3.style.borderTop = "3px solid #fff ";
 			
 			mTd1.innerHTML = "상담요청제목";
 			mTd2.innerHTML = "From";
@@ -381,17 +407,33 @@ function dpSCounselList(dat) {
 				table.setAttribute("id","list")
 			let	mTr = createSTr("mTr1");
 			let mTd1 = createSTd("mTd1");
-				mTd1.style.backgroundColor="#EA7B03";
-				mTd1.style.color="#FFFFFF";
+				mTd1.style.backgroundColor="#ffffff";
+				mTd1.style.color="#000000";
+				mTd1.style.borderRight = "3px solid #EA7B03";
+				mTd1.style.borderLeft = "3px solid #ffffff";
+				mTd1.style.borderBottom = "3px solid #EA7B03";
+				mTd1.style.borderTop = "3px solid #fff ";
 			let mTd2 = createSTd("mTd2");
-				mTd2.style.backgroundColor="#EA7B03";
-				mTd2.style.color="#FFFFFF";			
+				mTd2.style.backgroundColor="#ffffff";
+				mTd2.style.color="#000000";
+				mTd2.style.borderRight = "3px solid #EA7B03";
+				mTd2.style.borderLeft = "3px solid #ffffff";
+				mTd2.style.borderBottom = "3px solid #EA7B03";
+				mTd2.style.borderTop = "3px solid #fff ";
 			let mTd3 = createSTd("mTd3");
-				mTd3.style.backgroundColor="#EA7B03";
-				mTd3.style.color="#FFFFFF";
+				mTd3.style.backgroundColor="#ffffff";
+				mTd3.style.color="#000000";
+				mTd3.style.borderRight = "3px solid #EA7B03";
+				mTd3.style.borderLeft = "3px solid #ffffff";
+				mTd3.style.borderBottom = "3px solid #EA7B03";
+				mTd3.style.borderTop = "3px solid #fff ";
 			let mTd4 = createSTd("mTd4");
-				mTd4.style.backgroundColor="#EA7B03";
-				mTd4.style.color="#FFFFFF";
+				mTd4.style.backgroundColor="#ffffff";
+				mTd4.style.color="#000000";
+				mTd4.style.borderRight = "3px solid #EA7B03";
+				mTd4.style.borderLeft = "3px solid #ffffff";
+				mTd4.style.borderBottom = "3px solid #EA7B03";
+				mTd4.style.borderTop = "3px solid #fff ";
 			
 			mTd1.innerHTML = "학원이름";
 			mTd2.innerHTML = "상담요청제목";
@@ -460,19 +502,35 @@ function dpPCounselList(dat) {
 			const tableMom = document.createElement("div");
 			let table = document.createElement("table");
 				table.setAttribute("id","list")
-			let	mTr = createSTr("mTr1");
-			let mTd1 = createSTd("mTd1");
-				mTd1.style.backgroundColor="#63AA00";
-				mTd1.style.color="#FFFFFF";
-			let mTd2 = createSTd("mTd2");
-				mTd2.style.backgroundColor="#63AA00";
-				mTd2.style.color="#FFFFFF";			
-			let mTd3 = createSTd("mTd3");
-				mTd3.style.backgroundColor="#63AA00";
-				mTd3.style.color="#FFFFFF";
-			let mTd4 = createSTd("mTd4");
-				mTd4.style.backgroundColor="#63AA00";
-				mTd4.style.color="#FFFFFF";
+			let	mTr = createPTr("mTr1");
+			let mTd1 = createPTd("mTd1");
+				mTd1.style.backgroundColor="#ffffff";
+				mTd1.style.color="#000000";
+				mTd1.style.borderRight = "3px solid #63AA00";
+				mTd1.style.borderLeft = "3px solid #ffffff";
+				mTd1.style.borderBottom = "3px solid #63AA00";
+				mTd1.style.borderTop = "3px solid #fff ";
+			let mTd2 = createPTd("mTd2");
+				mTd2.style.backgroundColor="#ffffff";
+				mTd2.style.color="#000000";
+				mTd2.style.borderRight = "3px solid #63AA00";
+				mTd2.style.borderLeft = "3px solid #ffffff";
+				mTd2.style.borderBottom = "3px solid #63AA00";
+				mTd2.style.borderTop = "3px solid #fff ";		
+			let mTd3 = createPTd("mTd3");
+				mTd3.style.backgroundColor="#ffffff";
+				mTd3.style.color="#000000";
+				mTd3.style.borderRight = "3px solid #63AA00";
+				mTd3.style.borderLeft = "3px solid #ffffff";
+				mTd3.style.borderBottom = "3px solid #63AA00";
+				mTd3.style.borderTop = "3px solid #fff ";
+			let mTd4 = createPTd("mTd4");
+				mTd4.style.backgroundColor="#ffffff";
+				mTd4.style.color="#000000";
+				mTd4.style.borderRight = "3px solid #63AA00";
+				mTd4.style.borderLeft = "3px solid #ffffff";
+				mTd4.style.borderBottom = "3px solid #63AA00";
+				mTd4.style.borderTop = "3px solid #fff ";
 			
 			mTd1.innerHTML = "학원이름";
 			mTd2.innerHTML = "상담요청제목";
@@ -592,20 +650,17 @@ function updAnswerUn(){
 	const a ="답변대기중";
 	
 	const data = "post="+encodeURIComponent(tCn[n].post)+"&answer="+a;
-	getAjaxData("/UpdAnswer",data,"sendMessageUn","post");
+	getAjaxData("/UpdAnswer",data,"","post");
 
 }
  
-function sendMessageUn(message){
+/*function sendMessageUn(message){
 	let m =JSON.stringify(message);
 		alert("답변이 필요한 글입니다.");
 	let a = document.getElementById("answer"); 	
 		a.setAttribute("placeholder","답변대기중");
 	
-	
-		
-	
-}
+}*/
 
 function academySelect(dat) {
 	aData = JSON.parse(dat);
@@ -1176,7 +1231,7 @@ function insertQnA(){
 
 function sendMessage2(message){
 	let m =JSON.stringify(message);
-		alert(m);
+		Swal.fire(m);
 		closeModal1();
 		//document.getElementById("answer").value="";
 	let uId = document.getElementsByName("userId")[0].value;
@@ -1219,7 +1274,46 @@ return tr;
 
    }
 
+function createPTd(id) {
+	
+	if(id == "td1") {
+	const td = document.createElement("td");
+	td.setAttribute("id",id);
 
+	td.style.borderRight = "1px solid #ffffff";
+	td.style.borderLeft = "1px solid #ffffff";
+	td.style.borderBottom = "1px solid #FFBB00 ";
+	td.style.borderTop = "1px solid #fff ";
+	td.style.height  = "40px";
+	td.style.borderRadius = "5px 5px 5px 5px";
+	td.style.width  = "250px";
+	td.style.textAlign = "center";
+	return td;
+	}else if(id == "td2"|| id == "td3"){
+	const td = document.createElement("td");
+	td.setAttribute("id",id);
+	td.style.borderRight = "1px solid #ffffff";
+	td.style.borderLeft = "1px solid #ffffff";
+	td.style.borderBottom = "1px solid #FFBB00 ";
+	td.style.borderTop = "1px solid #fff ";
+	td.style.height  = "40px";
+	td.style.borderRadius = "5px 5px 5px 5px";
+	td.style.width  = "500px";
+	td.style.textAlign = "center";
+	return td;
+	}else{const td = document.createElement("td");
+	td.setAttribute("id",id);
+	td.style.borderRight = "1px solid #ffffff";
+	td.style.borderLeft = "1px solid #ffffff";
+	td.style.borderBottom = "1px solid #FFBB00 ";
+	td.style.borderTop = "1px solid #fff ";
+	td.style.height  = "40px";
+	td.style.borderRadius = "5px 5px 5px 5px";
+	td.style.width  = "250px";
+	td.style.textAlign = "center";
+	return td;}
+
+}
 
 /*학생 표만들기 */
 function createSTr(id) {
@@ -1231,6 +1325,8 @@ function createSTr(id) {
 	
 return tr;
 }
+
+
 
    function mouseOverS(obj) {
       let fColor = (obj.id == "btn") ? "#000000" : "#FFFFFF";
@@ -1279,14 +1375,18 @@ return tr;
       obj.style.border = ""
 
    }
-
+/* 학생 */
 function createSTd(id) {
 	
 	if(id == "td1") {
 	const td = document.createElement("td");
 	td.setAttribute("id",id);
 
-	td.style.border = "2px solid #ffffff";
+	td.style.borderRight = "1px solid #ffffff";
+	td.style.borderLeft = "1px solid #ffffff";
+	td.style.borderBottom = "1px solid #FFBB00 ";
+	td.style.borderTop = "1px solid #fff ";
+	td.style.height  = "40px";
 	td.style.borderRadius = "5px 5px 5px 5px";
 	td.style.width  = "250px";
 	td.style.textAlign = "center";
@@ -1294,14 +1394,22 @@ function createSTd(id) {
 	}else if(id == "td2"|| id == "td3"){
 	const td = document.createElement("td");
 	td.setAttribute("id",id);
-	td.style.border = "2px solid #ffffff";
+	td.style.borderRight = "1px solid #ffffff";
+	td.style.borderLeft = "1px solid #ffffff";
+	td.style.borderBottom = "1px solid #FFBB00 ";
+	td.style.borderTop = "1px solid #fff ";
+	td.style.height  = "40px";
 	td.style.borderRadius = "5px 5px 5px 5px";
 	td.style.width  = "500px";
 	td.style.textAlign = "center";
 	return td;
 	}else{const td = document.createElement("td");
 	td.setAttribute("id",id);
-	td.style.border = "2px solid #ffffff";
+	td.style.borderRight = "1px solid #ffffff";
+	td.style.borderLeft = "1px solid #ffffff";
+	td.style.borderBottom = "1px solid #FFBB00 ";
+	td.style.borderTop = "1px solid #fff ";
+	td.style.height  = "40px";
 	td.style.borderRadius = "5px 5px 5px 5px";
 	td.style.width  = "250px";
 	td.style.textAlign = "center";
@@ -1326,25 +1434,41 @@ function createATd(id) {
 	const td = document.createElement("td");
 	td.setAttribute("id",id);
 	//td.setAttribute("rowspan",3);
-	td.style.border = "2px solid #ffffff";
+	td.style.borderRight = "1px solid #ffffff";
+	td.style.borderLeft = "1px solid #ffffff";
+	td.style.borderBottom = "1px solid #EF90FF ";
+	td.style.borderTop = "1px solid #fff ";
+	td.style.height  = "40px";
 	td.style.borderRadius = "5px 5px 5px 5px";
 	td.style.width  = "500px";
 	td.style.textAlign = "center";
+	
+
 	return td;
 	}else if(id == "td2"|| id == "td3"){
 	const td = document.createElement("td");
 	td.setAttribute("id",id);
-	td.style.border = "2px solid #ffffff";
+	td.style.borderRight = "1px solid #ffffff";
+	td.style.borderLeft = "1px solid #ffffff";
+	td.style.borderBottom = "1px solid #EF90FF";
+	td.style.borderTop = "1px solid #fff ";
 	td.style.borderRadius = "5px 5px 5px 5px";
 	td.style.width  = "250px";
+	
 	td.style.textAlign = "center";
+	td.style.height  = "40px";
 	return td;
 	}else{const td = document.createElement("td");
 	td.setAttribute("id",id);
-	td.style.border = "2px solid #ffffff";
+		td.style.borderRight = "1px solid #ffffff";
+	td.style.borderLeft = "1px solid #ffffff";
+	td.style.borderBottom = "1px solid #EF90FF";
+	td.style.borderTop = "1px solid #fff ";
+	
 	td.style.borderRadius = "5px 5px 5px 5px";
 	td.style.width  = "250px";
 	td.style.textAlign = "center";
+	td.style.height  = "40px"; 	
 	return td;}
 	
 	
@@ -1406,23 +1530,35 @@ function createTTd(id) {
 	const td = document.createElement("td");
 	td.setAttribute("id",id);
 	//td.setAttribute("rowspan",3);
-	td.style.border = "2px solid #ffffff";
-	td.style.borderRadius = "5px 5px 5px 5px";
+	td.style.borderRight = "1px solid #ffffff";
+	td.style.borderLeft = "1px solid #ffffff";
+	td.style.borderBottom = "1px solid #00A6EF ";
+	td.style.borderTop = "1px solid #fff ";
+	td.style.height  = "40px";
+
 	td.style.width  = "500px";
 	td.style.textAlign = "center";
 	return td;
 	}else if(id == "td2"|| id == "td3"){
 	const td = document.createElement("td");
 	td.setAttribute("id",id);
-	td.style.border = "2px solid #ffffff";
-	td.style.borderRadius = "5px 5px 5px 5px";
+		td.style.borderRight = "1px solid #ffffff";
+	td.style.borderLeft = "1px solid #ffffff";
+	td.style.borderBottom = "1px solid #00A6EF ";
+	td.style.borderTop = "1px solid #fff ";
+	td.style.height  = "40px";
+	
 	td.style.width  = "250px";
 	td.style.textAlign = "center";
 	return td;
 	}else{const td = document.createElement("td");
 	td.setAttribute("id",id);
-	td.style.border = "2px solid #ffffff";
-	td.style.borderRadius = "5px 5px 5px 5px";
+	td.style.borderRight = "1px solid #ffffff";
+	td.style.borderLeft = "1px solid #ffffff";
+	td.style.borderBottom = "1px solid #00A6EF ";
+	td.style.borderTop = "1px solid #fff ";
+	td.style.height  = "40px";
+	
 	td.style.width  = "250px";
 	td.style.textAlign = "center";
 	return td;}
@@ -1441,6 +1577,7 @@ function createPTd(id) {
 	td.style.borderRadius = "5px 5px 5px 5px";
 	td.style.width  = "500px";
 	td.style.textAlign = "center";
+	td.style.height = "40px";
 	return td;
 	}else if(id == "td1"|| id == "td3"){
 	const td = document.createElement("td");
@@ -1448,6 +1585,7 @@ function createPTd(id) {
 	td.style.border = "2px solid #ffffff";
 	td.style.borderRadius = "5px 5px 5px 5px";
 	td.style.width  = "250px";
+	td.style.height = "40px";
 	td.style.textAlign = "center";
 	return td;
 	}else{const td = document.createElement("td");
@@ -1456,6 +1594,7 @@ function createPTd(id) {
 	td.style.borderRadius = "5px 5px 5px 5px";
 	td.style.width  = "250px";
 	td.style.textAlign = "center";
+	td.style.height = "40px";
 	return td;}
 	
 	

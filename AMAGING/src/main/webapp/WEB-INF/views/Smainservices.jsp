@@ -7,6 +7,7 @@
 <title>학생 메인 페이지</title>
  <script src="resources/js/common.js"></script>
  <script src="resources/js/acPlan.js"></script>
+ <link rel="stylesheet" type="text/css" href="resources/css/st.css" />
 <style>
 #frame {
 	width: 100%;
@@ -37,16 +38,6 @@
    
 }
 
-#colorline {
-	border: 0;
-	outline: 0;
-	height: 1.5%;
-	width: 90%;
-	float: left;
-	margin: 2% 4.5%;
-	border-radius: 20px;
-	background-color: #FFBB00;
-}
 
 #body {
 	border: 0;
@@ -83,18 +74,6 @@
 	background-size: 45% 65%;
 	background-repeat: no-repeat;
 	background-position: center center;
-}
-
-.bothB {
-	width: 85%;
-	height: 13%;
-	border-radius: 20px;
-	margin: 2% 4%;
-	background-color: transparent;
-	border-top: 5px solid #FFBB00;
-	border-left: 5px solid #FFBB00;
-	border-right: 5px solid #FFBB00;
-	border-bottom: 5px solid #FFBB00;
 }
 
 .bothB:active {

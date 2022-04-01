@@ -5,6 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>부모님 로그인</title>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
 <script src="resources/js/common.js"></script>
 <script src="resources/js/login.js"></script>
 </head>

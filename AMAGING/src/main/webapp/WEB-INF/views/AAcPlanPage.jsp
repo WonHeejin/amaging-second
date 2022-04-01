@@ -5,6 +5,8 @@
 <head>
 <meta charset="UTF-8">
 <title>관리자 학사일정 페이지</title>
+ <link rel="stylesheet" type="text/css" href="resources/css/ad.css" />
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
  <script src="resources/js/common.js"></script>
   <script src="resources/js/acPlan.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
@@ -57,184 +59,7 @@
       } );
   	 </script>
 <style>
-/*Jquery 달력 css
-#datepicker {
-	float: left;
-}
 
-.ui-widget-header {
-	border: 0px solid #dddddd;
-	background: #fff;
-}
-
-.ui-datepicker-calendar>thead>tr>th {
-	font-size: 14px !important;
-}
-
-.ui-datepicker .ui-datepicker-header {
-	position: relative;
-	padding: 10px 0;
-}
-
-.ui-state-default, .ui-widget-content .ui-state-default,
-	.ui-widget-header .ui-state-default, .ui-button, html .ui-button.ui-state-disabled:hover,
-	html .ui-button.ui-state-disabled:active {
-	border: 0px solid #c5c5c5;
-	background-color: transparent;
-	font-weight: normal;
-	color: #454545;
-	text-align: center;
-}
-
-.ui-datepicker .ui-datepicker-title {
-	margin: 0 0em;
-	line-height: 16px;
-	text-align: center;
-	font-size: 14px;
-	padding: 0px;
-	font-weight: bold;
-}
-
-.ui-datepicker {
-	display: none;
-	background-color: #fff;
-	border-radius: 4px;
-	margin-top: 10px;
-	margin-left: 0px;
-	margin-right: 0px;
-	padding: 20px;
-	padding-bottom: 10px;
-	width: 300px;
-	box-shadow: 10px 10px 40px rgba(0, 0, 0, 0.1);
-}
-
-.ui-widget.ui-widget-content {
-	border: 1px solid #eee;
-}
-
-#datepicker:focus>.ui-datepicker {
-	display: block;
-}
-
-.ui-datepicker-prev, .ui-datepicker-next {
-	cursor: pointer;
-}
-
-.ui-datepicker-next {
-	float: right;
-}
-
-.ui-state-disabled {
-	cursor: auto;
-	color: hsla(0, 0%, 80%, 1);
-}
-
-.ui-datepicker-title {
-	text-align: center;
-	padding: 10px;
-	font-weight: 100;
-	font-size: 20px;
-}
-
-.ui-datepicker-calendar {
-	width: 100%;
-}
-
-.ui-datepicker-calendar>thead>tr>th {
-	padding: 5px;
-	font-size: 20px;
-	font-weight: 400;
-}
-
-.ui-datepicker-calendar>tbody>tr>td>a {
-	color: #000;
-	font-size: 12px !important;
-	font-weight: bold !important;
-	text-decoration: none;
-}
-
-.ui-datepicker-calendar>tbody>tr>.ui-state-disabled:hover {
-	cursor: auto;
-	background-color: #fff;
-}
-
-.ui-datepicker-calendar>tbody>tr>td {
-	border-radius: 100%;
-	width: 44px;
-	height: 30px;
-	cursor: pointer;
-	padding: 5px;
-	font-weight: 100;
-	text-align: center;
-	font-size: 12px;
-}
-
-.ui-datepicker-calendar>tbody>tr>td:hover {
-	background-color: transparent;
-	opacity: 0.6;
-}
-
-.ui-state-hover, .ui-widget-content .ui-state-hover, .ui-widget-header .ui-state-hover,
-	.ui-state-focus, .ui-widget-content .ui-state-focus, .ui-widget-header .ui-state-focus,
-	.ui-button:hover, .ui-button:focus {
-	border: 0px solid #cccccc;
-	background-color: transparent;
-	font-weight: normal;
-	color: #2b2b2b;
-}
-
-.ui-widget-header .ui-icon {
-	background-image: url('resources/images/btns.png');
-}
-
-.ui-icon-circle-triangle-e {
-	background-position: -20px 0px;
-	background-size: 36px;
-}
-
-.ui-icon-circle-triangle-w {
-	background-position: -0px -0px;
-	background-size: 36px;
-}
-
-.ui-datepicker-calendar>tbody>tr>td:first-child a {
-	color: red !important;
-}
-
-.ui-datepicker-calendar>tbody>tr>td:last-child a {
-	color: #0099ff !important;
-}
-
-.ui-datepicker-calendar>thead>tr>th:first-child {
-	color: red !important;
-}
-
-.ui-datepicker-calendar>thead>tr>th:last-child {
-	color: #0099ff !important;
-}
-
-.ui-state-highlight, .ui-widget-content .ui-state-highlight,
-	.ui-widget-header .ui-state-highlight {
-	border: 0px;
-	background: #f1f1f1;
-	border-radius: 50%;
-	padding-top: 10px;
-	padding-bottom: 10px;
-}
-
-.inp {
-	padding: 10px 10px;
-	background-color: #f1f1f1;
-	border-radius: 4px;
-	border: 0px;
-}
-
-.inp:focus {
-	outline: none;
-	background-color: #eee;
-}*/
-
-/*달력 css끝*/
 #frame {
 	width: 100%;
 	height: 100%;
@@ -263,18 +88,11 @@
 	right: 1%;
 }
 
-#colorline {
-	border: 0;
-	outline: 0;
-	height: 1.5%;
-	width: 90%;
-	float: left;
-	margin: 2% 4.5%;
-	border-radius: 20px;
-	background-color: #EF90FF;
-}
 
 #body {
+	background-repeat:  no-repeat ;
+ 	background-position : 75% 33%;
+ 	background-size : 1350px 550px;
 	outline: 0;
 	width: 99.8%;
 	height: 85%;
@@ -309,17 +127,6 @@
 	background-position: center center;
 }
 
-.bothB {
-	width: 85%;
-	height: 13%;
-	border-radius: 20px;
-	margin: 2% 4%;
-	background-color: transparent;
-	border-top: 5px solid #EF90FF;
-	border-left: 5px solid #EF90FF;
-	border-right: 5px solid #EF90FF;
-	border-bottom: 5px solid #EF90FF;
-}
 
 .bothB:active {
 	width: 85%;
@@ -439,30 +246,28 @@
 }
 
 #acPlanList {
-	float: right;
-	width: 30%;
-	height: 80%;
-	border-radius: 10px;
-	border: 2px solid #EF90FF;
-	margin-right: 20%;
-	background-color: transparent;
-	border-top: 5px solid #EF90FF;
-	border-left: 5px solid #EF90FF;
-	border-right: 5px solid #EF90FF;
-	border-bottom: 5px solid #EF90FF;
-	overflow : auto;
+			float:right;
+			width: 30%;
+			height: 85%;
+			border-radius : 10px;
+            margin-right : 15%;
+            background-color: transparent;
+			overflow : auto;
+			color:white;-
+			cursor:pointer;
 }
 
 .bothC {
 	width: 85%;
 	height: 13%;
-	border-radius: 20px;
 	margin: 1% 2%;
 	background-color: transparent;
-	border-top: 5px solid #EF90FF;
-	border-left: 5px solid #EF90FF;
-	border-right: 5px solid #EF90FF;
-	border-bottom: 5px solid #EF90FF;
+	border-top: 3px solid #fff;
+	border-left: 3px solid #fff;
+	border-right: 3px solid #EF90FF;
+	border-bottom: 3px solid #EF90FF;
+		color:white; 
+		cursor:pointer;
 }
 
 .bothC:active {
@@ -544,6 +349,101 @@
 	width: 10%;
 	font-size: large;
 }
+
+#unermain{
+	
+}
+
+#sd {
+	margin-left : 4%;
+	width: 10%;
+	height: 50px;
+	border-top: 3px solid #fff;
+	border-left: 3px solid #fff;
+	border-right: 3px solid #EF90FF;
+	border-bottom: 3px solid #EF90FF;
+	text-align :center;
+	font-size:large;
+	cursor:pointer;
+}
+
+#ed {
+	margin-left : 2%;
+	width: 10%;
+	height: 50px;
+	border-top: 3px solid #fff;
+	border-left: 3px solid #fff;
+	border-right: 3px solid #EF90FF;
+	border-bottom: 3px solid #EF90FF;
+	text-align :center;
+	font-size:large;
+	cursor:pointer;
+}
+
+#contents {
+	margin-left : 2%;
+	width: 10%;
+	height: 50px;
+	border-top: 3px solid #fff;
+	border-left: 3px solid #fff;
+	border-right: 3px solid #EF90FF;
+	border-bottom: 3px solid #EF90FF;
+	cursor:pointer;
+}
+
+#rbtn {
+	margin-left : 2%;
+	width: 5%;
+	height: 50px;
+	
+	border-top: 3px solid #fff;
+	border-left: 3px solid #fff;
+	border-right: 3px solid #EF90FF;
+	border-bottom: 3px solid #EF90FF;
+	font-size:large;
+	cursor:pointer;
+	box-shadow:5px 5px 5px black;
+                margin-left:2.3%;
+                margin-right:4.8%;
+}
+#rbtn:active{box-shadow:none;}
+
+
+#mbtn {
+
+	width: 5%;
+	height: 50px;
+	cursor:pointer;
+	border-top: 3px solid #fff;
+	border-left: 3px solid #fff;
+	border-right: 3px solid #EF90FF;
+	border-bottom: 3px solid #EF90FF;
+	font-size:large;
+	box-shadow:5px 5px 5px black;
+                margin-left:0.3%;
+                margin-right:4.8%;
+}
+
+#mbtn:active{box-shadow:none;
+}
+
+#dbtn {
+	margin-left : 2%;
+	width: 5%;
+	height: 50px;
+	cursor:pointer;
+	border-top: 3px solid #fff;
+	border-left: 3px solid #fff;
+	border-right: 3px solid #EF90FF;
+	border-bottom: 3px solid #EF90FF;
+	font-size:large;
+	box-shadow:5px 5px 5px black;
+                margin-left:0.3%;
+                margin-right:4.8%;
+}
+#dbtn:active{box-shadow:none;
+}
+
 </style>
 
 </head>
@@ -553,7 +453,7 @@
          <div id="frame">
 
 
-            <span id="logo"></span>
+            <span id="logo" onclick="getPage('amainservice','/MoveMainservice')"></span>
             <div id="sessionBox"><span id="session">${sessionInfo.userName}님 환영합니다.</span>
 				<input	type="hidden" value='${sessionInfo.userId}' name="userId" />
 				<input	type="hidden" value='${sessionInfo.userCode}' name="userCode" />
