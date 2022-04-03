@@ -38,7 +38,7 @@
    position: absolute;
    top: 1%;
    right: 1%;
-   
+   font-family: "BMHANNAAir";
 }
 
 
@@ -51,6 +51,7 @@
    float: left;
    background-color: #ffffff;
    position:absolute; top:15%;
+   font-family: "BMHANNAAir";
 }
 
 #basic {
@@ -65,11 +66,11 @@
    float: left;
    margin-left: 4.2%;
    margin-top:-2%;
-
+	font-family: "BMHANNAAir";
 }
 
 #mainpage {
-   
+   font-family: "BMHANNAAir";
 	width: 55%;
 	height: 350px;
 	float: right;
@@ -165,6 +166,7 @@ margin-bottom:3%;
 
 
 #btn {
+font-family: "BMHANNAAir";
    width: 50%;
    height: 50%;
    border-radius: 10px;
@@ -199,7 +201,7 @@ margin-bottom:3%;
    box-shadow: none;
 }
 #session{ width:100%;  height:50%; 
-
+font-family: "BMHANNAAir";
 position:absolute; top:44%; left:60%;
 text-align:center;
  font-size:130%;
@@ -250,6 +252,7 @@ position:absolute; left:45%; top:1%;
             -webkit-backdrop-filter: blur(1.5px);
             border-radius: 10px;
             border: 1px solid rgba(255, 255, 255, 0.18);
+            font-family: "BMHANNAAir";
  		}
  		
  #pwexampleModal {width: 100%;
@@ -266,6 +269,7 @@ position:absolute; left:45%; top:1%;
             -webkit-backdrop-filter: blur(1.5px);
             border-radius: 10px;
             border: 1px solid rgba(255, 255, 255, 0.18);
+            font-family: "BMHANNAAir";
  		}		
  		
  #mdialog {background: #FFFFFF;
@@ -279,6 +283,7 @@ position:absolute; left:45%; top:1%;
             position: relative;
             top: -100px;
             padding: 10px;
+            font-family: "BMHANNAAir";
             }
             
    #pwmdialog {background: #FFFFFF;
@@ -292,9 +297,11 @@ position:absolute; left:45%; top:1%;
             position: relative;
             top: -100px;
             padding: 10px;
+            font-family: "BMHANNAAir";
             }          
             
- #mbody{           
+ #mbody{    font-size : x-large;
+			      
  			 height : 220px;
 			 border-radius : 10px;
 			 border : 2px solid #92acbb;
@@ -302,15 +309,20 @@ position:absolute; left:45%; top:1%;
 			 left : "85%";
 			 top : "1%";
 			 overflow:auto;
+			 font-family: "BMHANNAAir";
 		}
 		
- #mheader	{           
+ #mheader	{
+ 			font-size : x-large;
+			padding-left : 10px;
+			padding-top : 10px;            
  			 height : 30px;
 			 border-radius : 10px;
 			 border : 2px solid #92acbb;
 			 position : relative;
 			 left : "85%";
 			 top : "1%";
+			 font-family: "BMHANNAAir";
 		}
 		
 #answer {           
@@ -321,8 +333,9 @@ position:absolute; left:45%; top:1%;
 			 position : relative;
 			 left : "85%";
 			 top : "1%";
-			 font-size : large;
+			 font-size : x-large;
 			 text-align : center;
+			 font-family: "BMHANNAAir";
 #answer::placeholder {color:black;}		
 		}
 
@@ -347,6 +360,7 @@ position:absolute; left:45%; top:1%;
 
 /*요약정보 CSS*/
 #undermain{
+font-family: "BMHANNAAir";
 			width : 55%;
 			height : 13-0px;
 			float : left;
@@ -354,14 +368,14 @@ position:absolute; left:45%; top:1%;
 			left : 12%;
 			top : 5%;
 }
-.simple_table { width: 100%; border: none; border-collapse: separate; border-spacing: 2px;}
+.simple_table {font-family: "BMHANNAAir"; width: 100%; border: none; border-collapse: separate; border-spacing: 2px;}
 .simple_table th { padding: 15px; border: none; border-bottom: 5px solid #0042ED  ; border-right: 5px solid #0042ED; background: #fff ; font-size: large; color:#00A6EF; text-align:center; vertical-align: middle;}
 .simple_table td { padding: 15px; border: none; border-bottom: 1px solid #DDD; text-align: center; vertical-align: baseline; font-size: x-large;}
 	
 
 </style>
 
-</head><!-- myAcademyList('${sessionInfo.userId}','get') -->
+</head><!--  teacherCounsel('${sessionInfo.userId}','1')-->
 
 <body onload="myAcademyList('${sessionInfo.userId}','get')">
 

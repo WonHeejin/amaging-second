@@ -86,6 +86,7 @@
 	position: absolute;
 	top: 1%;
 	right: 1%;
+	font-family: "BMHANNAAir"; 
 }
 
 
@@ -101,6 +102,7 @@
 	background-color: #ffffff;
 	position: absolute;
 	top: 15%;
+	font-family: "BMHANNAAir"; 
 }
 
 #basic {
@@ -255,9 +257,11 @@
 			overflow : auto;
 			color:white;-
 			cursor:pointer;
+			font-size : xx-large;
 }
 
 .bothC {
+	font-family: "BMHANNAAir"; 
 	width: 85%;
 	height: 13%;
 	margin: 1% 2%;
@@ -278,73 +282,73 @@
 	background-color: #EF90FF;
 }
 
-#jan {
+#jan {font-family: "BMHANNAAir"; 
 	height: 15%;
 	width: 10%;
 	font-size: large;
 }
 
-#feb {
+#feb {font-family: "BMHANNAAir"; 
 	height: 15%;
 	width: 10%;
 	font-size: large;
 }
 
-#mar {
+#mar {font-family: "BMHANNAAir"; 
 	height: 15%;
 	width: 10%;
 	font-size: large;
 }
 
-#apr {
+#apr {font-family: "BMHANNAAir"; 
 	height: 15%;
 	width: 10%;
 	font-size: large;
 }
 
-#may {
+#may {font-family: "BMHANNAAir"; 
 	height: 15%;
 	width: 10%;
 	font-size: large;
 }
 
-#jun {
+#jun {font-family: "BMHANNAAir"; 
 	height: 15%;
 	width: 10%;
 	font-size: large;
 }
 
-#jul {
+#jul {font-family: "BMHANNAAir"; 
 	height: 15%;
 	width: 10%;
 	font-size: large;
 }
 
-#aug {
+#aug {font-family: "BMHANNAAir"; 
 	height: 15%;
 	width: 10%;
 	font-size: large;
 }
 
-#sep {
+#sep {font-family: "BMHANNAAir"; 
 	height: 15%;
 	width: 10%;
 	font-size: large;
 }
 
-#oct {
+#oct {font-family: "BMHANNAAir"; 
 	height: 15%;
 	width: 10%;
 	font-size: large;
 }
 
-#nov {
+#nov {font-family: "BMHANNAAir"; 
 	height: 15%;
 	width: 10%;
 	font-size: large;
 }
 
-#dec {
+#dec {font-family: "BMHANNAAir"; 
 	height: 15%;
 	width: 10%;
 	font-size: large;
@@ -355,6 +359,7 @@
 }
 
 #sd {
+	font-family: "BMHANNAAir"; 
 	margin-left : 4%;
 	width: 10%;
 	height: 50px;
@@ -368,6 +373,7 @@
 }
 
 #ed {
+	font-family: "BMHANNAAir"; 
 	margin-left : 2%;
 	width: 10%;
 	height: 50px;
@@ -381,6 +387,7 @@
 }
 
 #contents {
+	font-family: "BMHANNAAir"; 
 	margin-left : 2%;
 	width: 10%;
 	height: 50px;

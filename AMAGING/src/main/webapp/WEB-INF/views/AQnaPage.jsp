@@ -37,7 +37,7 @@
    position: absolute;
    top: 1%;
    right: 1%;
-   
+   font-family: "BMHANNAAir";
 }
 
 
@@ -50,6 +50,7 @@
    background-color: #ffffff;
    position: absolute;
    top: 15%;
+   font-family: "BMHANNAAir";
 }
 
 #basic {
@@ -167,7 +168,7 @@
    text-align: center;
    font-size: 130%;
    cursor: pointer;
-   
+   font-family: "BMHANNAAir";
 }
 
 #btn:active {
@@ -193,12 +194,13 @@
 position:absolute; top:44%; left:60%;
 text-align:center;
  font-size:130%;
- 
+ font-family: "BMHANNAAir";
 	
 	}
 
 #sessionBox{ width:30%; height:10%; 
 position:absolute; left:45%; top:1%;
+font-family: "BMHANNAAir";
 }
 
 .div1{ font-size:120%; width:100%; height:30%;
@@ -239,6 +241,7 @@ position:absolute; left:45%; top:1%;
             -webkit-backdrop-filter: blur(1.5px);
             border-radius: 10px;
             border: 1px solid rgba(255, 255, 255, 0.18);
+            font-family: "BMHANNAAir";
  		}
  		
  #mdialog {background: #FFFFFF;
@@ -252,23 +255,29 @@ position:absolute; left:45%; top:1%;
             position: relative;
             top: -100px;
             padding: 10px;
+            font-family: "BMHANNAAir";
             }
- #mbody{           
+ #mbody{     	font-size : x-large;
+			      
  			 height : 220px;
 			 border-radius : 10px;
 			 border : 2px solid #92acbb;
 			 position : relative;
 			 left : "85%";
 			 top : "1%";
+			 font-family: "BMHANNAAir";
 		}
 		
- #mheader	{           
+ #mheader	{	font-size : x-large;
+			padding-left : 10px;
+			padding-top : 10px;            
  			 height : 30px;
 			 border-radius : 10px;
 			 border : 2px solid #92acbb;
 			 position : relative;
 			 left : "85%";
 			 top : "1%";
+			 font-family: "BMHANNAAir";
 		}
 #answer {           
  			 height : 100px;
@@ -278,8 +287,9 @@ position:absolute; left:45%; top:1%;
 			 position : relative;
 			 left : "85%";
 			 top : "1%";
-			 font-size : large;
+			 font-size : x-large;
 			 text-align : center;
+			 font-family: "BMHANNAAir";
 		}
 	
 #answer::placeholder {color:black;}		
@@ -299,7 +309,7 @@ position:absolute; left:45%; top:1%;
 			left : 12%;
 			top : 0%;
 }
-.simple_table { width: 100%; border: none; border-collapse: separate; border-spacing: 2px;}
+.simple_table { font-family: "BMHANNAAir";;width: 100%; border: none; border-collapse: separate; border-spacing: 2px;}
 .simple_table th { padding: 15px; border: none; border-bottom: 5px solid #EF90FF  ; border-right: 5px solid #EF90FF; background: #fff ; font-size: large; color:#E14FCA; text-align:center; vertical-align: middle;}
 .simple_table td { padding: 15px; border: none; border-bottom: 1px solid #DDD; text-align: center; vertical-align: baseline; font-size: x-large;}
 
@@ -318,6 +328,8 @@ position:absolute; left:45%; top:1%;
             -webkit-backdrop-filter: blur(1.5px);
             border-radius: 10px;
             border: 1px solid rgba(255, 255, 255, 0.18);
+            font-family: "BMHANNAAir";
+            
  		}	
  		
     #pwmdialog {background: #FFFFFF;
@@ -331,6 +343,7 @@ position:absolute; left:45%; top:1%;
             position: relative;
             top: -100px;
             padding: 10px;
+            font-family: "BMHANNAAir";
             }   		
 
 #password {           

@@ -31,11 +31,10 @@ public class QnAController {
 	@SuppressWarnings("unchecked")
 	@PostMapping("/GetContents")
 	public List<Counsel> getContents(ModelAndView mav, @ModelAttribute UserInfo uf) {
-		System.out.println(uf);
-		System.out.println("여기왔음");
+		
 		qna.backController(7, mav.addObject("uf", uf));
 		List<Counsel> a =(List<Counsel>)mav.getModelMap().getAttribute("contents");
-		System.out.println(a);
+		
 		return a;
 	}
 	
@@ -72,13 +71,13 @@ public class QnAController {
 		qna.backController(5, mav.addObject("uf", uf));
 		
 		List<AList> a =(List<AList>)mav.getModelMap().getAttribute("contents11");
-		System.out.println(a);
+	
 		return a;
 	}
 	
 	@PostMapping(value = "/InsertQnA", produces="text/plain; charset=utf-8")
 	public String insertQnA(ModelAndView mav, @ModelAttribute Counsel cn) {
-		System.out.println("여기왔다");
+	
 		//System.out.println(cn);
 		qna.backController(6, mav.addObject("cn", cn));
 		

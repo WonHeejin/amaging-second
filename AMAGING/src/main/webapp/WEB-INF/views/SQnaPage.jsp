@@ -36,7 +36,7 @@
    position: absolute;
    top: 1%;
    right: 1%;
-   
+   font-family: "BMHANNAAir"; 
 }
 
 
@@ -78,6 +78,7 @@
 	background-position: center center;
 	overflow:auto;
 	border-radius: 20px;
+	font-family: "BMHANNAAir"; 
 }
 
 
@@ -212,6 +213,7 @@ position:absolute; left:45%; top:1%;
 
 /*글쓰기 등록버튼*/
 .rw {
+	font-family: "BMHANNAAir"; 
    width: 5%;
    height: 4%;
    border-radius: 20px;
@@ -241,6 +243,7 @@ position:absolute; left:45%; top:1%;
             -webkit-backdrop-filter: blur(1.5px);
             border-radius: 10px;
             border: 1px solid rgba(255, 255, 255, 0.18);
+            font-family: "BMHANNAAir"; 
  		}
  
  #exampleModal1 {width: 100%;
@@ -257,6 +260,7 @@ position:absolute; left:45%; top:1%;
             -webkit-backdrop-filter: blur(1.5px);
             border-radius: 10px;
             border: 1px solid rgba(255, 255, 255, 0.18);
+            font-family: "BMHANNAAir"; 
  		}
  		
  #mdialog {background: #FFFFFF;
@@ -270,6 +274,7 @@ position:absolute; left:45%; top:1%;
             position: relative;
             top: -100px;
             padding: 10px;
+            font-family: "BMHANNAAir"; 
             }
             
 #mdialog1 {background: #FFFFFF;
@@ -283,9 +288,13 @@ position:absolute; left:45%; top:1%;
             position: relative;
             top: -100px;
             padding: 10px;
+            font-family: "BMHANNAAir"; 
             }            
             
- #mbody{           
+ #mbody{     
+ 			font-size : x-large;
+			padding-left : 10px;
+			padding-top : 10px;      
  			 height : 220px;
 			 border-radius : 10px;
 			 border : 2px solid #92acbb;
@@ -293,17 +302,22 @@ position:absolute; left:45%; top:1%;
 			 left : "85%";
 			 top : "1%";
 			 overflow:auto;
+			 font-family: "BMHANNAAir"; 
 		}
 		
- #mheader	{           
- 			 height : 30px;
+ #mheader	{
+ 			font-size : x-large;
+			padding-left : 10px;
+			padding-top : 10px;          
+ 			 height : 55px;
 			 border-radius : 10px;
 			 border : 2px solid #92acbb;
 			 position : relative;
 			 left : "85%";
 			 top : "1%";
+			 font-family: "BMHANNAAir"; 
 		}
-#answer {           
+#answer {    font-size : x-large;       
  			 height : 100px;
  			 width : 98%;
 			 border-radius : 10px;
@@ -313,6 +327,7 @@ position:absolute; left:45%; top:1%;
 			 top : "1%";
 			 font-size : large;
 			 text-align : center;
+			 font-family: "BMHANNAAir"; 
 		}
 		
 #btn-close{float : right;}
@@ -323,26 +338,29 @@ position:absolute; left:45%; top:1%;
  			 width : 98%;
 			 border-radius : 10px;
 			 border : 2px solid #92acbb;
-			 position : relative;
-			 left : "85%";
-			 top : "1%";
+			font-size : x-large;
+			padding-left : 10px;
+			padding-top : 10px;
 			 overflow-x: auto;
     		 overflow-y: scroll;
-
+			font-family: "BMHANNAAir"; 
 		}
 		
  #mheader1	{           
- 			 height : 30px;
+ 			 font-size : x-large;
+ 			 padding-left : 10px;
+ 			 height : 55px;
  			 width : 98%;
 			 border-radius : 10px;
 			 border : 2px solid #92acbb;
 			 position : relative;
 			 left : "85%";
 			 top : "1%";
+			 font-family: "BMHANNAAir"; 
 		}
 #selectMom {
 		float :left; 
-		
+		font-family: "BMHANNAAir"; 
 	 }
 	 
 /*#aSelect3{
@@ -365,7 +383,7 @@ position:absolute; left:45%; top:1%;
 			left : 12%;
 			top : 0%;
 }
-.simple_table { width: 100%; border: none; border-collapse: separate; border-spacing: 2px;}
+.simple_table {font-family: "BMHANNAAir";  width: 100%; border: none; border-collapse: separate; border-spacing: 2px;}
 .simple_table th { padding: 15px; border: none; border-bottom: 5px solid #FFBB00  ; border-right: 5px solid #FFBB00; background: #fff ; font-size: large; color:#EA7B03; text-align:center; vertical-align: middle;}
 .simple_table td { padding: 15px; border: none; border-bottom: 1px solid #DDD; text-align: center; vertical-align: baseline; font-size: x-large;}
 

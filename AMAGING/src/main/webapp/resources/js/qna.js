@@ -125,13 +125,7 @@ function childSelected(a,sessionCode) {
 	//}
 
 
-function myAcademyList(userId,menuCode) {
-	const data = "teacherId=" + userId;
-	
-	getAjaxData("MyAcademyList",data,"academySelect","post")
-	if(selectedNum==0){teacherCounsel(document.getElementsByName("userId")[0].value, '1024588469');}
-	//teacherCounsel('T1001', '1024588469');
-}
+
 
 
 /* 선생님 답변*/
@@ -214,11 +208,11 @@ function sendMessageE(message){
 	//Swal.fire(m);
 	//let uc = document.getElementById("userCode").value;
 	
-	alert((tCn[selectedNum].rpCode).substr(0,1));
+	
 	if (m.substr(1,1) == "해") {
 		//Swal.fire(m);
 		if ((tCn[selectedNum].rpCode).substr(0,1)=="T") {
-			alert("선생님");
+			
 			updAnswer();
 			//teacherCounsel(tCn[selectedNum].rpCode, tCn[selectedNum].acCode);
 			//closeModalT();
@@ -272,7 +266,7 @@ function teacherCounsel(uId,ac){
 	if(document.getElementById("mainpage").innerHTML!=null){
 		document.getElementById("mainpage").innerHTML="";
 	}
-	if(ac=="1"){ac=aData[0].acCode}
+	if(ac=="1"){ac=sessionStorage.getItem("acCode")}
 	//if(ac=="1"){ac=document.getElementById("ac1").value}
 	const data = "userId=" + uId +"&acCode=" + ac;
 	
@@ -717,6 +711,13 @@ function sendMessageUn(message){
 	
 }
 
+function myAcademyList(userId,menuCode) {
+	const data = "teacherId=" + userId;
+	
+	getAjaxData("MyAcademyList",data,"academySelect","post")
+
+}
+
 function academySelect(dat) {
 	aData = JSON.parse(dat);
 	
@@ -847,8 +848,8 @@ function academySelect(dat) {
 	
 	}
 	let uId=document.getElementsByName("userId")[0].value;
-	teacherCounsel(uId,'1');
-	
+teacherCounsel(uId,'1');
+	//teacherCounsel(tCn[selectedNum].rpCode, tCn[selectedNum].acCode);
 	if(sessionStorage.getItem("acCode") == aData[0].acCode){
 	      document.getElementById("aSelect").selectedIndex = "1";
 	   }else if(sessionStorage.getItem("acCode") == aData[1].acCode){
@@ -1104,13 +1105,13 @@ function academySelect1(dat) {
 			
 			selectMom.appendChild(aSelect);
 	
-			if(sessionStorage.getItem("acCode") == aData[0].acCode){
+		/*	if(sessionStorage.getItem("acCode") == aData[0].acCode){
 	      document.getElementById("aSelect").selectedIndex = "1";
 	   }else if(sessionStorage.getItem("acCode") == aData[1].acCode){
 	      document.getElementById("aSelect").selectedIndex = "2";
 	   }else if(sessionStorage.getItem("acCode") == aData[2].acCode){
 	      document.getElementById("aSelect").selectedIndex = "3";
-	   }
+	   }*/
 	
 }
 

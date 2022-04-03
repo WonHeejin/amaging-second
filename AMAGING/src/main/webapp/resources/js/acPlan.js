@@ -246,7 +246,7 @@ let currentRecord=null;
 			document.getElementById("ed").value="";
 		}
 	//document.getElementById("acPlanList").innerHTML="";
-
+	
 	}
 	
 		/*학사일정 삭제  */
@@ -272,9 +272,14 @@ let currentRecord=null;
 
 function sendMessage1(message){
 	let m =JSON.stringify(message);
-
-		Swal.fire(m);
-		if(ap[0].sdate.substr(4,2)=="01"){document.getElementById("jan").click();}	
+	Swal.fire(m);
+	setTimeout(function() {
+  document.getElementById("oneB").click();
+}, 2000);
+		
+	
+	
+/*		if(ap[0].sdate.substr(4,2)=="01"){document.getElementById("jan").click();}	
 	else if(ap[0].sdate.substr(4,2)=="02"){document.getElementById("feb").click();}
 	else if(ap[0].sdate.substr(4,2)=="03"){document.getElementById("mar").click();}
 	else if(ap[0].sdate.substr(4,2)=="04"){document.getElementById("apr").click();}
@@ -285,5 +290,8 @@ function sendMessage1(message){
 	else if(ap[0].sdate.substr(4,2)=="09"){document.getElementById("sep").click();}
 	else if(ap[0].sdate.substr(4,2)=="10"){document.getElementById("oct").click();}
 	else if(ap[0].sdate.substr(4,2)=="11"){document.getElementById("nov").click();}
-	else if(ap[0].sdate.substr(4,2)=="12"){document.getElementById("dec").click();}
+	else if(ap[0].sdate.substr(4,2)=="12"){document.getElementById("dec").click();}*/
+	/*document.getElementById("sd").value=null;
+	document.getElementById("ed").value=null;
+	document.getElementById("contents").value=null;*/
 }

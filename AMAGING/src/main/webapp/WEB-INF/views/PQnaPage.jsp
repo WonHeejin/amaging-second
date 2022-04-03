@@ -23,7 +23,7 @@
    background-size: 100% 80%;
    background-repeat: no-repeat;
    background-position: left center;
-	
+	font-family: "BMHANNAAir"; 
 }
 
 #logOut {
@@ -32,7 +32,7 @@
    position: absolute;
    top: 1%;
    right: 1%;
-   
+   font-family: "BMHANNAAir"; 
 }
 
 
@@ -45,12 +45,14 @@
    float: left;
    background-color: #ffffff;
    position:absolute; top:15%;
+   font-family: "BMHANNAAir"; 
 }
 
 #basic {
    position: fixed;
    width: 99%;
    height: 100%;
+   font-family: "BMHANNAAir"; 
 }
 
 .servicebutton {
@@ -59,7 +61,7 @@
    float: left;
    margin-left: 4.2%;
    margin-top:-2%;
-
+	font-family: "BMHANNAAir"; 
 }
 #uppermainpage {
    width: 73%;
@@ -67,7 +69,7 @@
 
    margin-right: 5.5%;
    margin-top: 0.5%;
-   
+   font-family: "BMHANNAAir"; 
    background-size: 25% 50%;
    background-repeat: no-repeat;
    background-position: center center;
@@ -98,6 +100,7 @@
 	background-position: center center;
 	overflow:auto;
 	border-radius: 20px;
+	font-family: "BMHANNAAir"; 
 }
 
 
@@ -207,6 +210,7 @@ margin-bottom:3%;
    text-align: center;
    font-size: 130%;
    cursor: pointer;
+   font-family: "BMHANNAAir"; 
 }
 
 #btn:active {
@@ -253,6 +257,7 @@ position:absolute; left:45%; top:1%;
    font-size : large;
     border: 5px solid #63AA00;
     cursor:pointer;
+    font-family: "BMHANNAAir"; 
 }
 
 
@@ -273,6 +278,7 @@ position:absolute; left:45%; top:1%;
             -webkit-backdrop-filter: blur(1.5px);
             border-radius: 10px;
             border: 1px solid rgba(255, 255, 255, 0.18);
+            font-family: "BMHANNAAir"; 
  		}
  
  #exampleModal1 {width: 100%;
@@ -289,6 +295,7 @@ position:absolute; left:45%; top:1%;
             -webkit-backdrop-filter: blur(1.5px);
             border-radius: 10px;
             border: 1px solid rgba(255, 255, 255, 0.18);
+            font-family: "BMHANNAAir"; 
  		}
  		
  #mdialog {background: #FFFFFF;
@@ -302,6 +309,7 @@ position:absolute; left:45%; top:1%;
             position: relative;
             top: -100px;
             padding: 10px;
+            font-family: "BMHANNAAir"; 
             }
             
 #mdialog1 {background: #FFFFFF;
@@ -315,6 +323,7 @@ position:absolute; left:45%; top:1%;
             position: relative;
             top: -100px;
             padding: 10px;
+            font-family: "BMHANNAAir"; 
             }            
             
  #mbody{           
@@ -324,6 +333,7 @@ position:absolute; left:45%; top:1%;
 			 position : relative;
 			 left : "85%";
 			 top : "1%";
+			 font-family: "BMHANNAAir"; 
 		}
 		
  #mheader	{           
@@ -333,7 +343,9 @@ position:absolute; left:45%; top:1%;
 			 position : relative;
 			 left : "85%";
 			 top : "1%";
+			 font-family: "BMHANNAAir"; 
 		}
+		
 #answer {           
  			 height : 100px;
  			 width : 98%;
@@ -344,12 +356,15 @@ position:absolute; left:45%; top:1%;
 			 top : "1%";
 			 font-size : large;
 			 text-align : center;
+			 font-family: "BMHANNAAir"; 
 		}
 		
 #btn-close{float : right;}
 #mbtn{float : right;}
 
- #mbody1{           
+ #mbody1{    font-size : x-large;
+			padding-left : 10px;
+			padding-top : 10px;       
  			 height : 220px;
  			 width : 98%;
 			 border-radius : 10px;
@@ -357,16 +372,21 @@ position:absolute; left:45%; top:1%;
 			 position : relative;
 			 left : "85%";
 			 top : "1%";
+			 font-family: "BMHANNAAir"; 
 		}
 		
  #mheader1	{           
- 			 height : 30px;
+ 			font-size : x-large;
+			padding-left : 10px;
+			
+ 			 height : 55px;
  			 width : 98%;
 			 border-radius : 10px;
 			 border : 2px solid #92acbb;
 			 position : relative;
 			 left : "85%";
 			 top : "1%";
+			 font-family: "BMHANNAAir"; 
 		}
 		
 	/*요약정보 CSS*/
@@ -378,7 +398,7 @@ position:absolute; left:45%; top:1%;
 			left : 11%;
 			top : 0%;
 }
-.simple_table { width: 100%; border: none; border-collapse: separate; border-spacing: 2px;}
+.simple_table { font-family: "BMHANNAAir"; width: 100%; border: none; border-collapse: separate; border-spacing: 2px;}
 .simple_table th { padding: 15px; border: none; border-bottom: 5px solid #99E000  ; border-right: 5px solid #99E000; background: #fff ; font-size: large; color:#63AA00 ; text-align:center; vertical-align: middle;}
 .simple_table td { padding: 15px; border: none; border-bottom: 1px solid #DDD; text-align: center; vertical-align: baseline; font-size: x-large;}
 
