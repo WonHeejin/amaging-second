@@ -212,10 +212,22 @@ text-align:center;
 #sessionBox{ width:30%; height:10%; 
 position:absolute; left:45%; top:1%;
 }
-#childBox{
-	width: 15%;
-	height: 5%;
-	float:right;
+#childBox{			
+	width: 20%;
+	height: 8%;
+	float:left;
+	margin-left:4%;
+				
+}
+#childSelect{
+	height : 40px;
+	width :  200px;
+	border-radius: 5px;
+	font-size :large;
+	border : 2px solid #99E000;
+	position: relateive;
+	left: 10%;
+	top: 1%;
 }
 
 #calendar {
