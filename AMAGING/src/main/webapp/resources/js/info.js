@@ -107,7 +107,7 @@ function parentRegForm(){
 					+"<option value='' >@gmail.com</option>"
 					+"<option value='' >@hanmail.com</option>"
 					+"</select>"
-					+"<input type=button  class='regButton' value='등록' onClick='checkParentEmail()'>";
+					+"<input type=button  class='prregButton' value='등록' onClick='checkParentEmail()'>";
 	mainpage.appendChild(prbox);
 }
 

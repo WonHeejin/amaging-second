@@ -334,7 +334,7 @@
 	font-size: 200%;
 	text-align:center;	
 	height: 100%;
-	border-radius: 10px;
+	border-radius: 10px;   font-family: "BMHANNAAir";
 }
 .regButton {
 	border-top: 5px solid #FFBB00;
@@ -350,20 +350,22 @@
 	font-size:150%;
 	cursor: pointer;
 	border-radius: 10px;	
+	font-family: "BMHANNAAir";
 }
 .mbtn{float:left;
  border-radius: 10px;background-color: #FFBB00; width:50%; height:100%; border: 1px solid #FFBB00;
- cursor:pointer;font-size: 13pt;
+ cursor:pointer;font-size: 13pt;   font-family: "BMHANNAAir";
 }
 .searchBtn{
  border-radius: 10px; background-color: #FFBB00; width:15%; height:40px; border: 1px solid #FFBB00;
- cursor:pointer;
+ cursor:pointer;   font-family: "BMHANNAAir";
 } 
 .prbox{
-	margin-left:25%;
+	margin-left:15%;
 	margin-top:10%;
-	width: 50%;	
+	width: 80%;	
 	height: 20%;
+	font-family: "BMHANNAAir";
 }
 .prinputbox {	
 	border: 5px solid #FFBB00;
@@ -372,6 +374,7 @@
 	text-align:center;	
 	height: 90%;
 	border-radius: 10px;
+	font-family: "BMHANNAAir";
 }
 #emailform{
 	border: 5px solid #FFBB00;
@@ -380,9 +383,26 @@
 	text-align:center;	
 	height: 100%;
 	border-radius: 10px;
+	font-family: "BMHANNAAir";
 }
 .swal2-confirm{
 	background-color:#FFBB00 !important;
+}
+.prregButton {
+	border-top: 5px solid #FFBB00;
+	border-left: 5px solid #FFBB00;
+	border-right: 5px solid #FFBB00;
+	border-bottom: 5px solid #FFBB00;
+	background-color: #FFBB00;
+	margin-left:20%;
+	margin-top:5%;
+	width: 35%;
+	height: 50%;
+	text-align: center;
+	font-size:150%;
+	cursor: pointer;
+	border-radius: 10px;	
+	font-family: "BMHANNAAir";
 }
 </style>
 
@@ -431,7 +451,7 @@
 			<div class='mcontent' >
 				<div class='mheader' style='font-size:180%'>
 				<h5 id='mheader' class='mtitle' style="margin-top:50px%; margin-bottom: 30px;" >학원 검색</h5></div>
-				<input type='text' name='acName' placeholder='학원이름 입력' style=' height:35px; border-radius: 10px; border:3px solid #FFBB00; padding-left: 7px; font-size: 13pt; margin-bottom:10px%;'/>
+				<input type='text' name='acName' placeholder='학원이름 입력' style=' height:35px; border-radius: 10px; border:3px solid #FFBB00; padding-left: 7px; font-size: 13pt; margin-bottom:10px%;font-family: "BMHANNAAir";'/>
 				<input type='button' value='검색' onClick='searchAc()' class='searchBtn' style="font-size: 13pt;"/>
 				<div class='mbody' id='mbody' value='' style="font-size: 13pt;">
 					<div class='hacCode'>등록번호</div>

@@ -255,7 +255,9 @@
  	text-align:center;
  	padding:5px;
  }
-
+.swal2-confirm{
+	background-color:#FFBB00 !important;
+}
 </style>
 
 </head>

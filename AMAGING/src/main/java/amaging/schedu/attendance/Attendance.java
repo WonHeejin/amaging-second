@@ -137,6 +137,7 @@ public class Attendance extends amaging.schedu.common.CommonMethod{
 		Admin an = new Admin();
 		an = (Admin)model.getAttribute("an");
 		if(this.convertToBoolean(am.delS(an))){
+			am.delST(an);
 			message = "success";
 		}
 		model.addAttribute("meg",message);

@@ -58,7 +58,7 @@ function calendar(action) {
 										daysOfWeek: element.weekDay,
 										color: bcolor[index],
 										textColor: 'white',
-										description: element.acName + " " + element.clName + " " + element.subjectName
+										description: element.stime + " ~ " + element.etime +" "+element.acName + " " + element.clName + " " + element.subjectName
 									}); //.push() end	
 								} else { 
 									events.push({

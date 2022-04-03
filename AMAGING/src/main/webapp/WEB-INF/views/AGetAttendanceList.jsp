@@ -464,7 +464,7 @@ input[type="text"] {background-image: url(https://cdn1.iconfinder.com/data/icons
     				text-align:left;
     				padding-left:20px;}
 #psnnEmail			{display:inline-block;
-					border-bottom: 2px solid #EF90FF;
+					/*border-bottom: 2px solid #EF90FF;*/
 					margin-top:4px;
 					margin-left:4px;
 					width:220px;
