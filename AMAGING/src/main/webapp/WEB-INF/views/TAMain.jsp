@@ -47,6 +47,16 @@
 	   }
 </script>
 <style>
+@font-face {
+    font-family: 'BMHANNAAir';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_four@1.0/BMHANNAAir.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+body{
+	font-family: "BMHANNAAir";
+}
+
 #basic {
 	position: fixed;
 	width: 99%;
