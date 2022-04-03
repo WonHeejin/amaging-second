@@ -361,7 +361,7 @@ position:absolute; left:45%; top:1%;
 
 </style>
 
-</head>
+</head><!-- myAcademyList('${sessionInfo.userId}','get') -->
 
 <body onload="myAcademyList('${sessionInfo.userId}','get')">
 

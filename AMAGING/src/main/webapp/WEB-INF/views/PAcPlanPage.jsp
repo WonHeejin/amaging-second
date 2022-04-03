@@ -223,10 +223,11 @@ position:absolute; left:45%; top:1%;
 }
 
 #childSelect{
-			height : 50px;
-			width :  120px;
+			height : 40px;
+			width :  200px;
 			font-size :large;
-			 border : 2px solid #63AA00;
+			 border : 2px solid #99E000;
+			 border-radius : 5px;
 }
 
 

@@ -127,9 +127,10 @@ function childSelected(a,sessionCode) {
 
 function myAcademyList(userId,menuCode) {
 	const data = "teacherId=" + userId;
-	divide(menuCode);
+	
 	getAjaxData("MyAcademyList",data,"academySelect","post")
-	teacherCounsel();
+	if(selectedNum==0){teacherCounsel(document.getElementsByName("userId")[0].value, '1024588469');}
+	//teacherCounsel('T1001', '1024588469');
 }
 
 
@@ -686,14 +687,14 @@ function selectBottonS(obj,idx){
 		obj.style.color="#ffffff";
 		
 		openModal(idx);
-		
+		let m =document.getElementById("mbtn");
 		if(tCn[selectedNum].answer=="미확인"||tCn[selectedNum].answer=="답변대기중"){
 			updAnswerUn();
-			
+			m.setAttribute("type","button");
 			}
-		else{
-			let m =document.getElementById("mbtn");
-			m.setAttribute("disable");
+		else if(tCn[selectedNum].answer!="미확인"&&tCn[selectedNum].answer!="답변대기중"){
+			
+			m.setAttribute("type","hidden");
 		}
 	}
 	
@@ -720,7 +721,7 @@ function academySelect(dat) {
 	aData = JSON.parse(dat);
 	
 	let aCode = document.getElementById("acCode").value;
-	//const mainpage = document.getElementById("mainpage");
+	const mainpage = document.getElementById("mainpage");
 	const selectBox = document.getElementById("selectBox");
 	const checkCode = "1133";
 	
@@ -728,8 +729,6 @@ function academySelect(dat) {
 		
 			let aSelect = document.createElement("select");
 			aSelect.setAttribute("id", "aSelect");
-			
-			//aSelect.setAttribute("onchange","makeSelected(" + checkCode + "," + aCode +")");
 			aSelect.setAttribute("onchange","teacherCounsel('"+document.getElementsByName("userId")[0].value+"',this.value)");
 			aSelect.style.width = "200px";
 			aSelect.style.height = "40px";
@@ -772,7 +771,7 @@ function academySelect(dat) {
 		selectMom.style.position = "relative"
 		selectMom.style.left = "0%";
 		selectMom.style.top = "-5%";
-	mainpage.appendChild(selectMom);
+	//``mainpage.appendChild(selectMom);
 	//getAjaxData("myClassList",data,"classOnAc","post")
 	//classOnAc(sel);
 	
@@ -784,14 +783,16 @@ function academySelect(dat) {
 		//})
 	
 	}else {
-		while(mainpage.hasChildNodes()) {
+	/*while(mainpage.hasChildNodes()) {
 			mainpage.removeChild(mainpage.firstChild);
-		}
-	
+		}*/
+	/*if(mainpage.hasChildNodes()){
+		mainpage.innerHTML="";
+	}*/
 		
-			let aSelect = document.createElement("select");
+		/*	let aSelect = document.createElement("select");
 			aSelect.setAttribute("id", "aSelect");
-			aSelect.setAttribute("onchange","makeSelected(" + checkCode + "," + aCode +")");
+			aSelect.setAttribute("onchange","teacherCounsel('"+document.getElementsByName("userId")[0].value+"',this.value)");
 			aSelect.style.width = "200px";
 			aSelect.style.height = "40px";
 			aSelect.style.borderRadius = "5px";
@@ -819,13 +820,13 @@ function academySelect(dat) {
 						}
 					}
 					aSelect.appendChild(option);
-				}
+				}*/
 
 	
-	mainpage.appendChild(aSelect);
+	/*mainpage.appendChild(aSelect);/*/
 	
 	
-	const selectMom = document.createElement("div");
+	/*const selectMom = document.createElement("div");
 		selectMom.setAttribute("id","selectMom");
 		selectMom.style.width = "250px";
 		selectMom.style.height = "60px";
@@ -833,7 +834,7 @@ function academySelect(dat) {
 		selectMom.style.position = "relative"
 		selectMom.style.left = "0%";
 		selectMom.style.top = "-5%";
-	mainpage.appendChild(selectMom);
+	mainpage.appendChild(selectMom);*/
 	//getAjaxData("myClassList",data,"classOnAc","post")
 	//classOnAc(sel);
 	
@@ -933,7 +934,7 @@ function closeModalT() {
 	const exampleModal1 = document.getElementById("pwexampleModal");
     	  exampleModal1.style.display = "none";
 		document.getElementById("answer").value="";
-	teacherCounsel(tCn[selectedNum].rpCode, tCn[selectedNum].acCode);
+	//teacherCounsel(tCn[selectedNum].rpCode, tCn[selectedNum].acCode);
 
 }
 
@@ -1103,10 +1104,13 @@ function academySelect1(dat) {
 			
 			selectMom.appendChild(aSelect);
 	
-			/*const cSelect = document.createElement("div");
-			cSelect.setAttribute("id","cSelect");
-			selectMom.appendChild(cSelect);*/
-	//mainpage.appendChild(selectMom);
+			if(sessionStorage.getItem("acCode") == aData[0].acCode){
+	      document.getElementById("aSelect").selectedIndex = "1";
+	   }else if(sessionStorage.getItem("acCode") == aData[1].acCode){
+	      document.getElementById("aSelect").selectedIndex = "2";
+	   }else if(sessionStorage.getItem("acCode") == aData[2].acCode){
+	      document.getElementById("aSelect").selectedIndex = "3";
+	   }
 	
 }
 
