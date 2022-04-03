@@ -478,13 +478,13 @@ position:absolute; left:45%; top:1%;
             <div class="mcontent">
          
             <!-- The Modal header -->
-               <div id="headclose"><div class="ss" id="selects"></div><div class="ss" id="selects1"></div><div class="ss" id="selects2"></div><input type="button" id="btn-close" class="btn-close" value="X" onClick="closeModal1();"/></div>
+               <div id="headclose"><div class="ss" id="selects"></div><div class="ss" id="selects1"></div><div class="ss" id="selects2"></div><input type="reset" id="btn-close" class="btn-close" value="X" onClick="closeModal1();"/></div>
                <br><br>
                <div><span><input type = "text" class="mtitle" id="mheader1"class="mheader" placeholder = "제목"/></span> </div>
                <div></div><br>
             	<div></div>
             <!-- The Modal body -->
-               <br><span><input type = "text" class="mboby" id="mbody1" value="" placeholder = "내용"/></span>
+               <br><span><textarea col="60" row="10" class="mboby" id="mbody1" value="" placeholder = "내용"></textarea></span>
               
             <!-- The Modal footer -->
                <br><br> 

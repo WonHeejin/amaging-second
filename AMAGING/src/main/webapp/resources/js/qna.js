@@ -137,7 +137,8 @@ function myAcademyList(userId,menuCode) {
 function updAnswer(){
 	
 	let n = selectedNum;
-	const data = "post="+encodeURIComponent(tCn[n].post)+"&answer="+encodeURIComponent(document.getElementById("answer").value);
+	const data = "post="+encodeURIComponent(tCn[n].post)+"&answer="+document.getElementById("answer").value;
+	alert(data);
 	getAjaxData("/UpdAnswer",data,"sendMessage1","post");
 		openModal1();
 }
@@ -146,48 +147,99 @@ function sendMessage1(message){
 	
 	Swal.fire(m);
 		//closeModal();
-		document.getElementById("answer").value="";
+		//document.getElementById("answer").value="";
 	
 	
 		
 	
 }
-
-/* 선생님 답변완료시 이메일전송 */
-function sendReplyEmail(){
-	updAnswer();
+/*관리자답변완료시 이메일전송 */
+function sendReplyAEmail(){
+	
 	let n = selectedNum;
 	let pw = document.getElementById("password").value;
-	const data = "userId="+encodeURIComponent(tCn[n].userId)+"&rpCode="+encodeURIComponent(tCn[n].rpCode)+"&password="+pw;
-	//alert(data);
-	getAjaxData("/SendReplyEmail",data,"sendMessageE","post");
+	
+	if(pw == ""){
+		Swal.fire('Email 비밀번호를 입력해주세요!');
+	}else{const data = "userId="+encodeURIComponent(tCn[n].userId)+"&rpCode="+encodeURIComponent(tCn[n].rpCode)+"&password="+pw;
+	
+	getAjaxData("/SendReplyEmail",data,"sendMessageAE","post");}
+	
+}
+function sendMessageAE(message){
+	let m =JSON.stringify(message);
+	
+	//Swal.fire(m);
+	//let uc = document.getElementById("userCode").value;
+	
+	//alert((tCn[selectedNum].rpCode).substr(0,1));
+	if (m.substr(1,1) == "해") {
+		
+			Swal.fire(m);
+			updAAnswer();
+			//adminCounsel(tCn[selectedNum].rpCode, tCn[selectedNum].acCode, '4');
+			//closeModalA();
+			//closeModalA1();
+		}
+		closeModalA1();
+		closeModalA11();
+		
+	//} else {
+		//Swal.fire(m);
+		
+		//closeModalA11();
+		//closeModalA1();
+	
+
+		
+}
+/* 선생님 답변완료시 이메일전송 */
+function sendReplyEmail(){
+	
+	let n = selectedNum;
+	let pw = document.getElementById("password").value;
+	
+	if(pw == ""){
+		Swal.fire('Email 비밀번호를 입력해주세요!');
+	}else{const data = "userId="+encodeURIComponent(tCn[n].userId)+"&rpCode="+encodeURIComponent(tCn[n].rpCode)+"&password="+pw;
+	
+	getAjaxData("/SendReplyEmail",data,"sendMessageE","post");}
+	
 }
 
 function sendMessageE(message){
 	let m =JSON.stringify(message);
-	Swal.fire(m);
+	
+	//Swal.fire(m);
 	//let uc = document.getElementById("userCode").value;
 	
-	
+	alert((tCn[selectedNum].rpCode).substr(0,1));
 	if (m.substr(1,1) == "해") {
-		alert("여기는오냐?");
+		//Swal.fire(m);
 		if ((tCn[selectedNum].rpCode).substr(0,1)=="T") {
+			alert("선생님");
+			updAnswer();
+			//teacherCounsel(tCn[selectedNum].rpCode, tCn[selectedNum].acCode);
+			//closeModalT();
+			//closeModalT1();
 			
-			teacherCounsel(tCn[selectedNum].rpCode, tCn[selectedNum].acCode);
-			closeModalT();
-			closeModalT1();
+		}else if((tCn[selectedNum].rpCode).substr(0,1)=="A") {
+			alert("관리자");
+			//updAAnswer();
+			//adminCounsel(tCn[selectedNum].rpCode, tCn[selectedNum].acCode, '4');
+			//closeModalA();
+			//closeModalA1();
 		}
-		else {
-			alert("여기111111");
-			adminCounsel(tCn[selectedNum].rpCode, tCn[selectedNum].acCode, '4');
-			closeModalA();
-			closeModalA1();
-		}
-	} else {
-		closeModal();
+		closeModalT();
 		closeModalT1();
-		closeModalA();
-		closeModalA1();
+		//closeModalA11();
+		//closeModalA1();
+	} else {
+		//Swal.fire(m);
+		closeModalT();
+		closeModalT1();
+		//closeModalA11();
+		//closeModalA1();
 	}
 
 		
@@ -207,7 +259,7 @@ function sendMessageA(message){
 
     Swal.fire(m);
 		//alert(m);		
-		document.getElementById("answer").value="";
+		//document.getElementById("answer").value="";
 	
 }
 
@@ -639,7 +691,10 @@ function selectBottonS(obj,idx){
 			updAnswerUn();
 			
 			}
-		else{}
+		else{
+			let m =document.getElementById("mbtn");
+			m.setAttribute("disable");
+		}
 	}
 	
 	
@@ -650,17 +705,16 @@ function updAnswerUn(){
 	const a ="답변대기중";
 	
 	const data = "post="+encodeURIComponent(tCn[n].post)+"&answer="+a;
-	getAjaxData("/UpdAnswer",data,"","post");
+	getAjaxData("/UpdAnswer",data,"sendMessageUn","post");
 
 }
  
-/*function sendMessageUn(message){
-	let m =JSON.stringify(message);
-		alert("답변이 필요한 글입니다.");
+function sendMessageUn(message){
+
 	let a = document.getElementById("answer"); 	
 		a.setAttribute("placeholder","답변대기중");
 	
-}*/
+}
 
 function academySelect(dat) {
 	aData = JSON.parse(dat);
@@ -793,6 +847,15 @@ function academySelect(dat) {
 	}
 	let uId=document.getElementsByName("userId")[0].value;
 	teacherCounsel(uId,'1');
+	
+	if(sessionStorage.getItem("acCode") == aData[0].acCode){
+	      document.getElementById("aSelect").selectedIndex = "1";
+	   }else if(sessionStorage.getItem("acCode") == aData[1].acCode){
+	      document.getElementById("aSelect").selectedIndex = "2";
+	   }else if(sessionStorage.getItem("acCode") == aData[2].acCode){
+	      document.getElementById("aSelect").selectedIndex = "3";
+	   }
+	
 }
 
 
@@ -839,7 +902,7 @@ function openModal(idx) {
 		answer.setAttribute("placeholder",tCn[idx].answer);
 
 }
-
+/*이메일비번입력 */
 function openModal1(idx) {
 	const exampleModal = document.getElementById("pwexampleModal");
     	  exampleModal.style.display = "flex";
@@ -847,9 +910,14 @@ function openModal1(idx) {
 
 	let answer = document.getElementById("password");
 		
-		answer.setAttribute("placeholder","비밀번호 입력");
-			
+		answer.setAttribute("placeholder","Email 비밀번호 입력");
+
 }
+
+
+
+
+
 
 
 function closeModal() {
@@ -865,8 +933,8 @@ function closeModalT() {
 	const exampleModal1 = document.getElementById("pwexampleModal");
     	  exampleModal1.style.display = "none";
 		document.getElementById("answer").value="";
-	
-//teacherCounsel(tCn[selectedNum].rpCode, tCn[selectedNum].acCode);
+	teacherCounsel(tCn[selectedNum].rpCode, tCn[selectedNum].acCode);
+
 }
 
 function closeModalT1() {
@@ -894,18 +962,19 @@ function closeModalA11() {
     	  exampleModal.style.display = "none";
 	const exampleModal1 = document.getElementById("pwexampleModal");
     	  exampleModal1.style.display = "none";
-		document.getElementById("answer").value="";
 		
-		document.getElementById("fiveB").click();
+		
+		//document.getElementById("fiveB").click();
 
-//adminCounsel(tCn[selectedNum].rpCode,tCn[selectedNum].acCode,'4');
+
 }
 
 
 function closeModalA1() {
 	const exampleModal = document.getElementById("pwexampleModal");
     	  exampleModal.style.display = "none";
-		document.getElementById("password").value="";
+		//document.getElementById("password").value="";
+		adminCounsel(tCn[selectedNum].rpCode,tCn[selectedNum].acCode,'4');
 }
 
 function closeModal1() {
@@ -934,7 +1003,7 @@ function openModa2() {
 	let cSelect = document.getElementById("aSelect").value;
 	
 	if(cSelect == "자녀 선택"){
-		alert("자녀를 선택해주세요!");
+		Swal.fire("자녀를 선택해주세요!");
 		closeModal();
 	}else{const exampleModal = document.getElementById("exampleModal1");
     	  exampleModal.style.display = "flex";
@@ -987,8 +1056,6 @@ function academySelect1(dat) {
 	
 	let aCode = (document.getElementsByName("acCode")[0].value != '')? document.getElementsByName("acCode")[0].value : '';
 	//const mainpage = document.getElementById("selects");
-	
-	
 		
 			const selectMom = document.getElementById("selects");
 			//const selectMom = document.createElement("div");
@@ -1036,27 +1103,29 @@ function academySelect1(dat) {
 			
 			selectMom.appendChild(aSelect);
 	
-			const cSelect = document.createElement("div");
+			/*const cSelect = document.createElement("div");
 			cSelect.setAttribute("id","cSelect");
-			selectMom.appendChild(cSelect);
+			selectMom.appendChild(cSelect);*/
 	//mainpage.appendChild(selectMom);
 	
 }
 
 /*선생님 관리자 선택 */
 function makeTASelected(){
-	//const mainpage = document.getElementById("selects");
+	
+	
 			
-			//const selectMom = document.createElement("div");
+			const s1 = document.getElementById("selects1");
+			const s2 = document.getElementById("selects2");
+			if(s1.hasChildNodes()){
+			s1.removeChild(s1.firstChild);
+				if(s2.hasChildNodes()){
+					s2.removeChild(s2.firstChild);
+				}
+			
+			}
 			const selectMom = document.getElementById("selects1");
-			//selectMom.setAttribute("id","selectMom1");
-			/*selectMom.style.width = "100px";
-			selectMom.style.height = "50px";
-			selectMom.style.marginleft = "0.5%";*/
-			
-			/*selectMom.style.position = "relative";
-			selectMom.style.left = "2%";
-			selectMom.style.top = "1%";*/
+		
 			
 			let aSelect = document.createElement("select");
 			aSelect.setAttribute("id", "aSelect2");
@@ -1095,11 +1164,8 @@ function makeTASelected(){
 				aSelect.appendChild(firstOption);		
 
 			selectMom.appendChild(aSelect);
-			const cSelect = document.createElement("div");
-			cSelect.setAttribute("id","cSelect");
-			selectMom.appendChild(cSelect);
-	//mainpage.appendChild(selectMom);
 			
+
 }
 
 /*학원에속한 선생님들 리스트 */
@@ -1116,9 +1182,10 @@ function tSelect(dat){
 	let data = JSON.parse(dat);
 	
 	let aCode = (document.getElementsByName("acCode")[0].value != '')? document.getElementsByName("acCode")[0].value : '';
-	//const mainpage = document.getElementById("selects");
-	
-			//const selectMom = document.createElement("div");
+	const s2 = document.getElementById("selects2");
+			if(s2.hasChildNodes()){
+				s2.removeChild(s2.firstChild);
+			}
 			const selectMom = document.getElementById("selects2");
 			//selectMom.setAttribute("id","selectMom3");
 			/*selectMom.style.width = "100px";
@@ -1156,10 +1223,6 @@ function tSelect(dat){
 			
 			selectMom.appendChild(aSelect);
 	
-			const cSelect = document.createElement("div");
-			cSelect.setAttribute("id","cSelect");
-			selectMom.appendChild(cSelect);
-	//mainpage.appendChild(selectMom);
 }
 
 function aSelect(dat){
@@ -1167,9 +1230,10 @@ function aSelect(dat){
 	let data = JSON.parse(dat);
 	
 	let aCode = (document.getElementsByName("acCode")[0].value != '')? document.getElementsByName("acCode")[0].value : '';
-	//const mainpage = document.getElementById("selects2");
-	
-			//const selectMom = document.createElement("div");
+	const s2 = document.getElementById("selects2");
+			if(s2.hasChildNodes()){
+				s2.removeChild(s2.firstChild);
+			}
 			const selectMom = document.getElementById("selects2");
 			//selectMom.setAttribute("id","selectMom3");
 			/*selectMom.style.width = "100px";
@@ -1207,30 +1271,56 @@ function aSelect(dat){
 			
 			selectMom.appendChild(aSelect);
 	
-			const cSelect = document.createElement("div");
-			cSelect.setAttribute("id","cSelect");
-			selectMom.appendChild(cSelect);
-	//mainpage.appendChild(selectMom);
+			
 }
 
-/*학부모 글등록 */
-function insertQnA(){
+/*학부모 학생 글등록 */
+function insertQnA(){	
+		const a1 = document.getElementById("aSelect1").value;
+		
+		const s1 = document.getElementById("selects1");
+		const s2 = document.getElementById("selects2");
 		let ac = document.getElementById("aSelect1").value;
-		let ta = document.getElementById("aSelect3").value;
-		let uId = document.getElementsByName("userId")[0].value;
-		let uc = document.getElementsByName("userCode")[0].value;
-		let tt = document.getElementById("mheader1").value;
-		let qs = document.getElementById("mbody1").value;
+	if (s1.hasChildNodes()) {
 		
-		const data = "acCode=" + ac + "&rpCode=" + ta + "&userId=" + uId + "&userCode=" + uc + "&title=" + tt +"&question=" + qs;
+		const s1 = document.getElementById("selects1");
+		}
+		if (a1 == "학원 선택") {
+			Swal.fire("학원을선택해주세요!");
+			}else{
+				let a2 = document.getElementById("aSelect2").value;
+				if (a2 == "질문 대상") {
+				Swal.fire("질문대상을 선택해주세요!");
+				}else{
+					const a3 = document.getElementById("aSelect3").value;
+					if (a3 == "선생님선택" || a3 == "관리자선택") {
+						Swal.fire("문의하실분을 선택해주세요!");
+					}else{
+						let tt = document.getElementById("mheader1").value;
+						if(tt==""){
+							Swal.fire("제목을 입력해주세요!");
+						}else{
+							let qs = document.getElementById("mbody1").value;
+							if(qs==""){
+								Swal.fire("내용을 입력해주세요!");
+								
+							}else{
+								let uId = document.getElementsByName("userId")[0].value;
+								let uc = document.getElementsByName("userCode")[0].value;
+								const data = "acCode=" + ac + "&rpCode=" + a3 + "&userId=" + uId + "&userCode=" + uc + "&title=" + tt +"&question=" + qs;
 		
-		getAjaxData("/InsertQnA",data,"sendMessage2","post");
-		
-		
+								getAjaxData("/InsertQnA",data,"sendMessage2","post");
+							}
+						}
+					 }
+				}
+			} 
+					
 }
 
 function sendMessage2(message){
 	let m =JSON.stringify(message);
+	
 		Swal.fire(m);
 		closeModal1();
 		//document.getElementById("answer").value="";
@@ -1243,8 +1333,20 @@ function sendMessage2(message){
 		}
 	else{stCounsel(uId,uc);}
 	
+		
+		document.forms['dynamicFormData'].reset(); // 폼의 전체 값 초기화 처리 })
+
+		//initC();
+		
 	
-	
+}
+
+function initC(){
+	alert("여기오냐");
+	let tt = document.getElementById("mheader1").value;
+		let qs = document.getElementById("mbody1").value;
+		tt=null;
+		qs=null;
 }
 
 /*학부모 표 만들기 */
@@ -1282,7 +1384,7 @@ function createPTd(id) {
 
 	td.style.borderRight = "1px solid #ffffff";
 	td.style.borderLeft = "1px solid #ffffff";
-	td.style.borderBottom = "1px solid #FFBB00 ";
+	td.style.borderBottom = "1px solid #63AA00";
 	td.style.borderTop = "1px solid #fff ";
 	td.style.height  = "40px";
 	td.style.borderRadius = "5px 5px 5px 5px";
@@ -1294,7 +1396,7 @@ function createPTd(id) {
 	td.setAttribute("id",id);
 	td.style.borderRight = "1px solid #ffffff";
 	td.style.borderLeft = "1px solid #ffffff";
-	td.style.borderBottom = "1px solid #FFBB00 ";
+	td.style.borderBottom = "1px solid #63AA00";
 	td.style.borderTop = "1px solid #fff ";
 	td.style.height  = "40px";
 	td.style.borderRadius = "5px 5px 5px 5px";
@@ -1305,7 +1407,7 @@ function createPTd(id) {
 	td.setAttribute("id",id);
 	td.style.borderRight = "1px solid #ffffff";
 	td.style.borderLeft = "1px solid #ffffff";
-	td.style.borderBottom = "1px solid #FFBB00 ";
+	td.style.borderBottom = "1px solid #63AA00";
 	td.style.borderTop = "1px solid #fff ";
 	td.style.height  = "40px";
 	td.style.borderRadius = "5px 5px 5px 5px";
@@ -1436,7 +1538,7 @@ function createATd(id) {
 	//td.setAttribute("rowspan",3);
 	td.style.borderRight = "1px solid #ffffff";
 	td.style.borderLeft = "1px solid #ffffff";
-	td.style.borderBottom = "1px solid #EF90FF ";
+	td.style.borderBottom = "1px solid #E14FCA";
 	td.style.borderTop = "1px solid #fff ";
 	td.style.height  = "40px";
 	td.style.borderRadius = "5px 5px 5px 5px";
@@ -1450,7 +1552,7 @@ function createATd(id) {
 	td.setAttribute("id",id);
 	td.style.borderRight = "1px solid #ffffff";
 	td.style.borderLeft = "1px solid #ffffff";
-	td.style.borderBottom = "1px solid #EF90FF";
+	td.style.borderBottom = "1px solid #E14FCA";
 	td.style.borderTop = "1px solid #fff ";
 	td.style.borderRadius = "5px 5px 5px 5px";
 	td.style.width  = "250px";
@@ -1462,7 +1564,7 @@ function createATd(id) {
 	td.setAttribute("id",id);
 		td.style.borderRight = "1px solid #ffffff";
 	td.style.borderLeft = "1px solid #ffffff";
-	td.style.borderBottom = "1px solid #EF90FF";
+	td.style.borderBottom = "1px solid #E14FCA";
 	td.style.borderTop = "1px solid #fff ";
 	
 	td.style.borderRadius = "5px 5px 5px 5px";
@@ -1567,36 +1669,3 @@ function createTTd(id) {
 
 }
 
-function createPTd(id) {
-	
-	if(id == "td2") {
-	const td = document.createElement("td");
-	td.setAttribute("id",id);
-	//td.setAttribute("rowspan",3);
-	td.style.border = "2px solid #ffffff";
-	td.style.borderRadius = "5px 5px 5px 5px";
-	td.style.width  = "500px";
-	td.style.textAlign = "center";
-	td.style.height = "40px";
-	return td;
-	}else if(id == "td1"|| id == "td3"){
-	const td = document.createElement("td");
-	td.setAttribute("id",id);
-	td.style.border = "2px solid #ffffff";
-	td.style.borderRadius = "5px 5px 5px 5px";
-	td.style.width  = "250px";
-	td.style.height = "40px";
-	td.style.textAlign = "center";
-	return td;
-	}else{const td = document.createElement("td");
-	td.setAttribute("id",id);
-	td.style.border = "2px solid #ffffff";
-	td.style.borderRadius = "5px 5px 5px 5px";
-	td.style.width  = "250px";
-	td.style.textAlign = "center";
-	td.style.height = "40px";
-	return td;}
-	
-	
-
-}

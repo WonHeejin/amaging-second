@@ -8,7 +8,7 @@ function authentication(userCode){
    const message = [ "email 입력해 주세요!", "퍠스워드 입력해 주세요"];
    for (let index = 0; index < userData.length; index++) {
       if (!isEmpty(userData[index])) {
-         alert(message[index]);
+         Swal.fire(message[index]);
          return;
       } 
    
@@ -44,7 +44,7 @@ function authentication1(userCode){
    const message = [ "아이디 입력해 주세요!", "퍠스워드 입력해 주세요"];
    for (let index = 0; index < userData.length; index++) {
       if (!isEmpty(userData[index])) {
-         alert(message[index]);
+         Swal.fire(message[index]);
          return;
       } 
    

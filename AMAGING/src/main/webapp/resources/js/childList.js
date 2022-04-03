@@ -6,9 +6,7 @@
 	function getChildList(uId){
 		const data = "userId="+ encodeURIComponent(uId)
 		getAjaxData("/GetChildList", data, "childListBox","post" );
-		
-		
-		
+	
 	} 
 let cc;
 let selectedNumber;
@@ -24,7 +22,7 @@ let selectedNumber;
 		    cbData += '<option value="자녀선택">자녀선택';
 		    cbData += '</option>';
 		for(idx;idx<cc.length;idx++){
-			
+			//if(idx=0){cbData += '<option selected value="'+idx+'">'+cc[idx].sname;}
 			cbData += '<option value="'+idx+'">'+cc[idx].sname;
 		    cbData += '</option>';
 				
@@ -33,7 +31,7 @@ let selectedNumber;
 		
 		
 		cb.innerHTML = cbData; 
-		
+	
 			if(sessionStorage.getItem("sCode") == cc[0].userId){
 	      document.getElementById("childSelect").selectedIndex = "1";
 	   }else if(sessionStorage.getItem("sCode") == cc[1].userId){
@@ -103,7 +101,10 @@ let selectedNumber;
 		}
 		cbData += '</select>';
 		cb.innerHTML = cbData; 
-	
+		document.getElementById("childSelect").selectedIndex = "1";
+		if(sessionStorage.getItem('sCode')==null){
+			sessionStorage.setItem('sCode',cc[0].userId);
+			}
 			if(sessionStorage.getItem("sCode") == cc[0].userId){
 	      document.getElementById("childSelect").selectedIndex = "1";
 	   }else if(sessionStorage.getItem("sCode") == cc[1].userId){
@@ -121,7 +122,7 @@ let selectedNumber;
 	function childName1(cName){
 		let idx1 =0;
 		selectedNumber = cName.value;
-		sessionStorage.setItem('sCode',cc[selectedNumber].userId);
+		//sessionStorage.setItem('sCode',cc[selectedNumber].userId);
 		
 		var cn = document.getElementById("childName");
 	
@@ -138,8 +139,8 @@ let selectedNumber;
 		//document.getElementById("oneB").click();
 		
 		//cn.innerText = value;
+		if(sessionStorage.getItem('sCode')!=""){sessionStorage.setItem('sCode',cc[selectedNumber].userId);}
 		
-		sessionStorage.setItem('sCode',cc[selectedNumber].userId);
 		
 		
 	}
@@ -163,7 +164,7 @@ let selectedNumber;
  		const data = "userId="+ encodeURIComponent(cb)+"&sDate="+encodeURIComponent(sDate);
  		
 		getAjaxData("/GetPlanList", data, "displayPlan","post" );
-		sessionStorage.setItem('sCode',cb);
+		//sessionStorage.setItem('sCode',cb);
 		if(sDate == "202201"){
 			let img = document.getElementById('body');
 			img.setAttribute("style", "background-image : linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),url(resources/images/1월.jpg)")

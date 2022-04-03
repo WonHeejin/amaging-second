@@ -130,7 +130,7 @@
 		SELECT*FROM SCHEDUDBA.TCODENAME WHERE ACCODE = #{acCode}
 	</select>
 	<select id="getAList" parameterType="amaging.schedu.bean.UserInfo" resultType="amaging.schedu.bean.AList">
-		SELECT AD_ACCODE AS ACCODE, AD_CODE AS ADCODE, AD_NAME AS ADNAME FROM AD WHERE AD_ACCODE = #{acCode}
+		SELECT AD_ACCODE AS ACCODE, AD_CODE AS ADCODE, AD_NAME AS ADNAME FROM AD WHERE AD_ACCODE = #{acCode} AND AD_LVCODE = 2
 	</select>
 	<insert id="insertQnA" parameterType="amaging.schedu.bean.UserInfo">
 		INSERT INTO CN(CN_POSTCODE, CN_ACCODE, CN_TACODE, CN_USERID, CN_USERCODE, CN_TITLE, CN_ANSWER, CN_QUESTION) 

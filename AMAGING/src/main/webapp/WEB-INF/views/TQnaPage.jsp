@@ -288,7 +288,7 @@ position:absolute; left:45%; top:1%;
             border-radius: 10px;
             border: 5px solid #92acbb;
             width: 450px;
-            height: 320px;
+            height: 150px;
             position: relative;
             top: -100px;
             padding: 10px;
@@ -301,6 +301,7 @@ position:absolute; left:45%; top:1%;
 			 position : relative;
 			 left : "85%";
 			 top : "1%";
+			 overflow:auto;
 		}
 		
  #mheader	{           
@@ -326,13 +327,12 @@ position:absolute; left:45%; top:1%;
 		}
 
 #password {           
- 			 height : 100px;
+ 			 height : 50px;
  			 width : 98%;
 			 border-radius : 10px;
 			 border : 2px solid #92acbb;
-			 position : relative;
-			 left : "85%";
-			 top : "1%";
+			 margin-top :4%;
+			
 			 font-size : large;
 			 text-align : center;
 		}

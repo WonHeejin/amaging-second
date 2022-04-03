@@ -327,14 +327,14 @@ position:absolute; left:45%; top:1%;
             border-radius: 10px;
             border: 5px solid #92acbb;
             width: 450px;
-            height: 320px;
+            height: 150px;
             position: relative;
             top: -100px;
             padding: 10px;
             }   		
 
 #password {           
- 			 height : 100px;
+ 			 height : 50px;
  			 width : 98%;
 			 border-radius : 10px;
 			 border : 2px solid #92acbb;
@@ -407,7 +407,7 @@ position:absolute; left:45%; top:1%;
          <!-- 답변등록 모달 -->
          
             <!-- The Modal header -->
-               <div><input type="button" id="btn-close" class="btn-close" value="X" onClick="closeModalA11();"/></div><br>
+               <div><input type="reset" id="btn-close" class="btn-close" value="X" onClick="closeModalA();"/></div><br>
                <br><div class="mtitle" id="mheader"class="mheader"> 
                </div>
             
@@ -438,12 +438,12 @@ position:absolute; left:45%; top:1%;
             <div class="pwmcontent">
          
             <!-- The Modal header -->
-               <div><input type="button" id="btn-close1" class="btn-close" value="X" onClick="closeModalA1();"/></div>
+               <div><input type="reset" id="btn-close1" class="btn-close" value="X" onClick="closeModalA1();"/></div>
                       
             <!-- The Modal footer -->
                <br><div><input type="password" class="mfooter" id="password" placeholder="EMAIL_비밀번호입력" value="" ></div>
                  <br> 
-               </input><input type="button" class="mbtn" id="mbtn1" name="command" value="확인" onClick="sendReplyEmail()"/>
+               </input><input type="button" class="mbtn" id="mbtn1" name="command" value="확인" onClick="sendReplyAEmail()"/>
             </div>
          </div>
       </div>

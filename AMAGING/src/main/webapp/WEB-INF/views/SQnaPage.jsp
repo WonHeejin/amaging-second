@@ -8,6 +8,7 @@
  <script src="resources/js/common.js"></script>
  <script src="resources/js/qna.js"></script>
  <link rel="stylesheet" type="text/css" href="resources/css/st.css" />
+ <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
 <style>
 #frame {
 	width: 100%;
@@ -291,6 +292,7 @@ position:absolute; left:45%; top:1%;
 			 position : relative;
 			 left : "85%";
 			 top : "1%";
+			 overflow:auto;
 		}
 		
  #mheader	{           
@@ -324,6 +326,9 @@ position:absolute; left:45%; top:1%;
 			 position : relative;
 			 left : "85%";
 			 top : "1%";
+			 overflow-x: auto;
+    		 overflow-y: scroll;
+
 		}
 		
  #mheader1	{           
@@ -454,17 +459,17 @@ position:absolute; left:45%; top:1%;
          
             <!-- The Modal header -->
            
-               <div id="headclose"><div class="ss" id="selects"></div><div class="ss" id="selects1"></div><div class="ss" id="selects2"></div><input type="button" id="btn-close" class="btn-close" value="X" onClick="closeModal1();"/></div>
+               <div id="headclose"><div class="ss" id="selects"></div><div class="ss" id="selects1"></div><div class="ss" id="selects2"></div><input type="reset" id="btn-close" class="btn-close" value="X" onClick="closeModal1();"/></div>
                <br><br>
                <div><span><input type = "text" class="mtitle" id="mheader1"class="mheader" placeholder = "제목"/></span> </div>
                <div></div><br>
             	<div></div>
             <!-- The Modal body -->
-               <br><span><input type = "text" class="mboby" id="mbody1" value="" placeholder = "내용"/></span>
+               <br><span><textarea col="60" row="10" class="mboby" id="mbody1" value="" placeholder = "내용"></textarea></span>
               
             <!-- The Modal footer -->
                <br><br> 
-               <div><input type="button" class="mbtn" id="mbtn" name="command" value="등록" onClick="insertQnA()"/></div>
+               <div><input type="reset" class="mbtn" id="mbtn" name="command" value="등록" onClick="insertQnA()"/></div>
             </div>
          </div>
       </div>

@@ -310,7 +310,7 @@ mav.addObject("msg", message1);
 				TransactionDefinition.ISOLATION_READ_COMMITTED, false);
 		if(this.convertToBoolean(this.om.updAnswer(cn))) {
 			tran=true;
-			message="답변입력 성공!";
+			message="답변입력 및 이메일발송 성공!";
 		}		
 		this.setTransactionEnd(tran);
 		mav.getModelMap().addAttribute("msg", message);
