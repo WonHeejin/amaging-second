@@ -607,7 +607,7 @@ function childSelectF(dat) {
 
 	let aSelect = document.createElement("select");
 	aSelect.setAttribute("id", "aSelect");
-	aSelect.setAttribute("onchange", "childSelectedF()");
+	aSelect.setAttribute("onchange", "childSelectedF('"+sCode+"')");
 	aSelect.style.width = "200px";
 	aSelect.style.height = "40px";
 	aSelect.style.borderRadius = "5px";
@@ -626,19 +626,31 @@ function childSelectF(dat) {
 	//}
 	firstOption.setAttribute("disabled", "disabled");
 	aSelect.appendChild(firstOption);
-	for (let i = 0; i < data.length; i++) {
-		let option = document.createElement("option");
-		option.setAttribute("id", data[i].studentId);
-		option.setAttribute("value", data[i].studentId);
-		option.innerHTML = data[i].sname;
-		if (sCode != "") {
-			if (sCode == data[i].studentId) {
-				option.setAttribute("selected", "selected")
-				getMyFee();
-			}
-		}
-		aSelect.appendChild(option);
-	}
+
+	const tableMom = document.createElement("div");
+	tableMom.setAttribute("id","tableMom");
+	tableMom.style.height = "60%";
+	tableMom.style.float = "left";
+	tableMom.style.overflow = "auto";
+	tableMom.style.overflowX = "hidden";
+	
+
+
+	const bigMom = document.createElement("div");
+	bigMom.setAttribute("id", "bigMom");
+	bigMom.style.width = "70%";
+	bigMom.style.height = "20%";
+	bigMom.style.marginLeft = "13%";
+	//bigMom.style.border = "1px solid #000000";
+	bigMom.style.marginTop = "6%";
+	const dateDiv = document.createElement("div");
+	dateDiv.setAttribute("id", "dateDiv");
+	dateDiv.style.height = "40%";
+	//dateDiv.style.border = "1px solid #000000";
+	bigMom.appendChild(dateDiv);
+	bigMom.appendChild(tableMom);
+	
+
 	const amountDiv = document.createElement("div");
 	//amountDiv.style.marginLeft = "-70%";
 	amountDiv.style.textAlign = "center";
@@ -660,41 +672,34 @@ function childSelectF(dat) {
 		selectMom.appendChild(amountDiv);
 	}
 
-	const bigMom = document.createElement("div");
-	bigMom.setAttribute("id", "bigMom");
-	bigMom.style.width = "70%";
-	bigMom.style.height = "20%";
-	bigMom.style.marginLeft = "13%";
-	//bigMom.style.border = "1px solid #000000";
-	bigMom.style.marginTop = "6%";
-	const dateDiv = document.createElement("div");
-	dateDiv.setAttribute("id", "dateDiv");
-	dateDiv.style.height = "40%";
-	//dateDiv.style.border = "1px solid #000000";
-
-	const tableMom = document.createElement("div");
-	tableMom.setAttribute("id", "tableMom");
-	tableMom.style.height = "60%";
-	tableMom.style.float = "left";
-	tableMom.style.overflow = "auto";
-	tableMom.style.overflowX = "hidden";
-	bigMom.appendChild(dateDiv);
-	bigMom.appendChild(tableMom);
-
 
 
 	mainpage.appendChild(selectMom);
 	mainpage.appendChild(bigMom);
+	
+	for (let i = 0; i < data.length; i++) {
+		let option = document.createElement("option");
+		option.setAttribute("id", data[i].studentId);
+		option.setAttribute("value", data[i].studentId);
+		option.innerHTML = data[i].sname;
+		if (sCode != "") {
+			if (sCode == data[i].studentId) {
+				option.setAttribute("selected", "selected")
+				childSelectedF(data[i].studentId);
+			}
+		}
+		aSelect.appendChild(option);
+	}
 
 }
 
-function childSelectedF() {
-	const aSelect = document.getElementById("aSelect");
-	const selectedSCode = aSelect.options[aSelect.selectedIndex].value;
+function childSelectedF(sCode) {
 	const dateDiv = document.getElementById("dateDiv");
 	const tableMom = document.getElementById("tableMom");
-	delChild(tableMom);
-	sessionStorage.setItem("sCode", selectedSCode);
+	if(tableMom.childNodes.length > 0) {
+		delChild(tableMom);
+	}
+	sessionStorage.setItem("sCode", sCode);
 
 	const dateSelect = document.createElement("input");
 	dateSelect.setAttribute("id", "dateSelect");
