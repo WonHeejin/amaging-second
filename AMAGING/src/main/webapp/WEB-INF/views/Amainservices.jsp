@@ -39,8 +39,6 @@
    
 }
 
-
-
 #body {
    outline: 0;
    width: 99.8%;
@@ -187,89 +185,13 @@ text-align:center;
 #sessionBox{ width:30%; height:10%; 
 position:absolute; left:45%; top:1%;
 }
-/*
- #circle1 {
-      width: 200px;
-      height: 200px;
-      background: white;
-      border-radius: 50%;
-      position:absolute;left:38%;top:15%; border:1px solid #000;
-      background: linear-gradient(red, blue);
 
-    }
-   #circle2 {
-      width: 200px;
-      height: 200px;
-      background: white;
-      border-radius: 50%;
-      position:absolute;left:30%; border:1px solid #000;
-      background: linear-gradient(red, blue);
-
-    }
-     #circle3 {
-      width: 200px;
-      height: 200px;
-      background: white;
-      border-radius: 50%;
-      position:absolute;left:58%;top:50%;
-       border:1px solid #000;
-    }
-     #circle4 {
-      width: 200px;
-      height: 200px;
-      background: white;
-      border-radius: 50%;
-      position:absolute;left:85%; top:80%; 
-      border:1px solid #ff0000;
-    }
-     #circle5 {
-      width: 200px;
-      height: 200px;
-      background: white;
-      border-radius: 50%;
-      position:absolute;left:97%; top:60%; 
-      border:1px solid #000;
-    } 
-     #circle6 {
-      width: 200px;
-      height: 200px;
-      background: white;
-      border-radius: 50%;
-      position:absolute;left:92%; top:10%; 
-      border:1px solid #000;
-    } 
-     #circle7 {
-      width: 200px;
-      height: 200px;
-      background: white;
-      border-radius: 50%;
-      position:absolute;left:63%; top:40%; 
-      border:1px solid #000;
-    } 
-      #circle8 {
-      width: 200px;
-      height: 200px;
-      background: white;
-      border-radius: 50%;
-      position:absolute;left:25%; top:53%; 
-      border:1px solid #000;
-    }     
-      #circle9 {
-      width: 200px;
-      height: 200px;
-      background: white;
-      border-radius: 50%;
-      position:absolute;left:27%; top:68%; 
-      border:1px solid #000;
-      background: linear-gradient(45deg, yellow, Orange);
-    }  
-    */  
   figure {
   width: 210px;
   height: 210px;
   animation: rotation 7s linear infinite;
   position: absolute;
-  top: 50%;
+  top: 45%;
   left: 55%;
   margin-top: -105px;
   margin-left: -105px;
@@ -284,7 +206,7 @@ position:absolute; left:45%; top:1%;
 }
 
 .face div {
-  border: 6px double #FFD9FA;
+  border: 6px double #000  ;
   width: 70px;
   height: 70px;
   display: inline-block;
@@ -320,6 +242,72 @@ position:absolute; left:45%; top:1%;
   from { transform: rotateY(0) rotateX(0); }
   to   { transform: rotateY(-360deg) rotateX(360deg); }
 }     
+						/*컬러큐브*/
+.wrapper {
+  width: 100%;
+  perspective: 400;
+  position:absolute; left:25%;
+}
+
+.cube {
+  position: relative;
+  top: 180px;
+  left:-375px;
+  margin: 0 auto;
+  height: 200px;
+  width: 200px;
+
+  animation : spin 5s infinite linear;
+  transform-style: preserve-3d;
+}
+
+@keyframes spin {
+  from { transform: rotateY(0) rotateX(0); }
+  to   { transform: rotateY(-360deg) rotateX(360deg); }
+}
+
+.cube > div {
+  position: absolute;
+  height: 180px;
+  width: 180px;
+  border: 1px solid #333;
+  opacity: .8;
+}
+
+.cube > div:hover {
+  opacity: 1;
+  transition: opacity .3s linear;
+}
+
+.one { 
+  transform: rotateX(90deg) translateZ(180px); 
+  background-color: #E3493B;
+}
+
+.two { 
+  transform: translateZ(180px); 
+  background-color: #0054FF;
+}
+
+.three { 
+  transform: rotateY(90deg) translateZ(180px); 
+  background-color: #E8487F;
+}
+
+.four { 
+  transform: rotateY(180deg) translateZ(180px); 
+  background-color: #28B78D;
+}
+
+.five { 
+  transform: rotateY(-90deg) translateZ(180px); 
+  background-color: #FF5B00;
+}
+
+.six { 
+  transform: rotateX(-90deg) translateZ(160px); 
+  background-color: #FEEB51;
+}
 </style>
 
 </head>
@@ -377,6 +365,17 @@ position:absolute; left:45%; top:1%;
   <div class="face back"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div>
   </div>
 </figure>
+<div class="wrapper">
+  <div class="cube">
+    <div class="one"></div>
+    <div class="two"></div>
+    <div class="three"></div>
+    <div class="four"></div>
+    <div class="five"></div>
+    <div class="six"></div>
+  </div>
+</div>
+
             </div>
          </div>
       </div>

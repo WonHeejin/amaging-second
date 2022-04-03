@@ -63,25 +63,21 @@
 #body   {width:105%; height:105%;
          position:absolute; top:50%; left:50%;
          transform: translate(-50%, -50%); background:radial-gradient(ellipse at center, #ffffff 0%, #ffffff 35%, #B7E8EB 100%);
-  overflow: hidden;
+ 	 	 overflow: hidden;
         }
-#logo   {width:30%; height:15%; 
-       position:absolute; top:20%; left:50%; 
-       background-image:url(resources/images/.png); background-size:95% 70%;   background-repeat : no-repeat; background-position:left center;   transform: translate(-50%, -50%);
-       }
 #inBody   {width:30%; height:30%;
          position:absolute; top:45%; left:50%;
          transform: translate(-50%, -50%); 
          }
 #welcome  {text-align:center; font-size:35px; color: #000000;
-         position:absolute; top:-15%; left: 32%; 
+         position:absolute; top:-15%; left: 33%; 
          }
-.inputE    {height: 20%;width:75%;font-size:100%;border:1px solid #000 ; 
+.inputE    {height: 20%;width:72%;font-size:100%;border:1px solid #000 ; 
           position:absolute; top:27%; left: 8%;  border-radius:25px; box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
-          padding-left :10px; border : none;}
+          padding-left :30px; border : none;}
           
-.inputP    {height: 20%;width:75%; font-size:100%;border:1px solid #000 ; padding-left :10px;
-          position:absolute; top:58%; left: 8%;border : none;  border-radius:25px;box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;}
+.inputP    {height: 20%;width:72%; font-size:100%;border:1px solid #000 ; padding-left :10px;
+          position:absolute; top:58%; left: 8%;border : none;  border-radius:25px;box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px; padding-left :30px;}
           
 #loginbtn {background-color: #5dabb5 ; color:#FFFFFF; height: 20%;
          line-height: 1%;width:70%; 
@@ -90,8 +86,8 @@
            position:absolute; top:56%; left: 17.5%;cursor: pointer;
            border-radius:25px;}
            
-#loginbtn:active {background-color: #8EC7D0  ; color:#FFFFFF; height: 11%;
-              line-height: 10%;width:22%;
+#loginbtn:active {background-color: #8EC7D0  ; color:#FFFFFF; height: 20%;
+              line-height: 10%;width:70%;
                 font-size:100%;text-align:center;
                  box-shadow : none; margin-left:1%; margin-top:1%;}
          
@@ -109,13 +105,13 @@
          margin-top:31.6%;}         
 #pabox{ width:90%; height:75%;  position:fixed;  left:10%; top:-11%;  }
 </style>
-<body class ="background">
+<body class ="background" onLoad = "sendMessage('${msg}')">
 <form name ="login" action="/Login" method="post">
 <input	type="hidden" value='4' name="userCode" />
 <div id="basic">
 
 <div id="body">
-	<div id="logo"></div>
+	
 	<div id="inBody">
 		<div id="welcome">관리자 로그인</div>
 		<div id="pabox">

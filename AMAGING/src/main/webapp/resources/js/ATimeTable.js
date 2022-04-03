@@ -191,7 +191,7 @@ function getCourseList(acCode){
 		if(clFee>10000&&res!=res2){		
 		const data = "acCode="+acCode+"&crCode="+crCode+"&clName="+clName+"&clFee="+clFee+"&clSdate="+res+"&clEdate="+res2;				
 		getAjaxData("InsertClass",data,"dotClick","post");}else{
-			alert("개강일과 종강일을 확인해주세요");
+			sendMessage("개강일과 종강일을 확인해주세요");
 		}
 	}
 	
@@ -497,7 +497,7 @@ function getSelectClass(target) {
 	const data="acCode="+acCode+"&crCode="+crCode+"&clCode="+clCode+"&clName="+clName+"&clFee="+clFee+"&clSdate="+join+"&clEdate="+join2;                
 	getAjaxData("UpdClass",data,"sendMessage","post");
 	}else{
-		alert("입력하신 내용을 확인해주세요")
+		sendMessage("입력하신 내용을 확인해주세요")
 	}
  }
 	
@@ -823,7 +823,7 @@ function insertDay(target){
   // 출력
   document.getElementById('week').innerText
     = result;
-	alert("요일이 선택되었습니다");
+	sendMessage("요일이 선택되었습니다");
 	closeModal()
 }	
 
@@ -835,7 +835,7 @@ function teacherSerchForm(){
 	let acCode=document.getElementById("accode").value
 	let tName=document.getElementsByName("tName")[0].value;
 	if(tName==""){
-		alert("선생님 이름을 입력해주세요!");
+		sendMessage("선생님 이름을 입력해주세요!");
 	}else{	
 	let data="tName="+tName+"&acCode="+acCode;
 	
@@ -885,7 +885,7 @@ if(currentRecord!=null){
 		let scontainer = document.getElementById("scontainer");
 		scontainer.style.display = "none";
 	}else{
-		alert("선생님을 선택해주세요");
+		sendMessage("선생님을 선택해주세요");
 	}
 }
 function openModal(){
@@ -929,7 +929,7 @@ function regClass(){
 	const data="smCode="+subjectCode+acCode+crCode+clCode+teacherId+"&subjectCode="+subjectCode+"&subjectName="+subjectName+"&acCode="+acCode+"&crCode="+crCode+"&clCode="+clCode+"&teacherId="+teacherId+"&weekDay="+splitDay(weekDay)+"&sTime="+sTime+"&eTime="+eTime
 	getAjaxData("RegSubject",data,"sendMessage","post");
 	}else{
-		alert("시간을 확인해주세요!")
+		sendMessage("시간을 확인해주세요!")
 	}
 	
 	}
@@ -1344,7 +1344,7 @@ function updSubject(){
 	const data="smCode="+subjectCode+acCode+crCode+clCode+teacherId+"&crCode="+crCode+"&clCode="+clCode+"&subjectCode="+subjectCode+"&acCode="+acCode+"&teacherId="+teacherId+"&sTime="+sTime+"&eTime="+eTime+"&weekDay="+splitDay(weekDay)
 	if(sTime!=eTime){
 	getAjaxData("UpdSubject",data,"clickCategory","post");
-	}else{alert("입력시간을 확인해 주세요");}
+	}else{sendMessage("입력시간을 확인해 주세요");}
 }
 function clickCategory(message){
 	sendMessage(message)
@@ -1471,7 +1471,7 @@ function searchStudent(){
 	let acCode=document.getElementById("accode").value;
 	let sName=document.getElementById("splace").value;
 	if(sName==""){
-		alert("학생이름을 입력해주세요!");
+		sendMessage("학생이름을 입력해주세요!");
 	}else{	
 	let data="sName="+sName+"&acCode="+acCode;
 	getAjaxData("SearchStudent",data,"displayStudent","post")
@@ -1522,7 +1522,7 @@ if(currentRecord!=null){
 	getAjaxData("RegStudent",data,"sendMessage","post");
 	
 	}else{
-		alert("학생을 선택해주세요");
+		sendMessage("학생을 선택해주세요");
 	}	
 }
 function getBelongList(a,b,c){			
@@ -1584,10 +1584,9 @@ if(currentRecord!=null){
 		const studentId=test.getAttribute("value");
 		
 	const data="acCode="+acCode+"&crCode="+crCode+"&clCode="+clCode+"&studentId="+studentId
-	alert(data);
 	getAjaxData("DelBelong",data,"sendMessage","post");
 	
 	}else{
-		alert("학생을 선택해주세요");
+		sendMessage("학생을 선택해주세요");
 	}	
 }

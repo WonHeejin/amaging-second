@@ -66,10 +66,7 @@
    height: 80%;
    float: right;
    margin-right: 5.5%;
-   background-image: url(resources/images/선생.png);
-   background-size: 30% 55%;
-   background-repeat: no-repeat;
-   background-position: center center;
+  
 }
 
 
@@ -192,7 +189,128 @@ text-align:center;
 #sessionBox{ width:30%; height:10%; 
 position:absolute; left:45%; top:1%;
 }
+  figure {
+  width: 210px;
+  height: 210px;
+  animation: rotation 7s linear infinite;
+  position: absolute;
+  top: 45%;
+  left: 55%;
+  margin-top: -105px;
+  margin-left: -105px;
+  transform-style: preserve-3d;
+}
 
+.face {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  transform-origin: center;
+}
+
+.face div {
+  border: 6px double #000  ;
+  width: 70px;
+  height: 70px;
+  display: inline-block;
+  box-sizing: border-box;
+  vertical-align: top;
+}
+
+.front {
+  transform: translate3d(0,0,105px);
+}
+
+.back {
+  transform: rotateY(180deg) translate3d(0,0,105px);
+}
+
+.left {
+  transform: rotateY(-90deg) translate3d(0,0,105px);
+}
+
+.right {
+  transform: rotateY(90deg) translate3d(0,0,105px);
+}
+
+.top {
+  transform: rotateX(90deg) translate3d(0,0,105px);
+}
+
+.bottom {
+  transform: rotateX(-90deg) translate3d(0,0,105px);
+}
+
+@keyframes rotation {
+  from { transform: rotateY(0) rotateX(0); }
+  to   { transform: rotateY(-360deg) rotateX(360deg); }
+}     
+						/*컬러큐브*/
+.wrapper {
+  width: 100%;
+  perspective: 400;
+  position:absolute; left:25%;
+}
+
+.cube {
+  position: relative;
+  top: 180px;
+  left:-375px;
+  margin: 0 auto;
+  height: 200px;
+  width: 200px;
+
+  animation : spin 5s infinite linear;
+  transform-style: preserve-3d;
+}
+
+@keyframes spin {
+  from { transform: rotateY(0) rotateX(0); }
+  to   { transform: rotateY(-360deg) rotateX(360deg); }
+}
+
+.cube > div {
+  position: absolute;
+  height: 180px;
+  width: 180px;
+  border: 1px solid #333;
+  opacity: .8;
+}
+
+.cube > div:hover {
+  opacity: 1;
+  transition: opacity .3s linear;
+}
+
+.one { 
+  transform: rotateX(90deg) translateZ(180px); 
+  background-color: #E3493B;
+}
+
+.two { 
+  transform: translateZ(180px); 
+  background-color: #0054FF;
+}
+
+.three { 
+  transform: rotateY(90deg) translateZ(180px); 
+  background-color: #E8487F;
+}
+
+.four { 
+  transform: rotateY(180deg) translateZ(180px); 
+  background-color: #28B78D;
+}
+
+.five { 
+  transform: rotateY(-90deg) translateZ(180px); 
+  background-color: #FF5B00;
+}
+
+.six { 
+  transform: rotateX(-90deg) translateZ(160px); 
+  background-color: #FEEB51;
+}
 </style>
 
 </head>
@@ -221,7 +339,40 @@ position:absolute; left:45%; top:1%;
                    <input type="button" class="bothB" id="sixB" onclick="getPage('tmainservices','/InfoPage')">  
                     
                </div>
-            <div id="mainpage"></div>
+            <div id="mainpage">           <figure>
+  <div class="face front">
+    <div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div>
+  </div>
+
+  <div class="face top">
+    <div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div>
+  </div>
+  
+  <div class="face right">
+    <div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div>
+  </div>
+
+  <div class="face left">
+    <div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div>
+  </div>
+
+  <div class="face bottom"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div>
+  </div>
+
+  <div class="face back"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div>
+  </div>
+</figure>
+<div class="wrapper">
+  <div class="cube">
+    <div class="one"></div>
+    <div class="two"></div>
+    <div class="three"></div>
+    <div class="four"></div>
+    <div class="five"></div>
+    <div class="six"></div>
+  </div>
+</div>
+            </div>
          </div>
       </div>
 	</form>
