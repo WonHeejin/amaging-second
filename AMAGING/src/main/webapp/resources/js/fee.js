@@ -581,7 +581,6 @@ function regFeeToJson() {
 }
 
 function getAmounts() {
-	alert("getAmounts");
 	const userId = document.getElementsByName("userId")[0].value;
 	const data = "userId=" + userId;
 	getAjaxData("GetAmounts", data, "MyChildListF", "post")
