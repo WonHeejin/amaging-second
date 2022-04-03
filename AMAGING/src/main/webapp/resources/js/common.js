@@ -25,7 +25,7 @@ function makeInputElement(type, name, value, placeholder){
 function getAjaxData(action,data,fn,method){
 	const ajax = new XMLHttpRequest();
 		ajax.onreadystatechange = function() {
-			if ( ajax.readyState== 4 && ajax.status == 200) {		
+			if ( ajax.readyState== 4 && ajax.status == 200) {	
 				window[fn](ajax.responseText);						
 			}
 		};

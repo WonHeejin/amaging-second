@@ -594,10 +594,10 @@ function MyChildListF(amount) {
 }
 
 function childSelectF(dat) {
-	const parentCode = document.getElementsByName("userId")[0].value;
-	let data = JSON.parse(dat);
-	let sCode = document.getElementById("sCode").value;
-	const mainpage = document.getElementById("mainpage");
+   const parentCode = document.getElementsByName("userId")[0].value;
+   let data = JSON.parse(dat);
+   let sCode = sessionStorge.getItem("sCode");
+   const mainpage = document.getElementById("mainpage");
 
 	const selectMom = document.createElement("div");
 	selectMom.setAttribute("id", "selectMom");
