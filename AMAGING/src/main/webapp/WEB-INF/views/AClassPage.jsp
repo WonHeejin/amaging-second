@@ -337,7 +337,7 @@ background-color:#fff;
 	pont-size: 100pt;
 	overflow-x: hidden;
     overflow-y: auto;
-
+ 	margin-top:6%;
 
 }
 
@@ -346,12 +346,16 @@ background-color:#fff;
 	float: left;
 	width: 20%;
 	height: 100%;
+	text-align:center;
+
 }
 
 .tEmail {
 	border: 2px solid #A175F0;
 	width: 100%;
 	height: 100%;
+	text-align:center;
+	
 }
 
 .smfooter {
@@ -413,7 +417,7 @@ background-color:#fff;
 	margin-left: 10%;
 	width: 70%;
 	height:50%;
-	pont-size: 100pt;
+	pont-size: 200pt;
 	position:absolute; top:27%; left:5.3%;	
 	float:left;
 	margin-bottom:30%;

@@ -50,8 +50,8 @@ function getCourseList(acCode){
 		 select.style.top="22%";
 		 select.style.borderRadius="30px 10px 50px";
 		 select.style.textAlign = "center";
-		 select.style.fontSize="130%";
-                
+		 select.style.fontSize="160%";
+         select.style.fontFamily="BMHANNAAir"       
          let katei = document.createElement("option");
 			katei.innerHTML="과정";
 			select.appendChild(katei);
@@ -77,8 +77,8 @@ function getCourseList(acCode){
 			input.style.top="35%";
 			input.style.borderRadius="30px 10px 50px";
 			input.style.textAlign = "center";
-         	input.style.fontSize="120%";
-			
+         	input.style.fontSize="160%";
+			input.style.fontFamily="BMHANNAAir"
 			/* -----------수업금액 입력-------------- */
 			let input2=document.createElement("input");
 			input2.setAttribute("type","number");
@@ -94,8 +94,8 @@ function getCourseList(acCode){
          	input2.style.top="35%";
 			input2.style.borderRadius="30px 10px 50px";
 			input2.style.textAlign = "center";
-			input2.style.fontSize="120%";
-			
+			input2.style.fontSize="160%";
+			input2.style.fontFamily="BMHANNAAir"
 			/* -----------개강일 달력-------------- */
 			let sdiv = document.createElement("div");
 			sdiv.innerHTML="개강일";
@@ -105,6 +105,7 @@ function getCourseList(acCode){
 			sdiv.style.border="3px solid #E399F0";
 			sdiv.style.borderRadius="30px 10px";
 			sdiv.style.textAlign = "center";
+			sdiv.style.fontSize="120%"
 			let dateFrom = document.createElement("input");
         	dateFrom.setAttribute("id", "startd");
 			dateFrom.setAttribute("type","date");
@@ -118,7 +119,7 @@ function getCourseList(acCode){
 			dateFrom.style.borderRadius="30px 10px 50px";
 			dateFrom.style.textAlign = "center";
 			dateFrom.style.fontSize="140%";
-			
+			dateFrom.style.fontFamily="BMHANNAAir"
         	let stday = document.createElement("option");
 			stday.setAttribute("selected",stday);
 			dateFrom.appendChild(stday);
@@ -132,7 +133,7 @@ function getCourseList(acCode){
 			sdiv2.style.border="3px solid #E399F0";
 			sdiv2.style.borderRadius="30px 10px";
 			sdiv2.style.textAlign = "center";
-			
+			sdiv2.style.fontSize="120%"
 			let dateFrom2 = document.createElement("input");			
         	dateFrom2.setAttribute("id", "endd");
 			dateFrom2.setAttribute("type","date");
@@ -146,7 +147,7 @@ function getCourseList(acCode){
 			dateFrom2.style.borderRadius="30px 10px 50px";
 			dateFrom2.style.textAlign = "center";
 			dateFrom2.style.fontSize="140%";        	
-         
+         	dateFrom2.style.fontFamily="BMHANNAAir"
          let enday = document.createElement("option");			
 			enday.setAttribute("selected",enday);
 			dateFrom2.appendChild(enday);
@@ -161,6 +162,8 @@ function getCourseList(acCode){
 			btn.style.transitionDuration="0.3s"
           	btn.style.boxShadow="4px 4px 4px black"
 			btn.style.color="#000"
+			btn.style.fontFamily="BMHANNAAir"
+			btn.style.fontSize="160%"
    const mainpage = document.getElementById("mainpage");
    div.appendChild(select);
    div.appendChild(input);
@@ -246,6 +249,7 @@ function updClassForm(abc){
 		 table.style.borderRadius="5px";
 		 table.style.borderCollapse="separate";					 		 
 		 table.style.borderSpacing="10px"
+		 table.style.fontSize="160%"
 	let mtr =createTr("mtr");
 	
 	let mtd1 =createTd("mtd1");
@@ -319,9 +323,9 @@ function updClassForm(abc){
          name.style.left="27%";
          name.style.width = "10%";
          name.style.height = "7.5%";
-         name.style.fontSize="120%";
+         name.style.fontSize="140%";
          name.style.textAlign="center";
-									
+		 name.style.fontFamily="BMHANNAAir"					
 		let fee = document.createElement("input")		
 			fee.setAttribute("type","number");
 			fee.setAttribute("id","classmoney")
@@ -335,9 +339,9 @@ function updClassForm(abc){
 			fee.style.left="42%";
 			fee.style.width = "10%";
       		fee.style.height = "7.5%";
-			fee.style.fontSize="120%";
+			fee.style.fontSize="140%";
 			fee.style.textAlign="center";
-			
+			fee.style.fontFamily="BMHANNAAir"		
 				/* -----------개강일 달력-------------- */
 			let sdiv = document.createElement("div");
 			sdiv.innerHTML="개강일";
@@ -348,6 +352,7 @@ function updClassForm(abc){
 			sdiv.style.borderRadius="5px";
 			sdiv.style.textAlign = "center";		
 			sdiv.style.color="#000"
+			sdiv.style.fontSize="120%"
 			let dateFrom = document.createElement("input");
         	dateFrom.setAttribute("id", "startd");
 			dateFrom.setAttribute("type","date");
@@ -361,7 +366,7 @@ function updClassForm(abc){
 			dateFrom.style.borderRadius="30px 10px";
 			dateFrom.style.textAlign = "center";
 			dateFrom.style.fontSize="140%";
-			
+			dateFrom.style.fontFamily="BMHANNAAir"	
         	let stday = document.createElement("option");
 			stday.setAttribute("selected",stday);
 			dateFrom.appendChild(stday);
@@ -376,6 +381,7 @@ function updClassForm(abc){
 			sdiv2.style.borderRadius="5px";
 			sdiv2.style.textAlign = "center";		
 			sdiv2.style.color="#000"
+			sdiv2.style.fontSize="120%"
 			let dateFrom2 = document.createElement("input");			
         	dateFrom2.setAttribute("id", "endd");
 			dateFrom2.setAttribute("type","date");
@@ -389,7 +395,7 @@ function updClassForm(abc){
 			dateFrom2.style.borderRadius="30px 10px";
 			dateFrom2.style.textAlign = "center";
 			dateFrom2.style.fontSize="140%";
-         	      
+         	dateFrom2.style.fontFamily="BMHANNAAir"	
          let enday = document.createElement("option");	
 			enday.setAttribute("selected",enday);
 			dateFrom2.appendChild(enday);
@@ -400,7 +406,7 @@ function updClassForm(abc){
 			btn.setAttribute("id", "btn2");
 			btn.setAttribute("value","수정완료");
 			btn.setAttribute("onClick","updClass()");
-           
+           	btn.style.fontFamily="BMHANNAAir"	
 	const mainpage =document.getElementById("mainpage");
 	tablebox.appendChild(table);
 	div.appendChild(tablebox);
@@ -546,8 +552,8 @@ function subjectRegForm(abc){
 	  select.style.top="30%";
 	  select.style.borderRadius="30px 10px";
 	  select.style.textAlign = "center";
-	  select.style.fontSize="120%";
-                 
+	  select.style.fontSize="140%";
+      select.style.fontFamily="BMHANNAAir"           
   let classname = document.createElement("option");
 	  classname.innerHTML="수업명";
 	  select.appendChild(classname);
@@ -570,7 +576,8 @@ function subjectRegForm(abc){
 	  subj.style.top="30%";
 	  subj.style.borderRadius="30px 10px";
 	  subj.style.textAlign = "center";
-	  subj.style.fontSize="120%";
+	  subj.style.fontSize="140%";
+ 	  subj.style.fontFamily="BMHANNAAir"  
 	let sbna=document.createElement("option")
 	  sbna.innerHTML="과목명";
 	  subj.appendChild(sbna);
@@ -609,10 +616,11 @@ function subjectRegForm(abc){
 	  tdiv.style.top="30%";
 	  tdiv.style.borderRadius="30px 10px";
 	  tdiv.style.textAlign = "center"
-	  tdiv.style.fontSize="16px";
+	  tdiv.style.fontSize="140%";
 	  tdiv.style.paddingTop="20px"
-	  tdiv.style.fontSize="120%"
+	  tdiv.style.fontSize="140%"
 	  tdiv.setAttribute("onClick","openModal2()")
+	  tdiv.style.fontFamily="BMHANNAAir" 
 	  div.appendChild(tdiv)						
 		    /*과목시작시간 */
   let slabel=document.createElement("div")
@@ -622,6 +630,7 @@ function subjectRegForm(abc){
 	  slabel.style.left="32.5%"
 	  slabel.style.border="3px solid #B87DF5"
 	  slabel.style.borderRadius="5px";
+	  slabel.style.fontSize="120%"
   let sTime =document.createElement("input");
 	  sTime.setAttribute("id","stime");
 	  sTime.setAttribute("type","time")
@@ -643,6 +652,7 @@ let elabel=document.createElement("div")
 	elabel.style.left="44.5%"
 	elabel.style.border="3px solid #EE8FFF"
 	elabel.style.borderRadius="5px";
+	elabel.style.fontSize="120%"
 let eTime =document.createElement("input");
 	  eTime.setAttribute("id","etime");
 	  eTime.setAttribute("type","time")
@@ -669,8 +679,10 @@ let week=document.createElement("div");
 	  week.style.top="48%";
 	  week.style.borderRadius="30px 10px";
 	  week.style.textAlign = "center"
-	  week.style.fontSize="120%";
+	  week.style.fontSize="140%";
 	  week.style.paddingTop="20px"
+	  week.style.fontFamily="BMHANNAAir" 
+
 	  week.setAttribute("onClick","javascript:openModal(this)");
 	
 let weekbox=document.createElement("div");
@@ -799,6 +811,7 @@ let toroku=document.createElement("input")
 	toroku.setAttribute("value","등록")
 	toroku.setAttribute("onClick","regClass(this)")
 	toroku.setAttribute("id","sanbtn")
+	toroku.style.fontFamily="BMHANNAAir"
 	    const mainpage =document.getElementById("mainpage");
 	    div.appendChild(select);
 		div.appendChild(sTime);
@@ -990,7 +1003,7 @@ function updSubjectForm(aca){
 		 table.style.borderRadius="5px";
 		 table.style.borderCollapse="separate";
 		 table.style.borderSpacing="10px"	
-		 
+		 table.style.fontSize="160%"
 		
 		let mtr =createTr1("mtr");		
 		let mtd1 =createTd1("mtd1");mtd1.innerHTML="과정명";mtr.appendChild(mtd1);
@@ -1068,15 +1081,16 @@ function updSubjectForm(aca){
         sensei.style.left="27%";
         sensei.style.width = "10%";
         sensei.style.height = "7.5%";
-        sensei.style.fontSize="100%";
+        sensei.style.fontSize="140%";
         sensei.style.textAlign="center";
-
+		sensei.style.fontFamily="BMHANNAAir"
   let slabel=document.createElement("div")
 	  slabel.innerText="수업시작 시간"
 	  slabel.style.position="absolute"
 	  slabel.style.top="58%"
 	  slabel.style.left="44.5%"
 	  slabel.style.border="4px solid #C09AF0"
+	  slabel.style.fontSize="120%"
   let sTime =document.createElement("input");
 	  sTime.setAttribute("id","stime");
 	  sTime.setAttribute("type","time")
@@ -1088,14 +1102,15 @@ function updSubjectForm(aca){
 	  sTime.style.top="62%";
 	  sTime.style.borderRadius="30px 10px";
 	  sTime.style.textAlign = "center";
-	  sTime.style.fontSize="100%";
- 
+	  sTime.style.fontSize="120%";
+ 	  sTime.style.fontFamily="BMHANNAAir"
   let elabel=document.createElement("div")
 	  elabel.innerText="수업종료 시간"
 	  elabel.style.position="absolute"
 	  elabel.style.top="58%"
 	  elabel.style.left="59.5%"
 	  elabel.style.border="4px solid #C09AF0"
+	  elabel.style.fontSize="120%"
   let eTime =document.createElement("input");
 	  eTime.setAttribute("id","etime");
 	  eTime.setAttribute("type","time")
@@ -1107,8 +1122,8 @@ function updSubjectForm(aca){
 	  eTime.style.top="62%";
 	  eTime.style.borderRadius="30px 10px";
 	  eTime.style.textAlign = "center";
-	  eTime.style.fontSize="100%"; 
-
+	  eTime.style.fontSize="120%"; 
+ 	  eTime.style.fontFamily="BMHANNAAir"
   let week=document.createElement("div");
 	  week.setAttribute("id","week");
 	  week.setAttribute("type","text");
@@ -1121,8 +1136,9 @@ function updSubjectForm(aca){
 	  week.style.top="62%";
 	  week.style.borderRadius="30px 10px";
 	  week.style.textAlign = "center"
-	  week.style.fontSize="16px";
+	  week.style.fontSize="140%";
 	  week.style.paddingTop="20px"
+	  week.style.fontFamily="BMHANNAAir"
 	  week.setAttribute("onClick","javascript:openModal(this)");
 	
 let weekbox=document.createElement("div");
@@ -1242,7 +1258,8 @@ let modalbtn=document.createElement("input")
 	modalbtn.style.top="73%"
 	modalbtn.style.backgroundColor="#5D7EFF"
 	modalbtn.style.borderRadius="5px";
-	modalbtn.style.color="#fff"																							
+	modalbtn.style.color="#fff"
+	modalbtn.style.fontFamily="BMHANNAAir"																							
 	mbody.appendChild(weekbox)
 	mbody.appendChild(modalbtn)
 			/*등록버튼 */
@@ -1251,7 +1268,7 @@ let toroku=document.createElement("input")
 	toroku.setAttribute("value","등록")
 	toroku.setAttribute("onClick","updSubject()")
 	toroku.setAttribute("id","yaritakunai")			
-			
+	toroku.style.fontFamily="BMHANNAAir"		
 	const mainpage=document.getElementById("mainpage")
 		div.appendChild(table)
 		maindiv.appendChild(div)
@@ -1395,6 +1412,7 @@ function modStudentForm(aca){
 		mtr.style.fontSize="300%"
 		mtr.style.textAlign="center"
 		
+		mtr.style.fontFamily="BMHANNAAir"
 	for(i=0; i<classlist.length; i++){
 		let thead=document.createElement("tr")	
 		let tdclass=document.createElement("td");
@@ -1421,7 +1439,7 @@ function modStudentForm(aca){
 		tdbtn1.setAttribute("onClick","regStudentForm('"+classlist[i].clCode+"','"+classlist[i].crCode+"')");
 		tdbtn1.innerHTML="학생등록";   
 		tdbtn1.style.textAlign="center"	
-		tdbtn1.style.fontSize="120%"
+		tdbtn1.style.fontSize="140%"
 		tdbtn1.style.cursor="pointer"
 		/*학생 삭제 버튼 */
 		let tdbtn2=document.createElement("td")
@@ -1433,7 +1451,7 @@ function modStudentForm(aca){
 		tdbtn2.setAttribute("onClick","getBelongList('"+classlist[i].clCode+"','"+classlist[i].crCode+"','"+classlist[i].acCode+"')");
 		tdbtn2.innerHTML="학생삭제";
 		tdbtn2.style.cursor="pointer"
-		tdbtn2.style.fontSize="120%"
+		tdbtn2.style.fontSize="140%"
 		thead.appendChild(tdcrcode);
 		thead.appendChild(tdclass);
 		thead.appendChild(tdbtn1);
@@ -1539,6 +1557,7 @@ let studel=JSON.parse(data);
 	for(i=0; i<studel.length; i++){
 	let record=createDiv("record","record");
 		record.setAttribute("onClick","selectline(this)");
+		
 	let sName=document.createElement("div")
 		sName.setAttribute("value",studel[i].studentId)
 		sName.setAttribute("class","sNAME2")
@@ -1584,6 +1603,7 @@ if(currentRecord!=null){
 		const studentId=test.getAttribute("value");
 		
 	const data="acCode="+acCode+"&crCode="+crCode+"&clCode="+clCode+"&studentId="+studentId
+
 	getAjaxData("DelBelong",data,"sendMessage","post");
 	
 	}else{
