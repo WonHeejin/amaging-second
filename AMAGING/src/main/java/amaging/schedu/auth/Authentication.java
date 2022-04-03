@@ -135,16 +135,16 @@ public class Authentication extends amaging.schedu.common.CommonMethod{
 		try {
 			if(uf.getUserCode()==4) {
 				this.om.setAdminAccessOutHistory(uf);
-				page="aLoginPage";
+				page="TAMain";
 			}else if(uf.getUserCode()==1) {
 				this.om.setAccessOutHistory(uf);
-				page="pLoginPage";
+				page="SPMain";
 			}else if(uf.getUserCode()==2) {
 				this.om.setAccessOutHistory(uf);
-				page="sLoginPage";
+				page="SPMain";
 			}else if(uf.getUserCode()==3) {
 				this.om.setAccessOutHistory(uf);
-				page="tLoginPage";
+				page="TAMain";
 			}
 			
 		
