@@ -14,8 +14,8 @@
 		WHERE TC.TC_CODE = #{teacherId}
 	</select>
 	
-	<select id="checkPwd" parameterType ="amaging.schedu.bean.AcList" resultType="int">
-		SELECT COUNT(*) FROM TA WHERE TA.TA_ACCODE = #{acCode} AND TA.TA_TCCODE = #{teacherId} AND TA.TA_PASSWORD = #{password}
+	<select id="checkPwd" parameterType ="amaging.schedu.bean.AcList" resultType="String">
+		SELECT TA.TA_ACCODE FROM TA WHERE TA.TA_ACCODE = #{acCode} AND TA.TA_TCCODE = #{teacherId} AND TA.TA_PASSWORD = #{password}
 	</select>
 	
 	<select id="getTeacherClass" parameterType ="amaging.schedu.bean.AcList" resultType="amaging.schedu.bean.Subject">
@@ -130,13 +130,13 @@
        		 	INNER JOIN CL ON FE.FE_CLCODE = CL.CL_CODE AND FE.FE_CLCRCODE = CL.CL_CRCODE 
         		INNER JOIN SP ON FE.FE_STCODE = SP.SP_STCODE 
         		INNER JOIN PR ON SP.SP_PRCODE = PR.PR_CODE 
-		WHERE FE.FE_CLCRACCODE = #{acCode} AND SUBSTR(FE.FE_UPMONTH,0,6) = #{upMonth}  AND ST.ST_NAME = #{studentName} 
+		WHERE FE.FE_CLCRACCODE = #{acCode} AND SUBSTR(FE.FE_UPMONTH,0,6) = #{upMonth}  AND ST.ST_NAME LIKE '%'||#{studentName}||'%' 
 	</select>
 	
 	<update id="updFeeList" parameterType ="amaging.schedu.bean.FeeBean">
 		UPDATE FE SET FE.FE_FEPMONTH = SYSDATE,FE.FE_COCODE = #{status} 
-		WHERE FE.FE_CLCRACCODE = #{acCode}  AND FE_CLCRCODE = #{clCrCode} AND FE_CLCODE = #{clCode} 
-		AND FE_STCODE = #{studentId} AND FE_UPMONTH = #{upMonth} 
+		WHERE FE.FE_CLCRACCODE = #{acCode} AND FE.FE_CLCRCODE = #{clCrCode} AND FE.FE_CLCODE = #{clCode} 
+		AND FE.FE_STCODE = #{studentId} AND FE.FE_UPMONTH = #{upMonth}
 	</update>
 	
 	<select id="feeStudentList" parameterType ="amaging.schedu.bean.FeeBean" resultType="amaging.schedu.bean.FeeBean">

@@ -9,6 +9,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import amaging.schedu.bean.FeeBean;
 import amaging.schedu.bean.GradeBean;
+import amaging.schedu.bean.UserInfo;
 import amaging.schedu.db.GFOracleMapper;
 
 @Service
@@ -41,12 +42,22 @@ public class Fee extends amaging.schedu.common.CommonMethod{
 			break;
 		case 8:
 			this.getMyFeeList(mav);
-			break;	
+			break;
+		case 9:
+			this.feeAmounts(mav);
+			break;		
 		}
 	}
 	private void aFeePage(ModelAndView mav) {
 		mav.setViewName("AFeePage");
 	}
+	
+	private void feeAmounts(ModelAndView mav) {
+		String amount = gfo.getAmounts((UserInfo)mav.getModelMap().getAttribute("uf"));
+		mav.addObject("msg",amount);
+		System.out.println("feeAmounts : " + mav.getModelMap().getAttribute("msg"));
+	}
+	
 	@SuppressWarnings("unchecked")
 	private void getMonthFee(ModelAndView mav) {
 		List<FeeBean> list;
@@ -73,7 +84,6 @@ public class Fee extends amaging.schedu.common.CommonMethod{
 		this.setTransactionConf(TransactionDefinition.PROPAGATION_REQUIRED, TransactionDefinition.ISOLATION_READ_COMMITTED, false);
 
 		List<FeeBean> fList = (List<FeeBean>)mav.getModelMap().getAttribute("fb");
-		System.out.println(fList.size());
 		for(int i=0; i<fList.size(); i++) {
 			if(this.convertToBoolean(gfo.updFeeList(fList.get(i)))) {
 				tran = true;
@@ -83,7 +93,6 @@ public class Fee extends amaging.schedu.common.CommonMethod{
 		}
 		
 		message = (tran=true)? "수정 완료" : "수정 실패. 다시 시도해주세요.";
-		
 		this.setTransactionEnd(tran);
 		mav.addObject("msg",message);
 		

@@ -31,13 +31,12 @@ public class GradeController {
 		return (List<ACPlan>)mav.getModelMap().getAttribute("acList");
 	}
 	
-	@SuppressWarnings("unchecked")
 	@PostMapping(value = "/CheckPwd", produces = "application/json; charset=UTF-8")
-	public List<ACPlan> checkPwd(ModelAndView mav, @ModelAttribute AcList ac) {
+	public String checkPwd(ModelAndView mav, @ModelAttribute AcList ac) {
 		
 		mav.getModelMap().addAttribute("ac",ac);
 		this.grade.backController(3, mav);
-		return (List<ACPlan>)mav.getModelMap().getAttribute("clList");
+		return (String)mav.getModelMap().getAttribute("msg");
 	}
 	
 	@SuppressWarnings("unchecked")
@@ -86,7 +85,9 @@ public class GradeController {
 	
 	@PostMapping(value = "/RegGrade", consumes="application/json", produces = "application/json; charset=UTF-8")
 	public String regGrade(ModelAndView mav, @RequestBody List<GradeBean> gr) {
-		
+		//(#{sBACode},#{studentId},#{score},#{rank},#{month})
+		System.out.println("regGrade : " + gr.get(0).getSBACode() + " : " + gr.get(0).getStudentId() + " : " + 
+				gr.get(0).getScore() + " : " + gr.get(0).getRank() + " : " + gr.get(0).getMonth());
 		mav.getModelMap().addAttribute("gr",gr);
 		this.grade.backController(10, mav);
 		return (String)mav.getModelMap().getAttribute("msg");
@@ -127,20 +128,12 @@ public class GradeController {
 		return (List<Grade>)mav.getModelMap().getAttribute("latestGrade");
 	}
 	
-	@PostMapping("/GetAmounts")
-	public String regGrade(ModelAndView mav, @ModelAttribute UserInfo uf) {
-		System.out.println(uf.getUserId());
-		mav.getModelMap().addAttribute("uf",uf);
-		this.grade.backController(15, mav);
-		return (String)mav.getModelMap().getAttribute("msg");
-	}
-	
 	@SuppressWarnings("unchecked")
 	@PostMapping(value = "/GetGradeForGraph", produces = "application/json; charset=UTF-8")
 	public List<Grade> GetGradeForGraph(ModelAndView mav, @ModelAttribute GradeBean gr) {
 		System.out.println("GetGradeForGraph = " + gr.getSBACode());
 		mav.getModelMap().addAttribute("gr",gr);
-		this.grade.backController(16, mav);
+		this.grade.backController(15, mav);
 		return (List<Grade>)mav.getModelMap().getAttribute("subjectGrade");
 	}
 	

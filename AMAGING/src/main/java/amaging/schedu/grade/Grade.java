@@ -68,9 +68,6 @@ public class Grade extends amaging.schedu.common.CommonMethod{
 			this.getOneGrade(mav);
 			break;
 		case 15:
-			this.feeAmounts(mav);
-			break;
-		case 16:
 			this.subjectGrade(mav);
 			break;
 			
@@ -83,12 +80,6 @@ public class Grade extends amaging.schedu.common.CommonMethod{
 		mav.addObject("graph",gfo.getSubjectGrade((GradeBean)mav.getModelMap().getAttribute("gr")));
 		list = (List<GradeBean>)mav.getModelMap().getAttribute("graph");
 		mav.addObject("subjectGrade",list);
-	}
-	
-	private void feeAmounts(ModelAndView mav) {
-		String amount = gfo.getAmounts((UserInfo)mav.getModelMap().getAttribute("uf"));
-		mav.addObject("msg",amount);
-		System.out.println("feeAmounts : " + mav.getModelMap().getAttribute("msg"));
 	}
 	
 	@SuppressWarnings("unchecked")
@@ -136,18 +127,18 @@ public class Grade extends amaging.schedu.common.CommonMethod{
 		mav.addObject("subjectList",list);
 	}
 	
-	@SuppressWarnings("unchecked")
 	private void checkPwd(ModelAndView mav) {
-		List<Subject> list;
-		
-		
-		if(this.convertToBoolean(gfo.checkPwd((AcList)mav.getModelMap().getAttribute("ac")))) {
-		mav.addObject("bcd",gfo.getTeacherClass((AcList)mav.getModelMap().getAttribute("ac")));
-		list = (List<Subject>)mav.getModelMap().getAttribute("bcd");
-		mav.addObject("clList",list);
+		String message = null;
+		String acCode = null;
+		acCode = gfo.checkPwd((AcList)mav.getModelMap().getAttribute("ac"));
+		System.out.println(acCode);
+		if(acCode != null) {
+			message = acCode;
 		}else {
-		mav.addObject("msg","비밀번호가 일치하지 않습니다.");
+			message = "0";
 		}
+
+		mav.addObject("msg",message);
 	}
 	
 	@SuppressWarnings("unchecked")
@@ -209,6 +200,7 @@ public class Grade extends amaging.schedu.common.CommonMethod{
 		boolean tran = false;
 		String message = null;
 		List<GradeBean> gList = (List<GradeBean>)mav.getModelMap().getAttribute("gr");
+		System.out.println("제발....." + gList.size());
 		this.setTransactionConf(TransactionDefinition.PROPAGATION_REQUIRED, TransactionDefinition.ISOLATION_READ_COMMITTED, false);
 		if(this.convertToBoolean(gfo.isGrade(gList.get(0)))) {
 			tran = false;

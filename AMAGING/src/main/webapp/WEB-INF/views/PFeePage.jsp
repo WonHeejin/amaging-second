@@ -8,7 +8,9 @@
  <script src="resources/js/common.js"></script>
  <script src="resources/js/fee.js"></script>
  <script src="resources/js/gradePage.js"></script>
+ <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
 <link rel="stylesheet" type="text/css" href="resources/css/pr.css" />
+
 <style>
 #frame {width:100%; height:100%;
    position:absolute; top:5%;}

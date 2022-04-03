@@ -304,16 +304,17 @@ position:absolute; left:45%; top:1%;
    </form>
 <form>
 <div class="modal fade" id="exampleModal" style = "display : none;">
-  <div class="modal-dialog" id="modalDialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <input type="button" id="btn-close" class="btn-close" value="X" style = "width:30px; height:30px;"/>
+  <div class="modalDialog" id="modalD">
+    <div class="modal-content" style="height:160%; width:180%;">
+      <div class="modal-header" style="float:right; margin-Top:1%;">
+        <input type="reset" id="btn-close" class="btn-close" value="X" style = "margin-top:-30px;margin-right:230px; width:30px; height:30px; border:none; border-Radius:5px; background-color:#ffffff;box-shadow: 0 2px 10px 0 rgba(0, 0, 0, 0.5);"/>
       </div>
-      <div class="modal-body">
+      <div class="modal-body" style="clear:both; margin-Left:-4%; margin-Top:30%;">
         
           <div class="mb-3">
-            <input type="text" class="form-control" id="inputPwd" placeholder ="비밀번호 입력"/>
-            <input type="button" class="confirmBtn" id="confirmBtn" value ="확인"/>
+          	<h4 style = "margin-Left:20%;">비밀번호를 입력해 주세요.</h4>
+            <input type="password" autocomplete="off" class="form-control" id="inputPwd" placeholder ="비밀번호 입력" style="box-shadow: 0 2px 10px 0 #1266FF; margin-Top:5%; margin-Left:0%; height:40px; width:320px; border-Radius:20px; text-Align:center; border:none;"/>
+            <input type="reset" class="confirmBtn" id="confirmBtn" value ="확인" style="border-Radius:5px;width:20%; height:40px; clear:both; margin-Top:5%; border:none; box-shadow: 0 2px 10px 0 #1266FF; background-color:#ffffff; border-Radius:20px;"/>
           </div>
         
       </div>

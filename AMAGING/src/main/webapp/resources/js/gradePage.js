@@ -11,7 +11,7 @@ function PCDivide(PCCode) {
 }
 
 function myChildList() {
-	sessionStorage.removeItem("acCode");
+	//sessionStorage.removeItem("acCode");
 	const userId = document.getElementsByName("userId")[0].value;
 	const data = "userId=" + userId;
 	getAjaxData("MyChildList",data,"childSelect","post")
@@ -21,6 +21,7 @@ function childSelect(dat) {
 	if(dat != '') {
 	let data = JSON.parse(dat);
 	let sCode = sessionStorage.getItem("sCode");
+	let aCode = sessionStorage.getItem("acCode");
 	const mainpage = document.getElementById("mainpage");
 	const checkCode = "1133";
 			
@@ -34,7 +35,7 @@ function childSelect(dat) {
 			selectMom.setAttribute("id","selectMom");
 			const cSelect = document.createElement("select");
 			cSelect.setAttribute("id", "cSelect");
-			cSelect.setAttribute("onchange","childSelected(" + checkCode + "," + 1 + ")");
+			cSelect.setAttribute("onchange","childSelected(" + checkCode + "," + aCode + ")");
 			cSelect.style.width = "200px";
 			cSelect.style.height = "40px";
 			cSelect.style.borderRadius = "5px";
@@ -57,18 +58,14 @@ function childSelect(dat) {
 					if(sCode != "") {
 						if (sCode == data[i].studentId) {
 							option.setAttribute("selected", "selected")
-							childSelected(data[i].studentId,sCode);
+							childSelected(data[i].studentId,aCode);
 						}
 					}
 					cSelect.appendChild(option);
 				}
 
 			selectMom.appendChild(cSelect);
-		if(mainpage.hasChildNodes()) {
-			while(mainpage.hasChildNodes()){
-				mainpage.removeChild(mainpage.firstChild);
-			}
-		}
+		delChild(mainpage);
 		
 		const sjDiv = document.createElement("div");
 		sjDiv.setAttribute("id","sjDiv");
@@ -78,24 +75,29 @@ function childSelect(dat) {
 	}
 }
 
-function childSelected(selectedCode,sessionCode) {
-	sessionStorage.removeItem("acCode");
+function childSelected(selectedCode,code) {
+	const stCode = sessionStorage.getItem("stCode");
+	
+		sessionStorage.removeItem("acCode");
+	
 	if(selectedCode != "1133") {
-		if(selectedCode == sessionCode) {
+		//if(selectedCode == code) {
 			childAcademyList(selectedCode,"p");
 			sessionStorage.setItem("sCode",selectedCode);
-		}
+			sessionStorage.setItem("acCode",code);
+		//}
 	}else {
 		let cSelect = document.getElementById("cSelect");
 		let sCode = cSelect.options[cSelect.selectedIndex].value;
 			sessionStorage.setItem("sCode",sCode);
-		if(sCode != sessionCode) {
-			const presentSCode = document.getElementById("sCode");
-			presentSCode.setAttribute("value",sCode);
+			sessionStorage.setItem("acCode",code);
+		//if(sCode != code) {
+		//	const presentSCode = document.getElementById("sCode");
+		//	presentSCode.setAttribute("value",sCode);
 			childAcademyList(sCode,"P");
-		}else {
-			childAcademyList(sCode,"P");
-		}
+		//}else {
+		//	childAcademyList(sCode,"P");
+		//}
 	}
 }
 
@@ -116,7 +118,7 @@ function childAcademyList(studentId,code) {
 		aSelectDiv.style.float = "left";
 		selectMom.appendChild(aSelectDiv);
 	}else{
-		sessionStorage.removeItem("acCode");
+		//sessionStorage.removeItem("acCode");
 		const selectMom = document.createElement("div");
 		selectMom.setAttribute("id","selectMom");
 		selectMom.style.width = "400px";
@@ -143,11 +145,7 @@ function childAcademySelect(dat) {
 	const selectMom = document.getElementById("selectMom");
 	if(divideCode == "P") {
 	const aSelectDiv = document.getElementById("aSelectDiv");
-			if(aSelectDiv.hasChildNodes()) {
-				while(aSelectDiv.hasChildNodes()){
-					aSelectDiv.removeChild(aSelectDiv.firstChild);
-				}
-			}
+			delChild(aSelectDiv);
 	}
 			const aSelect = document.createElement("select");
 			aSelect.setAttribute("id", "aSelect");
@@ -168,7 +166,7 @@ function childAcademySelect(dat) {
 					option.setAttribute("id",data[i].acCode);
 					option.setAttribute("value",data[i].acCode);
 					option.innerHTML = data[i].acName;
-					if(aCode != "") {
+					if(aCode != null) {
 						if (aCode == data[i].acCode) {
 							option.setAttribute("selected", "selected")
 							academySelected(data[i].acCode);
@@ -200,6 +198,7 @@ function childAcademySelect(dat) {
 			
 			const lineChartDiv = document.createElement("div");
 			lineChartDiv.setAttribute("id","lineChartDiv");
+			lineChartDiv.setAttribute("type","hidden");
 			lineChartDiv.style.width = "700px";
 			lineChartDiv.style.height = "400px";
 			lineChartDiv.style.marginTop = "-20%";
@@ -216,14 +215,12 @@ function childAcademySelect(dat) {
 }
 
 function academySelected(selectedCode) {
-	const userId = sessionStorage.getItem("sCode");;
+	const userId = sessionStorage.getItem("sCode");
 		let sAcCode = sessionStorage.getItem("acCode");
-	const lineChartDiv = document.getElementById("lineChartDiv");
-	if(lineChartDiv.hasChildNodes()) {
-		while(lineChartDiv.hasChildNodes()){
-			lineChartDiv.removeChild(lineChartDiv.firstChild);
-		}
-	}
+	//const lineChartDiv = document.getElementById("lineChartDiv");
+	//if(lineChartDiv.hasChildNodes()) {
+	//delChild(lineChartDiv);
+	//}
 	if(selectedCode != undefined) {
 			sessionStorage.setItem("acCode",selectedCode);
 			const data = "userId=" + userId + "&acCode=" + selectedCode;
@@ -244,23 +241,22 @@ function subjectOnCl(dat) {
 		const subjectDiv = document.getElementById("subjectDiv");
 		const tableMom = document.getElementById("tableMom");
 		const selectMom = document.getElementById("selectMom");
+		const lineChartDiv = document.getElementById("lineChartDiv");
 		const sjDiv = document.getElementById("sjDiv");
 		const childCode = sessionStorage.getItem("sCode");
 		let data = JSON.parse(dat);
-		if(sjDiv.hasChildNodes()) {
-			while(sjDiv.hasChildNodes()) {
-			sjDiv.removeChild(sjDiv.firstChild);
-			}
+		
+		if(lineChartDiv.hasChildNodes()) {
+			delChild(lineChartDiv);
 		}
-		if(subjectDiv.hasChildNodes()) {
-			while(subjectDiv.hasChildNodes()) {
-			subjectDiv.removeChild(subjectDiv.firstChild);
-			}
+		if(sjDiv.hasChildNodes()){
+			delChild(sjDiv);
 		}
-		if(tableMom.hasChildNodes()) {
-			while(tableMom.hasChildNodes()) {
-			tableMom.removeChild(tableMom.firstChild);
-			}
+		if(subjectDiv.hasChildNodes()){
+			delChild(subjectDiv);
+		}
+		if(tableMom.hasChildNodes()){
+			delChild(tableMom);
 		}
 				for(let i=0; i<data.length; i++) {
 					let classBtn = document.createElement("input");
@@ -305,7 +301,6 @@ function getMyGrade(subjectCode,subjectName,sbacode,userId) {
 function displayMyGrade(dat) {
 	if(dat != '[]') {
 	let data = JSON.parse(dat);
-	const mainpage = document.getElementById("mainpage");
 	const tableMom = document.getElementById("tableMom");
 	
 			let table = document.createElement("table");
@@ -362,16 +357,10 @@ function displayMyGrade(dat) {
 				tr.appendChild(td6);
 			table.appendChild(tr);
 			}
-		if(tableMom.hasChildNodes()) {
-			while(tableMom.hasChildNodes()) {
-				tableMom.removeChild(tableMom.firstChild);
-			}
-		}
-		if(subjectDiv.hasChildNodes()) {
-			while(subjectDiv.hasChildNodes()) {
-				subjectDiv.removeChild(subjectDiv.firstChild);
-			}
-		}
+			
+		delChild(tableMom);
+		delChild(subjectDiv);
+		
 		const text = document.createElement("h4");
 		text.innerHTML = "최근 성적";
 		text.style.border = "none";
@@ -387,21 +376,21 @@ function displayMyGrade(dat) {
 	lineChart.style.height = "120px";
 	lineChart.style.border = "1px solid #ffffff";
 	const lineChartDiv = document.getElementById("lineChartDiv");
+	lineChartDiv.setAttribute("type","block");
 	lineChartDiv.appendChild(lineChart);
 	
 	const sbacode = document.getElementById("sbacode").value;
 	const studentId = sessionStorage.getItem("sCode");
 	const forGraph = "sBACode=" + sbacode + "&studentId=" + studentId;
+	//const prevMonth = data[0].month; // 202201 to 202108
+	//const month = (prevMonth.substring(4,6)<6);
+	//const forGraph = "sBACode=" + sbacode + "&studentId=" + studentId + "&month=" + month;
 	
 	getAjaxData("GetGradeForGraph",forGraph,"subjectGraph","post");
 	
 	}else {
 		sendMessage("등록된 성적이 없습니다.");
-		if(tableMom.hasChildNodes()){
-			while(tableMom.hasChildNodes()){
-				tableMom.removeChild(tableMom.firstChild);
-			}
-		}
+		delChild(tableMom);
 	
 	}
 }
@@ -451,8 +440,8 @@ function subjectGraph(json){
 
 /* Teacher */
 function myAcademyList(userId,menuCode) {
-	const acCode = document.getElementsByName("acCode")[0].value;
-	sessionStorage.setItem("acCode",acCode);
+	//const acCode = document.getElementsByName("acCode")[0].value;
+	//sessionStorage.setItem("acCode",acCode);
 	const data = "teacherId=" + userId;
 	divide(menuCode);
 	getAjaxData("MyAcademyList",data,"academySelect","post")
@@ -464,21 +453,16 @@ function academySelect(dat) {
 	const aCode = sessionStorage.getItem("acCode");
 	const mainpage = document.getElementById("mainpage");
 	//const checkCode = "1133";
-	if(mainpage.hasChildNodes()){
-		while(mainpage.hasChildNodes()){
-			mainpage.removeChild(mainpage.firstChild);
-		}
-	}
+	delChild(mainpage);
 			const selectMom = document.createElement("div");
 			selectMom.setAttribute("id","selectMom");
-			selectMom.style.width = "600px";
+			selectMom.style.width = "1350px";
 			selectMom.style.height = "50px";
 			selectMom.style.position = "relative";
 			selectMom.style.left = "2%";
 			selectMom.style.top = "1%";
 			let aSelect = document.createElement("select");
 			aSelect.setAttribute("id", "aSelect");
-			//aSelect.setAttribute("onchange","makeSelected(" + checkCode + "," + aCode +")");
 			aSelect.setAttribute("onchange","makeSelected()");
 			aSelect.style.width = "200px";
 			aSelect.style.height = "40px";
@@ -491,6 +475,7 @@ function academySelect(dat) {
 			
 			
 			let firstOption = document.createElement("option");
+				firstOption.setAttribute("id","firstOption");
 				firstOption.innerHTML = "학원 선택"
 				//if(acCode == null) {
 				firstOption.setAttribute("selected","selected");
@@ -511,11 +496,7 @@ function academySelect(dat) {
 					aSelect.appendChild(option);
 				}
 			
-			if(mainpage.hasChildNodes()) {
-				while(mainpage.hasChildNodes()) {
-				mainpage.removeChild(mainpage.firstChild);
-				}
-			}
+			delChild(mainpage);
 
 			const cSelect = document.createElement("div");
 			cSelect.setAttribute("id","cSelect");
@@ -523,43 +504,31 @@ function academySelect(dat) {
 			selectMom.appendChild(aSelect);
 			const bigMom = document.createElement("div");
 			bigMom.setAttribute("id","bigMom");
-			bigMom.style.width = "90%";
+			bigMom.setAttribute("type","hidden");
+			bigMom.style.width = "1300px";
 			bigMom.style.height = "70%";
-			if(intCode == "get") {
-			bigMom.style.marginLeft = "12%";
-			}else {
-			bigMom.style.marginLeft = "17%";
-			}
-			//bigMom.style.border = "1px solid #000000";
+			bigMom.style.marginLeft = "0%";
 			bigMom.style.marginTop = "3%";
-			//bigMom.style.float = "left";
-			const dateDiv = document.createElement("div");
-			dateDiv.setAttribute("id","dateDiv");
-			dateDiv.style.height = "15%";
-			//dateDiv.style.border = "1px solid #000000";
 			const DSDiv = document.createElement("div");
-			dateDiv.appendChild(DSDiv);
 			DSDiv.setAttribute("id","DSDiv");
 			DSDiv.style.position = "absolute";
-			DSDiv.style.left = "53%";
-			DSDiv.style.marginTop = "10px";
-			DSDiv.style.height = "5%";
-			//DSDiv.style.top = "50%";
-			//DSDiv.style.transform = "translate(-50%,-50%)";
+			DSDiv.style.top = "0%";
+			DSDiv.style.marginLeft = "83%";
 			DSDiv.style.width = "20%";
-			//DSDiv.style.height = "100%";
+			const tableMomT = document.createElement("div");
+			tableMomT.setAttribute("id", "tableMomT");
+			tableMomT.style.width = "99%";
+			tableMomT.style.height = "15%";
+			tableMomT.style.marginLeft = "20px";
 			const tableMom = document.createElement("div");
 			tableMom.setAttribute("id","tableMom");
-			tableMom.setAttribute("type","hidden");
-			tableMom.style.marginTop = "0%";
-			tableMom.style.height = "75%";
-			//tableMom.style.border = "1px solid #000000";
-			tableMom.style.float = "left";
+			tableMom.style.width = "100%";
+			tableMom.style.height = "85%";
+			tableMom.style.marginLeft = "20px";
 			tableMom.style.overflow = "auto";
 			tableMom.style.overflowX = "hidden";
-			tableMom.style.paddingTop = "3%";
-			//tableMom.style.float = "left";
-			bigMom.appendChild(dateDiv);
+			selectMom.appendChild(DSDiv);
+			bigMom.appendChild(tableMomT);
 			bigMom.appendChild(tableMom);
 			
 			mainpage.appendChild(selectMom);
@@ -568,7 +537,6 @@ function academySelect(dat) {
 
 function makeSelected(selectedCode) {
 	const userId = document.getElementsByName("userId")[0].value;
-
 	if(selectedCode != undefined) {
 			sessionStorage.setItem("acCode",selectedCode);
 			const data = "teacherId=" + userId + "&acCode=" + selectedCode;
@@ -589,6 +557,7 @@ function makeSelected(selectedCode) {
 }
 
 function openModal(acCode) {
+	const twoB = document.getElementById("twoB");
 	const exampleModal = document.getElementById("exampleModal");
     	  exampleModal.style.display = "flex"
 	const confirmBtn = document.getElementById("confirmBtn");
@@ -596,10 +565,13 @@ function openModal(acCode) {
 	const btnclose = document.getElementById("btn-close");
 		btnclose.addEventListener("click", e => {
     		exampleModal.style.display = "none"
+			twoB.click();
 	})
 }
 
 function closeModal() {
+	const inputPwd = document.getElementById("inputPwd");
+	inputPwd.setAttribute("value","");
 	const exampleModal = document.getElementById("exampleModal");
     	  exampleModal.style.display = "none"
 }
@@ -610,53 +582,71 @@ function checkPassword(acCode) {
 	const userId = document.getElementsByName("userId")[0].value;
 	const inputPwd = document.getElementById("inputPwd").value;
 	const data = "teacherId=" + userId + "&acCode=" + acCode + "&password=" + inputPwd;
-	getAjaxData("CheckPwd",data,"classOnAc","post");
+	getAjaxData("CheckPwd",data,"goOrNot","post");
+}
+
+function goOrNot(data) {
+	const twoB = document.getElementById("twoB");
+	if(data == "0") {
+		closeModal();
+		sessionStorage.clear();
+		//sendMessage("비밀번호가 일치하지 않습니다. 다시 시도해주세요.");
+	Swal.fire({
+  title: '비밀번호가 일치하지 않습니다. 다시 시도해주세요.',
+  showDenyButton: true,
+  showCancelButton: false,
+  confirmButtonText: '확인',
+  denyButtonText: `Don't save`,
+}).then((result) => {
+  /* Read more about isConfirmed, isDenied below */
+  if (result.isConfirmed) {
+		twoB.click();
+  } else if (result.isDenied) {
+    Swal.fire('Changes are not saved', '', 'info')
+  }
+})
+	}else{
+		makeSelected(data);
+	}
+	
+
 }
 
 function classOnAc(dat) {
 	closeModal()
-	if(dat != '') {
-		const presentAcCode = document.getElementsByName("acCode")[0].value;
-		sessionStorage.setItem("acCode",presentAcCode);
-		const cSelect = document.getElementById("cSelect");
-		const tableMom = document.getElementById("tableMom");
-
-		let data = JSON.parse(dat);
-
-		if(cSelect.hasChildNodes()) {
-			while(cSelect.hasChildNodes()) {
-			cSelect.removeChild(cSelect.firstChild);
-			}
-		}
-		if(tableMom.hasChildNodes()) {
-			while(tableMom.hasChildNodes()) {
-			tableMom.removeChild(tableMom.firstChild);
-			}
-		}
-				for(let i=0; i<data.length; i++) {
-					let classBtn = document.createElement("input");
-						classBtn.setAttribute("onclick", "chooseDate('"+ data[i].clCode +"')");
-						classBtn.setAttribute("id",data[i].clCode);
-						classBtn.setAttribute("type","button");
-						classBtn.setAttribute("value",data[i].clName);
-						classBtn.style.textAlign = "center";
+		if(dat != '') {
+			const cSelect = document.getElementById("cSelect");
+			const tableMom = document.getElementById("tableMom");
+	
+			let data = JSON.parse(dat);
+	
+			delChild(cSelect);
+			delChild(tableMom);
+					for(let i=0; i<data.length; i++) {
+						let classBtn = document.createElement("input");
+							classBtn.setAttribute("onclick", "chooseDate('"+ data[i].clCode +"')");
+							classBtn.setAttribute("id",data[i].clCode);
+							classBtn.setAttribute("type","button");
+							classBtn.setAttribute("value",data[i].clName);
+							classBtn.style.textAlign = "center";
 						classBtn.style.border = "none";
-						classBtn.style.marginLeft = "7px";
-						classBtn.style.height = "36px";
-						classBtn.style.background = "#CFCFCF";
-						
-						cSelect.appendChild(classBtn);
-				}
-			const selectMom = document.getElementById("selectMom");
-			selectMom.appendChild(cSelect);
-	}else {
-		sendMessage("등록된 반이 존재하지 않습니다.");
-	}
+								classBtn.style.marginLeft = "7px";
+							classBtn.style.height = "36px";
+							classBtn.style.background = "#CFCFCF";
+							
+							cSelect.appendChild(classBtn);
+						}
+				const selectMom = document.getElementById("selectMom");
+				selectMom.appendChild(cSelect);
+		}else {
+			sendMessage("등록된 반이 존재하지 않습니다.");
+		}
+	
 }
 
 function chooseDate(clCode) {
-	const dateDiv = document.getElementById("dateDiv");
 	const DSDiv = document.getElementById("DSDiv");
+	const selectMom = document.getElementById("selectMom");
 	const insDate = document.createElement("input");
 	insDate.setAttribute("id","insDate");
 	insDate.setAttribute("type","month");
@@ -666,15 +656,12 @@ function chooseDate(clCode) {
 	insDate.style.position = "absolute";
 	//insDate.style.left = "52%";
 	insDate.style.width = "150px";
-	//insDate.style.border = "none";
+	//insDate.style.borderR = "none";
 	//insDate.style.stroke = "none";
 	//insDate.style.transform = "translate: translate(-50%)";
-	if(DSDiv.hasChildNodes()) {
-		while(DSDiv.hasChildNodes()){
-			DSDiv.removeChild(DSDiv.firstChild);
-		}
-	}
+	delChild(DSDiv);
 	DSDiv.appendChild(insDate);
+	selectMom.appendChild(DSDiv);
 	getGrade(clCode);
 }
 
@@ -693,15 +680,16 @@ function displayGrade(dat) {
 	if(dat != '[]') {
 	let data = JSON.parse(dat);
 	const tableMom = document.getElementById("tableMom");
-	const mainpage = document.getElementById("mainpage");
-	if(tableMom.hasChildNodes()) {
-		while(tableMom.hasChildNodes()) {
-		tableMom.removeChild(tableMom.firstChild);
-		}
-	}
-			let table = document.createElement("table");
-			table.style.borderCollapse = "separate";
-			table.style.borderSpacing = "10px";
+	const tableMomT = document.getElementById("tableMomT");
+	delChild(tableMom);
+	delChild(tableMomT);
+	
+	
+			let tableT = document.createElement("table");
+			tableT.setAttribute("id","tableT");
+			tableT.style.borderCollapse = "separate";
+			tableT.style.borderSpacing = "10px";
+			tableT.style.width = "100%";
 			let mTr = createTr("mTr1");
 			let mTd1 = createTd("mTd1");
 			let mTd2 = createTd("mTd2");
@@ -720,8 +708,13 @@ function displayGrade(dat) {
 			mTr.appendChild(mTd4);
 			mTr.appendChild(mTd5);
 			
-			table.appendChild(mTr);
+			tableT.appendChild(mTr);
 			
+			
+			let table = document.createElement("table");
+			table.style.borderCollapse = "separate";
+			table.style.borderSpacing = "10px";
+			table.style.width = "100%";
 			for(let i=0; i<data.length; i++) {
 				let tr = createTr("tr1");
 				
@@ -744,15 +737,15 @@ function displayGrade(dat) {
 			table.appendChild(tr);
 			}
 		//tableMom.style.border = "0.7px solid #BDBDBD";
+		
 		tableMom.appendChild(table);
+		tableMomT.appendChild(tableT);
 	}else {
 		sendMessage("등록된 성적이 없습니다.");
 		tableMom.style.border = "none";
-		if(tableMom.hasChildNodes()){
-			while(tableMom.hasChildNodes()){
-				tableMom.removeChild(tableMom.firstChild);
-			}
-		}
+		delChild(tableMom);
+		delChild(tableMomT);
+		delChild(DSDiv);
 	}
 }
 
@@ -763,13 +756,15 @@ function modGradeForm(dat) {
 			sendMessage("등록된 성적이 존재하지 않습니다.");
 		}else {
 	let data = JSON.parse(dat);
+	const tableMomT = document.getElementById("tableMomT");
 	const tableMom = document.getElementById("tableMom");
-	const mainpage = document.getElementById("mainpage");
+	const bigMom = document.getElementById("bigMom");
 
-			let table = document.createElement("table");
-			table.setAttribute("id","theTable");
-			table.style.borderCollapse = "separate";
-			table.style.borderSpacing = "10px";
+			let tableT = document.createElement("table");
+			tableT.setAttribute("id","tableT");
+			tableT.style.borderCollapse = "separate";
+			tableT.style.borderSpacing = "10px";
+			tableT.style.width = "100%";
 			let mTr = createTr("mTr1");
 			let mTd1 = createTd("mTd1");
 			let mTd2 = createTd("mTd2");
@@ -778,15 +773,21 @@ function modGradeForm(dat) {
 			mTd1.innerHTML = "시험명";
 			mTd2.innerHTML = "학생이름";
 			mTd3.innerHTML = "점수";
-			mTd4.innerHTML = "반석차";
+			mTd4.innerHTML = "총원";
 			
 			mTr.appendChild(mTd1);
 			mTr.appendChild(mTd2);
 			mTr.appendChild(mTd3);
 			mTr.appendChild(mTd4);
 			
-			table.appendChild(mTr);
+			tableT.appendChild(mTr);
 			
+			
+			let table = document.createElement("table");
+			table.setAttribute("id","theTable");
+			table.style.borderCollapse = "separate";
+			table.style.borderSpacing = "10px";
+			table.style.width = "100%";			
 			for(let i=0; i<data.length; i++) {
 				let tr = createTr("tr1");
 				let td1 = createSTd(data[i].sbacode);
@@ -795,7 +796,9 @@ function modGradeForm(dat) {
 				let td4 = createSTd("td4");
 				
 				td1.innerHTML = data[i].subjectName;
+				td1.style.textAlign = "center";
 				td2.innerHTML = data[i].sname;
+				td2.style.textAlign = "center";
 				
 				let mScore = document.createElement("input");
 				mScore.setAttribute("type","text");
@@ -805,26 +808,14 @@ function modGradeForm(dat) {
 				mScore.style.height = "95%";
 				mScore.style.border = "none";
 				td3.appendChild(mScore);
-				
-				let mRank = document.createElement("input");
-				mRank.setAttribute("type","text");
-				mRank.setAttribute("value",data[i].rank);
-				mRank.style.width = "50%";
-				mRank.style.height = "100%";
-				mRank.style.textAlign = "right";
-				mRank.style.width = "50px";
-				mRank.style.height = "22px";
-				mRank.style.border = "none";
-				td4.appendChild(mRank);
-				
+
 				let mhCount = document.createElement("input");
 				mhCount.setAttribute("readonly",true);
-				mhCount.setAttribute("value"," / " +data[i].headCount);
+				mhCount.setAttribute("value",data[i].headCount);
 				mhCount.style.textAlign = "center";
-				mhCount.style.width = "40%";
-				mhCount.style.height = "100%";
+				mhCount.style.width = "95%";
+				mhCount.style.height = "95%";
 				mhCount.style.border = "none";
-				mhCount.style.stroke = "none";
 				td4.appendChild(mhCount);
 				
 				tr.appendChild(td1);
@@ -839,22 +830,23 @@ function modGradeForm(dat) {
 			regBtn.setAttribute("value","등록");
 			//regBtn.setAttribute("onclick","modToJson('mod')");
 			regBtn.setAttribute("onclick","beforeAction('mod')");
-			regBtn.style.textAlign = "center";
-			regBtn.style.position = "absolute";
-			regBtn.style.top = "75%";
-			regBtn.style.right = "10%";
 			regBtn.style.cursor = "pointer";
 			regBtn.style.width = "90px";
 			regBtn.style.height = "40px";
+			regBtn.style.borderRadius = "5px";
+			regBtn.style.border = "2px solid #92acbb";
+			regBtn.style.border = "none";
+			regBtn.style.marginLeft = "95%";
+			regBtn.style.marginTop = "3%";
+			regBtn.style.background = "#CFCFCF";
+			regBtn.style.color = "#FFFFFF";
+			regBtn.style.fontSize = "15px";
 			
-		mainpage.appendChild(regBtn);
+		bigMom.appendChild(regBtn);
 		
 		
-	if(tableMom.hasChildNodes()) {
-		while(tableMom.hasChildNodes()) {
-		tableMom.removeChild(tableMom.firstChild);
-		}
-	}
+	delChild(tableMom);
+	tableMomT.appendChild(tableT);
 	tableMom.appendChild(table);
 	}
 	}
@@ -883,9 +875,8 @@ function modToJson(numb){
 	let action = "";
 	const theTable = document.getElementById("theTable");
 	let gradeJson = [];
-	for (let i=1; i<=theTable.childNodes.length-1; i++ ) {
+	for (let i=0; i<theTable.childNodes.length; i++ ) {
 		let tr = theTable.childNodes[i];
-		
 		//sbaCode
 			let subjectTd = tr.childNodes[0];
 			let SBACodes = subjectTd.getAttribute("id");
@@ -893,14 +884,24 @@ function modToJson(numb){
 		//studentId
 			let studentTd = tr.childNodes[1];
 			let studentIds = studentTd.getAttribute("id");
-			
 		//score
 			let scoreTd = tr.childNodes[2];
 			let scores = scoreTd.childNodes[0].value;
 			
 		//rank
-			let rankTd = tr.childNodes[3];
-			let ranks = rankTd.childNodes[0].value;
+			let ranks = [];
+		
+				for(let w=0; w<theTable.childNodes.length; w++) {
+					ranks.push({rank:1});
+				}
+			
+			for(let a=0; a<theTable.childNodes.length; a++) {
+				for(let b=0; b<theTable.childNodes.length; b++) {
+					if(parseInt(theTable.childNodes[b].childNodes[2].childNodes[0].value) > parseInt(theTable.childNodes[a].childNodes[2].childNodes[0].value)) {
+						ranks[a].rank++
+					}
+				}
+			}
 		
 		//acCode
 			const acCodes = SBACodes.substring(5,15);
@@ -911,27 +912,24 @@ function modToJson(numb){
 			
 		//date
 			
-		//if(numb != "reg") {		
-		//	gradeJson.push({sbacode:SBACodes,studentId:studentIds,score:scores,rank:ranks,acCode:acCodes,clCode:clCodes,teacherId:teacherIds});
-		//}else {
-			const date = document.getElementById("insDate").value;	
-			const sDate = date.substring(0,4) + date.substring(5,7);
-			gradeJson.push({sbacode:SBACodes,studentId:studentIds,score:scores,rank:ranks,month:sDate,acCode:acCodes,clCode:clCodes,teacherId:teacherIds});
-		//}
+			const date = document.getElementById("insDate");
+			const dateValue = date.value;
+			const sDate = dateValue.substring(0,4) + dateValue.substring(5,7);
+			gradeJson.push({sbacode:SBACodes,studentId:studentIds,score:scores,rank:ranks[i].rank,month:sDate,acCode:acCodes,clCode:clCodes,teacherId:teacherIds});
+		
 	}
 	if(numb != "reg") {
 		action = "ModGrade";
 	}else {
 		action = "RegGrade";
 	}
-	//displaySomething(JSON.stringify(gradeJson));
+	
 	modAjax(action,JSON.stringify(gradeJson),"afterAction","post");
 }
 
 function afterAction(a) {
 const twoB = document.getElementById("twoB");
 	Swal.fire(a).then((result) => {
-  /* Read more about isConfirmed, isDenied below */
   if (result.isConfirmed) {
 	twoB.click();
   } else if (result.isDenied) {
@@ -947,17 +945,17 @@ function regGradeForm(dat) {
 			sendMessage("학생이 존재하지 않습니다.");
 		}else {
 	let data = JSON.parse(dat);
+	const tableMomT = document.getElementById("tableMomT");
 	const tableMom = document.getElementById("tableMom");
 	const mainpage = document.getElementById("mainpage");
-	if(tableMom.hasChildNodes()) {
-		while(tableMom.hasChildNodes()){
-			tableMom.removeChild(tableMom.firstChild);
-		}
-	}
-			let table = document.createElement("table");
-			table.setAttribute("id","theTable");
-			table.style.borderCollapse = "separate";
-			table.style.borderSpacing = "10px";
+	const bigMom = document.getElementById("bigMom");
+	delChild(tableMom);
+	delChild(tableMomT);
+	
+			let tableT = document.createElement("table");
+			tableT.style.borderCollapse = "separate";
+			tableT.style.borderSpacing = "10px";
+			tableT.style.width = "100%";
 			let mTr = createTr("mTr1");
 			let mTd1 = createTd("mTd1");
 			let mTd2 = createTd("mTd2");
@@ -966,15 +964,20 @@ function regGradeForm(dat) {
 			mTd1.innerHTML = "시험명";
 			mTd2.innerHTML = "학생이름";
 			mTd3.innerHTML = "점수";
-			mTd4.innerHTML = "반석차";
+			mTd4.innerHTML = "총원";
 			
 			mTr.appendChild(mTd1);
 			mTr.appendChild(mTd2);
 			mTr.appendChild(mTd3);
 			mTr.appendChild(mTd4);
 			
-			table.appendChild(mTr);
-			
+			tableT.appendChild(mTr);
+			tableMomT.appendChild(tableT);
+			let table = document.createElement("table");
+			table.setAttribute("id","theTable");
+			table.style.borderCollapse = "separate";
+			table.style.borderSpacing = "10px";
+			table.style.width = "100%";
 			for(let i=0; i<data.length; i++) {
 				let tr = createTr("tr1");
 				let td1 = createSTd(data[i].sbacode);
@@ -983,7 +986,9 @@ function regGradeForm(dat) {
 				let td4 = createSTd("td4");
 				
 				td1.innerHTML = data[i].subjectName;
-				td2.innerHTML = data[i].sname;		
+				td1.style.textAlign = "center";
+				td2.innerHTML = data[i].sname;	
+				td2.style.textAlign = "center";	
 					
 				let mScore = document.createElement("input");
 				mScore.setAttribute("placeholder","점수 입력");
@@ -996,25 +1001,13 @@ function regGradeForm(dat) {
 				mScore.style.border = "none";
 				td3.appendChild(mScore);
 				
-				let mRank = document.createElement("input");
-				mRank.setAttribute("placeholder","석차");
-				mRank.setAttribute("type","number");
-				mRank.setAttribute("min",1);
-				mRank.setAttribute("max",data[i].headCount);
-				mRank.style.width = "50%";
-				mRank.style.height = "100%";
-				mRank.style.textAlign = "right";
-				mRank.style.border = "none";
-				td4.appendChild(mRank);
-				
 				let mhCount = document.createElement("input");
 				mhCount.setAttribute("readonly",true);
-				mhCount.setAttribute("value"," / " +data[i].headCount);
-				mhCount.style.textAlign = "left";
-				mhCount.style.width = "40%";
-				mhCount.style.height = "100%";
+				mhCount.setAttribute("value",data[i].headCount);
+				mhCount.style.textAlign = "center";
+				mhCount.style.width = "95%";
+				mhCount.style.height = "95%";
 				mhCount.style.border = "none";
-				mhCount.style.stroke = "none";
 				td4.appendChild(mhCount);
 				
 				tr.appendChild(td1);
@@ -1024,28 +1017,30 @@ function regGradeForm(dat) {
 			table.appendChild(tr);
 			}
 	
-			const dateDiv = document.createElement("div");
-			dateDiv.style.position = "absolute";
-			dateDiv.style.top = "85%";
-			dateDiv.style.right = "20%";
-			dateDiv.style.cursor = "pointer";
-			dateDiv.style.float = "left";
+			tableMom.appendChild(table);
+
 			//dateDiv.style.border = "1px solid #000000";
 			const regBtn = document.createElement("input");
 			regBtn.setAttribute("type","button");
 			regBtn.setAttribute("value","등록");
 			regBtn.setAttribute("onclick","beforeAction('reg')");
-			//regBtn.style.position = "absolute";
-			//regBtn.style.top = "75%";
-			//regBtn.style.right = "20%";
 			regBtn.style.cursor = "pointer";
-		dateDiv.appendChild(regBtn);
+			regBtn.style.width = "90px";
+			regBtn.style.height = "40px";
+			regBtn.style.borderRadius = "5px";
+			regBtn.style.border = "2px solid #92acbb";
+			regBtn.style.border = "none";
+			regBtn.style.marginLeft = "95%";
+			regBtn.style.marginTop = "3%";
+			regBtn.style.background = "#CFCFCF";
+			regBtn.style.color = "#FFFFFF";
+			regBtn.style.fontSize = "15px";
+		bigMom.appendChild(regBtn);
 	//if(tableMom.hasChildNodes()) {
 	//	while(tableMom.hasChildNodes()) {
 	//	tableMom.removeChild(tableMom.firstChild);
 	//}
 	
-	tableMom.appendChild(table);
 	mainpage.appendChild(dateDiv);
 		}
 	
@@ -1077,6 +1072,15 @@ function modAjax(action,data,fn,method){
 		}
 }
 
+function delChild(element) {
+	//const element = document.getElementById(name);
+	if(element.hasChildNodes()) {
+		while (element.hasChildNodes()) {
+			element.removeChild(element.firstChild);
+		}
+	}
+}
+
 function createTr(id) {
 	const tr = document.createElement("tr");
 	tr.setAttribute("id",id);
@@ -1094,6 +1098,7 @@ function createTd(id) {
 	td.style.width = "200px";
 	td.style.height = "40px";
 	td.style.textAlign = "center";
+	td.style.fontSize = "15px";
 return td;
 }
 
@@ -1104,6 +1109,8 @@ function createSTd(id) {
 	td.style.borderRadius = "1px";
 	td.style.width = "200px";
 	td.style.height = "40px";
+	td.style.textAlign = "center";
 	td.style.textAlign = "left";
+	td.style.fontSize = "15px";
 return td;
 }

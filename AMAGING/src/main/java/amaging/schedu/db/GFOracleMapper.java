@@ -23,7 +23,7 @@ public interface GFOracleMapper {
 	public List<ACPlan> getTeacherAcademy(AcList ac);
 	public List<ACPlan> getChildAcademy(ACPlan ac);
 	public List<GradeBean> getSubject(Subject sj);
-	public int checkPwd(AcList ac);
+	public String checkPwd(AcList ac);
 	public List<Subject> getTeacherClass(AcList ac);
 	public int modGrade(GradeBean grade);
 	public List<GradeBean> getStudentList(GradeBean grade);

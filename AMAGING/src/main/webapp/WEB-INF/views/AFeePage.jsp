@@ -10,6 +10,7 @@
 	<script src="resources/js/fee.js"></script>
 	<script src="resources/js/acPlan.js"></script>
 	<link rel="stylesheet" type="text/css" href="resources/css/ad.css" />
+ <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
 <style>
 #frame {
    width: 100%;
@@ -229,7 +230,7 @@ position:absolute; left:45%; top:1%;
 
 
             <span id="logo" onclick="getPage('amainservice','/MoveMainservice')"></span>
-            <div id="sessionBox"><span id="session">김현우님 환영합니다.</span></div>
+            <div id="sessionBox"><span id="session">${sessionInfo.userName}님 환영합니다.</span></div>
             <div id="logOut">
                <span><input type="button" id="btn" value="로그아웃" onclick="accessAdminOut()"
                   onmouseover="mouseOver(this)" onmouseout="mouseLeave(this)"></span>
@@ -247,10 +248,10 @@ position:absolute; left:45%; top:1%;
                <input type="button" class="bothB" id="twoB" onclick="getPage('amainservice', '/AClassPage')"> 
                <input type="button" class="bothB" id="threeB" onclick="getPage('amainservice','AFeePage')">
                  <div class="div1">
-                    <div class="div2" onclick="adminFee()">
+                    <div id = "feeFirst"  class="div2" onclick="adminFee()">
                    ●&nbsp;&nbsp;조회/수정
                      </div>
-                    <div class="div2" onclick="adminRegFee()">
+                    <div id = "feeSecond" class="div2" onclick="adminRegFee()">
                  ●&nbsp;&nbsp;등록
                       </div>
                </div>
