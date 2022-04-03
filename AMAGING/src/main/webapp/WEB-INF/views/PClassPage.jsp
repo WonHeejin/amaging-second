@@ -221,12 +221,14 @@ position:absolute; left:45%; top:1%;
 }
 
 #calendar {
+	float: left;
 	margin-left: 5%;
-	width: 80%;
+	width: 90%;
 	height: 80%;
+	
 }
 .fc-event{
-	font-weight: 900;
+	font-weight: 700;
 	font-size: 18px;
 }
 .fc .fc-button-primary {

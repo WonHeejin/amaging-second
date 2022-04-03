@@ -96,7 +96,10 @@ function calendar() {
 				});//ajax end		
 		},//eventDidMount end
 		eventClick: function(arg){
-			let data = "studentId=" + document.getElementsByName("userId")[0].value
+			const userCode = document.getElementsByName("userCode")[0].value;
+			let userId = (userCode == 1) ? sessionStorage.getItem("sCode")
+				: document.getElementsByName("userId")[0].value;
+			let data = "studentId=" + userId
 				+ "&subjectCode=" + arg.event.id;
 				$.ajax({
 					type: "post", url: "/GetAtLog", data, dataType: "json",
@@ -125,18 +128,19 @@ function calendar() {
 									absent=result[1].cocode;
 									attend=result[2].cocode;
 								}
-							}else{
+							}else if(result[0].cocodenum==23){
 								absent=result[0].cocode;
 								if(result[1].cocodenum==21){
 									attend=result[1].cocode;
 									late=result[2].cocode;
 								}else{
-									absent=result[1].cocode;
+									attend=result[1].cocode;
 									late=result[2].cocode;
 								}
 							}
 						}//if(result.length>0) end 
 						let total=parseInt(attend)+parseInt(absent)+parseInt(late);
+						console.log(attend+"&"+absent+"&"+late)
 			Swal.fire({
 				title: ' 출석현황'+"<br>"+arg.event.extendedProps.description,
 				html: 	"출석 "+attend+"</br>"

@@ -11,6 +11,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
 <link rel="stylesheet" type="text/css" href="resources/css/tc.css" />
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
  
  
 <style>
@@ -641,7 +642,10 @@ function searchStudent(userIdData){
 		apidata();
 		todayDate();
 	}else{
-		alert("교육기관을 선택해 주세요")
+		Toast.fire({
+			  icon: 'warning',
+			  title: '교육기관을 선택해 주세요'
+			});
 	}
 			
 }
@@ -681,7 +685,7 @@ function resultM(data){
 	if(data == 'success'){
 		return searchSI();
 	}else{
-		alert("입력정보에 오류가 있습니다.");
+		Swal.fire("입력정보에 오류가 있습니다.");
 		let threeData = document.getElementById("mainTwo");
 		while(threeData.hasChildNodes()){
 			threeData.removeChild(threeData.lastChild);}
@@ -775,10 +779,10 @@ function upAfterM(data){
 	}
 	
 	if(data == 'success'){
-		alert("수정이 완료되었습니다.");
+		Swal.fire("수정이 완료되었습니다.");
 		return reOpen();
 	}else{
-		alert("입력정보에 오류가 있습니다.");
+		Swal.fire("입력정보에 오류가 있습니다.");
 	}
 }
 
@@ -904,7 +908,10 @@ function attandanceStart(userIdData){
 	if(sessionStorage.getItem("ID") != null){
 		abcd();
 	}else{
-		alert("교육기관을 선택해 주세요")
+		Toast.fire({
+			  icon: 'warning',
+			  title: '교육기관을 선택해 주세요'
+			});
 	}
 	
 	const action = "GetASchoolList";
@@ -1005,12 +1012,24 @@ function autoselectbarD(){
 	}
 }
 
+const Toast = Swal.mixin({
+	toast: true,
+	position: 'center-center',
+	showConfirmButton: false,
+	timer: 1500,
+	timerProgressBar: true,
+	didOpen: (toast) => {
+	toast.addEventListener('mouseenter', Swal.stopTimer)
+	toast.addEventListener('mouseleave', Swal.resumeTimer)
+	}
+	})
+	
 function sClass(data){
 	if(data == "success"){
-		alert("교육기관이 선택되었습니다.");
+		swal.fire('교육기관이 선택되었습니다.');
 		return abcd();
 	}else{
-		alert("비번이 틀렸습니다.");
+		Swal.fire("비번이 틀렸습니다.");
 		var aIdx = document.getElementById("academySession");
 		aIdx.innerText = "";
 		let upTitle = document.getElementById("academySession");
@@ -1052,7 +1071,7 @@ function checkSA(SAList){
 	let sAList;
 	sAList = JSON.parse(SAList);
 	if(sAList[0].atStatus == '11'){
-		alert("수업시간이 아닙니다.");
+		swal.fire("수업시간이 아닙니다.");
 	}
 	let downTitle = document.getElementById("mainTwo");
 	let a = 0;

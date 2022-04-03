@@ -227,7 +227,7 @@ position:absolute; left:45%; top:1%;
 /*event 글씨 진하게*/
 .fc-event{
 	font-weight: bold;
-	
+	cursor:pointer;
 }
 .legend{
 	padding:0px 30px; border-radius:5px; font-weight: bold;

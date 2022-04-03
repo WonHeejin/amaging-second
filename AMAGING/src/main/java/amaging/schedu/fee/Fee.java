@@ -55,7 +55,6 @@ public class Fee extends amaging.schedu.common.CommonMethod{
 	private void feeAmounts(ModelAndView mav) {
 		String amount = gfo.getAmounts((UserInfo)mav.getModelMap().getAttribute("uf"));
 		mav.addObject("msg",amount);
-		System.out.println("feeAmounts : " + mav.getModelMap().getAttribute("msg"));
 	}
 	
 	@SuppressWarnings("unchecked")
@@ -126,7 +125,6 @@ public class Fee extends amaging.schedu.common.CommonMethod{
 		} 
 		
 		message = (tran=true)? "등록 완료" : "등록 실패. 다시 시도해주세요.";
-		
 		this.setTransactionEnd(tran);
 		mav.addObject("msg",message);
 		
