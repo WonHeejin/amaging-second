@@ -9,6 +9,7 @@
 <script src="resources/js/info.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
 <link rel="stylesheet" type="text/css" href="resources/css/st.css" />
+<link href="https://hangeul.pstatic.net/hangeul_static/css/nanum-square-round.css" rel="stylesheet">
 <style>
 #frame {
 	width: 100%;

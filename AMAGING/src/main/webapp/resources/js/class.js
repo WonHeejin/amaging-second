@@ -3,7 +3,7 @@ function calendar(action) {
 	var calendarEl = document.getElementById('calendar');
 	var calendar = new FullCalendar.Calendar(calendarEl, {
 		slotMinTime: '09:00',
-		slotMaxTime: '23:00',
+		slotMaxTime: '21:00',
 		allDaySlot: false,
 		contentHeight: 700,
 		expandRows: true,

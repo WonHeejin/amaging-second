@@ -235,8 +235,9 @@
 #calendar {
 	float: left;
 	margin-left: 7%;
-	width: 80%;
+	width: 90%;
 	height: 80%;
+	
 }
 .fc-event{
 	font-weight: 700;
@@ -254,6 +255,7 @@
  	text-align:center;
  	padding:5px;
  }
+
 </style>
 
 </head>

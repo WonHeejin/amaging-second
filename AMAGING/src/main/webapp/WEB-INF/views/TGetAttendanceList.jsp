@@ -524,11 +524,15 @@ input[type="text"] {background-image: url(https://cdn1.iconfinder.com/data/icons
 					font-weight:bolder;
 					font-size:15px;}
 					
-.aSB				{width:100px;
+.aSB				{width:120px;
 					height:40px;
 					border-radius: 5px;
 					cursor:pointer;
-					background-color:#00A6EF;}
+					background-color:#D5D5D5;
+					border:none;
+					box-shadow:5px 5px 5px #747474;}
+					
+.aSB:active			{box-shadow:none;}
 					
 .attendanceBoard	{width:123px;
     				height:50px;
@@ -600,14 +604,18 @@ window.onload =function(){
 			sessionStorage.setItem("ID",'ICAA');
 		}else if(sessionStorage.getItem("acCode") == "2222234343"){
 			sessionStorage.setItem("ID",'합격학원');
+		}else if(sessionStorage.getItem("acCode") == "7808700034"){
+			sessionStorage.setItem("ID",'기가스터디');
 		}
 	}
 	if(sessionStorage.getItem("ID") == 'ICAA'){
-		document.getElementById("aInfo").selectedIndex = "1";
-	}else if(sessionStorage.getItem("ID") == '합격학원'){
-		document.getElementById("aInfo").selectedIndex = "3";
-	}else if(sessionStorage.getItem("ID") == '성공학원'){
 		document.getElementById("aInfo").selectedIndex = "2";
+	}else if(sessionStorage.getItem("ID") == '합격학원'){
+		document.getElementById("aInfo").selectedIndex = "4";
+	}else if(sessionStorage.getItem("ID") == '성공학원'){
+		document.getElementById("aInfo").selectedIndex = "3";
+	}else if(sessionStorage.getItem("ID") == '기가스터디'){
+		document.getElementById("aInfo").selectedIndex = "1";
 	}
 	startS();
 	closeModal();
@@ -642,13 +650,13 @@ function overlapC(){
 	
 	let searchData = '<div>';
 	searchData += '<span>';
-	searchData += '<input type="text" id="studentNameInfo" value="" placeholder="학생이름"/>';
+	searchData += '<input type="text" id="studentNameInfo" value="" placeholder="학생이름" onkeypress="if(event.keyCode==\'13\'){event.preventDefault(); beforeSearchSI();}">';
 	searchData += '</span>';
 	searchData += '<span>';
 	searchData += '<input type="date" id="dateInfo" />';
 	searchData += '</span>';
 	searchData += '<span>';
-	searchData += '<input type="button" id="selectSButton" value=" 검 색 " onClick="beforeSearchSI();"/>';
+	searchData += '<input type="button" id="selectSButton" name="selectSButtonE" value=" 검 색 " onClick="beforeSearchSI();"/>';
 	searchData += '</span>';
 	searchData += '</div>';
 	
@@ -823,7 +831,6 @@ function getChartRD() {
    ]);
 
    var barChartOption = {
-		title: '[Todays attendance rate]',
 		width: '100%'
     };
 
@@ -953,18 +960,19 @@ function insertA(e){
 		let mbody = document.getElementById("mbody");
 		let command = document.getElementsByName("command")[0];
 	
-		command.setAttribute("onClick","secondLogin('"+value+"')");
+		command.setAttribute("onclick","secondLogin('"+value+"')");
 		command.setAttribute("value","로그인");
 	
 		mheader.innerText = "비밀번호를 입력 해주세요";
 		let slf = "<div>";
-			slf += "<div><span id='pwText' >PassWord : </span><input type='password' id='secondPaword' name='secondPassword' placeholder='PASSWORD'/></div>";
+			slf += "<div><span id='pwText' >PassWord : </span><input type='password' id='secondPaword' name='secondPassword' placeholder='PASSWORD' onkeypress='if(event.keyCode==\"13\"){event.preventDefault(); secondLogin();}'/></div>";
 			slf += "<div><span name='wrongMessage' value='as'></span></div>";
 			slf += "</div>";
 		mbody.innerHTML = slf;
 		openModal();
 	}
 }
+
 function abcd(){
 	var aIdx = document.getElementById("academySession");
 	var han = aIdx.getAttribute("value");
@@ -976,6 +984,8 @@ function abcd(){
 		sessionStorage.setItem('acCode','2222234343');
 	}else if(han == '성공학원'){
 		sessionStorage.setItem('acCode','3568745688');
+	}else if(han == '기가스터디'){
+		sessionStorage.setItem('acCode','7808700034');
 	}
 	
 	const userId =document.getElementsByName("tCode")[0].value;
@@ -1093,13 +1103,13 @@ function colorChange(data){
 		let dTitle = document.getElementById("colorB("+idx+")");
 		if(document.getElementById("colorC("+idx+")").value == '21'){
 			dTitle.style.backgroundColor = "#79ABFF";
-			dTitle.style.color = "#5D5D5D";
+			dTitle.style.color = "#FFF";
 		}else if(document.getElementById("colorC("+idx+")").value == '22'){
 			dTitle.style.backgroundColor = "#F2CB61";
-			dTitle.style.color = "#5D5D5D";
+			dTitle.style.color = "#FFF";
 		}else if(document.getElementById("colorC("+idx+")").value == '23'){
 			dTitle.style.backgroundColor = "#FF8383";
-			dTitle.style.color = "#5D5D5D";
+			dTitle.style.color = "#FFF";
 		}
 	}
 	
