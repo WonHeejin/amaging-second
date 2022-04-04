@@ -2,7 +2,6 @@
 
 
 function adminFee() {
-	const acCode = document.getElementsByName("acCode")[0].value;
 	const mainpage = document.getElementById("mainpage");
 	const bigMom = document.createElement("div");
 	bigMom.setAttribute("id", "bigMom");
@@ -12,14 +11,10 @@ function adminFee() {
 	tableMomT.style.height = "35%";
 	tableMomT.style.marginTop = "30px";
 	tableMomT.style.marginLeft = "20px";
-	//tableMomT.style.overflow = "auto";
-	//tableMomT.style.overflowX = "hidden";
 	const tableMom = document.createElement("div");
 	tableMom.setAttribute("id", "tableMom");
-	//tableMom.style.border = "1px solid #000000";
 	tableMom.style.width = "92.5%";
 	tableMom.style.height = "65%";
-	//tableMom.style.marginTop = "100px";
 	tableMom.style.marginLeft = "20px";
 	tableMom.style.overflow = "auto";
 	tableMom.style.overflowX = "hidden";
@@ -82,14 +77,12 @@ function adminFee() {
 	modBtnDiv.style.position = "absolute";
 	modBtnDiv.style.top = "0%";
 	modBtnDiv.style.marginLeft = "83%";
-	//modBtnDiv.style.width = "80px";
-	//modBtnDiv.style.height = "40px";
 
 	selectMom.appendChild(dateSelect);
 	selectMom.appendChild(nameSearch);
 	selectMom.appendChild(searchBtn);
 	selectMom.appendChild(modBtnDiv);
-	delChild(mainpage);
+	delChild("mainpage");
 
 	const saveBtnDiv = document.createElement("div");
 	saveBtnDiv.setAttribute("id", "saveBtnDiv");
@@ -103,10 +96,6 @@ function adminFee() {
 	bigMom.appendChild(tableMom);
 	mainpage.appendChild(selectMom);
 	mainpage.appendChild(bigMom);
-	//const date = document.getElementById("dateSelect").value;
-	//const data = "acCode=" + acCode + "&upMonth=" + "202202";
-	//const data = "acCode=" + acCode + "&upMonth=" + date.substring(0,4) + date.substring(5,7);
-	//getAjaxData("GetFeeList",data,"getAdminFeeList","post");
 	searchFee();
 }
 
@@ -123,9 +112,9 @@ function getAdminFeeList(dat) {
 	const tableMom = document.getElementById("tableMom");
 	const modBtnDiv = document.getElementById("modBtnDiv");
 
-	delChild(tableMom);
-	delChild(tableMomT);
-	delChild(modBtnDiv);
+	delChild("tableMom");
+	delChild("tableMomT");
+	delChild("modBtnDiv");
 
 	if (dat != '[]') {
 		const data = JSON.parse(dat);
@@ -213,13 +202,12 @@ function getAdminFeeList(dat) {
 			tr.appendChild(td6);
 			tableB.appendChild(tr);
 		}
-		//tableMom.appendChild(modDiv);
 
 		tableMom.appendChild(tableB);
 		mainpage.appendChild(tableMom);
 	} else {
-		delChild(tableMom);
-		delChild(modBtnDiv);
+		delChild("tableMom");
+		delChild("modBtnDiv");
 		sendMessage("등록된 납부내역이 없습니다.");
 	}
 }
@@ -228,13 +216,8 @@ function searchFee() {
 	const acCode = document.getElementsByName("acCode")[0].value;
 	const date = document.getElementById("dateSelect").value;
 	const name = document.getElementById("nameSearch").value
-	//if (name == '') {
-
-	//	sendMessage("이름을 입력해 주세요.");
-	//}else {
 	const data = ("acCode=" + acCode + "&upMonth=" + date.substring(0, 4) + date.substring(5, 7) + "&studentName=" + name);
 	getAjaxData("SearchName", data, "getAdminFeeList", "post");
-	//}
 }
 /* modFee */
 function modFeeList(dat) {
@@ -243,7 +226,7 @@ function modFeeList(dat) {
 	const mainpage = document.getElementById("mainpage");
 	const tableMom = document.getElementById("tableMom");
 	const modBtnDiv = document.getElementById("modBtnDiv");
-	delChild(modBtnDiv);
+	delChild("modBtnDiv");
 	let table = document.createElement("table");
 	table.setAttribute("id","theTable");
 	table.style.borderCollapse = "separate";
@@ -325,7 +308,7 @@ function modFeeList(dat) {
 
 	modBtnDiv.appendChild(regBtn);
 
-	delChild(tableMom);
+	delChild("tableMom");
 	tableMom.appendChild(table);
 	mainpage.appendChild(tableMom);
 }
@@ -394,7 +377,6 @@ function moveTo(a) {
 }
 /* regFee */
 function adminRegFee() {
-	const acCode = document.getElementsByName("acCode")[0].value;
 	const mainpage = document.getElementById("mainpage");
 	const bigMom = document.createElement("div");
 	bigMom.setAttribute("id", "bigMom");
@@ -406,19 +388,15 @@ function adminRegFee() {
 	tableMomT.setAttribute("id", "tableMomT");
 	tableMomT.style.width = "91%";
 	tableMomT.style.height = "10%";
-	//tableMomT.style.marginLeft = "20px";
 	const tableMom = document.createElement("div");
 	tableMom.setAttribute("id", "tableMom");
-	//tableMom.style.border = "1px solid #000000";
 	tableMom.style.width = "92.5%";
 	tableMom.style.height = "90%";
-	//tableMom.style.marginTop = "100px";
-	//tableMom.style.marginLeft = "20px";
 	tableMom.style.overflow = "auto";
 	tableMom.style.overflowX = "hidden";
 	
 
-	delChild(mainpage);
+	delChild("mainpage");
 
 	const selectMom = document.createElement("div");
 	selectMom.setAttribute("id",  "selectMom");
@@ -475,8 +453,8 @@ function regFeeForm(dat) {
 	const tableMom = document.getElementById("tableMom");
 	const tableMomT = document.getElementById("tableMomT");
 	const selectMom = document.getElementById("selectMom");
-		delChild(tableMom);
-		delChild(tableMomT);
+		delChild("tableMom");
+		delChild("tableMomT");
 	if (dat != '') {
 		const data = JSON.parse(dat);
 
@@ -629,7 +607,6 @@ function MyChildListF(amount) {
 }
 
 function childSelectF(dat) {
-   const parentCode = document.getElementsByName("userId")[0].value;
    let data = JSON.parse(dat);
    let sCode = sessionStorage.getItem("sCode");
    const mainpage = document.getElementById("mainpage");
@@ -676,20 +653,16 @@ function childSelectF(dat) {
 	bigMom.style.width = "70%";
 	bigMom.style.height = "20%";
 	bigMom.style.marginLeft = "13%";
-	//bigMom.style.border = "1px solid #000000";
 	bigMom.style.marginTop = "6%";
 	const dateDiv = document.createElement("div");
 	dateDiv.setAttribute("id", "dateDiv");
 	dateDiv.style.height = "40%";
-	//dateDiv.style.border = "1px solid #000000";
 	bigMom.appendChild(dateDiv);
 	bigMom.appendChild(tableMom);
 	
 
 	const amountDiv = document.createElement("div");
-	//amountDiv.style.marginLeft = "-70%";
 	amountDiv.style.textAlign = "center";
-	//amountDiv.style.border = "1px solid #000000";
 	amountDiv.style.height = "40px";
 	amountDiv.style.width = "240px";
 	amountDiv.style.float = "left";
@@ -734,7 +707,7 @@ function childSelectedF(sCode) {
 	const tableMom = document.getElementById("tableMom");
 	const aSelect = document.getElementById("aSelect").value;
 	if(tableMom.childNodes.length > 0) {
-		delChild(tableMom);
+		delChild("tableMom");
 	}
 	if(sCode == 1) {
 		sessionStorage.setItem("sCode",aSelect);
@@ -769,7 +742,7 @@ function displayMyFee(dat) {
 	let data = JSON.parse(dat);
 		const tableMom = document.getElementById("tableMom");
 		if(tableMom.hasChildNodes()){
-			delChild(tableMom);
+			delChild("tableMom");
 		}
 	if (dat != '[]') {
 		
@@ -815,11 +788,11 @@ function displayMyFee(dat) {
 			table.appendChild(tr);
 		}
 
-		delChild(tableMom);
+		delChild("tableMom");
 		tableMom.appendChild(table);
 	} else {
 		sendMessage("납부내역이 존재하지 않습니다.");
-		delChild(tableMom);
+		delChild("tableMom");
 	}
 }
 

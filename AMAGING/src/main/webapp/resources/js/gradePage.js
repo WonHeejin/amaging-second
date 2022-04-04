@@ -11,7 +11,6 @@ function PCDivide(PCCode) {
 }
 
 function myChildList() {
-	//sessionStorage.removeItem("acCode");
 	const userId = document.getElementsByName("userId")[0].value;
 	const data = "userId=" + userId;
 	getAjaxData("MyChildList",data,"childSelect","post")
@@ -67,7 +66,7 @@ function childSelect(dat) {
 				}
 
 			selectMom.appendChild(cSelect);
-		delChild(mainpage);
+		delChild("mainpage");
 		
 		const sjDiv = document.createElement("div");
 		sjDiv.setAttribute("id","sjDiv");
@@ -78,28 +77,19 @@ function childSelect(dat) {
 }
 
 function childSelected(selectedCode,code) {
-	const stCode = sessionStorage.getItem("stCode");
 	
 		sessionStorage.removeItem("acCode");
 	
 	if(selectedCode != "1133") {
-		//if(selectedCode == code) {
 			childAcademyList(selectedCode,"p");
 			sessionStorage.setItem("sCode",selectedCode);
 			sessionStorage.setItem("acCode",code);
-		//}
 	}else {
 		let cSelect = document.getElementById("cSelect");
 		let sCode = cSelect.options[cSelect.selectedIndex].value;
 			sessionStorage.setItem("sCode",sCode);
 			sessionStorage.setItem("acCode",code);
-		//if(sCode != code) {
-		//	const presentSCode = document.getElementById("sCode");
-		//	presentSCode.setAttribute("value",sCode);
 			childAcademyList(sCode,"P");
-		//}else {
-		//	childAcademyList(sCode,"P");
-		//}
 	}
 }
 
@@ -120,7 +110,6 @@ function childAcademyList(studentId,code) {
 		aSelectDiv.style.float = "left";
 		selectMom.appendChild(aSelectDiv);
 	}else{
-		//sessionStorage.removeItem("acCode");
 		const selectMom = document.createElement("div");
 		selectMom.setAttribute("id","selectMom");
 		selectMom.style.width = "400px";
@@ -147,8 +136,7 @@ function childAcademySelect(dat) {
 	const selectMom = document.getElementById("selectMom");
 	const aSelectDiv = document.getElementById("aSelectDiv");
 	if(divideCode == "P") {
-	const aSelectDiv = document.getElementById("aSelectDiv");
-			delChild(aSelectDiv);
+			delChild("aSelectDiv");
 	}
 			const aSelect = document.createElement("select");
 			aSelect.setAttribute("id", "aSelect");
@@ -222,10 +210,6 @@ function childAcademySelect(dat) {
 function academySelected(selectedCode) {
 	const userId = sessionStorage.getItem("sCode");
 		let sAcCode = sessionStorage.getItem("acCode");
-	//const lineChartDiv = document.getElementById("lineChartDiv");
-	//if(lineChartDiv.hasChildNodes()) {
-	//delChild(lineChartDiv);
-	//}
 	if(selectedCode != undefined) {
 			sessionStorage.setItem("acCode",selectedCode);
 			const data = "userId=" + userId + "&acCode=" + selectedCode;
@@ -252,16 +236,16 @@ function subjectOnCl(dat) {
 		let data = JSON.parse(dat);
 		
 		if(lineChartDiv.hasChildNodes()) {
-			delChild(lineChartDiv);
+			delChild("lineChartDiv");
 		}
 		if(sjDiv.hasChildNodes()){
-			delChild(sjDiv);
+			delChild("sjDiv");
 		}
 		if(subjectDiv.hasChildNodes()){
-			delChild(subjectDiv);
+			delChild("subjectDiv");
 		}
 		if(tableMom.hasChildNodes()){
-			delChild(tableMom);
+			delChild("tableMom");
 		}
 				for(let i=0; i<data.length; i++) {
 					let classBtn = document.createElement("input");
@@ -309,6 +293,7 @@ function displayMyGrade(dat) {
 	if(dat != '[]') {
 	let data = JSON.parse(dat);
 	const tableMom = document.getElementById("tableMom");
+	const subjectDiv = document.getElementById("subjectDiv");
 	
 			let table = document.createElement("table");
 			table.style.borderCollapse = "separate";
@@ -365,8 +350,8 @@ function displayMyGrade(dat) {
 			table.appendChild(tr);
 			}
 			
-		delChild(tableMom);
-		delChild(subjectDiv);
+		delChild("tableMom");
+		delChild("subjectDiv");
 		
 		const text = document.createElement("h4");
 		text.innerHTML = "최근 성적";
@@ -389,15 +374,12 @@ function displayMyGrade(dat) {
 	const sbacode = document.getElementById("sbacode").value;
 	const studentId = sessionStorage.getItem("sCode");
 	const forGraph = "sBACode=" + sbacode + "&studentId=" + studentId;
-	//const prevMonth = data[0].month; // 202201 to 202108
-	//const month = (prevMonth.substring(4,6)<6);
-	//const forGraph = "sBACode=" + sbacode + "&studentId=" + studentId + "&month=" + month;
 	
 	getAjaxData("GetGradeForGraph",forGraph,"subjectGraph","post");
 	
 	}else {
 		sendMessage("등록된 성적이 없습니다.");
-		delChild(tableMom);
+		delChild("tableMom");
 	
 	}
 }
@@ -439,16 +421,10 @@ function subjectGraph(json){
     }
   }
 });
-	//for(let i=0; i<jsonData.length; i++) {
-	//	graphData.data.labels.push(jsonData[i].month);
-	//	graphData.data.datasets[0].data.push(jsonData[i].score);
-	//}
 }
 
 /* Teacher */
 function myAcademyList(userId,menuCode) {
-	//const acCode = document.getElementsByName("acCode")[0].value;
-	//sessionStorage.setItem("acCode",acCode);
 	const data = "teacherId=" + userId;
 	divide(menuCode);
 	getAjaxData("MyAcademyList",data,"academySelect","post")
@@ -456,11 +432,9 @@ function myAcademyList(userId,menuCode) {
 
 function academySelect(dat) {
 	const data = JSON.parse(dat);
-	//let aCode = (document.getElementsByName("acCode")[0].value != '')? document.getElementsByName("acCode")[0].value : '';
 	const aCode = sessionStorage.getItem("acCode");
 	const mainpage = document.getElementById("mainpage");
-	//const checkCode = "1133";
-	delChild(mainpage);
+	delChild("mainpage");
 			const selectMom = document.createElement("div");
 			selectMom.setAttribute("id","selectMom");
 			selectMom.style.width = "1350px";
@@ -486,9 +460,7 @@ function academySelect(dat) {
 			let firstOption = document.createElement("option");
 				firstOption.setAttribute("id","firstOption");
 				firstOption.innerHTML = "학원 선택"
-				//if(acCode == null) {
 				firstOption.setAttribute("selected","selected");
-				//}
 				firstOption.setAttribute("disabled","disabled");
 				aSelect.appendChild(firstOption);
 				for(let i=0; i<data.length; i++) {
@@ -505,7 +477,7 @@ function academySelect(dat) {
 					aSelect.appendChild(option);
 				}
 			
-			delChild(mainpage);
+			delChild("mainpage");
 
 			const cSelect = document.createElement("div");
 			cSelect.setAttribute("id","cSelect");
@@ -599,7 +571,6 @@ function goOrNot(data) {
 	if(data == "0") {
 		closeModal();
 		sessionStorage.clear();
-		//sendMessage("비밀번호가 일치하지 않습니다. 다시 시도해주세요.");
 	Swal.fire({
   title: '비밀번호가 일치하지 않습니다. 다시 시도해주세요.',
   showDenyButton: true,
@@ -625,12 +596,11 @@ function classOnAc(dat) {
 	closeModal()
 		if(dat != '') {
 			const cSelect = document.getElementById("cSelect");
-			const tableMom = document.getElementById("tableMom");
 	
 			let data = JSON.parse(dat);
 	
-			delChild(cSelect);
-			delChild(tableMom);
+			delChild("cSelect");
+			delChild("tableMom");
 					for(let i=0; i<data.length; i++) {
 						let classBtn = document.createElement("input");
 							classBtn.setAttribute("onclick", "chooseDate('"+ data[i].clCode +"')");
@@ -678,7 +648,7 @@ function chooseDate(clCode) {
 	insDate.style.height = "30px";
 	insDate.style.fontFamily = "BMHANNAAir";
 	insDate.style.fontSize = "100%";
-	delChild(DSDiv);
+	delChild("DSDiv");
 	bigMom.appendChild(regBtnDiv);
 	DSDiv.appendChild(insDate);
 	selectMom.appendChild(DSDiv);
@@ -761,16 +731,14 @@ function displayGrade(dat) {
 				tr.appendChild(td5);
 			table.appendChild(tr);
 			}
-		//tableMom.style.border = "0.7px solid #BDBDBD";
 		
 		tableMom.appendChild(table);
 		tableMomT.appendChild(tableT);
 	}else {
 		sendMessage("등록된 성적이 없습니다.");
 		tableMom.style.border = "none";
-		delChild(tableMom);
-		delChild(tableMomT);
-		//delChild(DSDiv);
+		delChild("tableMom");
+		delChild("tableMomT");
 	}
 }
 
@@ -783,7 +751,6 @@ function modGradeForm(dat) {
 	let data = JSON.parse(dat);
 	const tableMomT = document.getElementById("tableMomT");
 	const tableMom = document.getElementById("tableMom");
-	const bigMom = document.getElementById("bigMom");
 	const regBtnDiv = document.getElementById("regBtnDiv");
 
 			let tableT = document.createElement("table");
@@ -849,7 +816,6 @@ function modGradeForm(dat) {
 			const regBtn = document.createElement("input");
 			regBtn.setAttribute("type","button");
 			regBtn.setAttribute("value","등록");
-			//regBtn.setAttribute("onclick","modToJson('mod')");
 			regBtn.setAttribute("onclick","beforeAction('mod')");
 			regBtn.style.cursor = "pointer";
 			regBtn.style.width = "90px";
@@ -865,20 +831,19 @@ function modGradeForm(dat) {
 			regBtn.style.fontFamily = "BMHANNAAir";
 			regBtn.style.fontSize = "120%";
 	
-	delChild(regBtnDiv);
+	delChild("regBtnDiv");
 		regBtnDiv.appendChild(regBtn);
 		
 		
 	
-	delChild(tableMom);
-	delChild(tableMomT);
+	delChild("tableMom");
+	delChild("tableMomT");
 	tableMomT.appendChild(tableT);
 	tableMom.appendChild(table);
 	}
 	}
 }
 	
-	// modToJson('mod')
 function beforeAction(a) {
 	Swal.fire({
   title: '저장 하시겠습니까?',
@@ -887,7 +852,6 @@ function beforeAction(a) {
   confirmButtonText: '저장',
   denyButtonText: `Don't save`,
 }).then((result) => {
-  /* Read more about isConfirmed, isDenied below */
   if (result.isConfirmed) {
 	modToJson(a);
   } else if (result.isDenied) {
@@ -975,8 +939,8 @@ function regGradeForm(dat) {
 	const tableMom = document.getElementById("tableMom");
 	const mainpage = document.getElementById("mainpage");
 	const bigMom = document.getElementById("bigMom");
-	delChild(tableMom);
-	delChild(tableMomT);
+	delChild("tableMom");
+	delChild("tableMomT");
 	
 			let tableT = document.createElement("table");
 			tableT.style.borderCollapse = "separate";
@@ -1031,17 +995,6 @@ function regGradeForm(dat) {
 				mScore.style.fontSize = "120%";
 				td3.appendChild(mScore);
 				
-				/*let mhCount = document.createElement("input");
-				mhCount.setAttribute("readonly",true);
-				mhCount.setAttribute("value",data[i].headCount);
-				mhCount.style.textAlign = "center";
-				mhCount.style.width = "95%";
-				mhCount.style.height = "95%";
-				mhCount.style.border = "none";
-				mhCount.style.fontFamily = "BMHANNAAir";
-				mhCount.style.fontSize = "120%";
-				td4.appendChild(mhCount);*/
-				
 				tr.appendChild(td1);
 				tr.appendChild(td2);
 				tr.appendChild(td3);
@@ -1051,7 +1004,6 @@ function regGradeForm(dat) {
 	
 			tableMom.appendChild(table);
 
-			//dateDiv.style.border = "1px solid #000000";
 			const regBtn = document.createElement("input");
 			regBtn.setAttribute("type","button");
 			regBtn.setAttribute("value","등록");
@@ -1070,10 +1022,6 @@ function regGradeForm(dat) {
 			regBtn.style.fontFamily = "BMHANNAAir";
 			regBtn.style.fontSize = "120%";
 		bigMom.appendChild(regBtn);
-	//if(tableMom.hasChildNodes()) {
-	//	while(tableMom.hasChildNodes()) {
-	//	tableMom.removeChild(tableMom.firstChild);
-	//}
 	
 	mainpage.appendChild(dateDiv);
 		}
@@ -1106,8 +1054,8 @@ function modAjax(action,data,fn,method){
 		}
 }
 
-function delChild(element) {
-	//const element = document.getElementById(name);
+function delChild(name) {
+	const element = document.getElementById(name);
 	if(element.hasChildNodes()) {
 		while (element.hasChildNodes()) {
 			element.removeChild(element.firstChild);
@@ -1119,7 +1067,6 @@ function createTr(id) {
 	const tr = document.createElement("tr");
 	tr.setAttribute("id",id);
 	tr.style.fontSize = "120%";
-	//tr.style.borderBottom = "5px solid #ffffff";
 return tr;
 }
 
