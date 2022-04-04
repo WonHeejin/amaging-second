@@ -80,12 +80,11 @@
 	</insert>
 	 <select id="stAllList" parameterType="amaging.schedu.bean.AcList" resultType="amaging.schedu.bean.AttendanceBean">
    		SELECT st.st_name AS studentName, at.at_cocode AS atStatus , TO_CHAR(at.at_date,'HH24MI') AS dayDate 
-		FROM BS INNER JOIN ST ON bs.bs_stcode = st.st_code 
-       			INNER JOIN SB ON bs.bs_clcraccode = sb.sb_clcraccode 
-       			INNER JOIN AT ON bs.bs_stcode = at.at_stcode 
+		FROM AT INNER JOIN SB ON at.at_sbacode = sb.sb_acode
+        		INNER JOIN ST ON at.at_stcode = st.st_code
 		WHERE TO_CHAR(at.at_date,'YYYYMMDDHH24') IN(TO_CHAR(SYSDATE,'YYYYMMDD')||(select SUBSTR(sb_stime,1,2) from SB where sb_tccode = #{userId} AND sb.sb_clcraccode IN(SELECT CL_CRACCODE FROM CL WHERE CL_NAME =#{acName}))) and 
-		sb.sb_tccode= #{userId} and bs.bs_clcrcode IN(SELECT sb.sb_clcrcode FROM SB WHERE sb.sb_tccode=#{userId}) and 
-		bs.bs_clcode IN(SELECT sb.sb_clcode FROM SB WHERE sb.sb_tccode=#{userId}) AND 
+		sb.sb_tccode= #{userId} and sb.sb_clcrcode IN(SELECT sb.sb_clcrcode FROM SB WHERE sb.sb_tccode=#{userId}) and 
+		SB.SB_CLCODE IN(SELECT sb.sb_clcode FROM SB WHERE sb.sb_tccode=#{userId}) AND 
 		sb.sb_clcraccode IN(SELECT CL_CRACCODE FROM CL WHERE CL_NAME =#{acName})
    </select>
    <update id="upSudentS" parameterType="amaging.schedu.bean.AcList">

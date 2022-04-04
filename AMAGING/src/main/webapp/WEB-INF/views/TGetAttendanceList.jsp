@@ -32,7 +32,7 @@
 }
 
 #logOut {
-   width: 15%;
+   width: 13%;
    height: 10%;
    position: absolute;
    top: 1%;
@@ -150,10 +150,9 @@ margin-bottom:3%;
 
 
 #btn {
-   width: 50%;
+   width: 60%;
    height: 50%;
    border-radius: 10px;
-   margin-left: 15%;
    margin-top: 10%;
    border-bottom: 5px solid #0042ED  ;
    border-top: 5px solid #0042ED  ;
@@ -192,7 +191,7 @@ text-align:center;
 	
 	}
 
-#sessionBox{ width:30%; height:10%; 
+#sessionBox{ width:40%; height:10%; 
 position:absolute; left:45%; top:1%;
 }
 .div1{ font-size:120%; width:100%; height:30%;
@@ -262,7 +261,11 @@ position:absolute; left:45%; top:1%;
 #mainTwo			{width: 99%;
 					height: 80%;
 					clear:right;}
-
+					
+#nameSession		{display:inline-block;
+					font-size:21px;
+					padding-top:38px;
+					padding-left:540px;}
 </style>
 
 </head>
@@ -378,6 +381,7 @@ input[type="text"] {background-image: url(https://cdn1.iconfinder.com/data/icons
     				height:50px;
     				font-size:15pt;
     				margin-left:30%;
+    				font-family: "BMHANNAAir";
     				margin-right:0.2%;
     				border-radius:5px;
     				border:none;}
@@ -388,6 +392,7 @@ input[type="text"] {background-image: url(https://cdn1.iconfinder.com/data/icons
 					position:fixed;
     				font-size:15pt;
     				text-align:center;
+    				font-family: "BMHANNAAir";
     				box-shadow:5px 5px 5px #8C8C8C;
     				margin-left:5px;}
 
@@ -399,8 +404,9 @@ input[type="text"] {background-image: url(https://cdn1.iconfinder.com/data/icons
     				font-weight:bolder;
     				font-size:15px;
     				border:none;
+    				font-family: "BMHANNAAir";
     				box-shadow:5px 5px 5px #8C8C8C;
-    				margin-left:193px;}
+    				margin-left:174px;}
 #selectSButton:active{box-shadow:none;}   				
 #selectSButton:hover{background-color: #747474;
     				color: #D5D5D5;}				
@@ -486,11 +492,11 @@ input[type="text"] {background-image: url(https://cdn1.iconfinder.com/data/icons
     				border-right:#fff;
     				border-bottom: 2px solid #8C8C8C;
     				font-size:15pt;
-    				padding-bottom:19px;
+    				font-family: "BMHANNAAir";
+    				padding-bottom:25px;
     				padding-left:2%;
     				text-align:left;
     				margin-top:7px;
-    				font-weight:bolder;
     				margin-left:8px;}
     				
 #modButton			{margin-left:39.2%;
@@ -501,6 +507,7 @@ input[type="text"] {background-image: url(https://cdn1.iconfinder.com/data/icons
 					width:178px;
 					font-size:15pt;
 					box-shadow:5px 5px 5px #8C8C8C;
+					font-family: "BMHANNAAir";
 					border-radius: 5px;
 					border:none;}
 #modButton:active	{box-shadow:none;}   				
@@ -517,18 +524,23 @@ input[type="text"] {background-image: url(https://cdn1.iconfinder.com/data/icons
     				padding-left:2%;
     				text-align:left;}
     				
-#aInfo				{width:100px;
+#aInfo				{width:190px;
 					height:40px;
+					margin-top:7px;
+					margin-left:20px;
 					border: 2px solid #00A6EF;
 					border-radius: 5px;
-					font-family:"jinji";
+					font-family: "BMHANNAAir";
 					font-weight:bolder;
-					font-size:15px;}
+					font-size:14px;}
 					
 .aSB				{width:120px;
 					height:40px;
+					margin-top:7px;
+					margin-left:65px;
 					border-radius: 5px;
 					cursor:pointer;
+					font-family: "BMHANNAAir";
 					background-color:#D5D5D5;
 					border:none;
 					box-shadow:5px 5px 5px #747474;}
@@ -941,7 +953,7 @@ function academyList(AcList){
 	let r=0;
 	let rightData = '<span>';
 		rightData += '<select name="aInfo" id="aInfo" onchange="insertA(this)">';
-		rightData += '<option value="교육기관">교육기관';
+		rightData += '<option value="교육기관">학원 선택';
 		rightData += '</option>';
 	for(r;r<acList.length;r++){
 		rightData += '<option name="selectACList" value="'+ acList[r].acName +'">'+ acList[r].acName;
@@ -1114,6 +1126,7 @@ function checkSA(SAList){
 	downTitle.innerHTML = saData;
 	
 	return colorChange(sAList);
+	
 }
 
 function colorChange(data){

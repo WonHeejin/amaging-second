@@ -236,7 +236,6 @@ position:absolute; left:45%; top:1%;
 #mainThree			{width: 58%;
 					height: 50%;
 					float:right;}
-
 </style>
 
 </head>
@@ -292,7 +291,7 @@ position:absolute; left:45%; top:1%;
 					height:40px;
 					border: 2px solid #EF90FF;
 					border-radius: 5px;
-					font-family:"jinji";
+					font-family: "BMHANNAAir";
 					font-weight:bolder;
 					font-size:15px;}
 				
@@ -304,6 +303,7 @@ input[type="text"] {background-image: url(https://cdn1.iconfinder.com/data/icons
     				text-indent: 80px;
     				width: 300px;
     				height:50px;
+    				font-family: "BMHANNAAir";
     				font-size:15pt;
     				margin-left:20%;
     				margin-right:0.2%;
@@ -315,6 +315,7 @@ input[type="text"] {background-image: url(https://cdn1.iconfinder.com/data/icons
 					margin-right:42%;
 					border-bottom:5px solid #EF90FF;
 					font-size:20pt;
+					font-family: "BMHANNAAir";
 					padding-top:50px;
 					font-weight:bolder;
 					color:#EF90FF;}
@@ -323,6 +324,7 @@ input[type="text"] {background-image: url(https://cdn1.iconfinder.com/data/icons
 					margin-right:40%;
 					border-bottom:5px solid #EF90FF;
 					font-size:20pt;
+					font-family: "BMHANNAAir";
 					padding-top:70px;
 					font-weight:bolder;
 					color:#EF90FF;}
@@ -335,6 +337,7 @@ input[type="text"] {background-image: url(https://cdn1.iconfinder.com/data/icons
     				font-weight:bolder;
     				font-size:15px;
     				border:none;
+    				font-family: "BMHANNAAir";
     				box-shadow:5px 5px 5px #8C8C8C;
     				margin-left:5px;}
 .inputBOL:active	{box-shadow:none;
@@ -357,6 +360,7 @@ input[type="text"] {background-image: url(https://cdn1.iconfinder.com/data/icons
     				padding-top:15px;
     				padding-left:2%;
     				color:#EF90FF;
+    				font-family: "BMHANNAAir";
     				font-size:15pt;}    				
     				
 .delSTTwo			{display:inline-block;
@@ -369,6 +373,7 @@ input[type="text"] {background-image: url(https://cdn1.iconfinder.com/data/icons
     				padding-top:15px;
     				padding-left:2%;
     				color:#EF90FF;
+    				font-family: "BMHANNAAir";
     				font-size:15pt;}   
      				   				
 .delSDOne			{display:inline-block;
@@ -376,6 +381,7 @@ input[type="text"] {background-image: url(https://cdn1.iconfinder.com/data/icons
 					width:120px;
     				height:50px;
     				font-size:15pt;
+    				font-family: "BMHANNAAir";
     				padding-top:15px;
     				padding-left:2%;
     				text-align:left;}
@@ -385,6 +391,7 @@ input[type="text"] {background-image: url(https://cdn1.iconfinder.com/data/icons
 					width:307px;
     				height:50px;
     				font-size:15pt;
+    				font-family: "BMHANNAAir";
     				padding-top:15px;
     				padding-left:2%;
     				margin-left:8px;
@@ -396,6 +403,7 @@ input[type="text"] {background-image: url(https://cdn1.iconfinder.com/data/icons
 					width:120px;
     				height:30px;
     				font-size:15pt;
+    				font-family: "BMHANNAAir";
     				padding-top:15px;
     				padding-left:2%;
     				text-align:left;}
@@ -407,6 +415,7 @@ input[type="text"] {background-image: url(https://cdn1.iconfinder.com/data/icons
 					width:350px;
     				height:30px;
     				font-size:15pt;
+    				font-family: "BMHANNAAir";
     				padding-top:15px;
     				padding-left:2%;
     				text-align:left;}
@@ -416,6 +425,7 @@ input[type="text"] {background-image: url(https://cdn1.iconfinder.com/data/icons
 					width:30px;
     				height:50px;
     				font-size:15pt;
+    				font-family: "BMHANNAAir";
     				padding-top:15px;
     				padding-left:2%;
     				margin-left:8px;
@@ -424,6 +434,7 @@ input[type="text"] {background-image: url(https://cdn1.iconfinder.com/data/icons
 #delSButton			{margin-left:360px;
 					margin-top:7px;
 					height:50px;
+					font-family: "BMHANNAAir";
 					font-weight:bolder;
 					cursor:pointer;
 					width:150px;
@@ -439,6 +450,7 @@ input[type="text"] {background-image: url(https://cdn1.iconfinder.com/data/icons
 					box-shadow:5px 5px 5px #8C8C8C;
 					border-radius: 5px;
 					border:none;
+					font-family: "BMHANNAAir";
 					margin-left:7px;
 					font-weight:bolder;
 					font-size:15px;}
@@ -449,6 +461,7 @@ input[type="text"] {background-image: url(https://cdn1.iconfinder.com/data/icons
 #studentNum			{font-size:20px;
 					font-weight:bolder;
 					color:#EF90FF;
+					font-family: "BMHANNAAir";
 					margin-left:30%;
 					margin-top:5%;}
 #psnnName			{display:inline-block;
@@ -461,14 +474,16 @@ input[type="text"] {background-image: url(https://cdn1.iconfinder.com/data/icons
 					margin-top:4px;
 					width:120px;
     				height:22px;
+    				font-family: "BMHANNAAir";
     				text-align:left;
     				padding-left:20px;}
 #psnnEmail			{display:inline-block;
-					/*border-bottom: 2px solid #EF90FF;*/
+					border-bottom: 2px solid #EF90FF;
 					margin-top:4px;
 					margin-left:4px;
 					width:220px;
     				height:22px;
+    				font-family: "BMHANNAAir";
     				text-align:left;
     				padding-left:20px;}
     				
@@ -477,6 +492,7 @@ input[type="text"] {background-image: url(https://cdn1.iconfinder.com/data/icons
 					border-radius: 5px;
 					width:100px;
     				height:22px;
+    				font-family: "BMHANNAAir";
 					text-align:right;}
 </style>
 <script type="text/javascript">
@@ -546,7 +562,7 @@ function resultWS(data){
 	let upTitle = document.getElementById("mainTwo");
 	let dTitle = document.getElementById("mainThree");
 	
-	let outULine = '<div id="nameTitle">&nbsp&nbsp&nbsp요청목록</div>';
+	let outULine = '<div id="nameTitle">&nbsp&nbsp&nbsp요&nbsp&nbsp청&nbsp&nbsp목&nbsp&nbsp록</div>';
 		
 	let	outLine = '<div class="delSTopTitle">';
 		outLine += '<div>';
