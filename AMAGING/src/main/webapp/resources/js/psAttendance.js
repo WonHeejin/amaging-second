@@ -51,7 +51,7 @@ function calendar() {
 										title: " " + element.subjectName +" "+(element.startDay).substr(11),
 										start: (element.startDay).replace(/ /g, 'T'),
 										color: ecolor,
-										textColor: '#353535',
+										textColor: 'white',/*'#353535'*/
 										imageurl:'resources/images/학생로고.png',
 										description: element.acName +" " + element.clName,
 										attendance: attend

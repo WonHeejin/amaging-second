@@ -295,9 +295,9 @@ position:absolute; left:45%; top:1%;
             <span><div id="childBox" name="childBox"></div></span>  
             <div id="mainpage" >
 				<div id= 'legend' style=" whidth:5%; height: 0%;margin-top:0%">
-							<span class="legend"style="background-color: #79ABFF "><img src="resources/images/출석완료.png" width="16" height="16"/> : 출석</span><br/>
-							<span class="legend"style="background-color: #FF8383;"><img src="resources/images/결석.png" width="16" height="16"/> : 결석</span><br/>
-							<span class="legend"style="background-color: #F2CB61;"><img src="resources/images/지각.png" width="16" height="16"/> : 지각</span>
+							<span class="legend"style="background-color: #79ABFF; color: white; display: inline-block; height: 20px; "><img src="resources/images/출석완료.png" width="16" height="16"/> : 출석</span><br/>
+							<span class="legend"style="background-color: #FF8383; color: white; display: inline-block; height: 20px;"><img src="resources/images/결석.png" width="16" height="16"/> : 결석</span><br/>
+							<span class="legend"style="background-color: #F2CB61; color: white; display: inline-block; height: 20px;"><img src="resources/images/지각.png" width="16" height="16"/> : 지각</span>
 				</div>
 					<div id='calendar'></div>
 				</div>
