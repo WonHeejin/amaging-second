@@ -165,7 +165,7 @@
        		 	INNER JOIN CL ON FE.FE_CLCRACCODE = CL.CL_CRACCODE 
                      		 AND FE.FE_CLCRCODE = CL.CL_CRCODE 
                      		 AND FE.FE_CLCODE = CL.CL_CODE 
-		WHERE FE.FE_STCODE = #{studentId} AND SUBSTR(FE.FE_UPMONTH,0,6) = #{upMonth}
+		WHERE FE.FE_STCODE = #{studentId} AND SUBSTR(FE.FE_UPMONTH,0,6) = #{upMonth} AND FE.FE_COCODE = 13
 	</select>
 	
 	<select id="getAmounts" parameterType ="amaging.schedu.bean.UserInfo" resultType="String">

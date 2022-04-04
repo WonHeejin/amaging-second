@@ -769,7 +769,7 @@ function displayGrade(dat) {
 		tableMom.style.border = "none";
 		delChild(tableMom);
 		delChild(tableMomT);
-		delChild(DSDiv);
+		//delChild(DSDiv);
 	}
 }
 
