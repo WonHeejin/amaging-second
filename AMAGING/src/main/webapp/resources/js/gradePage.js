@@ -145,6 +145,7 @@ function childAcademySelect(dat) {
 	const aCode = sessionStorage.getItem("acCode");
 	const mainpage = document.getElementById("mainpage");
 	const selectMom = document.getElementById("selectMom");
+	const aSelectDiv = document.getElementById("aSelectDiv");
 	if(divideCode == "P") {
 	const aSelectDiv = document.getElementById("aSelectDiv");
 			delChild(aSelectDiv);

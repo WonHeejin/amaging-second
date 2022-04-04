@@ -759,7 +759,8 @@ function childSelectedF(sCode) {
 
 function getMyFee() {
 	const studentId = sessionStorage.getItem("sCode");
-	const upMonth = document.getElementById("dateSelect").value;
+	const month = document.getElementById("dateSelect");
+	const upMonth = month.value;
 	const data = "studentId=" + studentId + "&upMonth=" + upMonth.substring(0, 4) + upMonth.substring(5, 7);
 	getAjaxData("GetMyFee", data, "displayMyFee", "post");
 }
