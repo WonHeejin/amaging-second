@@ -671,8 +671,8 @@ function displayGrade(dat) {
 	let data = JSON.parse(dat);
 	const tableMom = document.getElementById("tableMom");
 	const tableMomT = document.getElementById("tableMomT");
-	delChild(tableMom);
-	delChild(tableMomT);
+	delChild("tableMom");
+	delChild("tableMomT");
 	
 	
 			let tableT = document.createElement("table");
