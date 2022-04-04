@@ -268,9 +268,10 @@ font-family: "BMHANNAAir";
 			 font-family: "BMHANNAAir";
 		}
 		
- #mheader	{	font-size : x-large;
-			padding-left : 10px;
-			padding-top : 10px;            
+ #mheader	{	
+ 			 font-size : x-large;
+			 padding-left : 10px;
+			 padding-top : 10px;            
  			 height : 30px;
 			 border-radius : 10px;
 			 border : 2px solid #92acbb;

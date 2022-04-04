@@ -257,7 +257,7 @@
 			overflow : auto;
 			color:white;-
 			cursor:pointer;
-			font-size : xx-large;
+			font-size : x-large;
 }
 
 .bothC {
@@ -396,13 +396,14 @@
 	border-right: 3px solid #EF90FF;
 	border-bottom: 3px solid #EF90FF;
 	cursor:pointer;
+	font-size:large;
 }
 
 #rbtn {
 	margin-left : 2%;
 	width: 5%;
 	height: 50px;
-	
+	font-family: "BMHANNAAir"; 
 	border-top: 3px solid #fff;
 	border-left: 3px solid #fff;
 	border-right: 3px solid #EF90FF;
@@ -417,7 +418,7 @@
 
 
 #mbtn {
-
+	font-family: "BMHANNAAir"; 
 	width: 5%;
 	height: 50px;
 	cursor:pointer;
@@ -447,6 +448,7 @@
 	box-shadow:5px 5px 5px black;
                 margin-left:0.3%;
                 margin-right:4.8%;
+                font-family: "BMHANNAAir"; 
 }
 #dbtn:active{box-shadow:none;
 }

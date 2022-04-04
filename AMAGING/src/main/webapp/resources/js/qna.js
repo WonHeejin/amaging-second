@@ -231,6 +231,10 @@ function sendMessageE(message){
 		//closeModalA11();
 		//closeModalA1();
 	}
+	
+		setTimeout(function() {
+  document.getElementById("fiveB").click();
+}, 2000);
 
 		
 }
