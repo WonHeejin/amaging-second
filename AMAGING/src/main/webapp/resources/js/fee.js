@@ -642,7 +642,7 @@ function childSelectF(dat) {
 
 	let aSelect = document.createElement("select");
 	aSelect.setAttribute("id", "aSelect");
-	aSelect.setAttribute("onchange", "childSelectedF('"+sCode+"')");
+	aSelect.setAttribute("onchange", "childSelectedF('"+1+"')");
 	aSelect.style.width = "200px";
 	aSelect.style.height = "40px";
 	aSelect.style.borderRadius = "5px";
@@ -721,6 +721,7 @@ function childSelectF(dat) {
 			if (sCode == data[i].studentId) {
 				option.setAttribute("selected", "selected")
 				childSelectedF(data[i].studentId);
+				sessionStorage.setItem("sCode",data[i].studentId);
 			}
 		}
 		aSelect.appendChild(option);
@@ -731,13 +732,16 @@ function childSelectF(dat) {
 function childSelectedF(sCode) {
 	const dateDiv = document.getElementById("dateDiv");
 	const tableMom = document.getElementById("tableMom");
+	const aSelect = document.getElementById("aSelect").value;
 	if(tableMom.childNodes.length > 0) {
 		delChild(tableMom);
 	}
-	sessionStorage.setItem("sCode", sCode);
-
+	if(sCode == 1) {
+		sessionStorage.setItem("sCode",aSelect);
+	}
 	const dateSelect = document.createElement("input");
 	dateSelect.setAttribute("id", "dateSelect");
+	dateSelect.setAttribute("value", new Date().toISOString().slice(0, 7));
 	dateSelect.setAttribute("type", "month");
 	dateSelect.setAttribute("onchange", "getMyFee()");
 	dateSelect.style.position = "absolute";
@@ -749,6 +753,7 @@ function childSelectedF(sCode) {
 	dateSelect.style.border = "1px solid #92acbb";
 
 	dateDiv.appendChild(dateSelect);
+	getMyFee();
 }
 
 
