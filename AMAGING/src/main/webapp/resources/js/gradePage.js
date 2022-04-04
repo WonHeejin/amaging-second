@@ -109,7 +109,7 @@ function childAcademyList(studentId,code) {
 		aSelectDiv.style.top = "1%";
 		aSelectDiv.style.float = "left";
 		selectMom.appendChild(aSelectDiv);
-	}else{
+	}else if(code == "C"){
 		const selectMom = document.createElement("div");
 		selectMom.setAttribute("id","selectMom");
 		selectMom.style.width = "400px";
@@ -169,7 +169,7 @@ function childAcademySelect(dat) {
 				}
 				if(divideCode == "P") {
 				aSelectDiv.appendChild(aSelect);
-				}else {
+				}else if(divideCode == "C") {
 				selectMom.appendChild(aSelect);
 				}
 			

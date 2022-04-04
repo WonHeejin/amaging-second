@@ -202,7 +202,7 @@ position:absolute; left:45%; top:1%;
 </style>
 
 </head>
-<body onload="childAcademyList('${sessionInfo.userId}')">
+<body onload="childAcademyList('${sessionInfo.userId}','C')">
 	<form name="Smainservices" action="" method="post">
 		<div id="basic">
 			<div id="frame">

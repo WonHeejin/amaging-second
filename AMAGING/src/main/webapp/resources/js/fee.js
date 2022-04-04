@@ -694,7 +694,6 @@ function childSelectF(dat) {
 			if (sCode == data[i].studentId) {
 				option.setAttribute("selected", "selected")
 				childSelectedF(data[i].studentId);
-				sessionStorage.setItem("sCode",data[i].studentId);
 			}
 		}
 		aSelect.appendChild(option);
@@ -709,8 +708,13 @@ function childSelectedF(sCode) {
 	if(tableMom.childNodes.length > 0) {
 		delChild("tableMom");
 	}
+	if(dateDiv.childNodes.length > 0) {
+		delChild("dateDiv");
+	}
 	if(sCode == 1) {
 		sessionStorage.setItem("sCode",aSelect);
+	}else {
+		sessionStorage.setItem("sCode",sCode);
 	}
 	const dateSelect = document.createElement("input");
 	dateSelect.setAttribute("id", "dateSelect");
