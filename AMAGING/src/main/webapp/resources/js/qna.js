@@ -96,7 +96,6 @@ function childSelect(dat) {
 
 function childSelected(a,sessionCode) {
 	//let acCode = selectedCode;
-	//alert(a.value);
 	const userId = document.getElementsByName("userId")[0].value;
 
 	/*if(selectedCode != "1133") {
@@ -133,7 +132,6 @@ function updAnswer(){
 	
 	let n = selectedNum;
 	const data = "post="+encodeURIComponent(tCn[n].post)+"&answer="+document.getElementById("answer").value;
-	alert(data);
 	getAjaxData("/UpdAnswer",data,"sendMessage1","post");
 		openModal1();
 }
@@ -166,8 +164,6 @@ function sendMessageAE(message){
 	
 	//Swal.fire(m);
 	//let uc = document.getElementById("userCode").value;
-	
-	//alert((tCn[selectedNum].rpCode).substr(0,1));
 	if (m.substr(1,1) == "해") {
 		
 			Swal.fire(m);
@@ -219,7 +215,6 @@ function sendMessageE(message){
 			//closeModalT1();
 			
 		}else if((tCn[selectedNum].rpCode).substr(0,1)=="A") {
-			alert("관리자");
 			//updAAnswer();
 			//adminCounsel(tCn[selectedNum].rpCode, tCn[selectedNum].acCode, '4');
 			//closeModalA();
@@ -253,7 +248,6 @@ function sendMessageA(message){
 	let m =JSON.stringify(message);
 
     Swal.fire(m);
-		//alert(m);		
 		//document.getElementById("answer").value="";
 	
 }
@@ -1347,7 +1341,6 @@ function sendMessage2(message){
 }
 
 function initC(){
-	alert("여기오냐");
 	let tt = document.getElementById("mheader1").value;
 		let qs = document.getElementById("mbody1").value;
 		tt=null;

@@ -109,7 +109,6 @@ public class QnA extends amaging.schedu.common.CommonMethod{
 	/*관리자 선생님 답변등록*/
 	private void insertQnA(ModelAndView mav) {
 		Counsel cn = (Counsel)mav.getModel().get("cn");
-		System.out.println(cn);
 		boolean tran=false;
 		String message ="";
 		this.setTransactionConf(TransactionDefinition.PROPAGATION_REQUIRED, 

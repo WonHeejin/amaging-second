@@ -82,9 +82,7 @@ public class AttendanceController {
 	@PostMapping("/searchList")
 	public List<AttendanceBean> searchList(Model model, @ModelAttribute Subject sj) {
 		model.addAttribute("sj",sj);
-		System.out.println(model.getAttribute("sj"));
 		ad.aBackController(12, model.addAttribute("sj",sj));
-		System.out.println((List<AttendanceBean>)model.getAttribute("searchSI"));
 		return (List<AttendanceBean>)model.getAttribute("searchSI");
 	}
 	@PostMapping("/upSI")

@@ -81,7 +81,6 @@ public class PrivateInfo extends amaging.schedu.common.CommonMethod{
 		/*대기중인 등록요청 있는지 조회*/
 		RegParent regp=(RegParent)mav.getModelMap().getAttribute("regp");
 		int spStatus=tm.checkSPStatus(regp);
-		System.out.println(spStatus);
 		if(spStatus==11) {
 			/* 11 >> 이미 등록됨 메세지 전송*/
 			message="이미 등록이 완료된 이메일입니다.";
@@ -106,7 +105,6 @@ public class PrivateInfo extends amaging.schedu.common.CommonMethod{
 			String contents="<a href='http://localhost/UpdPrPage?regPrInfo="+regPrInfo+"'>"+regp.getStudentName()+"님이 당신을 부모님으로 등록하길 원합니다! 링크를 통해 요청을 수락해주세요. </a>";
 			String from="swhong_test@naver.com";
 			String to=regp.getPEmail();
-			System.out.println(to);
 			/* Creation MimeMessage */
 			MimeMessage mail=javaMail.createMimeMessage();
 			MimeMessageHelper helper = new MimeMessageHelper(mail,"UTF-8");
@@ -139,7 +137,6 @@ public class PrivateInfo extends amaging.schedu.common.CommonMethod{
 		}
 		regp.setUserId(code.substring(0, code.indexOf(",")));
 		regp.setPrCode(code.substring(code.indexOf(",") + 1));
-		System.out.println(tm.checkSPStatus(regp));
 		if (tm.checkSPStatus(regp) ==12) {
 			RegParent spEmail = tm.getSPEmail(regp);
 			regp.setSEmail(spEmail.getSEmail());

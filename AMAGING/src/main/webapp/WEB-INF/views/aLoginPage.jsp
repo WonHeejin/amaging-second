@@ -70,7 +70,7 @@
          transform: translate(-50%, -50%); 
          }
 #welcome  {text-align:center; font-size:35px; color: #000000;
-         position:absolute; top:-15%; left: 33%; 
+         position:absolute; top:-15%; left: 37%; 
          }
 .inputE    {height: 20%;width:72%;font-size:100%;border:1px solid #000 ; 
           position:absolute; top:27%; left: 8%;  border-radius:25px; box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;

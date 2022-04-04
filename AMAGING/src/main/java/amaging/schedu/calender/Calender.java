@@ -80,7 +80,6 @@ public class Calender extends amaging.schedu.common.CommonMethod{
 			pl =this.om.getTeacherAcList(plan);//선생님의 학원리스트
 			ap = this.om.getPlanList(pl);//선생님 학원들의 학사일정
 		}else if(plan.getUserId().substring(0,1).toUpperCase().equals("S")) {
-			System.out.println(plan);
 			pl =this.om.getStudentAcList(plan);//학생의 학원리스트
 			
 			ap = this.om.getPlanList(pl);//학생 학원들의 학사일정

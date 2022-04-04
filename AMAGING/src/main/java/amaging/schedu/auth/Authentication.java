@@ -130,7 +130,6 @@ public class Authentication extends amaging.schedu.common.CommonMethod{
 		
 		UserInfo uf = new UserInfo();
 		uf = (UserInfo) mav.getModelMap().getAttribute("uf");
-		System.out.println(uf);
 		String page = "";
 		try {
 			if(uf.getUserCode()==4) {

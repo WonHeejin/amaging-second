@@ -245,7 +245,6 @@ position:absolute; left:45%; top:1%;
 }
 
 .bothC {
-font-family: "BMHANNAAir"; 
 	width: 85%;
 	height: 13%;
 	margin: 1% 2%;
@@ -351,11 +350,10 @@ font-family: "BMHANNAAir";
 }
 
 
-#dec{	font-family: "BMHANNAAir"; -
+#dec{	font-family: "BMHANNAAir";
 		height: 9%;
 		width: 10%;
 		font-size: large;
-	
 }
 
 </style>

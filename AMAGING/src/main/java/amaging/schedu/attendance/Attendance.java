@@ -184,7 +184,6 @@ public class Attendance extends amaging.schedu.common.CommonMethod{
 		model.addAttribute("meg",message);
 	}
 	private void searchList(Model model) {
-		System.out.println(am.searchSI((Subject)model.getAttribute("sj")));
 		model.addAttribute("searchSI",am.searchSI((Subject)model.getAttribute("sj")));
 	}
 	private void modStudentA(Model model) {
@@ -201,11 +200,8 @@ public class Attendance extends amaging.schedu.common.CommonMethod{
 		int timeDataS = Integer.parseInt(am.getJustTime((AcList)model.getAttribute("al")).getDayDate());
 		if(timeDataE < ((timeDataS*100)+10)) {
 			am.upSudentS((AcList)model.getAttribute("al"));
-			System.out.println("출석");
 		}else {
-			System.out.println((AcList)model.getAttribute("al"));
 			am.upSudentL((AcList)model.getAttribute("al"));
-			System.out.println("지각");
 		}
 		model.addAttribute("studentCList",am.stAllList((AcList)model.getAttribute("al")));
 	}
@@ -215,7 +211,6 @@ public class Attendance extends amaging.schedu.common.CommonMethod{
 		int timeDataS = Integer.parseInt(am.getJustTime((AcList)model.getAttribute("al")).getDayDate());
 		
 		if (am.checkOverlap((AcList) model.getAttribute("al")) > 0) {
-			System.out.println("pass");
 			model.addAttribute("studentCList",am.stAllList((AcList)model.getAttribute("al")));
 		} else {
 			if (tHour == timeDataS) {

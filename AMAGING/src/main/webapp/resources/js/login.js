@@ -14,7 +14,6 @@ function authentication(userCode){
    
    }
 	let a = getPage("login","/Login");
-	//if(a!="undefined") alert(a);
   
 
 }
