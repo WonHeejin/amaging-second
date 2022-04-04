@@ -40,6 +40,8 @@ function adminFee() {
 	dateSelect.style.borderRadius = "5px";
 	dateSelect.style.border = "2px solid #92acbb";
 	dateSelect.style.color = "#8C8C8C";
+	dateSelect.style.fontFamily = "BMHANNAAir";
+	dateSelect.style.fontSize = "100%";
 	
 	dateSelect.setAttribute("onchange","dateSelected(this)");
 	const nameSearch = document.createElement("input");
@@ -53,6 +55,8 @@ function adminFee() {
 	nameSearch.style.border = "2px solid #92acbb";
 	nameSearch.style.marginLeft = "2%";
 	nameSearch.style.color = "#CFCFCF";
+	nameSearch.style.fontFamily = "BMHANNAAir";
+	nameSearch.style.fontSize = "120%";
 
 	const searchBtn = document.createElement("input");
 	searchBtn.setAttribute("type","button");
@@ -69,6 +73,8 @@ function adminFee() {
 	searchBtn.style.marginLeft = "2%";
 	searchBtn.style.background = "#CFCFCF";
 	searchBtn.style.color = "#FFFFFF";
+	searchBtn.style.fontFamily = "BMHANNAAir";
+	searchBtn.style.fontSize = "120%";
 
 
 	const modBtnDiv = document.createElement("div");
@@ -138,6 +144,8 @@ function getAdminFeeList(dat) {
 		modBtn.style.background = "#CFCFCF";
 		modBtn.style.color = "#FFFFFF";
 		modBtn.style.fontSize = "15px";
+		modBtn.style.fontFamily = "BMHANNAAir";
+		modBtn.style.fontSize = "120%";
 
 		modBtnDiv.appendChild(modBtn);
 
@@ -184,6 +192,8 @@ function getAdminFeeList(dat) {
 			td3.style.textAlign = "center";
 			let td4 = createSTd("td4");
 			td4.style.textAlign = "center";
+			td4.style.fontFamily = "BMHANNAAir";
+			td4.style.fontSize = "95%";
 			let td5 = createSTd("td5");
 			td5.style.textAlign = "center";
 			let td6 = createSTd("td6");
@@ -251,7 +261,9 @@ function modFeeList(dat) {
 		let td3 = createSTd(data[i].clCrCode);
 		td3.style.textAlign = "center";
 		let td4 = createSTd(data[i].upMonth);
-		td4.style.textAlign = "center";
+			td4.style.textAlign = "center";
+			td4.style.fontFamily = "BMHANNAAir";
+			td4.style.fontSize = "95%";
 		let td5 = createSTd("td5");
 		td5.style.textAlign = "center";
 		let td6 = createSTd(data[i].fepMonth);
@@ -265,7 +277,11 @@ function modFeeList(dat) {
 		const changeStatus = document.createElement("select");
 		changeStatus.style.textAlign = "center";
 		changeStatus.style.borderRadius = "5px";
+		changeStatus.style.width = "60%";
+		changeStatus.style.height = "80%";
 		changeStatus.style.border = "2px solid #92acbb";
+		changeStatus.style.fontFamily = "BMHANNAAir";
+		changeStatus.style.fontSize = "100%";
 
 		const aOption = document.createElement("option");
 		(data[i].status == 13) ? aOption.setAttribute("selected","selected") : "";
@@ -304,6 +320,8 @@ function modFeeList(dat) {
 	regBtn.style.background = "#CFCFCF";
 	regBtn.style.color = "#FFFFFF";
 	regBtn.style.fontSize = "15px";
+	regBtn.style.fontFamily = "BMHANNAAir";
+	regBtn.style.fontSize = "120%";
 
 	modBtnDiv.appendChild(regBtn);
 
@@ -361,9 +379,18 @@ function modFeeToJson() {
 
 	}
 
-	modAjax("SaveModFee", JSON.stringify(feeJson), "sendMessage", "post");
+	modAjax("SaveModFee", JSON.stringify(feeJson), "moveTo", "post");
+}
+
+function moveTo(a) {
 	const threeB = document.getElementById("threeB");
+	Swal.fire(a).then((result) => {
+  if (result.isConfirmed) {
 	threeB.click();
+  } else if (result.isDenied) {
+    Swal.fire('Changes are not saved', '', 'info')
+  }
+})
 }
 /* regFee */
 function adminRegFee() {
@@ -407,6 +434,8 @@ function adminRegFee() {
 	dateSelect.style.textAlign = "center";
 	dateSelect.style.borderRadius = "5px";
 	dateSelect.style.border = "2px solid #92acbb";
+	dateSelect.style.fontFamily = "BMHANNAAir";
+	dateSelect.style.fontSize = "100%";
 	selectMom.appendChild(dateSelect);
 
 	const searchBtn = document.createElement("input");
@@ -424,6 +453,8 @@ function adminRegFee() {
 	searchBtn.style.border = "none";
 	searchBtn.style.background = "#CFCFCF";
 	searchBtn.style.color = "#FFFFFF";
+	searchBtn.style.fontFamily = "BMHANNAAir";
+	searchBtn.style.fontSize = "120%";
 	selectMom.appendChild(searchBtn);
 	
 	bigMom.appendChild(tableMomT);
@@ -481,9 +512,13 @@ function regFeeForm(dat) {
 			let tr = createTr("tr1");
 
 			let td1 = createSTd(data[i].clCrCode);
+			td1.style.textAlign = "center";
 			let td2 = createSTd(data[i].clCode);
+			td2.style.textAlign = "center";
 			let td3 = createSTd(data[i].studentId);
+			td3.style.textAlign = "center";
 			let td4 = createSTd(data[i].money);
+			td4.style.textAlign = "center";
 
 			td1.innerHTML = data[i].studentName;
 			td2.innerHTML = data[i].paName;
@@ -512,6 +547,8 @@ function regFeeForm(dat) {
 		regBtn.style.background = "#CFCFCF";
 		regBtn.style.color = "#FFFFFF";
 		regBtn.style.fontSize = "15px";
+		regBtn.style.fontFamily = "BMHANNAAir";
+		regBtn.style.fontSize = "120%";
 
 		selectMom.appendChild(regBtn);
 
@@ -575,9 +612,7 @@ function regFeeToJson() {
 
 	}
 
-	modAjax("RegFeeList", JSON.stringify(feeJson), "sendMessage", "post");
-	const threeB = document.getElementById("threeB");
-	threeB.click();
+	modAjax("RegFeeList", JSON.stringify(feeJson), "moveTo", "post");
 }
 
 function getAmounts() {
@@ -661,7 +696,7 @@ function childSelectF(dat) {
 	amountDiv.style.textAlign = "center";
 	const totFee = document.createElement("h4");
 	totFee.style.marginTop = "30%";
-	totFee.style.marginTop = "0px";
+	totFee.style.marginTop = "10px";
 	totFee.style.textAlign = "center";
 	totFee.style.color = "#A6A6A6";
 	totFee.innerHTML = "미납요금 : " + totAmounts;
@@ -681,7 +716,7 @@ function childSelectF(dat) {
 		let option = document.createElement("option");
 		option.setAttribute("id", data[i].studentId);
 		option.setAttribute("value", data[i].studentId);
-		option.innerHTML = data[i].sname;
+		option.innerHTML = data[i].sname;  
 		if (sCode != "") {
 			if (sCode == data[i].studentId) {
 				option.setAttribute("selected", "selected")
@@ -721,7 +756,7 @@ function getMyFee() {
 	const studentId = sessionStorage.getItem("sCode");
 	const upMonth = document.getElementById("dateSelect").value;
 	const data = "studentId=" + studentId + "&upMonth=" + upMonth.substring(0, 4) + upMonth.substring(5, 7);
-	getAjaxData("GetMyFee", data, "displayMyFee", "post")
+	getAjaxData("GetMyFee", data, "displayMyFee", "post");
 }
 
 function displayMyFee(dat) {

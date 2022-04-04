@@ -156,7 +156,7 @@
 	
 	<insert id="insFeeList" parameterType ="amaging.schedu.bean.FeeBean">
 		INSERT INTO FE(FE.FE_CLCRACCODE,FE.FE_CLCRCODE,FE.FE_CLCODE,FE.FE_STCODE,FE.FE_UPMONTH,FE.FE_FEPMONTH,FE.FE_COCODE,FE.FE_PRICE) 
-		VALUES(#{acCode},#{clCrCode},#{clCode},#{studentId},#{upMonth},SYSDATE,#{status},#{money})
+		VALUES(#{acCode},#{clCrCode},#{clCode},#{studentId},#{upMonth},SYSDATE,13,#{money})
 	</insert>
 	
 	<select id="getMyFeeList" parameterType ="amaging.schedu.bean.FeeBean" resultType="amaging.schedu.bean.FeeBean">

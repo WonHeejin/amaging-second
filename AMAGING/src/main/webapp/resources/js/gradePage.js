@@ -44,6 +44,8 @@ function childSelect(dat) {
 			cSelect.style.left = "0%";
 			cSelect.style.top = "1%";
 			cSelect.style.float = "left";
+			cSelect.style.fontFamily = "BMHANNAAir";
+			cSelect.style.fontSize = "120%";
 			
 			let firstOption = document.createElement("option");
 				firstOption.innerHTML = "자녀 선택"
@@ -154,6 +156,8 @@ function childAcademySelect(dat) {
 			aSelect.style.height = "40px";
 			aSelect.style.borderRadius = "5px";
 			aSelect.style.border = "2px solid #92acbb";
+			aSelect.style.fontFamily = "BMHANNAAir";
+			aSelect.style.fontSize = "120%";
 			
 			
 			let firstOption = document.createElement("option");
@@ -274,6 +278,8 @@ function subjectOnCl(dat) {
 						classBtn.style.borderRadius = "5px";
 						classBtn.style.border = "none";
 						classBtn.style.background = "#EAEAEA";
+						classBtn.style.fontFamily = "BMHANNAAir";
+						classBtn.style.fontSize = "120%";
 						
 						sjDiv.appendChild(classBtn);
 				}
@@ -472,6 +478,8 @@ function academySelect(dat) {
 			aSelect.style.left = "0%";
 			aSelect.style.top = "1%";
 			aSelect.style.float = "left";
+			aSelect.style.fontFamily = "BMHANNAAir";
+			aSelect.style.fontSize = "120%";
 			
 			
 			let firstOption = document.createElement("option");
@@ -629,6 +637,8 @@ function classOnAc(dat) {
 							classBtn.setAttribute("type","button");
 							classBtn.setAttribute("value",data[i].clName);
 							classBtn.style.textAlign = "center";
+							classBtn.style.fontFamily = "BMHANNAAir";
+							classBtn.style.fontSize = "120%";
 						classBtn.style.border = "none";
 								classBtn.style.marginLeft = "7px";
 							classBtn.style.height = "36px";
@@ -647,19 +657,28 @@ function classOnAc(dat) {
 function chooseDate(clCode) {
 	const DSDiv = document.getElementById("DSDiv");
 	const selectMom = document.getElementById("selectMom");
+	const bigMom = document.getElementById("bigMom");
 	const insDate = document.createElement("input");
+	const regBtnDiv = document.createElement("div");
+	regBtnDiv.setAttribute("id","regBtnDiv");
+	regBtnDiv.style.width = "90px";
+	regBtnDiv.style.height = "40px";
+	regBtnDiv.style.borderRadius = "5px";
+	regBtnDiv.style.border = "2px solid #92acbb";
+	regBtnDiv.style.border = "none";
+	regBtnDiv.style.marginLeft = "87%";
+	regBtnDiv.style.marginTop = "3%";
 	insDate.setAttribute("id","insDate");
 	insDate.setAttribute("type","month");
 	insDate.setAttribute("value",new Date().toISOString().slice(0, 7));
-	//insDate.setAttribute("onclick","getGrade('" + clCode + "')");
 	insDate.setAttribute("onchange","getGrade('" + clCode + "')");
 	insDate.style.position = "absolute";
-	//insDate.style.left = "52%";
 	insDate.style.width = "150px";
-	//insDate.style.borderR = "none";
-	//insDate.style.stroke = "none";
-	//insDate.style.transform = "translate: translate(-50%)";
+	insDate.style.height = "30px";
+	insDate.style.fontFamily = "BMHANNAAir";
+	insDate.style.fontSize = "100%";
 	delChild(DSDiv);
+	bigMom.appendChild(regBtnDiv);
 	DSDiv.appendChild(insDate);
 	selectMom.appendChild(DSDiv);
 	getGrade(clCode);
@@ -668,8 +687,8 @@ function chooseDate(clCode) {
 function getGrade(clCode) {
 	const teacherId = document.getElementsByName("userId")[0].value;
 	const acCode = sessionStorage.getItem("acCode");
-	const action = (intCode == "reg")? "GetStudent" : "GetGrade" ;
-	const date = document.getElementById("insDate").value;	
+	const action = (intCode == "reg")? "GetStudent" : "GetGrade";
+	const date = document.getElementById("insDate").value;
 	const sDate = date.substring(0,4) + date.substring(5,7);
 	const fn = (intCode == "get")? "displayGrade": (intCode == "mod")? "modGradeForm" : "regGradeForm";
 	let data = "acCode=" + acCode + "&clCode=" + clCode + "&teacherId=" + teacherId + "&month=" + sDate;
@@ -719,10 +738,15 @@ function displayGrade(dat) {
 				let tr = createTr("tr1");
 				
 				let td1 = createSTd("td1");
+				td1.style.textAlign = "center";
 				let td2 = createSTd("td2");
+				td2.style.textAlign = "center";
 				let td3 = createSTd("td3");
+				td3.style.textAlign = "center";
 				let td4 = createSTd("td4");
+				td4.style.textAlign = "center";
 				let td5 = createSTd("td5");
+				td5.style.textAlign = "center";
 				
 				td1.innerHTML = data[i].subjectName;
 				td2.innerHTML = data[i].month;
@@ -759,6 +783,7 @@ function modGradeForm(dat) {
 	const tableMomT = document.getElementById("tableMomT");
 	const tableMom = document.getElementById("tableMom");
 	const bigMom = document.getElementById("bigMom");
+	const regBtnDiv = document.getElementById("regBtnDiv");
 
 			let tableT = document.createElement("table");
 			tableT.setAttribute("id","tableT");
@@ -799,6 +824,8 @@ function modGradeForm(dat) {
 				td1.style.textAlign = "center";
 				td2.innerHTML = data[i].sname;
 				td2.style.textAlign = "center";
+				td4.innerHTML = data[i].headCount;
+				td4.style.textAlign = "center";
 				
 				let mScore = document.createElement("input");
 				mScore.setAttribute("type","text");
@@ -807,16 +834,9 @@ function modGradeForm(dat) {
 				mScore.style.width = "95%";
 				mScore.style.height = "95%";
 				mScore.style.border = "none";
+				mScore.style.fontFamily = "BMHANNAAir";
+				mScore.style.fontSize = "120%";
 				td3.appendChild(mScore);
-
-				let mhCount = document.createElement("input");
-				mhCount.setAttribute("readonly",true);
-				mhCount.setAttribute("value",data[i].headCount);
-				mhCount.style.textAlign = "center";
-				mhCount.style.width = "95%";
-				mhCount.style.height = "95%";
-				mhCount.style.border = "none";
-				td4.appendChild(mhCount);
 				
 				tr.appendChild(td1);
 				tr.appendChild(td2);
@@ -841,11 +861,16 @@ function modGradeForm(dat) {
 			regBtn.style.background = "#CFCFCF";
 			regBtn.style.color = "#FFFFFF";
 			regBtn.style.fontSize = "15px";
-			
-		bigMom.appendChild(regBtn);
+			regBtn.style.fontFamily = "BMHANNAAir";
+			regBtn.style.fontSize = "120%";
+	
+	delChild(regBtnDiv);
+		regBtnDiv.appendChild(regBtn);
 		
 		
+	
 	delChild(tableMom);
+	delChild(tableMomT);
 	tableMomT.appendChild(tableT);
 	tableMom.appendChild(table);
 	}
@@ -989,6 +1014,8 @@ function regGradeForm(dat) {
 				td1.style.textAlign = "center";
 				td2.innerHTML = data[i].sname;	
 				td2.style.textAlign = "center";	
+				td4.innerHTML = data[i].headCount;
+				td4.style.textAlign = "center";
 					
 				let mScore = document.createElement("input");
 				mScore.setAttribute("placeholder","점수 입력");
@@ -999,16 +1026,20 @@ function regGradeForm(dat) {
 				mScore.style.width = "95%";
 				mScore.style.height = "95%";
 				mScore.style.border = "none";
+				mScore.style.fontFamily = "BMHANNAAir";
+				mScore.style.fontSize = "120%";
 				td3.appendChild(mScore);
 				
-				let mhCount = document.createElement("input");
+				/*let mhCount = document.createElement("input");
 				mhCount.setAttribute("readonly",true);
 				mhCount.setAttribute("value",data[i].headCount);
 				mhCount.style.textAlign = "center";
 				mhCount.style.width = "95%";
 				mhCount.style.height = "95%";
 				mhCount.style.border = "none";
-				td4.appendChild(mhCount);
+				mhCount.style.fontFamily = "BMHANNAAir";
+				mhCount.style.fontSize = "120%";
+				td4.appendChild(mhCount);*/
 				
 				tr.appendChild(td1);
 				tr.appendChild(td2);
@@ -1035,6 +1066,8 @@ function regGradeForm(dat) {
 			regBtn.style.background = "#CFCFCF";
 			regBtn.style.color = "#FFFFFF";
 			regBtn.style.fontSize = "15px";
+			regBtn.style.fontFamily = "BMHANNAAir";
+			regBtn.style.fontSize = "120%";
 		bigMom.appendChild(regBtn);
 	//if(tableMom.hasChildNodes()) {
 	//	while(tableMom.hasChildNodes()) {
@@ -1084,6 +1117,7 @@ function delChild(element) {
 function createTr(id) {
 	const tr = document.createElement("tr");
 	tr.setAttribute("id",id);
+	tr.style.fontSize = "120%";
 	//tr.style.borderBottom = "5px solid #ffffff";
 return tr;
 }
@@ -1099,6 +1133,7 @@ function createTd(id) {
 	td.style.height = "40px";
 	td.style.textAlign = "center";
 	td.style.fontSize = "15px";
+	td.style.fontSize = "120%";
 return td;
 }
 
@@ -1112,5 +1147,6 @@ function createSTd(id) {
 	td.style.textAlign = "center";
 	td.style.textAlign = "left";
 	td.style.fontSize = "15px";
+	td.style.fontSize = "120%";
 return td;
 }

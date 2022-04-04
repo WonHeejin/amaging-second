@@ -131,7 +131,6 @@ public class Grade extends amaging.schedu.common.CommonMethod{
 		String message = null;
 		String acCode = null;
 		acCode = gfo.checkPwd((AcList)mav.getModelMap().getAttribute("ac"));
-		System.out.println(acCode);
 		if(acCode != null) {
 			message = acCode;
 		}else {
@@ -200,7 +199,6 @@ public class Grade extends amaging.schedu.common.CommonMethod{
 		boolean tran = false;
 		String message = null;
 		List<GradeBean> gList = (List<GradeBean>)mav.getModelMap().getAttribute("gr");
-		System.out.println("제발....." + gList.size());
 		this.setTransactionConf(TransactionDefinition.PROPAGATION_REQUIRED, TransactionDefinition.ISOLATION_READ_COMMITTED, false);
 		if(this.convertToBoolean(gfo.isGrade(gList.get(0)))) {
 			tran = false;

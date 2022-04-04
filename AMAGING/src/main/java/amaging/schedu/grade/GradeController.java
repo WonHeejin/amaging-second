@@ -62,7 +62,6 @@ public class GradeController {
 		
 		mav.getModelMap().addAttribute("gr",gr);
 		this.grade.backController(6, mav);
-		System.out.println("성공??" + (String)mav.getModelMap().getAttribute("msg"));
 		return (String)mav.getModelMap().getAttribute("msg");
 	}
 	
@@ -85,9 +84,6 @@ public class GradeController {
 	
 	@PostMapping(value = "/RegGrade", consumes="application/json", produces = "application/json; charset=UTF-8")
 	public String regGrade(ModelAndView mav, @RequestBody List<GradeBean> gr) {
-		//(#{sBACode},#{studentId},#{score},#{rank},#{month})
-		System.out.println("regGrade : " + gr.get(0).getSBACode() + " : " + gr.get(0).getStudentId() + " : " + 
-				gr.get(0).getScore() + " : " + gr.get(0).getRank() + " : " + gr.get(0).getMonth());
 		mav.getModelMap().addAttribute("gr",gr);
 		this.grade.backController(10, mav);
 		return (String)mav.getModelMap().getAttribute("msg");
@@ -122,7 +118,6 @@ public class GradeController {
 	@SuppressWarnings("unchecked")
 	@PostMapping(value = "/GetSubjectGrade", produces = "application/json; charset=UTF-8")
 	public List<Grade> getSubjectGrade(ModelAndView mav, @ModelAttribute GradeBean gr) {
-		System.out.println("GetSubjectGrade = " + gr.getSBACode() + " : " + gr.getAcCode() + " : " + gr.getSubjectCode() + " : " + gr.getStudentId());
 		mav.getModelMap().addAttribute("gr",gr);
 		this.grade.backController(14, mav);
 		return (List<Grade>)mav.getModelMap().getAttribute("latestGrade");
@@ -131,7 +126,6 @@ public class GradeController {
 	@SuppressWarnings("unchecked")
 	@PostMapping(value = "/GetGradeForGraph", produces = "application/json; charset=UTF-8")
 	public List<Grade> GetGradeForGraph(ModelAndView mav, @ModelAttribute GradeBean gr) {
-		System.out.println("GetGradeForGraph = " + gr.getSBACode());
 		mav.getModelMap().addAttribute("gr",gr);
 		this.grade.backController(15, mav);
 		return (List<Grade>)mav.getModelMap().getAttribute("subjectGrade");

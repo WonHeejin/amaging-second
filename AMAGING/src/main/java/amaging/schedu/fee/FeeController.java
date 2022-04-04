@@ -59,7 +59,6 @@ public class FeeController {
 	@SuppressWarnings("unchecked")
 	@PostMapping(value = "/GetMyFee", produces = "application/json; charset=UTF-8")
 	public List<FeeBean> getMyFee(ModelAndView mav, @ModelAttribute FeeBean fb) {
-		System.out.println("getMyFee 는 왔음 : " + fb.getStudentId() + " : " + fb.getUpMonth());
 		mav.addObject("fb",fb);
 		this.fee.backController(8, mav);
 		return (List<FeeBean>)mav.getModelMap().getAttribute("fee");
